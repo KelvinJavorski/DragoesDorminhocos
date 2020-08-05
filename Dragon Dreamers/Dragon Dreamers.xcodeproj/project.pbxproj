@@ -60,17 +60,41 @@
 		B6EF3A1E24D9CCCE00FD840E /* Dragon Dreamers */ = {
 			isa = PBXGroup;
 			children = (
+				B6EF3A3924DB26FF00FD840E /* Model */,
+				B6EF3A3824DB26F800FD840E /* Controller */,
+				B6EF3A3724DB26EB00FD840E /* View */,
 				B6EF3A1F24D9CCCE00FD840E /* AppDelegate.swift */,
-				B6EF3A2124D9CCCE00FD840E /* GameScene.sks */,
-				B6EF3A2324D9CCCE00FD840E /* Actions.sks */,
-				B6EF3A2524D9CCCE00FD840E /* GameScene.swift */,
-				B6EF3A2724D9CCCE00FD840E /* GameViewController.swift */,
-				B6EF3A2924D9CCCE00FD840E /* Main.storyboard */,
-				B6EF3A2C24D9CCD100FD840E /* Assets.xcassets */,
-				B6EF3A2E24D9CCD100FD840E /* LaunchScreen.storyboard */,
 				B6EF3A3124D9CCD100FD840E /* Info.plist */,
 			);
 			path = "Dragon Dreamers";
+			sourceTree = "<group>";
+		};
+		B6EF3A3724DB26EB00FD840E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B6EF3A2124D9CCCE00FD840E /* GameScene.sks */,
+				B6EF3A2324D9CCCE00FD840E /* Actions.sks */,
+				B6EF3A2924D9CCCE00FD840E /* Main.storyboard */,
+				B6EF3A2C24D9CCD100FD840E /* Assets.xcassets */,
+				B6EF3A2E24D9CCD100FD840E /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B6EF3A3824DB26F800FD840E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B6EF3A2524D9CCCE00FD840E /* GameScene.swift */,
+				B6EF3A2724D9CCCE00FD840E /* GameViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B6EF3A3924DB26FF00FD840E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
