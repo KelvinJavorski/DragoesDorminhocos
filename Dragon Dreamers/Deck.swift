@@ -9,13 +9,13 @@
 import Foundation
 
 class Deck {
-    internal init(type: DeckType? = nil, cards: [Card]? = nil) {
+    internal init(type: DeckType? = nil, cards: [Card] = []) {
         self.type = type
         self.cards = cards
-    }
+    }    
     
     var type        : DeckType!
-    var cards       : [Card]!
+    var cards       : [Card] = []
     
     func shuffle(){}
     

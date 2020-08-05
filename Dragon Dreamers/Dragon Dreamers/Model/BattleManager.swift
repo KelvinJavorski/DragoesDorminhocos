@@ -13,5 +13,23 @@ class BattleManager{
     //var enemy: Enemy
     var battleState: BattleState = .playerTurn
     
+    func startBattle(){
+        
+    }
     
+    func endBattle(){
+        
+    }
+    
+    func initPlayerTurn(){
+        
+    }
+    
+    func endPlayerTurn(){
+        
+    }
+    
+    func enemyTurn(){
+        
+    }
 }
