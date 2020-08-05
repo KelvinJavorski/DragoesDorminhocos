@@ -14,6 +14,21 @@ class GameScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
+    
+    func playCard (card : Card) {
+        // Moves card node to play area
+        
+        
+        // Changes card between decks (from hand to ongoing)
+        
+        
+    }
+    
+    
+    
+    
+    
+    
     override func didMove(to view: SKView) {
         
     }

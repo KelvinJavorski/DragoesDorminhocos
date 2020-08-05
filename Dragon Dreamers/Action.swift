@@ -10,5 +10,7 @@ import Foundation
 
 class Action {
     
+    func runEffect () { }
+    
     
 }

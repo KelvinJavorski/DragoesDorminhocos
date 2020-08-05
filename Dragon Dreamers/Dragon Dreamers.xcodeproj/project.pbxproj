@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F44E7ED24DB34340034CDE1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F44E7EC24DB34330034CDE1 /* Player.swift */; };
 		6F71B26B24DB2A5E009EB5CB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F71B26A24DB2A5E009EB5CB /* Card.swift */; };
 		6F71B26D24DB2A6F009EB5CB /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F71B26C24DB2A6F009EB5CB /* Deck.swift */; };
 		6F71B26F24DB2A86009EB5CB /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F71B26E24DB2A86009EB5CB /* Action.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F44E7EC24DB34330034CDE1 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		6F71B26A24DB2A5E009EB5CB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = SOURCE_ROOT; };
 		6F71B26C24DB2A6F009EB5CB /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = SOURCE_ROOT; };
 		6F71B26E24DB2A86009EB5CB /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = SOURCE_ROOT; };
@@ -49,6 +51,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F44E7E824DB33020034CDE1 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				B6EF3A3A24DB2F1700FD840E /* DeckType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		6F44E7EB24DB333D0034CDE1 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
 		B6EF3A1324D9CCCE00FD840E = {
 			isa = PBXGroup;
 			children = (
@@ -101,10 +118,12 @@
 		B6EF3A3924DB26FF00FD840E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6F44E7EB24DB333D0034CDE1 /* Actions */,
+				6F71B26E24DB2A86009EB5CB /* Action.swift */,
 				6F71B26A24DB2A5E009EB5CB /* Card.swift */,
 				6F71B26C24DB2A6F009EB5CB /* Deck.swift */,
-				6F71B26E24DB2A86009EB5CB /* Action.swift */,
-				B6EF3A3A24DB2F1700FD840E /* DeckType.swift */,
+				6F44E7EC24DB34330034CDE1 /* Player.swift */,
+				6F44E7E824DB33020034CDE1 /* Enums */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,6 +207,7 @@
 				6F71B26D24DB2A6F009EB5CB /* Deck.swift in Sources */,
 				B6EF3A2024D9CCCE00FD840E /* AppDelegate.swift in Sources */,
 				6F71B26B24DB2A5E009EB5CB /* Card.swift in Sources */,
+				6F44E7ED24DB34340034CDE1 /* Player.swift in Sources */,
 				B6EF3A3B24DB2F1700FD840E /* DeckType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

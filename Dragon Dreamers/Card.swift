@@ -7,9 +7,35 @@
 //
 
 import Foundation
+import SpriteKit
+
 
 class Card {
+    var effects : [Action] = []
+    var cost : Int = 0
+    var node : SKSpriteNode!
+    var type : CardType!
+    
+    enum CardType {
+        case damage
+        case conversation
+    }
+    
+    init (cost : Int, effects : [Action] = []) {
+        self.effects = effects
+        self.cost = cost
+    }
     
     
+    func playCard () {
+        // Moves node to play area
+        
+        
+        // Loops through actions and applies their effects
+        for action in effects {
+            action.runEffect()
+        }
+        
+    }
     
 }
