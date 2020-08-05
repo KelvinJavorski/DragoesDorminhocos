@@ -16,11 +16,6 @@ class Card {
     var node : SKSpriteNode!
     var type : CardType!
     
-    enum CardType {
-        case damage
-        case conversation
-    }
-    
     init (cost : Int, effects : [Action] = []) {
         self.effects = effects
         self.cost = cost
