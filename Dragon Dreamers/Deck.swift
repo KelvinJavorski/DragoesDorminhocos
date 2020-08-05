@@ -9,7 +9,17 @@
 import Foundation
 
 class Deck {
+    internal init(type: DeckType? = nil, cards: [Card]? = nil) {
+        self.type = type
+        self.cards = cards
+    }
     
+    var type        : DeckType!
+    var cards       : [Card]!
     
+    func shuffle(){}
     
+    func addCard(card: Card){}
+    
+    func removeCard(card: Card){}
 }
