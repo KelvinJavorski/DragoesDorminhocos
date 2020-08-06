@@ -13,7 +13,7 @@ import SpriteKit
 class Card {
     var effects : [Action] = []
     var cost : Int = 0
-    var node : SKSpriteNode!
+    var node : SKNode!
     var type : CardType!
     
     init (cost : Int, effects : [Action] = []) {

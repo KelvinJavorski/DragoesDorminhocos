@@ -13,24 +13,35 @@ class Player {
     
     
     
-    var deck     : Deck!
-    var hand     : Deck!
-    var discart  : Deck!
-    var banished : Deck!
+    var deck     : Deck = Deck()
+    var hand     : Deck = Deck()
+    var discart  : Deck = Deck()
+    var banished : Deck = Deck()
+    var ongoing  : Deck = Deck()
     
-    
-    func getNewDeckFromDiscart () {
-        
+    init () {
+        for _ in 0 ..< 50 {
+            deck.cards.append(Card(cost: 0))
+        }
+        print("added cards to deck")
+        print("Deck: \(deck.cards.count)")
     }
+    
+    
+    func getNewDeckFromDiscart () { }
     
     func drawCards (ammount : Int) {
-        
+        for _ in 0 ..< ammount {
+            hand.cards.append(deck.cards[0])
+            deck.cards.remove(at: 0)
+        }
     }
     
-    func discartHand () {
-        
-    }
+    func discartHand () { }
     
+    func playCard (card : Card) {
+        ongoing.cards.append(card)
+    }
     
     
 }
