@@ -15,7 +15,7 @@ class Player {
     
     var deck     : Deck = Deck()
     var hand     : Deck = Deck()
-    var discart  : Deck = Deck()
+    var discard  : Deck = Deck()
     var banished : Deck = Deck()
     var ongoing  : Deck = Deck()
     
@@ -37,7 +37,7 @@ class Player {
         }
     }
     
-    func discartHand () { }
+    func discardHand () { }
     
     func playCard (card : Card) {
         ongoing.cards.append(card)

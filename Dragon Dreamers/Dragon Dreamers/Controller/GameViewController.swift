@@ -51,7 +51,7 @@ class GameViewController: UIViewController {
     @IBAction func deckButton(_ sender: UIButton) {
         print("clicked deck")
         if Player.shared.hand.cards.count > 0 {
-            scene.discartHand()
+            scene.discardHand()
         }
         scene.drawCards()
     }
@@ -81,17 +81,17 @@ class GameViewController: UIViewController {
         scene.playCard(index: 4)
     }
     
-    @IBAction func discartAllCards(_ sender: UIButton) {
+    @IBAction func discardAllCards(_ sender: UIButton) {
         print("Discarting all ongoing")
         if Player.shared.ongoing.cards.count > 0 {
-            scene.discartOngoing()
+            scene.discardOngoing()
         }
     }
     
-    @IBAction func getCardsFromDiscart(_ sender: UIButton) {
+    @IBAction func getCardsFromDiscard(_ sender: UIButton) {
         print("getting cards from discart pile")
         
-        scene.getCardsFromDiscart()
+        scene.getCardsFromDiscard()
     }
     
     

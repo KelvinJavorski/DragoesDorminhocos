@@ -16,8 +16,8 @@ class GameScene: SKScene {
     
     var deckNode      : SKNode!
     var deckNumber    : SKLabelNode!
-    var discartNode   : SKNode!
-    var discartNumber : SKLabelNode!
+    var discardNode   : SKNode!
+    var discardNumber : SKLabelNode!
     
     var handNode      : SKNode!
     var handNodes     : [SKNode] = []
@@ -29,8 +29,8 @@ class GameScene: SKScene {
         deckNode = childNode(withName: "Deck")!
         deckNumber = deckNode.childNode(withName: "DeckCardAmmount") as? SKLabelNode
         
-        discartNode = childNode(withName: "Discart")!
-        discartNumber = discartNode.childNode(withName: "DeckCardAmmount") as? SKLabelNode
+        discardNode = childNode(withName: "Discard")!
+        discardNumber = discardNode.childNode(withName: "DeckCardAmmount") as? SKLabelNode
         
         
         let hand = childNode(withName: "Hand")!
@@ -95,44 +95,44 @@ class GameScene: SKScene {
         // Move node
         moveCard(card: card, to: pos)
         
-        self.discartHand()
+        self.discardHand()
     }
     
-    func discartHand () {
-        // Runs through all cards in player's hand and discarts them
+    func discardHand () {
+        // Runs through all cards in player's hand and discards them
         for card in Player.shared.hand.cards {
-            discartCard(card: card)
+            discardCard(card: card)
         }
         
-        Player.shared.discartHand()
+        Player.shared.discardHand()
         Player.shared.hand.cards = []
     }
     
-    func discartOngoing () {
+    func discardOngoing () {
         // Runs through all cards in player's ongoing deck and discarts them
         for card in Player.shared.ongoing.cards {
-            discartCard(card: card)
+            discardCard(card: card)
             Player.shared.ongoing.removeCard(card: card)
         }
         Player.shared.ongoing.cards = []
     }
     
-    func discartCard (card : Card) {
+    func discardCard (card : Card) {
         // Moves card's node into discart deck node
-        let move = SKAction.move(to: discartNode.position, duration: 0.5)
+        let move = SKAction.move(to: discardNode.position, duration: 0.5)
         card.node.run(move) {
-            Player.shared.discart.cards.append(card)
+            Player.shared.discard.cards.append(card)
             card.node.removeFromParent()
         }
     }
     
-    func getCardsFromDiscart () {
+    func getCardsFromDiscard () {
         
-        Player.shared.discart.cards.shuffle()
+        Player.shared.discard.cards.shuffle()
         
-        for i in 0 ..< Player.shared.discart.cards.count {
-            let card = Player.shared.discart.cards[i]
-            createCardNode(card: card, at: discartNode)
+        for i in 0 ..< Player.shared.discard.cards.count {
+            let card = Player.shared.discard.cards[i]
+            createCardNode(card: card, at: discardNode)
             
             let delay = SKAction.wait(forDuration: Double(i)/10)
             let move  = SKAction.move(to: deckNode.position, duration: 0.5)
@@ -145,7 +145,7 @@ class GameScene: SKScene {
             }
         }
         
-        Player.shared.discart.cards = []
+        Player.shared.discard.cards = []
         
     }
     
@@ -161,8 +161,8 @@ class GameScene: SKScene {
         let deckCardsAmmount = Player.shared.deck.cards.count
         deckNumber.text = "\(deckCardsAmmount)"
         
-        let discartCardsAmmount = Player.shared.discart.cards.count
-        discartNumber.text = "\(discartCardsAmmount)"
+        let discartCardsAmmount = Player.shared.discard.cards.count
+        discardNumber.text = "\(discartCardsAmmount)"
     }
     
     
