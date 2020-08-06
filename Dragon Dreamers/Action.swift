@@ -12,5 +12,4 @@ class Action {
     
     func runEffect () { }
     
-    
 }

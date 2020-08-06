@@ -23,6 +23,8 @@
 		B6EF3A3B24DB2F1700FD840E /* DeckType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF3A3A24DB2F1700FD840E /* DeckType.swift */; };
 		B6EF3A3D24DB390B00FD840E /* BattleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF3A3C24DB390B00FD840E /* BattleState.swift */; };
 		B6EF3A3F24DB396500FD840E /* BattleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF3A3E24DB396500FD840E /* BattleManager.swift */; };
+		B6EF3A4124DB545500FD840E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF3A4024DB545500FD840E /* Person.swift */; };
+		B6EF3A4324DB54C300FD840E /* BattleEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF3A4224DB54C300FD840E /* BattleEmotion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		B6EF3A3A24DB2F1700FD840E /* DeckType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckType.swift; sourceTree = "<group>"; };
 		B6EF3A3C24DB390B00FD840E /* BattleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleState.swift; sourceTree = "<group>"; };
 		B6EF3A3E24DB396500FD840E /* BattleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleManager.swift; sourceTree = "<group>"; };
+		B6EF3A4024DB545500FD840E /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		B6EF3A4224DB54C300FD840E /* BattleEmotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleEmotion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 				B6EF3A3A24DB2F1700FD840E /* DeckType.swift */,
 				6F44E7EE24DB36630034CDE1 /* CardType.swift */,
 				B6EF3A3C24DB390B00FD840E /* BattleState.swift */,
+				B6EF3A4224DB54C300FD840E /* BattleEmotion.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -127,12 +132,13 @@
 			isa = PBXGroup;
 			children = (
 				6F44E7EB24DB333D0034CDE1 /* Actions */,
+				6F44E7E824DB33020034CDE1 /* Enums */,
 				6F71B26E24DB2A86009EB5CB /* Action.swift */,
 				6F71B26A24DB2A5E009EB5CB /* Card.swift */,
 				6F71B26C24DB2A6F009EB5CB /* Deck.swift */,
 				6F44E7EC24DB34330034CDE1 /* Player.swift */,
-				6F44E7E824DB33020034CDE1 /* Enums */,
 				B6EF3A3E24DB396500FD840E /* BattleManager.swift */,
+				B6EF3A4024DB545500FD840E /* Person.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -216,9 +222,11 @@
 				B6EF3A2824D9CCCE00FD840E /* GameViewController.swift in Sources */,
 				6F71B26D24DB2A6F009EB5CB /* Deck.swift in Sources */,
 				B6EF3A2024D9CCCE00FD840E /* AppDelegate.swift in Sources */,
+				B6EF3A4124DB545500FD840E /* Person.swift in Sources */,
 				6F71B26B24DB2A5E009EB5CB /* Card.swift in Sources */,
 				6F44E7ED24DB34340034CDE1 /* Player.swift in Sources */,
 				B6EF3A3D24DB390B00FD840E /* BattleState.swift in Sources */,
+				B6EF3A4324DB54C300FD840E /* BattleEmotion.swift in Sources */,
 				B6EF3A3B24DB2F1700FD840E /* DeckType.swift in Sources */,
 				6F44E7EF24DB36630034CDE1 /* CardType.swift in Sources */,
 			);
