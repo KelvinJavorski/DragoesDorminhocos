@@ -11,25 +11,28 @@ import SpriteKit
 
 
 class Card {
+    static var nextID : Int = 0
+    
+    var id : Int = 0
     var effects : [Action] = []
     var cost : Int = 0
     var node : SKNode!
     var type : CardType!
     
     init (cost : Int = 0, effects : [Action] = []) {
+        self.id = Card.nextID
+        Card.nextID += 1
+        
         self.effects = effects
         self.cost = cost
     }
     
     
     func playCard () {
-        
-        
         // Loops through actions and applies their effects
         for action in effects {
             action.runEffect()
         }
-        
     }
     
 }

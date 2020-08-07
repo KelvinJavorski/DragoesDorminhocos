@@ -13,11 +13,11 @@ class Player {
     
     
     
-    var deck     : Deck = Deck()
-    var hand     : Deck = Deck()
-    var discard  : Deck = Deck()
-    var banished : Deck = Deck()
-    var ongoing  : Deck = Deck()
+    var deck     : Deck = Deck(name: "Deck")
+    var hand     : Deck = Deck(name: "Hand")
+    var discard  : Deck = Deck(name: "Discard")
+    var banished : Deck = Deck(name: "Banished")
+    var ongoing  : Deck = Deck(name: "Ongoing")
     
     init () {
         for _ in 0 ..< 53 {

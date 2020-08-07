@@ -24,6 +24,7 @@ class GameScene: SKScene {
     var playAreaNode  : SKNode!
     var playAreaNodes : [SKNode] = []
     
+    
     func initScene () { // ALWAYS CALL THIS BEFORE PRESENTING SCENE
         deckNode = childNode(withName: "Deck")!
         deckNumber = deckNode.childNode(withName: "DeckCardAmmount") as? SKLabelNode
@@ -57,6 +58,7 @@ class GameScene: SKScene {
         cardNode.position = pos.position
         
         card.node = cardNode
+        card.node.name = "\(card.id)"
         self.addChild(card.node)
     }
     
@@ -114,7 +116,7 @@ class GameScene: SKScene {
             Player.shared.getCardFromDiscard(0)
         }
         let sequence = SKAction.sequence([delay, code])
-        let loop = SKAction.repeat(sequence, count: Player.shared.discard.cards.count-1)
+        let loop = SKAction.repeat(sequence, count: Player.shared.discard.cards.count)
         
         // Run loop of actions
         print("Started loop")
@@ -131,13 +133,15 @@ class GameScene: SKScene {
         for card in Player.shared.hand.cards {
             discardCard(card: card)
         }
-        Player.shared.discardHand()
+        Player.shared.hand.removeAllCards()
+        //Player.shared.discardHand()
     }
     
     func discardOngoing () {
         // Runs through all cards in player's ongoing deck and discarts them
         for card in Player.shared.ongoing.cards {
             discardCard(card: card)
+            Player.shared.discard.addCard(card)
         }
         Player.shared.ongoing.removeAllCards()
     }
@@ -155,6 +159,7 @@ class GameScene: SKScene {
         createCardNode(card: card, at: discardNode)
         
         moveCard(card: card, to: deckNode.position) {
+            print("removed card")
             card.node.removeFromParent()
         }
     }
@@ -180,6 +185,7 @@ class GameScene: SKScene {
     
     func touchDown(atPoint pos : CGPoint) {
         // Make Player "grab" a card
+        
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -190,22 +196,73 @@ class GameScene: SKScene {
         // Release card into nearest node (hand or ongoing)
     }
     
-    
+    var movingCard      : Card!
+    var movingCardIndex : Int!
+    var movingCardDeck  : Deck!
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        if let touch = touches.first {
+            let location = touch.location(in: self)
+            
+            let touchedNodes = self.nodes(at: location)
+            for node in touchedNodes.reversed() {
+                if node.name == "CardShape" {
+                    if let parentNode = node.parent {
+                        var found = false
+                        
+                        while !found {
+                            for i in 0 ..< Player.shared.hand.cards.count {
+                                let card = Player.shared.hand.getCard(i)
+                                if parentNode.name == "\(card.id)" {
+                                    movingCard = card
+                                    movingCardDeck = Player.shared.hand
+                                    movingCardIndex = i
+                                    found = true
+                                }
+                            }
+                            for i in 0 ..< Player.shared.ongoing.cards.count {
+                                let card = Player.shared.ongoing.getCard(i)
+                                if parentNode.name == "\(card.id)" {
+                                    movingCard = card
+                                    movingCardDeck = Player.shared.ongoing
+                                    movingCardIndex = i
+                                    found = true
+                                }
+                            }
+                        }
+                        
+                        print(">>---> Draging Card!")
+                        print("Card ID: \(movingCard.id)")
+                        print("Deck   : \(movingCardDeck.name)")
+                        print("Index  : \(movingCardIndex)")
+                        
+                    }
+                }
+            }
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        if let touch = touches.first, let card = self.movingCard {
+            let touchLocation = touch.location(in: self)
+            card.node.position = touchLocation
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        // Put card in nearest node!
+        
+        
+        
+        self.movingCard = nil
+        self.movingCardIndex = nil
+        self.movingCardDeck = nil
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        self.movingCard = nil
+        self.movingCardIndex = nil
+        self.movingCardDeck = nil
     }
     
     

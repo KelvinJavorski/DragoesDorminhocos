@@ -9,11 +9,13 @@
 import Foundation
 
 class Deck {
-    internal init(type: DeckType? = nil, cards: [Card] = []) {
+    internal init(name: String = "nil", type: DeckType? = nil, cards: [Card] = []) {
+        self.name = name
         self.type = type
         self.cards = cards
     }    
     
+    var name        : String!
     var type        : DeckType!
     var cards       : [Card] = []
     
