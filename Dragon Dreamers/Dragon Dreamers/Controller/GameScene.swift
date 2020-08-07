@@ -82,19 +82,15 @@ class GameScene: SKScene {
     func playCard (index i: Int) {
         // Moves card node to play area
         let index = Player.shared.ongoing.cards.count
-        
         let pos = self.convert(playAreaNodes[index].position, from: playAreaNode)
-        
         let card = Player.shared.hand.cards[i]
         
-        // Changes card between decks (from hand to ongoing)
-        //Player.shared.playCard(card: card)
-        Player.shared.hand.cards.remove(at: i)
-        Player.shared.ongoing.cards.append(card)
-        
-        // Move node
         moveCard(card: card, to: pos)
         
+        // Changes card between decks (from hand to ongoing)
+        Player.shared.playCard(index: i)
+        
+        // Discart rest of hand
         self.discardHand()
     }
     
@@ -105,7 +101,6 @@ class GameScene: SKScene {
         }
         
         Player.shared.discardHand()
-        Player.shared.hand.cards = []
     }
     
     func discardOngoing () {
@@ -121,14 +116,26 @@ class GameScene: SKScene {
         // Moves card's node into discart deck node
         let move = SKAction.move(to: discardNode.position, duration: 0.5)
         card.node.run(move) {
-            Player.shared.discard.cards.append(card)
+            //Player.shared.discard.cards.append(card)
             card.node.removeFromParent()
         }
     }
     
     func getCardsFromDiscard () {
         
-        Player.shared.discard.cards.shuffle()
+        /*
+        let delay = SKAction.wait(forDuration: 0.05)
+        let action = SKAction.repeat(delay, count: Player.shared.discard.cards.count-1)
+        
+        var i = 0
+        
+        print("Started loop")
+        discardNode.run(action) {
+            print("Ran \(i) times")
+            self.runCardFromDiscardToDeck(card: Player.shared.discard.cards[i])
+            i += 1
+        }
+        */
         
         for i in 0 ..< Player.shared.discard.cards.count {
             let card = Player.shared.discard.cards[i]
@@ -138,23 +145,28 @@ class GameScene: SKScene {
             let move  = SKAction.move(to: deckNode.position, duration: 0.5)
             let sequence = SKAction.sequence([delay, move])
             
-            
             card.node.run(sequence) {
                 card.node.removeFromParent()
-                Player.shared.deck.cards.append(card)
             }
         }
         
-        Player.shared.discard.cards = []
-        
+        Player.shared.getNewDeckFromDiscart()
     }
     
+    func runCardFromDiscardToDeck (card: Card) {
+        createCardNode(card: card, at: discardNode)
+        
+        moveCard(card: card, to: deckNode.position) {
+            card.node.removeFromParent()
+        }
+    }
     
-    
-    func moveCard (card: Card, to pos: CGPoint) {
+    func moveCard (card: Card, to pos: CGPoint, completion: @escaping () -> () = { }) {
         // Moves a card to another node's location
         let move = SKAction.move(to: pos, duration: 0.5)
-        card.node.run(move)
+        card.node.run(move) {
+            completion()
+        }
     }
     
     func updateValues () {
