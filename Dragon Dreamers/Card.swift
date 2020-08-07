@@ -16,14 +16,13 @@ class Card {
     var node : SKNode!
     var type : CardType!
     
-    init (cost : Int, effects : [Action] = []) {
+    init (cost : Int = 0, effects : [Action] = []) {
         self.effects = effects
         self.cost = cost
     }
     
     
     func playCard () {
-        // Moves node to play area
         
         
         // Loops through actions and applies their effects

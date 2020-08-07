@@ -17,9 +17,29 @@ class Deck {
     var type        : DeckType!
     var cards       : [Card] = []
     
-    func shuffle(){}
+    func shuffle(){
+        cards.shuffle()
+    }
     
-    func addCard(card: Card){}
+    func getCard (_ card: Card) -> Card {
+        return Card(cost: 0) // REDO
+    }
     
-    func removeCard(card: Card){}
+    func getCard (_ index: Int) -> Card {
+        return cards[index]
+    }
+    
+    func addCard(_ card: Card){
+        cards.append(card)
+    }
+    
+    func removeCard(atIndex i: Int){
+        cards.remove(at: i)
+    }
+    
+    func removeAllCards() {
+        for _ in 0 ..< cards.count {
+            removeCard(atIndex: 0)
+        }
+    }
 }
