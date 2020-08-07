@@ -33,8 +33,8 @@ class GameScene: SKScene {
         discardNumber = discardNode.childNode(withName: "DeckCardAmmount") as? SKLabelNode
         
         
-        let hand = childNode(withName: "Hand")!
-        handNode = hand.childNode(withName: "Cards")!
+        let handArea = childNode(withName: "Hand")!
+        handNode = handArea.childNode(withName: "Cards")!
         for node in handNode.children {
             if node.name == "Card" {
                 handNodes.append(node)
@@ -90,38 +90,40 @@ class GameScene: SKScene {
         
     }
     
-    func playCard (index i: Int) {
+    func playCard (index: Int) {
         // Moves card node to play area
-        let index = Player.shared.ongoing.cards.count
-        let pos = self.convert(playAreaNodes[index].position, from: playAreaNode)
-        let card = Player.shared.hand.cards[i]
+        let i = Player.shared.ongoing.cards.count
+        let pos = self.convert(playAreaNodes[i].position, from: playAreaNode)
+        let card = Player.shared.hand.cards[index]
         
         moveCard(card: card, to: pos) {
             // Changes card between decks (from hand to ongoing)
-            Player.shared.playCard(index: i)
+            Player.shared.playCard(index: index)
+            self.discardHand()
         }
-        
-        // Discart rest of hand
-        self.discardHand()
     }
     
+    var gettingCardsFromDiscard = false
+    
     func getCardsFromDiscard () {
-        // Make sure discard deck is shuffled
-        Player.shared.discard.shuffle()
-        
-        // Create actions
-        let delay = SKAction.wait(forDuration: 0.1)
-        let code  = SKAction.run {
-            self.runCardFromDiscardToDeck(card: Player.shared.discard.cards[0])
-            Player.shared.getCardFromDiscard(0)
-        }
-        let sequence = SKAction.sequence([delay, code])
-        let loop = SKAction.repeat(sequence, count: Player.shared.discard.cards.count)
-        
-        // Run loop of actions
-        print("Started loop")
-        discardNode.run(loop) {
-            print("Ended Loop")
+        if !gettingCardsFromDiscard {
+            // Make sure discard deck is shuffled
+            Player.shared.discard.shuffle()
+            
+            // Create actions
+            let delay = SKAction.wait(forDuration: 0.1)
+            let code  = SKAction.run {
+                self.runCardFromDiscardToDeck(card: Player.shared.discard.cards[0])
+                Player.shared.getCardFromDiscard(0)
+            }
+            let sequence = SKAction.sequence([delay, code])
+            let loop = SKAction.repeat(sequence, count: Player.shared.discard.cards.count)
+            
+            // Run loop of actions
+            gettingCardsFromDiscard = true
+            discardNode.run(loop) {
+                self.gettingCardsFromDiscard = false
+            }
         }
     }
     
@@ -141,7 +143,6 @@ class GameScene: SKScene {
         // Runs through all cards in player's ongoing deck and discarts them
         for card in Player.shared.ongoing.cards {
             discardCard(card: card)
-            Player.shared.discard.addCard(card)
         }
         Player.shared.ongoing.removeAllCards()
     }
@@ -159,7 +160,6 @@ class GameScene: SKScene {
         createCardNode(card: card, at: discardNode)
         
         moveCard(card: card, to: deckNode.position) {
-            print("removed card")
             card.node.removeFromParent()
         }
     }
@@ -196,9 +196,9 @@ class GameScene: SKScene {
         // Release card into nearest node (hand or ongoing)
     }
     
-    var movingCard      : Card!
-    var movingCardIndex : Int!
-    var movingCardDeck  : Deck!
+    var movingCard      : Card?
+    var movingCardIndex : Int?
+    var movingCardDeck  : Deck?
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
@@ -230,12 +230,6 @@ class GameScene: SKScene {
                                 }
                             }
                         }
-                        
-                        print(">>---> Draging Card!")
-                        print("Card ID: \(movingCard.id)")
-                        print("Deck   : \(movingCardDeck.name)")
-                        print("Index  : \(movingCardIndex)")
-                        
                     }
                 }
             }
@@ -251,18 +245,55 @@ class GameScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Put card in nearest node!
-        
-        
-        
+        if let touch = touches.first {
+            let location = touch.location(in: self)
+            
+            let nodes = self.nodes(at: location)
+            
+            for node in nodes.reversed() {
+                if node.name == "PlayArea" {
+                    if let deckName = movingCardDeck?.name {
+                        if deckName == "Hand" {
+                            // play the card
+                            print("Playing the card")
+                            playCard(index: movingCardIndex!)
+                            clearVars()
+                            return
+                        }
+                    }
+                    
+                }
+            }
+            
+            if let deckName = movingCardDeck?.name {
+                if deckName == "Hand" {
+                    // snap card back to original position
+                    print("Moving card back to hand")
+                    let pos = self.convert(handNodes[movingCardIndex!].position, from: handNode)
+                    let move = SKAction.move(to: pos, duration: 0.1)
+                    movingCard!.node.run(move)
+                    clearVars()
+                
+                } else if deckName == "Ongoing" {
+                    // snap card back to original position
+                    print("Moving card back to ongoing")
+                    let pos = self.convert(playAreaNodes[movingCardIndex!].position, from: playAreaNode)
+                    let move = SKAction.move(to: pos, duration: 0.1)
+                    movingCard!.node.run(move)
+                    clearVars()
+                }
+            }
+        }
+    }
+    
+    func clearVars () {
         self.movingCard = nil
         self.movingCardIndex = nil
         self.movingCardDeck = nil
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.movingCard = nil
-        self.movingCardIndex = nil
-        self.movingCardDeck = nil
+        clearVars()
     }
     
     
