@@ -10,6 +10,14 @@ import Foundation
 
 class ManaManager {
     
+    // PREENCHER A COLLECTION ANTES DE PREENCHER A POOL
+    // Para preencher a mana Pool pela PRIMEIRA vez: fillPool() -> retorna true se deu certo, false se deu ERRO
+    // Para preencher a mana Collection pela PRIMEIRA vez: fillCollection()
+    // Para trazer uma mana da Collection para a Pool: setManaInPool() -> retorna true se deu certo, false se não possui esse tipo de mana na Collection.
+    // Para devolver uma mana da Pool para a Collection: returnManaFromPoolToCollection() -> retorna true se deu certo, false se não possiu esse tipo de mana na mana Pool.
+    // Para usar uma mana da mana Pool: useManaFromManaPool() -> retorna true se deu certo, false se não tem esse tipo de mana disponível na Pool.
+    // Para resetar a disponibilidade da mana na Pool: resetManaFromManaPool -> retorna true se deu certo, false se não possui esse tipo de mana na pool OU se esse tipo de mana ainda não foi usada.
+    
     init(){
         self.manaPool = []
         self.manaCollection = []
@@ -19,26 +27,89 @@ class ManaManager {
     var manaPool: [Mana]
     var manaCollection: [Mana]
     
-    func fillPool(mana0: ManaType, mana1: ManaType, mana2: ManaType) {
+    func fillPool(manas: [ManaType]) -> Bool{
         self.manaPool = []
         
-        self.setManaInPool(type: mana0)
-        self.setManaInPool(type: mana1)
-        self.setManaInPool(type: mana2)
-    }
-    
-    func setManaInPool(type: ManaType) {
-        if self.checkManaInCollection(type: type) {
-            if self.getManaFromCollection(type: type) != nil {
-                self.manaPool.append(self.getManaFromCollection(type: type)!)
+        for mana in manas {
+            if self.setManaInPool(type: mana){
+                return true
             }
         }
+        return false
     }
     
-    func checkManaInCollection(type: ManaType) -> Bool{
+    func resetManaFromManaPool(type: ManaType) -> Bool{
+        if self.checkManaInPool(type: type) {
+            for mana in self.manaPool {
+                if mana.type == type {
+                    if !mana.isAvaliable {
+                        mana.setAvaliableStatus(status: true)
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+    
+    func useManaFromManaPool(type: ManaType) -> Bool{
+        if self.checkManaInPool(type: type) {
+            for mana in self.manaPool {
+                if mana.type == type {
+                    if mana.isAvaliable {
+                        mana.setAvaliableStatus(status: false)
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+    
+    func setManaInPool(type: ManaType) -> Bool {
+        var mana: Mana
+        if self.checkManaInCollection(type: type) {
+            mana = self.getManaFromCollection(type: type)!
+            mana.insertInPool()
+            mana.setAvaliableStatus(status: true)
+            self.manaPool.append(mana)
+            
+            return true
+        }
+        return false
+    }
+    
+    func checkManaInPool(type: ManaType) -> Bool {
+        for mana in self.manaPool {
+            if mana.type == type {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func checkManaInCollection(type: ManaType) -> Bool {
         for mana in self.manaCollection {
             if mana.type == type {
                 return true
+            }
+        }
+        return false
+    }
+    
+    func returnManaFromPoolToCollection(type: ManaType) -> Bool{
+        var manaAux: Mana
+        
+        if self.checkManaInPool(type: type) {
+            for mana in 0...self.manaPool.count {
+                if self.manaPool[mana].type == type {
+                    manaAux = self.manaPool[mana]
+                    
+                    self.dropManaFromPool(index: mana)
+                    self.setManaInCollection(mana: manaAux)
+                    
+                    return true
+                }
             }
         }
         return false
@@ -61,8 +132,17 @@ class ManaManager {
         return nil
     }
     
+    func dropManaFromPool(index: Int) {
+        self.manaPool[index].dropFromPool()
+        self.manaPool.remove(at: index)
+    }
+    
     func dropManaFromCollection(index: Int) {
         self.manaCollection.remove(at: index)
+    }
+    
+    func setManaInCollection(mana: Mana) {
+        self.manaCollection.append(mana)
     }
     
     func fillCollection() {
