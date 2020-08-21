@@ -54,8 +54,6 @@ class Mana {
         self.type = type
     }
     
-    
-    
     func getAvaliableStatus() -> Bool{
         return self.isAvaliable
     }
