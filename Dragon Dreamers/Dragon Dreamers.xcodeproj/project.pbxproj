@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		641BFB6B24ED9D3100829F6E /* Mana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BFB6A24ED9D3100829F6E /* Mana.swift */; };
+		641BFB6D24EDA64300829F6E /* ManaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BFB6C24EDA64300829F6E /* ManaManager.swift */; };
 		6F44E7ED24DB34340034CDE1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F44E7EC24DB34330034CDE1 /* Player.swift */; };
 		6F44E7EF24DB36630034CDE1 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F44E7EE24DB36630034CDE1 /* CardType.swift */; };
 		6F71B26B24DB2A5E009EB5CB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F71B26A24DB2A5E009EB5CB /* Card.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		641BFB6A24ED9D3100829F6E /* Mana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mana.swift; sourceTree = "<group>"; };
+		641BFB6C24EDA64300829F6E /* ManaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaManager.swift; sourceTree = "<group>"; };
 		6F44E7EC24DB34330034CDE1 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		6F44E7EE24DB36630034CDE1 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		6F71B26A24DB2A5E009EB5CB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = SOURCE_ROOT; };
@@ -61,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		641BFB6924ED9D0300829F6E /* Mana */ = {
+			isa = PBXGroup;
+			children = (
+				641BFB6A24ED9D3100829F6E /* Mana.swift */,
+				641BFB6C24EDA64300829F6E /* ManaManager.swift */,
+			);
+			path = Mana;
+			sourceTree = "<group>";
+		};
 		6F44E7E824DB33020034CDE1 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +152,7 @@
 				6F44E7EC24DB34330034CDE1 /* Player.swift */,
 				B6EF3A3E24DB396500FD840E /* BattleManager.swift */,
 				B6EF3A4024DB545500FD840E /* Person.swift */,
+				641BFB6924ED9D0300829F6E /* Mana */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -218,6 +232,8 @@
 			files = (
 				B6EF3A3F24DB396500FD840E /* BattleManager.swift in Sources */,
 				B6EF3A2624D9CCCE00FD840E /* GameScene.swift in Sources */,
+				641BFB6D24EDA64300829F6E /* ManaManager.swift in Sources */,
+				641BFB6B24ED9D3100829F6E /* Mana.swift in Sources */,
 				6F71B26F24DB2A86009EB5CB /* Action.swift in Sources */,
 				B6EF3A2824D9CCCE00FD840E /* GameViewController.swift in Sources */,
 				6F71B26D24DB2A6F009EB5CB /* Deck.swift in Sources */,
