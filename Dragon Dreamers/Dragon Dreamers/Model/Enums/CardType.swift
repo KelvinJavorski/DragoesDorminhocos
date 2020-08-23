@@ -9,6 +9,8 @@
 import Foundation
 
 enum CardType {
-    case damage
-    case conversation
+    case green
+    case yellow
+    case red
+    case blue
 }

@@ -24,7 +24,7 @@ class Deck {
     }
     
     func getCard (_ card: Card) -> Card {
-        return Card(cost: 0) // REDO
+        return Card() // REDO
     }
     
     func getCard (_ index: Int) -> Card {
