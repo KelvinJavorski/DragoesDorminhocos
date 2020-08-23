@@ -48,6 +48,9 @@ class GameScene: SKScene {
                 playAreaNodes.append(node)
             }
         }
+        
+        //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
+        Player.shared.manaManager.fillPool(manas: [ManaType.b, ManaType.b, ManaType.br])
     }
     
     /// >>>----------> BASE FUNCs
@@ -74,6 +77,8 @@ class GameScene: SKScene {
     /// >>>----------> GAMEPLAY FUNCs
     
     func drawCards () {
+        
+        Player.shared.manaManager.resetAllManaFromManaPool()
         // Changes cards between decks (from deck to hand)
         Player.shared.drawCards(ammount: handNodes.count)
         
@@ -90,16 +95,20 @@ class GameScene: SKScene {
         
     }
     
-    func playCard (index: Int) {
+    func playCard (index: Int, manaType: ManaType) {
         // Moves card node to play area
-        let i = Player.shared.ongoing.cards.count
-        let pos = self.convert(playAreaNodes[i].position, from: playAreaNode)
-        let card = Player.shared.hand.cards[index]
         
-        moveCard(card: card, to: pos) {
-            // Changes card between decks (from hand to ongoing)
-            Player.shared.playCard(index: index)
-            self.discardHand()
+        if Player.shared.manaManager.useManaFromManaPool(type: manaType) {
+        
+            let i = Player.shared.ongoing.cards.count
+            let pos = self.convert(playAreaNodes[i].position, from: playAreaNode)
+            let card = Player.shared.hand.cards[index]
+        
+            moveCard(card: card, to: pos) {
+                // Changes card between decks (from hand to ongoing)
+                Player.shared.playCard(index: index)
+                self.discardHand()
+            }
         }
     }
     
