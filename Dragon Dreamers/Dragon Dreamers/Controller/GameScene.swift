@@ -18,24 +18,34 @@ class GameScene: SKScene {
     var deckNumber    : SKLabelNode!
     var discardNode   : SKNode!
     var discardNumber : SKLabelNode!
+    var bannedNode    : SKNode!
+    var bannedNumber  : SKLabelNode!
     
     var handNode      : SKNode!
     var handNodes     : [SKNode] = []
     var playAreaNode  : SKNode!
     var playAreaNodes : [SKNode] = []
     
+    var circles : [SKShapeNode] = []
+    var lines   : [SKShapeNode] = []
+    
+    var halfHeight : CGFloat = 60
+    var halfWidth  : CGFloat = 130
     
     func initScene () { // ALWAYS CALL THIS BEFORE PRESENTING SCENE
         deckNode = childNode(withName: "Deck")!
-        deckNumber = deckNode.childNode(withName: "DeckCardAmmount") as? SKLabelNode
+        deckNumber = deckNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
         
         discardNode = childNode(withName: "Discard")!
-        discardNumber = discardNode.childNode(withName: "DeckCardAmmount") as? SKLabelNode
+        discardNumber = discardNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
+        
+        bannedNode = childNode(withName: "Banned")!
+        bannedNumber = bannedNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
         
         
-        let handArea = childNode(withName: "Hand")!
-        handNode = handArea.childNode(withName: "Cards")!
-        for node in handNode.children {
+        handNode = childNode(withName: "Hand")!
+        let cardsNode = handNode.childNode(withName: "Cards")!
+        for node in cardsNode.children {
             if node.name == "Card" {
                 handNodes.append(node)
             }
@@ -48,6 +58,20 @@ class GameScene: SKScene {
                 playAreaNodes.append(node)
             }
         }
+        
+        createHandEllipse()
+        distributeCardNodes()
+    }
+    
+    func createHandEllipse () {
+        let rect = CGRect(x: handNode.position.x - halfWidth, y: handNode.position.y - halfHeight, width: halfWidth*2 , height: halfHeight*2 )
+        
+        let ellipse = SKShapeNode.init(ellipseIn: rect)
+        ellipse.fillColor = .black
+        ellipse.strokeColor = .blue
+        ellipse.lineWidth = 2
+        
+        self.addChild(ellipse)
     }
     
     /// >>>----------> BASE FUNCs
@@ -70,17 +94,76 @@ class GameScene: SKScene {
         }
     }
     
+    func rotateCard (card: Card, to angle: CGFloat, completion: @escaping () -> () = { }) {
+        let rotate = SKAction.rotate(toAngle: degrees2radians(angle), duration: 0.2, shortestUnitArc: true)
+        card.node.run(rotate) {
+            completion()
+        }
+    }
+    
+    func moveAndRotateCard (card: Card, to pos: CGPoint, to angle: CGFloat, completion: @escaping () -> () = { }) {
+        let move = SKAction.move(to: pos, duration: 0.5)
+        let rotate = SKAction.rotate(toAngle: degrees2radians(angle), duration: 0.5, shortestUnitArc: true)
+        
+        let actions = SKAction.group([move, rotate])
+        card.node.run(actions) {
+            completion()
+        }
+    }
+    
+    func calculateCardPosition (angle: CGFloat) -> CGPoint {
+        let tang = angle * CGFloat(Double.pi / 180.0)
+        let x = handNode.position.x + halfWidth  * CGFloat(cos(Double(tang)))
+        let y = handNode.position.y + halfHeight * CGFloat(sin(Double(tang)))
+        
+        return CGPoint(x: x, y: y)
+    }
+    
+    func calculateCardAngle (angle: CGFloat) -> CGFloat {
+        let difference = 90 - angle
+        let newAngle = difference * -1 / 2
+        return newAngle
+    }
+    
     
     /// >>>----------> GAMEPLAY FUNCs
     
+    func distributeCardNodes () {
+        //Verify number of cards the player has
+        let numberOfCards = Player.shared.hand.cards.count
+        
+        // Divide the space between the cards
+        let angle : CGFloat = 180.0 / CGFloat(numberOfCards + 1) //CGFloat(cards + 1)
+        
+        // Move the nodes to the correct positions
+        for i in 0 ..< numberOfCards {
+            
+            let ang = 180.0 - CGFloat(i + 1) * angle
+            let pos = calculateCardPosition(angle: ang)
+            let cardAngle = calculateCardAngle(angle: ang)
+            
+            createCircle(at: pos, i: i)
+            createAngleLine(at: pos, angle: cardAngle, i: i)
+            
+            handNodes[i].position = self.convert(pos, to: handNode)
+            
+            if i < numberOfCards {
+                moveAndRotateCard(card: Player.shared.hand.cards[i], to: pos, to: cardAngle)
+            }
+        }
+    }
+    
     func drawCards () {
         // Changes cards between decks (from deck to hand)
-        Player.shared.drawCards(ammount: handNodes.count)
+        Player.shared.drawCards(ammount: 5 - Player.shared.hand.cards.count)
         
         // Create card nodes from top cards in player's deck
         for card in Player.shared.hand.cards {
             createCardNode(card: card, at: deckNode)
         }
+        
+        // Make sure card nodes are in the correct place
+        distributeCardNodes()
         
         // Animate moving the card nodes from deck node to hand nodes
         for index in 0 ..< Player.shared.hand.cards.count {
@@ -99,8 +182,11 @@ class GameScene: SKScene {
         moveCard(card: card, to: pos) {
             // Changes card between decks (from hand to ongoing)
             Player.shared.playCard(index: index)
-            self.discardHand()
+            //self.discardHand()
         }
+        
+        // Make sure cards are distrubuted correctly
+        distributeCardNodes()
     }
     
     var gettingCardsFromDiscard = false
@@ -149,12 +235,13 @@ class GameScene: SKScene {
     
     func discardCard (card : Card) {
         // Moves card's node into discart deck node
-        let move = SKAction.move(to: discardNode.position, duration: 0.5)
-        card.node.run(move) {
+        moveAndRotateCard(card: card, to: discardNode.position, to: 0) {
             Player.shared.discard.addCard(card)
             card.node.removeFromParent()
         }
     }
+    
+    
     
     func runCardFromDiscardToDeck (card: Card) {
         createCardNode(card: card, at: discardNode)
@@ -164,18 +251,60 @@ class GameScene: SKScene {
         }
     }
     
+    func degrees2radians(_ angle: CGFloat) -> CGFloat {
+        return angle * CGFloat(Double.pi) / 180.0
+    }
+    
     
     /// >>>----------> EXTRA FUNCs
     
     func updateValues () {
-        let deckCardsAmmount = Player.shared.deck.cards.count
-        deckNumber.text = "\(deckCardsAmmount)"
+        let deckCardsAmount = Player.shared.deck.cards.count
+        deckNumber.text = "\(deckCardsAmount)"
         
-        let discartCardsAmmount = Player.shared.discard.cards.count
-        discardNumber.text = "\(discartCardsAmmount)"
+        let discartCardsAmount = Player.shared.discard.cards.count
+        discardNumber.text = "\(discartCardsAmount)"
+        
+        let bannedCardsAmount = Player.shared.banished.cards.count
+        bannedNumber.text = "\(bannedCardsAmount)"
     }
     
+    func createCircle (at pos: CGPoint, i: Int) {
+        if circles.count > i {
+            circles[i].position = pos
+        } else {
+            let circle = SKShapeNode.init(circleOfRadius: 5)
+            circle.position  = pos
+            circle.fillColor = .cyan
+            circle.lineWidth = 0
+            circles.append(circle)
+            self.addChild(circle)
+        }
+    }
     
+    func createAngleLine (at pos: CGPoint, angle: CGFloat, i: Int) {
+        let path = UIBezierPath()
+        let tang = Double(angle) * Double.pi / 180.0
+        let coseno = CGFloat(cos(tang) * 5.0)
+        let seno   = CGFloat(sin(tang) * 5.0)
+        let startPoint = CGPoint(x: pos.x - coseno, y: pos.y - seno)
+        let endPoint   = CGPoint(x: pos.x + coseno, y: pos.y + seno)
+        
+        path.move(to: startPoint)
+        path.addLine(to: endPoint)
+        
+        if lines.count > i {
+            lines[i].path = path.cgPath
+        } else {
+            let line = SKShapeNode(path: path.cgPath)
+            line.lineWidth = 2
+            line.strokeColor = .magenta
+            
+            lines.append(line)
+            
+            self.addChild(line)
+        }
+    }
     
     /// >>>----------> PLAYER INTERACTION FUNCs
     

@@ -24,7 +24,7 @@ class GameViewController: UIViewController {
         if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
             self.scene = scene
             self.scene.initScene()
-            self.scene.scaleMode = .aspectFit
+            self.scene.scaleMode = .aspectFill
             
             skView.presentScene(self.scene)
         }
@@ -55,31 +55,11 @@ class GameViewController: UIViewController {
         }
         scene.drawCards()
     }
+   
     
-    @IBAction func playCard1(_ sender: UIButton) {
-        print("Playing card 1")
-        scene.playCard(index: 0)
-    }
     
-    @IBAction func playCard2(_ sender: UIButton) {
-        print("Playing card 2")
-        scene.playCard(index: 1)
-    }
     
-    @IBAction func playCard3(_ sender: UIButton) {
-        print("Playing card 3")
-        scene.playCard(index: 2)
-    }
     
-    @IBAction func playCard4(_ sender: UIButton) {
-        print("Playing card 4")
-        scene.playCard(index: 3)
-    }
-    
-    @IBAction func playCard5(_ sender: UIButton) {
-        print("Playing card 5")
-        scene.playCard(index: 4)
-    }
     
     @IBAction func discardAllCards(_ sender: UIButton) {
         print("Discarting all ongoing")
