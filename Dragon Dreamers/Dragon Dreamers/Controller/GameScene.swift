@@ -60,6 +60,9 @@ class GameScene: SKScene {
             }
         }
         
+        //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
+        Player.shared.manaManager.fillPool(manas: [ManaType.b, ManaType.b, ManaType.r])
+        
         createHandEllipse()
         distributeCardNodes()
     }
@@ -155,6 +158,8 @@ class GameScene: SKScene {
     }
     
     func drawCards () {
+        
+        Player.shared.manaManager.resetAllManaFromManaPool()
         // Changes cards between decks (from deck to hand)
         Player.shared.drawCards(ammount: 5 - Player.shared.hand.cards.count)
         
@@ -174,18 +179,19 @@ class GameScene: SKScene {
         
     }
     
-    func playCard (index: Int) {
+    func playCard (index: Int, manaType: ManaType) {
         // Moves card node to play area
-        let i = Player.shared.ongoing.cards.count
-        let pos = self.convert(playAreaNodes[i].position, from: playAreaNode)
-        let card = Player.shared.hand.cards[index]
-        
-        moveCard(card: card, to: pos) {
-            // Changes card between decks (from hand to ongoing)
-            Player.shared.playCard(index: index)
-            //self.discardHand()
+        if Player.shared.manaManager.useManaFromManaPool(type: manaType) {
+            let i = Player.shared.ongoing.cards.count
+            let pos = self.convert(playAreaNodes[i].position, from: playAreaNode)
+            let card = Player.shared.hand.cards[index]
+            
+            moveCard(card: card, to: pos) {
+                // Changes card between decks (from hand to ongoing)
+                Player.shared.playCard(index: index)
+                self.discardHand()
+            }
         }
-        
         // Make sure cards are distrubuted correctly
         distributeCardNodes()
     }
@@ -386,7 +392,20 @@ class GameScene: SKScene {
                         if deckName == "Hand" {
                             // play the card
                             print("Playing the card")
-                            playCard(index: movingCardIndex!)
+                            let card = Player.shared.hand.cards[movingCardIndex!]
+                            let cardType = card.type
+                            switch cardType {
+                            case .blue:
+                                playCard(index: movingCardIndex!, manaType: .b)
+                            case .green:
+                                playCard(index: movingCardIndex!, manaType: .g)
+                            case .red:
+                                playCard(index: movingCardIndex!, manaType: .r)
+                            case .yellow:
+                                playCard(index: movingCardIndex!, manaType: .y)
+                            default:
+                                break
+                            }
                             clearVars()
                             return
                         }

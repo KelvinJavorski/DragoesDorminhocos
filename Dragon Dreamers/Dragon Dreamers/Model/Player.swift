@@ -12,12 +12,13 @@ class Player {
     static let shared = Player()
     
     
-    
+    var cardsPool : CardsPool = CardsPool()
     var deck     : Deck = Deck(name: "Deck")
     var hand     : Deck = Deck(name: "Hand")
     var discard  : Deck = Deck(name: "Discard")
     var banished : Deck = Deck(name: "Banished")
     var ongoing  : Deck = Deck(name: "Ongoing")
+    var manaManager: ManaManager = ManaManager()
     
     init () {
         for _ in 0 ..< 53 {

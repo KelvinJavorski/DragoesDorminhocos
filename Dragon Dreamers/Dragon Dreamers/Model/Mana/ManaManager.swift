@@ -16,7 +16,8 @@ class ManaManager {
     // Para trazer uma mana da Collection para a Pool: setManaInPool() -> retorna true se deu certo, false se não possui esse tipo de mana na Collection.
     // Para devolver uma mana da Pool para a Collection: returnManaFromPoolToCollection() -> retorna true se deu certo, false se não possiu esse tipo de mana na mana Pool.
     // Para usar uma mana da mana Pool: useManaFromManaPool() -> retorna true se deu certo, false se não tem esse tipo de mana disponível na Pool.
-    // Para resetar a disponibilidade da mana na Pool: resetManaFromManaPool -> retorna true se deu certo, false se não possui esse tipo de mana na pool OU se esse tipo de mana ainda não foi usada.
+    // Para resetar a disponibilidade da mana na Pool: resetManaFromManaPool() -> retorna true se deu certo, false se não possui esse tipo de mana na pool OU se esse tipo de mana ainda não foi usada.
+    // resetAllManaFromManaPool() tenta rodar a função resetManaFromManaPool() para todas as manas.
     
     init(){
         self.manaPool = []
@@ -50,6 +51,21 @@ class ManaManager {
             }
         }
         return false
+    }
+    
+    func resetAllManaFromManaPool(){
+        
+        self.resetManaFromManaPool(type: ManaType.b)
+        self.resetManaFromManaPool(type: ManaType.r)
+        self.resetManaFromManaPool(type: ManaType.y)
+        self.resetManaFromManaPool(type: ManaType.g)
+        self.resetManaFromManaPool(type: ManaType.br)
+        self.resetManaFromManaPool(type: ManaType.by)
+        self.resetManaFromManaPool(type: ManaType.bg)
+        self.resetManaFromManaPool(type: ManaType.ry)
+        self.resetManaFromManaPool(type: ManaType.rg)
+        self.resetManaFromManaPool(type: ManaType.yg)
+
     }
     
     func useManaFromManaPool(type: ManaType) -> Bool{
