@@ -32,6 +32,7 @@ class GameScene: SKScene {
     var halfHeight : CGFloat = 60
     var halfWidth  : CGFloat = 130
     
+    
     func initScene () { // ALWAYS CALL THIS BEFORE PRESENTING SCENE
         deckNode = childNode(withName: "Deck")!
         deckNumber = deckNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
