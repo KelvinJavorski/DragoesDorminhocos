@@ -18,6 +18,7 @@ class Player {
     var discard  : Deck = Deck(name: "Discard")
     var banished : Deck = Deck(name: "Banished")
     var ongoing  : Deck = Deck(name: "Ongoing")
+    var manaManager: ManaManager = ManaManager()
     
     init () {
         for _ in 0 ..< 53 {
