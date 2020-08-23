@@ -11,4 +11,5 @@ import Foundation
 enum EffectType{
     case addCard
     case dealDamage
+    case dealAndSufferDamage
 }

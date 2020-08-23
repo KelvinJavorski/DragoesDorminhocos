@@ -9,9 +9,42 @@
 import Foundation
 
 class CardEffect{
-    var effectType : EffectType!
+    var card : Card
     
+    init() {}
     
+    func runEffects(card: Card){
+        switch card.effect {
+        case .addCard:
+            addCardToDeck(id: card.idEffect)
+            break
+            
+        case .dealDamage:
+            dealDamage(damage: card.damage, type: card.damageType)
+            break
+            
+        case .dealAndSufferDamage:
+            dealAndSufferDamage(damage: card.damage, damageType: card.damageType, selfDamage: card.selfDamage, selfDamageType: card.selfDamageType)
+            break
+            
+        default:
+            break
+            
+        }
+    }
     
+    func addCardToDeck(id: Int){
+        let deck = Player.shared.deck
+        let cardsPool = Player.shared.cardsPool
+        Player.shared.deck.addCard(cardsPool.cards[id])
+    }
+    
+    func dealDamage(damage : Int, type: EnergyType){
+        //Tira dano do enemy
+    }
+    
+    func dealAndSufferDamage(damage: Int, damageType: EnergyType, selfDamage: Int, selfDamageType: EnergyType){
+        //tira dano do enemy
+    }
     
 }

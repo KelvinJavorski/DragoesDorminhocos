@@ -12,7 +12,7 @@ class Player {
     static let shared = Player()
     
     
-    
+    var cardsPool : CardsPool = CardsPool()
     var deck     : Deck = Deck(name: "Deck")
     var hand     : Deck = Deck(name: "Hand")
     var discard  : Deck = Deck(name: "Discard")
