@@ -9,10 +9,9 @@
 import Foundation
 
 class CardEffect{
-    var card : Card
-    
+    var card : Card!
+        
     init() {}
-    
     func runEffects(card: Card){
         switch card.effect {
         case .addCard:
@@ -34,7 +33,6 @@ class CardEffect{
     }
     
     func addCardToDeck(id: Int){
-        let deck = Player.shared.deck
         let cardsPool = Player.shared.cardsPool
         Player.shared.deck.addCard(cardsPool.cards[id])
     }
