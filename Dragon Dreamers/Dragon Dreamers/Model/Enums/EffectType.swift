@@ -12,4 +12,5 @@ enum EffectType{
     case addCard
     case dealDamage
     case dealAndSufferDamage
+    case heal
 }

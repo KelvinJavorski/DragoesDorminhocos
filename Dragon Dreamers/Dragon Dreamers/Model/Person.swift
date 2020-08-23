@@ -9,11 +9,11 @@
 import Foundation
 
 class Person{
-    internal init(currentLife: Int? = nil, maxLife: Int? = nil, currentOpinion: Int? = nil, maxOpinion: Int? = nil, actionPoints: Int? = nil, emotion: BattleEmotion? = nil) {
+    internal init(currentLife: Int? = nil, maxLife: Int? = nil, currentEmpathy: Int? = nil, maxEmpathy: Int? = nil, actionPoints: Int? = nil, emotion: BattleEmotion? = nil) {
         self.currentLife = currentLife
         self.maxLife = maxLife
-        self.currentOpinion = currentOpinion
-        self.maxOpinion = maxOpinion
+        self.currentEmpathy = currentEmpathy
+        self.maxEmpathy = maxEmpathy
         self.actionPoints = actionPoints
         self.emotion = emotion
     }
@@ -22,8 +22,8 @@ class Person{
         self.currentLife -= value
     }
     
-    func loseOpinion(value: Int){
-        self.currentOpinion -= value
+    func loseEmpathy(value: Int){
+        self.currentEmpathy -= value
     }
     
     func spendActionPoints(value: Int){
@@ -36,15 +36,24 @@ class Person{
     
     func resetAllStats(){
         self.currentLife = self.maxLife
-        self.currentOpinion = self.maxOpinion
+        self.currentEmpathy = self.maxEmpathy
     }
     
     var currentLife: Int!
     var maxLife: Int!
-    var currentOpinion: Int!
-    var maxOpinion: Int!
+    
+    var currentEmpathy: Int!
+    var maxEmpathy: Int!
+    
+    var currentReason: Int!
+    var maxReason: Int!
+    
+    var currentUnderstanding: Int!
+    var maxUnderstanding: Int!
+    
     var actionPoints: Int!
     var maxActionPoints: Int!
     var emotion: BattleEmotion!
+    
     
 }

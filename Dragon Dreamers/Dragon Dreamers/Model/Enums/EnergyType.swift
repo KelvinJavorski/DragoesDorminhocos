@@ -12,4 +12,5 @@ enum EnergyType{
     case life
     case empathy
     case reason
+    case understanding
 }
