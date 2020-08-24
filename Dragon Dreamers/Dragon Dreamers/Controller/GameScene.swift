@@ -75,9 +75,9 @@ class GameScene: SKScene {
             createManaNode(mana: Player.shared.manaManager.manaPool[i], at: pos)
         }
         
-        
         createHandEllipse()
-        distributeCardNodes()
+        
+        drawCards()
     }
     
     func createHandEllipse () {
@@ -248,7 +248,7 @@ class GameScene: SKScene {
             moveCard(card: card, to: pos) {
                 // Changes card between decks (from hand to ongoing)
                 Player.shared.playCard(index: index)
-                self.discardHand()
+                //self.discardHand()
             }
         }
         // Make sure cards are distrubuted correctly
@@ -289,7 +289,6 @@ class GameScene: SKScene {
             discardCard(card: card)
         }
         Player.shared.hand.removeAllCards()
-        //Player.shared.discardHand()
     }
     
     func discardOngoing () {
