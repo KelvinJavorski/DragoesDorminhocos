@@ -55,25 +55,11 @@ class GameViewController: UIViewController {
         }
         scene.drawCards()
     }
-   
     
     
-    
-    
-    
-    @IBAction func discardAllCards(_ sender: UIButton) {
-        print("Discarting all ongoing")
-        if Player.shared.ongoing.cards.count > 0 {
-            scene.discardOngoing()
-        }
+    @IBAction func nextTurnClicked(_ sender: UIButton) {
+        scene.nextTurn()
     }
-    
-    @IBAction func getCardsFromDiscard(_ sender: UIButton) {
-        print("getting cards from discart pile")
-        
-        scene.getCardsFromDiscard()
-    }
-    
     
     
     override var shouldAutorotate: Bool {
