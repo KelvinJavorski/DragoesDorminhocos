@@ -34,6 +34,10 @@ class GameScene: SKScene {
     var halfHeight : CGFloat = 60
     var halfWidth  : CGFloat = 130
     
+    //Provisório pro alpha mudar depois
+    var enemyNode : SKNode!
+    var enemyLife: SKLabelNode!
+    
     
     func initScene () { // ALWAYS CALL THIS BEFORE PRESENTING SCENE
         deckNode = childNode(withName: "Deck")!
@@ -88,6 +92,13 @@ class GameScene: SKScene {
                 playAreaNodes.append(node)
             }
         }
+        
+        
+        //Provisorio pro alpha, mudar depois
+        enemyNode = childNode(withName: "EnemyScore")!
+        enemyLife = enemyNode.childNode(withName: "Life") as? SKLabelNode
+        
+        
         
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
         Player.shared.manaManager.fillPool(manas: [ManaType.r, ManaType.r, ManaType.r, ManaType.r, ManaType.r])
@@ -291,6 +302,11 @@ class GameScene: SKScene {
                 // Changes card between decks (from hand to ongoing)
                 card.node.position = pos
                 Player.shared.playCard(index: index)
+                
+                
+                //Mudar depois, provisorio pro alpha
+                
+                
                 //self.discardHand()
                 self.distributeCardNodes()
             }
@@ -376,6 +392,12 @@ class GameScene: SKScene {
         
         let bannedCardsAmount = Player.shared.banished.cards.count
         bannedNumber.text = "\(bannedCardsAmount)"
+        
+        //corrigir depois do alpha
+        if let enemyCurrentLife = Player.shared.currentLife{
+            enemyLife.text = "\(enemyCurrentLife)"
+        }
+        
     }
     
     func createCircle (at pos: CGPoint, i: Int) {

@@ -16,8 +16,7 @@ class Enemy: Person {
     
     init () {
         super.init()
-        
-        setInitialDeck()
+        self.setInitialDeck()
         print("added cards to deck")
         print("Deck: \(deck.cards.count)")
         self.setOwner()

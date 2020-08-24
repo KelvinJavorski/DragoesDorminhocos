@@ -9,11 +9,15 @@
 import Foundation
 
 class Person{
-    internal init(currentLife: Int? = nil, maxLife: Int? = nil, currentEmpathy: Int? = nil, maxEmpathy: Int? = nil, actionPoints: Int? = nil, emotion: BattleEmotion? = nil) {
+    internal init(currentLife: Int? = nil, maxLife: Int? = nil, currentEmpathy: Int? = nil, maxEmpathy: Int? = nil, currentReason: Int? = nil, maxReason: Int? = nil, currentUnderstanding: Int? = nil, maxUnderstanding: Int? = nil, actionPoints: Int? = nil, emotion: BattleEmotion? = nil) {
         self.currentLife = currentLife
         self.maxLife = maxLife
         self.currentEmpathy = currentEmpathy
         self.maxEmpathy = maxEmpathy
+        self.currentReason = currentReason
+        self.maxReason = maxReason
+        self.currentUnderstanding = currentUnderstanding
+        self.maxUnderstanding = maxUnderstanding
         self.actionPoints = actionPoints
         self.emotion = emotion
     }
