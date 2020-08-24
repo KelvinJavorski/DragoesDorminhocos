@@ -13,22 +13,22 @@ class CardEffect{
         
     init() {}
     
-    func runEffects(card: Card){
+    func runEffects(card: Card, person: Person){
         switch card.effect {
         case .addCard:
             addCardToDeck(id: card.idEffect)
             break
             
         case .dealDamage:
-            dealDamage(damage: card.damage, type: card.damageType)
+            dealDamage(person: person, damage: card.damage, type: card.damageType)
             break
             
         case .dealAndSufferDamage:
-            dealAndSufferDamage(damage: card.damage, damageType: card.damageType, selfDamage: card.selfDamage, selfDamageType: card.selfDamageType)
+            dealAndSufferDamage(person: person, damage: card.damage, damageType: card.damageType, selfDamage: card.selfDamage, selfDamageType: card.selfDamageType)
             break
         
         case .heal:
-            heal(healAmount: card.heal, type: card.healType)
+            heal(person: person, healAmount: card.heal, type: card.healType)
             break
             
         default:
@@ -42,60 +42,45 @@ class CardEffect{
         Player.shared.deck.addCard(cardsPool.cards[id])
     }
     
-    func heal(healAmount : Int, type: EnergyType){
+    func heal(person: Person, healAmount : Int, type: EnergyType){
         switch type {
             case .life:
-                Player.shared.currentLife += healAmount
+                person.currentLife += healAmount
                 break
             case .empathy:
-                Player.shared.currentEmpathy += healAmount
+                person.currentEmpathy += healAmount
                 break
             case .reason:
-                Player.shared.currentReason += healAmount
+                person.currentReason += healAmount
                 break
             case .understanding:
-                Player.shared.currentUnderstanding += healAmount
+                person.currentUnderstanding += healAmount
                 break
         }
     }
 
-    func dealDamage(damage : Int, type: EnergyType){
+    func dealDamage(person: Person, damage : Int, type: EnergyType){
         switch type {
             case .life:
-               Enemy.shared.currentLife += damage
+               person.currentLife -= damage
                break
            case .empathy:
-               Enemy.shared.currentEmpathy += damage
+               person.currentEmpathy -= damage
                break
            case .reason:
-               Enemy.shared.currentReason += damage
+               person.currentReason -= damage
                break
            case .understanding:
-               Enemy.shared.currentUnderstanding += damage
+               person.currentUnderstanding -= damage
                break
         }
     }
     
-    func dealAndSufferDamage(damage: Int, damageType: EnergyType, selfDamage: Int, selfDamageType: EnergyType){
+    func dealAndSufferDamage(person: Person, damage: Int, damageType: EnergyType, selfDamage: Int, selfDamageType: EnergyType){
         
-        dealDamage(damage: damage, type: damageType)
+        dealDamage(person: person, damage: damage, type: damageType)
         
-        switch selfDamageType {
-            case .life:
-               Player.shared.currentLife -= damage
-               break
-           case .empathy:
-               Player.shared.currentEmpathy -= damage
-               break
-           case .reason:
-               Player.shared.currentReason -= damage
-               break
-           case .understanding:
-               Player.shared.currentUnderstanding -= damage
-               break
-        }
-        
-        
+        dealDamage(person: person, damage: selfDamage, type: selfDamageType)
     }
     
 }

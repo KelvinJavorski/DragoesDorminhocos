@@ -11,7 +11,6 @@ import Foundation
 class Player: Person {
     static let shared = Player()
     
-    
     var cardsPool : CardsPool = CardsPool()
     var deck     : Deck = Deck(name: "Deck")
     var hand     : Deck = Deck(name: "Hand")
@@ -27,8 +26,6 @@ class Player: Person {
         print("added cards to deck")
         print("Deck: \(deck.cards.count)")
     }
-    
-    
     
     func changeDeckOfCard (_ from: Deck, _ to: Deck, _ index: Int) {
         let card = from.getCard(index)
