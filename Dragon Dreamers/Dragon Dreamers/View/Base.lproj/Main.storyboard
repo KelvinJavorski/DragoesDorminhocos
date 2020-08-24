@@ -45,43 +45,26 @@
                                     <constraint firstAttribute="trailing" secondItem="NQo-hi-jI3" secondAttribute="trailing" id="s7a-QT-T2E"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uJx-s9-ekg" userLabel="Discart">
-                                <rect key="frame" x="428" y="182" width="40" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljb-lL-hXL">
+                                <rect key="frame" x="746" y="314" width="150" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yo1-oC-gLe">
-                                        <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHG-KM-qAv">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Next Turn!"/>
                                         <connections>
-                                            <action selector="getCardsFromDiscard:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Hkw-an-vxO"/>
+                                            <action selector="nextTurnClicked:" destination="BV1-FR-VrT" eventType="touchUpInside" id="skt-8a-l1u"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="Yo1-oC-gLe" firstAttribute="leading" secondItem="uJx-s9-ekg" secondAttribute="leading" id="7Vj-SE-gIa"/>
-                                    <constraint firstAttribute="width" constant="40" id="Di6-1H-P1G"/>
-                                    <constraint firstItem="Yo1-oC-gLe" firstAttribute="top" secondItem="uJx-s9-ekg" secondAttribute="top" id="QXV-TR-CRk"/>
-                                    <constraint firstAttribute="trailing" secondItem="Yo1-oC-gLe" secondAttribute="trailing" id="aAB-H5-Nnj"/>
-                                    <constraint firstAttribute="height" constant="50" id="m5U-5c-C5Q"/>
-                                    <constraint firstAttribute="bottom" secondItem="Yo1-oC-gLe" secondAttribute="bottom" id="obn-e1-W6j"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aaj-Cx-GSs">
-                                <rect key="frame" x="390.5" y="241.5" width="115" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWf-w5-xC3">
-                                        <rect key="frame" x="0.0" y="0.0" width="115" height="30"/>
-                                        <state key="normal" title="Discart All Cards"/>
-                                        <connections>
-                                            <action selector="discardAllCards:" destination="BV1-FR-VrT" eventType="touchUpInside" id="vRC-7h-4ul"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="uWf-w5-xC3" firstAttribute="top" secondItem="aaj-Cx-GSs" secondAttribute="top" id="KEQ-Fx-okS"/>
-                                    <constraint firstAttribute="bottom" secondItem="uWf-w5-xC3" secondAttribute="bottom" id="L9p-qP-jab"/>
-                                    <constraint firstAttribute="trailing" secondItem="uWf-w5-xC3" secondAttribute="trailing" id="ZeN-e3-WRU"/>
-                                    <constraint firstItem="uWf-w5-xC3" firstAttribute="leading" secondItem="aaj-Cx-GSs" secondAttribute="leading" id="ny9-2N-Zwc"/>
+                                    <constraint firstAttribute="trailing" secondItem="JHG-KM-qAv" secondAttribute="trailing" id="TcQ-Ku-OUD"/>
+                                    <constraint firstItem="JHG-KM-qAv" firstAttribute="leading" secondItem="ljb-lL-hXL" secondAttribute="leading" id="gHz-lx-vH0"/>
+                                    <constraint firstAttribute="bottom" secondItem="JHG-KM-qAv" secondAttribute="bottom" id="jcG-NN-4ct"/>
+                                    <constraint firstItem="JHG-KM-qAv" firstAttribute="top" secondItem="ljb-lL-hXL" secondAttribute="top" id="m4b-Hy-7bW"/>
+                                    <constraint firstAttribute="height" constant="100" id="oXX-hc-L1s"/>
+                                    <constraint firstAttribute="width" constant="150" id="tIB-Kv-l0e"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -89,15 +72,15 @@
                         <constraints>
                             <constraint firstItem="dvW-MN-GZY" firstAttribute="bottom" secondItem="ekW-xL-PaE" secondAttribute="bottom" id="4Nx-IC-pP1"/>
                             <constraint firstAttribute="trailing" secondItem="ekW-xL-PaE" secondAttribute="trailing" id="9Ci-qe-Fqh"/>
-                            <constraint firstItem="aaj-Cx-GSs" firstAttribute="centerY" secondItem="4qk-I5-YsI" secondAttribute="centerY" constant="60" id="El9-6l-DjK"/>
+                            <constraint firstItem="ljb-lL-hXL" firstAttribute="trailing" secondItem="3se-qz-xqx" secondAttribute="trailing" id="FXw-uE-qN4"/>
                             <constraint firstItem="ekW-xL-PaE" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="Fil-Ga-Er5"/>
                             <constraint firstItem="dvW-MN-GZY" firstAttribute="top" secondItem="ekW-xL-PaE" secondAttribute="top" id="Mak-Nw-PvD"/>
                             <constraint firstItem="dvW-MN-GZY" firstAttribute="centerX" secondItem="ekW-xL-PaE" secondAttribute="centerX" id="WBz-8O-7TX"/>
                             <constraint firstItem="lWA-HS-Dd1" firstAttribute="centerX" secondItem="dvW-MN-GZY" secondAttribute="centerX" multiplier="0.25" id="aU0-nh-e5d"/>
                             <constraint firstItem="ekW-xL-PaE" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="bX2-Ln-Eok"/>
                             <constraint firstItem="lWA-HS-Dd1" firstAttribute="centerY" secondItem="dvW-MN-GZY" secondAttribute="centerY" multiplier="1.82" id="qHT-fM-uPb"/>
+                            <constraint firstItem="ljb-lL-hXL" firstAttribute="bottom" secondItem="3se-qz-xqx" secondAttribute="bottom" id="sqV-zy-KEq"/>
                             <constraint firstAttribute="bottom" secondItem="ekW-xL-PaE" secondAttribute="bottom" id="ssg-R3-CbO"/>
-                            <constraint firstItem="aaj-Cx-GSs" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="trc-W0-y1B"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>

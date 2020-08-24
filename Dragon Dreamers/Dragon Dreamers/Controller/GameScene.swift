@@ -168,6 +168,13 @@ class GameScene: SKScene {
     
     /// >>>----------> GAMEPLAY FUNCs
     
+    func nextTurn () {
+        discardHand()
+        Player.shared.manaManager.resetAllManaFromManaPool()
+        drawCards()
+    }
+    
+    
     func distributeCardNodes () {
         //Verify number of cards the player has
         let numberOfCards = Player.shared.hand.cards.count
@@ -194,8 +201,6 @@ class GameScene: SKScene {
     }
     
     func drawCards () {
-        Player.shared.manaManager.resetAllManaFromManaPool()
-        
         // Make sure Player's deck has all cards needed
         let cardsToDraw = 5 - Player.shared.hand.cards.count
         if Player.shared.deck.cards.count < cardsToDraw {
