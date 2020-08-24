@@ -66,8 +66,6 @@ class Mana {
         return self.type
     }
     
-    
-    
     func insertInPool(){
         //self.node = self.updateNodeFromType()
         self.isInPool = true
