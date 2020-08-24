@@ -25,6 +25,8 @@ class GameScene: SKScene {
     var handNodes     : [SKNode] = []
     var playAreaNode  : SKNode!
     var playAreaNodes : [SKNode] = []
+    var manaNode      : SKNode!
+    var manaNodes     : [SKNode] = []
     
     var circles : [SKShapeNode] = []
     var lines   : [SKShapeNode] = []
@@ -43,6 +45,12 @@ class GameScene: SKScene {
         bannedNode = childNode(withName: "Banned")!
         bannedNumber = bannedNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
         
+        manaNode = childNode(withName: "Mana")!
+        for node in manaNode.children {
+            if node.name == "Mana" {
+                manaNodes.append(node)
+            }
+        }
         
         handNode = childNode(withName: "Hand")!
         let cardsNode = handNode.childNode(withName: "Cards")!
@@ -52,7 +60,7 @@ class GameScene: SKScene {
             }
         }
         
-        let playArea = childNode(withName: "PlayArea")!
+        let playArea = childNode(withName: "Play")!
         playAreaNode = playArea.childNode(withName: "Cards")!
         for node in playAreaNode.children {
             if node.name == "Card" {
@@ -62,6 +70,11 @@ class GameScene: SKScene {
         
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
         Player.shared.manaManager.fillPool(manas: [ManaType.b, ManaType.b, ManaType.r])
+        for i in 0 ..< Player.shared.manaManager.manaPool.count {
+            let pos = self.convert(manaNodes[i].position, from: manaNode)
+            createManaNode(mana: Player.shared.manaManager.manaPool[i], at: pos)
+        }
+        
         
         createHandEllipse()
         distributeCardNodes()
@@ -88,6 +101,29 @@ class GameScene: SKScene {
         card.node = cardNode
         card.node.name = "\(card.id)"
         self.addChild(card.node)
+    }
+    
+    func createManaNode (mana: Mana, at pos: CGPoint) {
+        let manaType = mana.getType()
+        var manaBase = childNode(withName: "B")!
+        
+        switch manaType {
+        case .b:
+            manaBase = childNode(withName: "B")!
+        case .g:
+            manaBase = childNode(withName: "G")!
+        case .r:
+            manaBase = childNode(withName: "R")!
+        case .y:
+            manaBase = childNode(withName: "Y")!
+        default:
+            break
+        }
+        
+        let manaNode = manaBase.copy() as! SKNode
+        manaNode.position = pos
+        mana.node = manaNode
+        self.addChild(mana.node!)
     }
     
     func moveCard (card: Card, to pos: CGPoint, completion: @escaping () -> () = { }) {
@@ -146,8 +182,8 @@ class GameScene: SKScene {
             let pos = calculateCardPosition(angle: ang)
             let cardAngle = calculateCardAngle(angle: ang)
             
-            createCircle(at: pos, i: i)
-            createAngleLine(at: pos, angle: cardAngle, i: i)
+            //createCircle(at: pos, i: i)
+            //createAngleLine(at: pos, angle: cardAngle, i: i)
             
             handNodes[i].position = self.convert(pos, to: handNode)
             
@@ -160,12 +196,29 @@ class GameScene: SKScene {
     func drawCards () {
         
         Player.shared.manaManager.resetAllManaFromManaPool()
+        
+        // Make sure Player's deck has all cards needed
+        let cardsToDraw = 5 - Player.shared.hand.cards.count
+        if Player.shared.deck.cards.count < cardsToDraw {
+            let remainingCards = cardsToDraw - Player.shared.deck.cards.count
+            print("Remaining cards: \(remainingCards)")
+            self.getCardsFromDiscard() {
+                print("getting remaining cards")
+                self.drawHandCards(remainingCards)
+            }
+        }
+        drawHandCards(cardsToDraw)
+    }
+    
+    func drawHandCards (_ amount: Int) {
         // Changes cards between decks (from deck to hand)
-        Player.shared.drawCards(ammount: 5 - Player.shared.hand.cards.count)
+        Player.shared.drawCards(amount: amount)
         
         // Create card nodes from top cards in player's deck
         for card in Player.shared.hand.cards {
-            createCardNode(card: card, at: deckNode)
+            if card.node == nil {
+                createCardNode(card: card, at: deckNode)
+            }
         }
         
         // Make sure card nodes are in the correct place
@@ -177,6 +230,7 @@ class GameScene: SKScene {
             moveCard(card: Player.shared.hand.cards[index], to: pos)
         }
         
+        print("Player Hand Amount: \(Player.shared.hand.cards.count)")
     }
     
     func playCard (index: Int, manaType: ManaType) {
@@ -198,7 +252,7 @@ class GameScene: SKScene {
     
     var gettingCardsFromDiscard = false
     
-    func getCardsFromDiscard () {
+    func getCardsFromDiscard (completion: @escaping () -> () = { }) {
         if !gettingCardsFromDiscard {
             // Make sure discard deck is shuffled
             Player.shared.discard.shuffle()
@@ -215,6 +269,7 @@ class GameScene: SKScene {
             // Run loop of actions
             gettingCardsFromDiscard = true
             discardNode.run(loop) {
+                completion()
                 self.gettingCardsFromDiscard = false
             }
         }

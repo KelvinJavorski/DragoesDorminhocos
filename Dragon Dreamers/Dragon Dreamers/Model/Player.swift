@@ -21,7 +21,7 @@ class Player {
     var manaManager: ManaManager = ManaManager()
     
     init () {
-        for _ in 0 ..< 53 {
+        for _ in 0 ..< 23 {
             deck.cards.append(Card())
         }
         print("added cards to deck")
@@ -47,9 +47,9 @@ class Player {
         changeDeckOfCard(discard, deck, index)
     }
     
-    func drawCards (ammount : Int) {
-        if deck.cards.count >= ammount {
-            for _ in 0 ..< ammount {
+    func drawCards (amount : Int) {
+        if deck.cards.count >= amount {
+            for _ in 0 ..< amount {
                 changeDeckOfCard(deck, hand, 0)
             }
         } else if deck.cards.count > 0 {

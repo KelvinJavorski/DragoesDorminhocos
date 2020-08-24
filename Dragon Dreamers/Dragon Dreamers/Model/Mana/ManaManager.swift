@@ -28,15 +28,13 @@ class ManaManager {
     var manaPool: [Mana]
     var manaCollection: [Mana]
     
-    func fillPool(manas: [ManaType]) -> Bool{
+    func fillPool(manas: [ManaType]) {
         self.manaPool = []
         
         for mana in manas {
-            if self.setManaInPool(type: mana){
-                return true
-            }
+            self.setManaInPool(type: mana)
         }
-        return false
+        
     }
     
     func resetManaFromManaPool(type: ManaType) -> Bool{
