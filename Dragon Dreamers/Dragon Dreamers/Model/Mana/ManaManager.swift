@@ -37,6 +37,7 @@ class ManaManager {
         
     }
     
+    
     func resetManaFromManaPool(type: ManaType) -> Bool{
         if self.checkManaInPool(type: type) {
             for mana in self.manaPool {
@@ -91,6 +92,16 @@ class ManaManager {
             return true
         }
         return false
+    }
+    
+    func checkPoolIsAllUsed() -> Bool{
+        
+        for mana in self.manaPool {
+            if mana.isAvaliable == true {
+                return false
+            }
+        }
+        return true
     }
     
     func checkManaInPool(type: ManaType) -> Bool {
