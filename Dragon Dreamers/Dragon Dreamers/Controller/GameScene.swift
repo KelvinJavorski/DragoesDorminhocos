@@ -194,7 +194,6 @@ class GameScene: SKScene {
     }
     
     func drawCards () {
-        
         Player.shared.manaManager.resetAllManaFromManaPool()
         
         // Make sure Player's deck has all cards needed
@@ -211,14 +210,15 @@ class GameScene: SKScene {
     }
     
     func drawHandCards (_ amount: Int) {
+        
+        let handCards = Player.shared.hand.cards.count
         // Changes cards between decks (from deck to hand)
         Player.shared.drawCards(amount: amount)
         
         // Create card nodes from top cards in player's deck
-        for card in Player.shared.hand.cards {
-            if card.node == nil {
-                createCardNode(card: card, at: deckNode)
-            }
+        for i in handCards ..< Player.shared.hand.cards.count {
+            let card = Player.shared.hand.cards[i]
+            createCardNode(card: card, at: deckNode)
         }
         
         // Make sure card nodes are in the correct place
