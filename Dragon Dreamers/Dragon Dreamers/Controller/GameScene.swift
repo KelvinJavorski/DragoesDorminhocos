@@ -62,23 +62,28 @@ class GameScene: SKScene {
         
         let playArea = childNode(withName: "Play")!
         playAreaNode = playArea.childNode(withName: "Cards")!
+        
         for node in playAreaNode.children {
             if node.name == "Card0" {
                 playAreaNodes.append(node)
             }
-            
+        }
+        for node in playAreaNode.children {
             if node.name == "Card1" {
                 playAreaNodes.append(node)
             }
-            
+        }
+        for node in playAreaNode.children {
             if node.name == "Card2" {
                 playAreaNodes.append(node)
             }
-            
+        }
+        for node in playAreaNode.children {
             if node.name == "Card3" {
                 playAreaNodes.append(node)
             }
-            
+        }
+        for node in playAreaNode.children {
             if node.name == "Card4" {
                 playAreaNodes.append(node)
             }
