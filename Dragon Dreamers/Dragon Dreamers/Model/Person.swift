@@ -39,6 +39,17 @@ class Person{
         self.currentEmpathy = self.maxEmpathy
     }
     
+    func setOwner(){
+        for card in deck.cards{
+            card.owner = self
+        }
+    }
+    
+    var cardsPool : CardsPool = CardsPool()
+    var deck     : Deck = Deck(name: "Deck")
+    var hand     : Deck = Deck(name: "Hand")
+    var ongoing  : Deck = Deck(name: "Ongoing")
+
     var currentLife: Int!
     var maxLife: Int!
     

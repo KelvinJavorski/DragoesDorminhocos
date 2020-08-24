@@ -16,7 +16,7 @@ class CardEffect{
     func runEffects(card: Card, person: Person){
         switch card.effect {
         case .addCard:
-            addCardToDeck(id: card.idEffect)
+            addCardToDeck(person: person, id: card.idEffect)
             break
             
         case .dealDamage:
@@ -37,9 +37,9 @@ class CardEffect{
         }
     }
     
-    func addCardToDeck(id: Int){
-        let cardsPool = Player.shared.cardsPool
-        Player.shared.deck.addCard(cardsPool.cards[id])
+    func addCardToDeck(person:Person, id: Int){
+        let cardsPool = person.cardsPool
+        person.deck.addCard(cardsPool.cards[id])
     }
     
     func heal(person: Person, healAmount : Int, type: EnergyType){

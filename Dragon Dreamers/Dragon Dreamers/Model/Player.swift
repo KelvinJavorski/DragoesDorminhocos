@@ -11,21 +11,32 @@ import Foundation
 class Player: Person {
     static let shared = Player()
     
-    var cardsPool : CardsPool = CardsPool()
-    var deck     : Deck = Deck(name: "Deck")
-    var hand     : Deck = Deck(name: "Hand")
     var discard  : Deck = Deck(name: "Discard")
     var banished : Deck = Deck(name: "Banished")
-    var ongoing  : Deck = Deck(name: "Ongoing")
     var manaManager: ManaManager = ManaManager()
     
     init () {
+        super.init()
         for i in 0 ..< 15 {
             deck.cards.append(cardsPool.cards[i])
         }
         print("added cards to deck")
         print("Deck: \(deck.cards.count)")
+        self.setOwner()
+        self.setInitialAtributes()
     }
+    
+    func setInitialAtributes(){
+        currentLife = 10
+        maxLife = 10
+        
+        currentReason = 0
+        maxReason = 10
+        
+        currentUnderstanding = 0
+        maxUnderstanding = 10
+    }
+
     
     func changeDeckOfCard (_ from: Deck, _ to: Deck, _ index: Int) {
         let card = from.getCard(index)

@@ -12,16 +12,20 @@ class Enemy: Person {
     static let shared = Enemy()
     
     
-    var cardsPool : CardsPool = CardsPool()
-    var deck     : Deck = Deck(name: "Deck")
-    var hand     : Deck = Deck(name: "Hand")
-    var ongoing  : Deck = Deck(name: "Ongoing")
-    var manaManager: ManaManager = ManaManager()
+
     
     init () {
-            
+        super.init()
+        
+        setInitialDeck()
+        print("added cards to deck")
+        print("Deck: \(deck.cards.count)")
+        self.setOwner()
+        self.setInitialAtributes()
+    }
+    
+    func setInitialDeck(){
         cardsPool.cards.shuffle()
-            
         for card in cardsPool.cards {
             if card.effect == EffectType.addCard {
                 deck.cards.append(card)
@@ -53,10 +57,15 @@ class Enemy: Person {
             }
             break
         }
-    
-        print("added cards to deck")
-        print("Deck: \(deck.cards.count)")
     }
+    func setInitialAtributes(){
+        currentLife = 10
+        maxLife = 10
+        
+        currentEmpathy = 0
+        maxEmpathy = 10
+        
+        }
     
     func changeDeckOfCard (_ from: Deck, _ to: Deck, _ index: Int) {
         let card = from.getCard(index)
