@@ -21,8 +21,8 @@ class Player: Person {
     var manaManager: ManaManager = ManaManager()
     
     init () {
-        for _ in 0 ..< 23 {
-            deck.cards.append(Card())
+        for i in 0 ..< 15 {
+            deck.cards.append(cardsPool.cards[i])
         }
         print("added cards to deck")
         print("Deck: \(deck.cards.count)")

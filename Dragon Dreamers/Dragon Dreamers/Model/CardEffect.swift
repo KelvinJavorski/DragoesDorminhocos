@@ -12,6 +12,7 @@ class CardEffect{
     var card : Card!
         
     init() {}
+    
     func runEffects(card: Card){
         switch card.effect {
         case .addCard:
