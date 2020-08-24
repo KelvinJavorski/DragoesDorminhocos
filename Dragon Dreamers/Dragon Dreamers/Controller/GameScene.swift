@@ -273,10 +273,10 @@ class GameScene: SKScene {
                 card.node.position = pos
                 Player.shared.playCard(index: index)
                 //self.discardHand()
+                self.distributeCardNodes()
             }
         }
         // Make sure cards are distrubuted correctly
-        distributeCardNodes()
     }
     
     var gettingCardsFromDiscard = false
@@ -497,6 +497,7 @@ class GameScene: SKScene {
                 }
             }
             
+            
             if let deckName = movingCardDeck?.name {
                 if deckName == "Hand" {
                     // snap card back to original position
@@ -506,7 +507,7 @@ class GameScene: SKScene {
                     movingCard!.node.run(move)
                     clearVars()
                 
-                } else if deckName == "Ongoing" {
+            }   else if deckName == "Ongoing" {
                     // snap card back to original position
                     print("Moving card back to ongoing")
                     let pos = self.convert(playAreaNodes[movingCardIndex!].position, from: playAreaNode)
@@ -515,6 +516,8 @@ class GameScene: SKScene {
                     clearVars()
                 }
             }
+                
+            
         }
     }
     
