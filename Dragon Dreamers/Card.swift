@@ -66,7 +66,7 @@ class Card {
         self.selfDamage = selfDamage
         self.selfDamageType = selfDamageType
     }
-    
+    //Heal
     init (cost : Int = 0, name: String = "", type : CardType, heal: Int, healType: EnergyType) {
         self.id = Card.nextID
         Card.nextID += 1
