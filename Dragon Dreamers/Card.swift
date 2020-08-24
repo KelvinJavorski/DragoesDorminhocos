@@ -24,6 +24,8 @@ class Card {
     var idEffect: Int!
     var selfDamage: Int!
     var selfDamageType: EnergyType!
+    var heal : Int!
+    var healType: EnergyType!
     
     init(){
         
@@ -65,8 +67,17 @@ class Card {
         self.selfDamageType = selfDamageType
     }
     
-    //, damage: Int = nil, damageType: EnergyType = nil, cardIdEffect: Int = nil, selfDamage : Int = nil, selfDamageType: EnergyType = nil
-    
+    init (cost : Int = 0, name: String = "", type : CardType, heal: Int, healType: EnergyType) {
+        self.id = Card.nextID
+        Card.nextID += 1
+        self.cost = cost
+        self.name = name
+        self.type = type
+        self.heal = heal
+        self.healType = healType
+    }
+
+
     func playCard () {
         // Loops through actions and applies their effects
         CardEffect().runEffects(card: self)

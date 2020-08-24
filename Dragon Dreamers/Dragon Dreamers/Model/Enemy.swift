@@ -1,5 +1,5 @@
 //
-//  EnergyType.swift
+//  Enemy.swift
 //  Dragon Dreamers
 //
 //  Created by Kelvin Javorski Soares on 23/08/20.
@@ -8,9 +8,6 @@
 
 import Foundation
 
-enum EnergyType{
-    case life
-    case empathy
-    case reason
-    case understanding
+class Enemy: Person{
+    static let shared = Enemy()
 }
