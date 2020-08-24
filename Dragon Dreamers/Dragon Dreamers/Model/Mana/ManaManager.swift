@@ -54,17 +54,19 @@ class ManaManager {
     
     func resetAllManaFromManaPool(){
         
-        self.resetManaFromManaPool(type: ManaType.b)
-        self.resetManaFromManaPool(type: ManaType.r)
-        self.resetManaFromManaPool(type: ManaType.y)
-        self.resetManaFromManaPool(type: ManaType.g)
-        self.resetManaFromManaPool(type: ManaType.br)
-        self.resetManaFromManaPool(type: ManaType.by)
-        self.resetManaFromManaPool(type: ManaType.bg)
-        self.resetManaFromManaPool(type: ManaType.ry)
-        self.resetManaFromManaPool(type: ManaType.rg)
-        self.resetManaFromManaPool(type: ManaType.yg)
-
+        for _ in self.manaPool {
+            self.resetManaFromManaPool(type: ManaType.b)
+            self.resetManaFromManaPool(type: ManaType.r)
+            self.resetManaFromManaPool(type: ManaType.y)
+            self.resetManaFromManaPool(type: ManaType.g)
+            self.resetManaFromManaPool(type: ManaType.br)
+            self.resetManaFromManaPool(type: ManaType.by)
+            self.resetManaFromManaPool(type: ManaType.bg)
+            self.resetManaFromManaPool(type: ManaType.ry)
+            self.resetManaFromManaPool(type: ManaType.rg)
+            self.resetManaFromManaPool(type: ManaType.yg)
+        }
+        
     }
     
     func useManaFromManaPool(type: ManaType) -> Bool{

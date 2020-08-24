@@ -192,6 +192,13 @@ class GameScene: SKScene {
     func nextTurn () {
         discardHand()
         Player.shared.manaManager.resetAllManaFromManaPool()
+        
+        for mana in Player.shared.manaManager.manaPool {
+            if mana.node?.isHidden == true{
+                mana.node?.isHidden = false
+            }
+        }
+        
         print("new turn")
         self.discardOngoing()
         drawCards()
@@ -264,6 +271,18 @@ class GameScene: SKScene {
     func playCard (index: Int, manaType: ManaType) {
         // Moves card node to play area
         if Player.shared.manaManager.useManaFromManaPool(type: manaType) {
+            
+            var aux = false
+            
+            for mana in Player.shared.manaManager.manaPool {
+                if mana.type == manaType {
+                    if !mana.isAvaliable && mana.node?.isHidden == false && aux == false{
+                        mana.node?.isHidden = true
+                        aux = true
+                    }
+                }
+            }
+            
             let i = Player.shared.ongoing.cards.count
             let pos = self.convert(playAreaNodes[i].position, from: playAreaNode)
             let card = Player.shared.hand.cards[index]
@@ -474,7 +493,6 @@ class GameScene: SKScene {
                     if let deckName = movingCardDeck?.name {
                         if deckName == "Hand" {
                             // play the card
-                            print("Playing the card")
                             let card = Player.shared.hand.cards[movingCardIndex!]
                             let cardType = card.type
                             switch cardType {
