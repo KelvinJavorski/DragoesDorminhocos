@@ -298,20 +298,13 @@ class GameScene: SKScene {
             let pos = self.convert(playAreaNodes[i].position, from: playAreaNode)
             let card = Player.shared.hand.cards[index]
             
-            moveCard(card: card, to: pos) {
-                // Changes card between decks (from hand to ongoing)
-                card.node.position = pos
+            moveAndRotateCard(card: card, to: pos, to: 0.0) {
                 Player.shared.playCard(index: index)
-                
-                
-                //Mudar depois, provisorio pro alpha
-                
-                
-                //self.discardHand()
+                card.node.position = pos
                 self.distributeCardNodes()
             }
+            
         }
-        // Make sure cards are distrubuted correctly
     }
     
     var gettingCardsFromDiscard = false
