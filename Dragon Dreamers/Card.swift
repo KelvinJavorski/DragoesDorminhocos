@@ -13,6 +13,7 @@ import SpriteKit
 class Card {
     static var nextID : Int = 0
     
+    var owner: Person!
     var name: String!
     var id : Int = 0
     var effect : EffectType!
@@ -55,24 +56,26 @@ class Card {
     }
     
     //Deal damage by using own resource/energy
-    init (cost : Int = 0, name: String = "", type : CardType, damage: Int, damageType: EnergyType, selfDamage: Int, selfDamageType: EnergyType) {
+    init (cost : Int = 0, name: String = "", type : CardType, effect: EffectType, damage: Int, damageType: EnergyType, selfDamage: Int, selfDamageType: EnergyType) {
         self.id = Card.nextID
         Card.nextID += 1
         self.cost = cost
         self.name = name
         self.type = type
+        self.effect = effect
         self.damage = damage
         self.damageType = damageType
         self.selfDamage = selfDamage
         self.selfDamageType = selfDamageType
     }
-    //Heal
-    init (cost : Int = 0, name: String = "", type : CardType, heal: Int, healType: EnergyType) {
+    
+    init (cost : Int = 0, name: String = "", type : CardType, effect: EffectType, heal: Int, healType: EnergyType) {
         self.id = Card.nextID
         Card.nextID += 1
         self.cost = cost
         self.name = name
         self.type = type
+        self.effect = effect
         self.heal = heal
         self.healType = healType
     }
@@ -80,7 +83,7 @@ class Card {
 
     func playCard () {
         // Loops through actions and applies their effects
-        CardEffect().runEffects(card: self)
+        CardEffect().runEffects(card: self, person: owner)
     }
     
 }
