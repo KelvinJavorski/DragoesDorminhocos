@@ -90,7 +90,7 @@ class GameScene: SKScene {
         }
         
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
-        Player.shared.manaManager.fillPool(manas: [ManaType.b, ManaType.b, ManaType.r])
+        Player.shared.manaManager.fillPool(manas: [ManaType.r, ManaType.r, ManaType.r, ManaType.r, ManaType.r])
         for i in 0 ..< Player.shared.manaManager.manaPool.count {
             let pos = self.convert(manaNodes[i].position, from: manaNode)
             createManaNode(mana: Player.shared.manaManager.manaPool[i], at: pos)
@@ -192,6 +192,7 @@ class GameScene: SKScene {
     func nextTurn () {
         discardHand()
         Player.shared.manaManager.resetAllManaFromManaPool()
+        print("new turn")
         drawCards()
     }
     
@@ -268,6 +269,7 @@ class GameScene: SKScene {
             
             moveCard(card: card, to: pos) {
                 // Changes card between decks (from hand to ongoing)
+                card.node.position = pos
                 Player.shared.playCard(index: index)
                 //self.discardHand()
             }
