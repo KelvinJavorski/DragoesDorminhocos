@@ -193,6 +193,7 @@ class GameScene: SKScene {
         discardHand()
         Player.shared.manaManager.resetAllManaFromManaPool()
         print("new turn")
+        self.discardOngoing()
         drawCards()
     }
     
