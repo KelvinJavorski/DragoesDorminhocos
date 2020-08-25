@@ -48,15 +48,6 @@ class GameViewController: UIViewController {
     }
     
     
-    @IBAction func deckButton(_ sender: UIButton) {
-        print("clicked deck")
-        if Player.shared.hand.cards.count > 0 {
-            scene.discardHand()
-        }
-        scene.drawCards()
-    }
-    
-    
     @IBAction func nextTurnClicked(_ sender: UIButton) {
         scene.nextTurn()
     }

@@ -34,7 +34,6 @@ class ManaManager {
         for mana in manas {
             self.setManaInPool(type: mana)
         }
-        
     }
     
     

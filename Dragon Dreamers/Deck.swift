@@ -39,9 +39,24 @@ class Deck {
         cards.remove(at: i)
     }
     
+    func removeCard(id: Int) {
+        for i in 0 ..< cards.count - 1 {
+            if cards[i].id == id {
+                cards.remove(at: i)
+            }
+        }
+    }
+    
     func removeAllCards() {
         for _ in 0 ..< cards.count {
             removeCard(atIndex: 0)
         }
+    }
+    
+    func isEmpty () -> Bool {
+        if cards.count > 0 {
+            return false
+        }
+        return true
     }
 }

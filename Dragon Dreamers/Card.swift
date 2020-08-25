@@ -86,4 +86,20 @@ class Card {
         CardEffect().runEffects(card: self, person: owner)
     }
     
+    // Return the type of mana the card uses
+    func switchCardTypeToManaType () -> ManaType {
+        switch self.type {
+        case .blue:
+            return .b
+        case .green:
+            return .g
+        case .red:
+            return .r
+        case .yellow:
+            return .y
+        default:
+            return .b
+        }
+    }
+    
 }
