@@ -38,6 +38,8 @@ class GameScene: SKScene {
     var enemyNode : SKNode!
     var enemyLife: SKLabelNode!
     
+    var battleManager: BattleManager = BattleManager()
+    
     
     func initScene () { // ALWAYS CALL THIS BEFORE PRESENTING SCENE
         deckNode = childNode(withName: "Deck")!
@@ -110,6 +112,8 @@ class GameScene: SKScene {
         createHandEllipse()
         
         drawCards()
+        
+        battleManager.startBattle()
     }
     
     func createHandEllipse () {
@@ -264,10 +268,17 @@ class GameScene: SKScene {
             }
         }
         
+        if battleManager.battleState == .playerTurn {
+            battleManager.battleState = .enemyTurn
+        }else{
+            battleManager.battleState = .playerTurn
+        }
+        
         print("new turn")
         self.discardOngoing()
         drawCards()
         rearangeManaNodes()
+        
     }
     
     func drawCards () {
@@ -438,7 +449,7 @@ class GameScene: SKScene {
         bannedNumber.text = "\(bannedCardsAmount)"
         
         //corrigir depois do alpha
-        if let enemyCurrentLife = Player.shared.currentLife{
+        if let enemyCurrentLife = Enemy.shared.currentLife{
             enemyLife.text = "\(enemyCurrentLife)"
         }
         

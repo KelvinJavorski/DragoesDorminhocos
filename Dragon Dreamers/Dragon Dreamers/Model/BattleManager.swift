@@ -14,7 +14,8 @@ class BattleManager{
     var battleState: BattleState = .playerTurn
     
     func startBattle(){
-        
+        Player.shared.setOpponent(person: Enemy.shared.self)
+        Enemy.shared.setOpponent(person: Player.shared.self)
     }
     
     func endBattle(){
