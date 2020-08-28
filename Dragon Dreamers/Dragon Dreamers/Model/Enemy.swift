@@ -10,10 +10,7 @@ import Foundation
 
 class Enemy: Person {
     static let shared = Enemy()
-    
-    
 
-    
     init () {
         super.init()
         self.setInitialDeck()
