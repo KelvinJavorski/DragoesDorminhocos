@@ -10,7 +10,6 @@ import Foundation
 
 class Player: Person {
     static let shared = Player()
-    
     var discard  : Deck = Deck(name: "Discard")
     var banished : Deck = Deck(name: "Banished")
     var manaManager: ManaManager = ManaManager()
@@ -78,6 +77,5 @@ class Player: Person {
         changeDeckOfCard(hand, ongoing, index)
         card.playCard()
     }
-    
     
 }
