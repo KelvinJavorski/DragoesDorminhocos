@@ -31,9 +31,7 @@ class Mana {
         self.isInPool = false
         self.id = id
         self.type = type
-        
-        //self.node = SKSpriteNode()
-        //self.node = self.updateNodeFromType()
+
     }
     
     var type: ManaType
@@ -67,7 +65,6 @@ class Mana {
     }
     
     func insertInPool(){
-        //self.node = self.updateNodeFromType()
         self.isInPool = true
     }
     

@@ -32,7 +32,9 @@ class ManaManager {
         self.manaPool = []
         
         for mana in manas {
-            self.setManaInPool(type: mana)
+            if self.setManaInPool(type: mana) {
+                break
+            }
         }
     }
     
@@ -53,17 +55,14 @@ class ManaManager {
     
     func resetAllManaFromManaPool(){
         
+        let manaTypes = [ManaType.r, ManaType.b, ManaType.y, ManaType.g, ManaType.br, ManaType.by, ManaType.bg, ManaType.ry, ManaType.rg, ManaType.yg]
+        
         for _ in self.manaPool {
-            self.resetManaFromManaPool(type: ManaType.b)
-            self.resetManaFromManaPool(type: ManaType.r)
-            self.resetManaFromManaPool(type: ManaType.y)
-            self.resetManaFromManaPool(type: ManaType.g)
-            self.resetManaFromManaPool(type: ManaType.br)
-            self.resetManaFromManaPool(type: ManaType.by)
-            self.resetManaFromManaPool(type: ManaType.bg)
-            self.resetManaFromManaPool(type: ManaType.ry)
-            self.resetManaFromManaPool(type: ManaType.rg)
-            self.resetManaFromManaPool(type: ManaType.yg)
+            for mana in manaTypes {
+                if self.resetManaFromManaPool(type: mana) {
+                    break
+                }
+            }
         }
         
     }
@@ -174,65 +173,24 @@ class ManaManager {
     func fillCollection() {
         self.manaCollection = []
         
-        self.manaCollection.append(Mana(id: "r00", type: ManaType.r))
-        self.manaCollection.append(Mana(id: "r01", type: ManaType.r))
-        self.manaCollection.append(Mana(id: "r02", type: ManaType.r))
-        self.manaCollection.append(Mana(id: "r03", type: ManaType.r))
-        self.manaCollection.append(Mana(id: "r04", type: ManaType.r))
+        let manaTypes = [ManaType.r, ManaType.b, ManaType.y, ManaType.g, ManaType.br, ManaType.by, ManaType.bg, ManaType.ry, ManaType.rg, ManaType.yg]
         
-        self.manaCollection.append(Mana(id: "b00", type: ManaType.b))
-        self.manaCollection.append(Mana(id: "b01", type: ManaType.b))
-        self.manaCollection.append(Mana(id: "b02", type: ManaType.b))
-        self.manaCollection.append(Mana(id: "b03", type: ManaType.b))
-        self.manaCollection.append(Mana(id: "b04", type: ManaType.b))
+        let manaIds = [["r00","r01","r02","r03","r04"],
+                        ["b00","b01","b02","b03","b04"],
+                        ["y00","y01","y02","y03","y04"],
+                        ["g00","g01","g02","g03","g04"],
+                        ["br00","br01","br02","br03","br04"],
+                        ["by00","by01","by02","by03","by04"],
+                        ["bg00","bg01","bg02","bg03","bg04"],
+                        ["ry00","ry01","ry02","ry03","ry04"],
+                        ["rg00","rg01","rg02","rg03","rg04"],
+                        ["yg00","yg01","yg02","yg03","yg04"]]
         
-        self.manaCollection.append(Mana(id: "y00", type: ManaType.y))
-        self.manaCollection.append(Mana(id: "y01", type: ManaType.y))
-        self.manaCollection.append(Mana(id: "y02", type: ManaType.y))
-        self.manaCollection.append(Mana(id: "y03", type: ManaType.y))
-        self.manaCollection.append(Mana(id: "y04", type: ManaType.y))
-        
-        self.manaCollection.append(Mana(id: "g00", type: ManaType.g))
-        self.manaCollection.append(Mana(id: "g01", type: ManaType.g))
-        self.manaCollection.append(Mana(id: "g02", type: ManaType.g))
-        self.manaCollection.append(Mana(id: "g03", type: ManaType.g))
-        self.manaCollection.append(Mana(id: "g04", type: ManaType.g))
-        
-        self.manaCollection.append(Mana(id: "br00", type: ManaType.br))
-        self.manaCollection.append(Mana(id: "br01", type: ManaType.br))
-        self.manaCollection.append(Mana(id: "br02", type: ManaType.br))
-        self.manaCollection.append(Mana(id: "br03", type: ManaType.br))
-        self.manaCollection.append(Mana(id: "br04", type: ManaType.br))
-        
-        self.manaCollection.append(Mana(id: "by00", type: ManaType.by))
-        self.manaCollection.append(Mana(id: "by01", type: ManaType.by))
-        self.manaCollection.append(Mana(id: "by02", type: ManaType.by))
-        self.manaCollection.append(Mana(id: "by03", type: ManaType.by))
-        self.manaCollection.append(Mana(id: "by04", type: ManaType.by))
-        
-        self.manaCollection.append(Mana(id: "bg00", type: ManaType.bg))
-        self.manaCollection.append(Mana(id: "bg01", type: ManaType.bg))
-        self.manaCollection.append(Mana(id: "bg02", type: ManaType.bg))
-        self.manaCollection.append(Mana(id: "bg03", type: ManaType.bg))
-        self.manaCollection.append(Mana(id: "bg04", type: ManaType.bg))
-        
-        self.manaCollection.append(Mana(id: "ry00", type: ManaType.ry))
-        self.manaCollection.append(Mana(id: "ry01", type: ManaType.ry))
-        self.manaCollection.append(Mana(id: "ry02", type: ManaType.ry))
-        self.manaCollection.append(Mana(id: "ry03", type: ManaType.ry))
-        self.manaCollection.append(Mana(id: "ry04", type: ManaType.ry))
-        
-        self.manaCollection.append(Mana(id: "rg00", type: ManaType.rg))
-        self.manaCollection.append(Mana(id: "rg01", type: ManaType.rg))
-        self.manaCollection.append(Mana(id: "rg02", type: ManaType.rg))
-        self.manaCollection.append(Mana(id: "rg03", type: ManaType.rg))
-        self.manaCollection.append(Mana(id: "rg04", type: ManaType.rg))
-        
-        self.manaCollection.append(Mana(id: "yg00", type: ManaType.yg))
-        self.manaCollection.append(Mana(id: "yg01", type: ManaType.yg))
-        self.manaCollection.append(Mana(id: "yg02", type: ManaType.yg))
-        self.manaCollection.append(Mana(id: "yg03", type: ManaType.yg))
-        self.manaCollection.append(Mana(id: "yg04", type: ManaType.yg))
+        for mana in 0 ..< manaTypes.count {
+            for n in 0 ..< 5 {
+                self.manaCollection.append(Mana(id: manaIds[mana][n], type: manaTypes[mana]))
+            }
+        }
     }
 
 }
