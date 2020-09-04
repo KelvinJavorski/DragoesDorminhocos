@@ -259,6 +259,7 @@ class GameScene: SKScene {
     /// >>>----------> GAMEPLAY FUNCs
     
     func nextTurn () {
+        print(battleManager.cardsPlayed)
         discardHand()
         Player.shared.manaManager.resetAllManaFromManaPool()
         
@@ -348,7 +349,9 @@ class GameScene: SKScene {
         
         // Moves card node to play area
         moveAndRotateCard(card: card, to: pos, to: 0.0) {
-            Player.shared.playCard(index: index)
+//            Player.shared.playCard(index: index)
+            // Store card played for applying effect later
+            self.battleManager.cardsPlayed.append(Player.shared.hand.cards[index])
             card.node.position = pos
             self.distributeCardNodes()
             // Checks if there are still mana left
