@@ -63,29 +63,5 @@ class Enemy: Person {
         
         }
     
-    func changeDeckOfCard (_ from: Deck, _ to: Deck, _ index: Int) {
-        let card = from.getCard(index)
-        from.removeCard(atIndex: index)
-        to.addCard(card)
-    }
-    
-    func drawCards (amount : Int) {
-        if deck.cards.count >= amount {
-            for _ in 0 ..< amount {
-                changeDeckOfCard(deck, hand, 0)
-            }
-        } else if deck.cards.count > 0 {
-            for _ in 0 ..< deck.cards.count {
-                changeDeckOfCard(deck, hand, 0)
-            }
-        }
-    }
-    
-    func playCard (index : Int) {
-        let card = hand.cards[index]
-        changeDeckOfCard(hand, ongoing, index)
-        card.playCard()
-    }
-    
     
 }
