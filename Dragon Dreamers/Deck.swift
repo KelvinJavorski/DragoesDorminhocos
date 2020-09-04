@@ -39,12 +39,22 @@ class Deck {
         cards.remove(at: i)
     }
     
-    func removeCard(id: Int) {
-        for i in 0 ..< cards.count - 1 {
+    func removeCard(id: Int, completion: @escaping () -> () = { }) {
+        for i in 0 ..< cards.count {
             if cards[i].id == id {
                 cards.remove(at: i)
+                completion()
+                return
             }
         }
+    }
+    
+    func printAllCardsIDs () {
+        print(">> Cards on \(self.name) deck:")
+        for card in cards {
+            print("Card ID: \(card.id)")
+        }
+        print("-----")
     }
     
     func removeAllCards() {

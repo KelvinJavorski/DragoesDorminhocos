@@ -16,6 +16,7 @@ class Player: Person {
     
     init () {
         super.init()
+        print(">>> Init Player...")
         for i in 0 ..< 15 {
             deck.cards.append(cardsPool.cards[i])
         }
@@ -23,6 +24,7 @@ class Player: Person {
         print("Deck: \(deck.cards.count)")
         self.setOwner()
         self.setInitialAtributes()
+        print("-------")
     }
     
     func setInitialAtributes(){
