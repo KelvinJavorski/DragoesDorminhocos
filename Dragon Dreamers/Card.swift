@@ -27,6 +27,7 @@ class Card {
     var selfDamageType: EnergyType!
     var heal : Int!
     var healType: EnergyType!
+    var emotion: BattleEmotion!
     
     init(){
         
@@ -42,6 +43,7 @@ class Card {
         self.effect = effect
         self.damage  = damage
         self.damageType = damageType
+        setRandomEmotion()
     }
     
     //Send a card to Deck using ID
@@ -53,6 +55,7 @@ class Card {
         self.type = type
         self.effect = effect
         self.idEffect = cardIdEffect
+        setRandomEmotion()
     }
     
     //Deal damage by using own resource/energy
@@ -67,6 +70,7 @@ class Card {
         self.damageType = damageType
         self.selfDamage = selfDamage
         self.selfDamageType = selfDamageType
+        setRandomEmotion()
     }
     
     init (cost : Int = 0, name: String = "", type : CardType, effect: EffectType, heal: Int, healType: EnergyType) {
@@ -78,12 +82,17 @@ class Card {
         self.effect = effect
         self.heal = heal
         self.healType = healType
+        setRandomEmotion()
     }
 
 
+    func setRandomEmotion(){
+        self.emotion = BattleEmotion.random()
+    }
+    
     func playCard () {
         // Loops through actions and applies their effects
-        CardEffect().runEffects(card: self, person: owner)
+        CardEffect.runEffects(card: self, person: owner)
     }
     
     // Return the type of mana the card uses

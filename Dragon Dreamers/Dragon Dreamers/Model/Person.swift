@@ -30,17 +30,47 @@ class Person{
         self.currentEmpathy -= value
     }
     
-    func spendActionPoints(value: Int){
-        self.actionPoints -= value
-    }
-    
-    func getActionPoints(value: Int){
-        self.actionPoints += value
-    }
-    
     func resetAllStats(){
         self.currentLife = self.maxLife
         self.currentEmpathy = self.maxEmpathy
+    }
+    
+    func changeDeckOfCard (_ from: Deck, _ to: Deck, _ index: Int) {
+        let card = from.getCard(index)
+        from.removeCard(atIndex: index)
+        to.addCard(card)
+    }
+    
+    func getNewDeckFromDiscart () { // Not in use
+        discard.shuffle()
+        while discard.cards.count > 0 {
+            changeDeckOfCard(discard, deck, 0)
+        }
+    }
+    
+    func getCardFromDiscard (_ index: Int) {
+        changeDeckOfCard(discard, deck, index)
+    }
+    func drawCards (amount : Int) {
+        if deck.cards.count >= amount {
+            for _ in 0 ..< amount {
+                changeDeckOfCard(deck, hand, 0)
+            }
+        } else if deck.cards.count > 0 {
+            for _ in 0 ..< deck.cards.count {
+                changeDeckOfCard(deck, hand, 0)
+            }
+        }
+    }
+    
+    func discardHand () {
+        while hand.cards.count > 0 {
+            changeDeckOfCard(hand, discard, 0)
+        }
+    }
+    
+    func playCard (index : Int) {
+        changeDeckOfCard(hand, ongoing, index)
     }
     
     func setOwner(){
@@ -57,6 +87,7 @@ class Person{
     var deck     : Deck = Deck(name: "Deck")
     var hand     : Deck = Deck(name: "Hand")
     var ongoing  : Deck = Deck(name: "Ongoing")
+    var discard : Deck = Deck(name: "Discard")
 
     var opponent: Person!
     var currentLife: Int!

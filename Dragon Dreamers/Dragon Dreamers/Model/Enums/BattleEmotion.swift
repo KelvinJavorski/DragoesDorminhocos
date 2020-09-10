@@ -8,9 +8,18 @@
 
 import Foundation
 
-enum BattleEmotion{
+enum BattleEmotion: CaseIterable{
+    case aggro
+    case centerAggro
+    case centerCalm
     case calm
-    case normal
-    case stressed
-    case angry
+    
+    static func random<G: RandomNumberGenerator>(using generator: inout G) -> BattleEmotion {
+        return BattleEmotion.allCases.randomElement(using: &generator)!
+    }
+    
+    static func random() -> BattleEmotion {
+        var g = SystemRandomNumberGenerator()
+        return BattleEmotion.random(using: &g)
+    }
 }

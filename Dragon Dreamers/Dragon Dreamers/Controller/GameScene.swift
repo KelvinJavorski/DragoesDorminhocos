@@ -203,7 +203,7 @@ class GameScene: SKScene {
             print("> Distributing cards!")
             if Player.shared.hand.isEmpty() && !nextTurning {
                 print("Hand Empty: Trigger Next Turn")
-                self.nextTurn()
+//                self.nextTurn()
             } else if !nextTurning {
                 //Verify number of cards the player has
                 let numberOfCards = Player.shared.hand.cards.count
@@ -358,6 +358,8 @@ class GameScene: SKScene {
         // Moves card node to play area
         moveAndRotateCard(card: card, to: pos, to: 0.0) {
             Player.shared.playCard(index: index)
+            // Store card played for applying effect later
+//            self.battleManager.cardsPlayed.append(Player.shared.hand.cards[index])
             card.node.position = pos
             self.distributeCardNodes()
             // Checks if there are still mana left
@@ -608,8 +610,8 @@ class GameScene: SKScene {
                 }
             }
         }
-        print("> Card is not in any area")
-        moveCardBack()
+//        print("> Card is not in any area")
+//        moveCardBack()
     }
     
     func moveCardToPlayArea () {
