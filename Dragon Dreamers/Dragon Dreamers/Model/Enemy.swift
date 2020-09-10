@@ -58,13 +58,10 @@ class Enemy: Person {
     }
     
     func setHand(){
-//        if let currentEmotionDeck = [Card](){
-//            currentEmotionDeck = getAllCardByEmotion(emotion: emotion)
-//            hand.addCard(currentEmotionDeck.randomElement())
-//        }else{
-//            return
-//        }
-        
+        let cards = getAllCardByEmotion(emotion: self.emotion)
+        if !cards.isEmpty{
+            self.hand.addCards(cards)
+        }
     }
     
     func getAllCardByEmotion(emotion: BattleEmotion)->[Card]{

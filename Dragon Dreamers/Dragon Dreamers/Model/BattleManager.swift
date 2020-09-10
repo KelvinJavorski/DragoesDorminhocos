@@ -10,38 +10,43 @@ import Foundation
 
 class BattleManager{
     var player: Player!
+    var enemy: Enemy!
     //var enemy: Enemy
     var battleState: BattleState = .playerTurn
     var cardsPlayed: [Card] = []
     
     func startBattle(){
-        Player.shared.setOpponent(person: Enemy.shared.self)
-        Enemy.shared.setOpponent(person: Player.shared.self)
+        player = Player.shared
+        enemy = Enemy.shared
+        player.setOpponent(person: enemy.self)
+        enemy.setOpponent(person: player.self)
     }
     
     func endBattle(){
         
     }
     
+    func initTurn(){
+        enemy.setHand()
+    }
+    
     func initPlayerTurn(){
         
     }
     
-    func endPlayerTurn(){
-        
+    func endTurn(){
+        for card in cardsPlayed{
+            card.playCard()
+        }
     }
     
     func enemyTurn(){
-//        switch Enemy.shared.humor {
-//        case .malhumorado:
-//            print("VOCÊ TÁ MALUCÃO?")
-//        default:
-//            print("eae bichao")
-//        }
-        print("VOCÊ TÁ MALUCÃO?")
-        
-//        Enemy.shared.setHand()
-        
+        switch enemy.emotion {
+        case .aggro:
+            print("VOCÊ TÁ MALUCÃO?")
+        default:
+            print("eae bichao")
+        }
     }
     
     func storeCard(card : Card){

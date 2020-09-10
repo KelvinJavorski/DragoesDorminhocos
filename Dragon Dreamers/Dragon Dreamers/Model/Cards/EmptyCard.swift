@@ -10,13 +10,13 @@ import Foundation
 import SpriteKit
 
 class EmptyCard{
-    init(name: String? = nil, id: Int = 0, effect: EffectType? = nil, cost: Int = 0, type: CardType? = nil) {
+    init(name: String? = nil, effect: EffectType? = nil, cost: Int = 0, type: CardType? = nil) {
         self.name = name
-        self.id = id
         self.effect = effect
         self.cost = cost
         self.type = type
         EmptyCard.nextID += 1
+        self.setRandomEmotion()
     }
     
     static var nextID : Int = 0
@@ -28,4 +28,9 @@ class EmptyCard{
     var cost : Int = 0
     var node : SKNode!
     var type : CardType!
+    var emotion: BattleEmotion!
+    
+    func setRandomEmotion(){
+        self.emotion = BattleEmotion.random()
+    }
 }
