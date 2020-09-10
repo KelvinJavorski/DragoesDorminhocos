@@ -22,21 +22,21 @@ class Card : EmptyCard{
     init(){}
     
     //Send a card from Collection to Deck using ID
-    init (name: String, id: Int, effect: EffectType, cost: Int, cardType: CardType, cardIdEffect: Int) {
-        super.init(name: name, id: id, effect: effect, cost: cost, type: cardType)
+    init (name: String, effect: EffectType, cost: Int, cardType: CardType, cardIdEffect: Int) {
+        super.init(name: name, effect: effect, cost: cost, type: cardType)
         self.idEffect = cardIdEffect
     }
     
     //Damage Card init
-    init (name: String, id: Int, effect: EffectType, cost: Int, cardType: CardType, damage: Int, damageType: EnergyType) {
-        super.init(name: name, id: id, effect: effect, cost: cost, type: cardType)
+    init (name: String, effect: EffectType, cost: Int, cardType: CardType, damage: Int, damageType: EnergyType) {
+        super.init(name: name, effect: effect, cost: cost, type: cardType)
         self.damage  = damage
         self.damageType = damageType
     }
     
     //Deal damage by using own resource/energy
-    init (name: String, id: Int, effect: EffectType, cost: Int, cardType: CardType, damage: Int, damageType: EnergyType, selfDamage: Int, selfDamageType: EnergyType) {
-        super.init(name: name, id: id, effect: effect, cost: cost, type: cardType)
+    init (name: String, effect: EffectType, cost: Int, cardType: CardType, damage: Int, damageType: EnergyType, selfDamage: Int, selfDamageType: EnergyType) {
+        super.init(name: name,  effect: effect, cost: cost, type: cardType)
         self.damage = damage
         self.damageType = damageType
         self.selfDamage = selfDamage
@@ -44,15 +44,15 @@ class Card : EmptyCard{
     }
     
     //Heal your own resource/energy by some amount
-    init (name: String, id: Int, effect: EffectType, cost: Int, cardType: CardType, heal: Int, healType: EnergyType) {
-        super.init(name: name, id: id, effect: effect, cost: cost, type: cardType)
+    init (name: String, effect: EffectType, cost: Int, cardType: CardType, heal: Int, healType: EnergyType) {
+        super.init(name: name,  effect: effect, cost: cost, type: cardType)
         self.heal = heal
         self.healType = healType
     }
 
     func playCard () {
         // Loops through actions and applies their effects
-        CardEffect().runEffects(card: self, person: owner)
+        CardEffect.runEffects(card: self, person: owner)
     }
     
     // Return the type of mana the card uses

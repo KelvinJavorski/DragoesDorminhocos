@@ -35,6 +35,12 @@ class Deck {
         cards.append(card)
     }
     
+    func addCards(_ cards: [Card]){
+        for card in cards{
+            self.cards.append(card)
+        }
+    }
+    
     func removeCard(atIndex i: Int){
         cards.remove(at: i)
     }
