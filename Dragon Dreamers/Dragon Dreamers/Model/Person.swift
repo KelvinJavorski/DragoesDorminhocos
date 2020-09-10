@@ -70,9 +70,7 @@ class Person{
     }
     
     func playCard (index : Int) {
-        let card = hand.cards[index]
         changeDeckOfCard(hand, ongoing, index)
-        card.playCard()
     }
     
     func setOwner(){

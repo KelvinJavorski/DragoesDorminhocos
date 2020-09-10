@@ -32,6 +32,19 @@ class BattleManager{
     }
     
     func enemyTurn(){
+//        switch Enemy.shared.humor {
+//        case .malhumorado:
+//            print("VOCÊ TÁ MALUCÃO?")
+//        default:
+//            print("eae bichao")
+//        }
+        print("VOCÊ TÁ MALUCÃO?")
         
+//        Enemy.shared.setHand()
+        
+    }
+    
+    func storeCard(card : Card){
+        cardsPlayed.append(card)
     }
 }

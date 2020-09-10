@@ -56,6 +56,27 @@ class Enemy: Person {
             break
         }
     }
+    
+    func setHand(){
+//        if let currentEmotionDeck = [Card](){
+//            currentEmotionDeck = getAllCardByEmotion(emotion: emotion)
+//            hand.addCard(currentEmotionDeck.randomElement())
+//        }else{
+//            return
+//        }
+        
+    }
+    
+    func getAllCardByEmotion(emotion: BattleEmotion)->[Card]{
+        var cards = [Card]()
+        for card in deck.cards{
+            if card.emotion == emotion{
+                cards.append(card)
+            }
+        }
+        return cards
+    }
+    
     func setInitialAtributes(){
         currentLife = 10
         maxLife = 10

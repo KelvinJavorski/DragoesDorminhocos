@@ -9,11 +9,9 @@
 import Foundation
 
 class CardEffect{
-    var card : Card!
-        
     init() {}
     
-    func runEffects(card: Card, person: Person){
+    static func runEffects(card: Card, person: Person){
         switch card.effect {
             //Add a specific card to deck
             case .addCard:
@@ -36,13 +34,13 @@ class CardEffect{
         }
     }
     
-    func addCardToDeck(person:Person,
+    static func addCardToDeck(person:Person,
                      id: Int){
         let cardsPool = person.cardsPool
         person.deck.addCard(cardsPool.cards[id])
     }
     
-    func heal(person: Person,
+    static func heal(person: Person,
              healAmount : Int,
              type: EnergyType){
         switch type {
@@ -61,7 +59,7 @@ class CardEffect{
         }
     }
 
-    func dealDamage(person: Person,
+    static func dealDamage(person: Person,
                   damage : Int,
                   type: EnergyType){
         switch type {
@@ -80,7 +78,7 @@ class CardEffect{
         }
     }
     
-    func dealAndSufferDamage(person: Person,
+    static func dealAndSufferDamage(person: Person,
                           damage: Int,
                           damageType: EnergyType,
                           selfDamage: Int,
