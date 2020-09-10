@@ -13,11 +13,13 @@ class Enemy: Person {
 
     init () {
         super.init()
+        print(">>> Init Enemy...")
         self.setInitialDeck()
         print("added cards to deck")
         print("Deck: \(deck.cards.count)")
         self.setOwner()
         self.setInitialAtributes()
+        print("-------")
     }
     
     func setInitialDeck(){
