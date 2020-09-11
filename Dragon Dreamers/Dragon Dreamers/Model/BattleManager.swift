@@ -30,22 +30,26 @@ class BattleManager{
         enemy.setHand()
     }
     
-    func initPlayerTurn(){
-        
-    }
-    
     func endTurn(){
-        for card in cardsPlayed{
+        for card in cardsPlayed.reversed(){
             card.playCard()
+            print("\(card.name!) played by \(card.owner)")
+            showCurrentInformations()
+            print("---")
         }
     }
     
-    func enemyTurn(){
-        switch enemy.emotion {
-        case .aggro:
-            print("VOCÊ TÁ MALUCÃO?")
-        default:
-            print("eae bichao")
+    func enemyTurn(completion: @escaping () -> () ) {
+        enemy.playTurn()
+        self.storeCard(card: enemy.playOneCard())
+    }
+    
+    func showCurrentInformations(){
+        if let playerLife = player.currentLife{
+            print("Player life \(playerLife)")
+        }
+        if let enemyLife = enemy.currentLife{
+            print("Enemy life \(enemyLife)")
         }
     }
     
