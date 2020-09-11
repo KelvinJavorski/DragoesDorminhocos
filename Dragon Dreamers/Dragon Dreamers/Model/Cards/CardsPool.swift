@@ -11,6 +11,17 @@ import Foundation
 //mudar nome da classe
 class CardsPool{
     var cards = [
-        Card(name: "Carta 3 Deal and Take Damage", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: 5, damageType: .life, selfDamage: 2, selfDamageType: .life),
+        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life)
     ]
 }
