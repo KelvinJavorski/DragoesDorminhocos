@@ -32,7 +32,9 @@ class ManaManager {
         self.manaPool = []
         
         for mana in manas {
-            if self.setManaInPool(type: mana) {}
+            if self.setManaInPool(type: mana) {
+                
+            }
         }
     }
     

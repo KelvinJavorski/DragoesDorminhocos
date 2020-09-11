@@ -12,10 +12,11 @@ import SpriteKit
 class EmptyCard{
     init(name: String? = nil, effect: EffectType? = nil, cost: Int = 0, type: CardType? = nil) {
         self.name = name
+        self.id = EmptyCard.nextID
+        EmptyCard.nextID += 1
         self.effect = effect
         self.cost = cost
         self.type = type
-        EmptyCard.nextID += 1
         self.setRandomEmotion()
     }
     
