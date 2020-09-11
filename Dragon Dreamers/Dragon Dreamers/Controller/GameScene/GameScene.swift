@@ -260,9 +260,7 @@ class GameScene: SKScene {
     var nextTurning = false
     func nextTurn () {
         nextTurning = true
-        battleManager.enemyTurn(){
-            
-        }
+        battleManager.enemyTurn()
         battleManager.endTurn()
         self.discardOngoing()
         self.discardHand() {
@@ -272,7 +270,7 @@ class GameScene: SKScene {
             print(">> Drawing Cards")
             self.nextTurning = false
             self.drawCards()
-            
+            print("Hand   : \(Player.shared.hand.cards.count)")
             //self.distributeCardNodes()
         }
         Player.shared.manaManager.resetAllManaFromManaPool()
@@ -385,7 +383,7 @@ class GameScene: SKScene {
             Player.shared.discard.shuffle()
             
             // Create actions
-            let delay = SKAction.wait(forDuration: 0.1)
+            let delay = SKAction.wait(forDuration: 0.05)
             let code  = SKAction.run {
                 self.runCardFromDiscardToDeck(card: Player.shared.discard.cards[0])
                 Player.shared.getCardFromDiscard(0)
