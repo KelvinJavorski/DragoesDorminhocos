@@ -91,7 +91,7 @@
 		6F44E7EC24DB34330034CDE1 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		6F44E7EE24DB36630034CDE1 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		6F71B26A24DB2A5E009EB5CB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Card.swift; path = "Dragon Dreamers/Model/Cards/Card.swift"; sourceTree = SOURCE_ROOT; };
-		6F71B26C24DB2A6F009EB5CB /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = SOURCE_ROOT; };
+		6F71B26C24DB2A6F009EB5CB /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Deck.swift; path = "Dragon Dreamers/Model/Cards/Deck.swift"; sourceTree = SOURCE_ROOT; };
 		B69CC5A124F04231003663D0 /* CardEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEffect.swift; sourceTree = "<group>"; };
 		B69CC5A324F04254003663D0 /* EffectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectType.swift; sourceTree = "<group>"; };
 		B69CC5A524F04F96003663D0 /* CardsPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsPool.swift; sourceTree = "<group>"; };
@@ -181,11 +181,14 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
-		6F44E7EB24DB333D0034CDE1 /* Actions */ = {
+		B6D1C29C250BCA2D0097A979 /* Humans */ = {
 			isa = PBXGroup;
 			children = (
+				641BFB6E24F348B000829F6E /* Enemy.swift */,
+				B6EF3A4024DB545500FD840E /* Person.swift */,
+				6F44E7EC24DB34330034CDE1 /* Player.swift */,
 			);
-			path = Actions;
+			path = Humans;
 			sourceTree = "<group>";
 		};
 		B6EF3A1324D9CCCE00FD840E = {
@@ -242,20 +245,15 @@
 		B6EF3A3924DB26FF00FD840E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B6D1C29C250BCA2D0097A979 /* Humans */,
 				B6F80010250A6A5A00152227 /* Cards */,
-				6F44E7EB24DB333D0034CDE1 /* Actions */,
 				6F44E7E824DB33020034CDE1 /* Enums */,
 				649A21EC250AAC4400F6A7CE /* DataSave.swift */,
 				649A21F5250AB5D600F6A7CE /* BasicConfiguration.swift */,
 				649A21EF250AB0A600F6A7CE /* Place.swift */,
 				649A21F1250AB0F800F6A7CE /* GameCampain.swift */,
 				649A21F3250AB49D00F6A7CE /* Discussion.swift */,
-				6F71B26C24DB2A6F009EB5CB /* Deck.swift */,
-				B6EF3A4024DB545500FD840E /* Person.swift */,
-				641BFB6E24F348B000829F6E /* Enemy.swift */,
-				6F44E7EC24DB34330034CDE1 /* Player.swift */,
 				B6EF3A3E24DB396500FD840E /* BattleManager.swift */,
-				B69CC5A524F04F96003663D0 /* CardsPool.swift */,
 				641BFB6924ED9D0300829F6E /* Mana */,
 			);
 			path = Model;
@@ -264,8 +262,10 @@
 		B6F80010250A6A5A00152227 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				B69CC5A524F04F96003663D0 /* CardsPool.swift */,
 				6F71B26A24DB2A5E009EB5CB /* Card.swift */,
 				B69CC5A124F04231003663D0 /* CardEffect.swift */,
+				6F71B26C24DB2A6F009EB5CB /* Deck.swift */,
 				B6F80011250A6A9B00152227 /* EmptyCard.swift */,
 			);
 			path = Cards;
