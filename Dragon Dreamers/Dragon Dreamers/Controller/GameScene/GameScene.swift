@@ -38,6 +38,8 @@ class GameScene: SKScene {
     var enemyNode    : SKNode!
     var enemyLife    : SKLabelNode!
     var enemyLifeBar : SKShapeNode!
+    var enemyOther   : SKLabelNode!
+    var enemyOtherBar : SKShapeNode!
     
     var battleManager: BattleManager = BattleManager()
     
@@ -84,6 +86,11 @@ class GameScene: SKScene {
         let enemyLifeNode = enemyNode.childNode(withName: "LifeBar")!
         enemyLife = enemyLifeNode.childNode(withName: "Value") as? SKLabelNode
         enemyLifeBar = enemyLifeNode.childNode(withName: "Bar") as? SKShapeNode
+        
+        let enemyOtherNode = enemyNode.childNode(withName: "OtherBar")!
+        enemyOther = enemyOtherNode.childNode(withName: "Value") as? SKLabelNode
+        enemyOtherBar = enemyOtherNode.childNode(withName: "Bar") as? SKShapeNode
+        
         
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
         Player.shared.manaManager.fillPool(manas: [ManaType.r, ManaType.r, ManaType.r, ManaType.r, ManaType.r])
@@ -203,7 +210,7 @@ class GameScene: SKScene {
             print("> Distributing cards!")
             if Player.shared.hand.isEmpty() && !nextTurning {
                 print("Hand Empty: Trigger Next Turn")
-//                self.nextTurn()
+                self.nextTurn()
             } else if !nextTurning {
                 //Verify number of cards the player has
                 let numberOfCards = Player.shared.hand.cards.count
@@ -283,7 +290,6 @@ class GameScene: SKScene {
     }
     
     func drawCards () {
-        // calculates number of cards needed to be drawn to fill hand
         let cardsToDraw = 5
         
         // If deck doesn't have all the cards
@@ -479,6 +485,12 @@ class GameScene: SKScene {
             let percentage = (enemyCurrentLife / Enemy.shared.maxLife) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyLifeBar?.run(updateBar)
+        }
+        if let enemyCurrentOther = Enemy.shared.currentReason{
+            enemyOther.text = "\(enemyCurrentOther)"
+            let percentage = (enemyCurrentOther / Enemy.shared.maxReason) * 100
+            let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
+            enemyOtherBar?.run(updateBar)
         }
         
     }

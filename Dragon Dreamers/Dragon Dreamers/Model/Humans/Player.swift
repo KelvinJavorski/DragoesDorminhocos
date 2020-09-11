@@ -30,8 +30,8 @@ class Player: Person {
         currentLife = 10
         maxLife = 10
         
-        currentReason = 0
-        maxReason = 10
+        currentEmpathy = 0
+        maxEmpathy = 10
         
         currentUnderstanding = 0
         maxUnderstanding = 10

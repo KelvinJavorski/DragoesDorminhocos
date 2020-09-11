@@ -64,15 +64,15 @@ class CardEffect{
                   type: EnergyType){
         switch type {
             case .life:
-                person.opponent.currentLife -= damage
+            person.opponent.currentLife -= damage
                break
-           case .empathy:
+            case .empathy:
             person.opponent.currentEmpathy -= damage
                break
-           case .reason:
+            case .reason:
             person.opponent.currentReason -= damage
                break
-           case .understanding:
+            case .understanding:
             person.opponent.currentUnderstanding -= damage
                break
         }
@@ -84,8 +84,8 @@ class CardEffect{
                           selfDamage: Int,
                           selfDamageType: EnergyType){
         
-        dealDamage(person: person, damage: damage, type: damageType)
-        dealDamage(person: person.opponent, damage: selfDamage, type: selfDamageType)
+        dealDamage(person: person.opponent, damage: damage, type: damageType)
+        dealDamage(person: person, damage: selfDamage, type: selfDamageType)
     }
     
 }

@@ -97,8 +97,8 @@ class Enemy: Person {
         currentLife = 10
         maxLife = 10
         
-        currentEmpathy = 0
-        maxEmpathy = 10
+        currentReason = 0
+        maxReason = 10
         
         emotion = BattleEmotion.aggro
         
