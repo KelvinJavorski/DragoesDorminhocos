@@ -14,9 +14,9 @@ class Enemy: Person {
     init () {
         super.init()
         print(">>> Init Enemy...")
-        self.setInitialDeck()
         print("added cards to deck")
         print("Deck: \(deck.cards.count)")
+        self.setInitialDeck()
         self.setOwner()
         self.setInitialAtributes()
         print("-------")
@@ -74,12 +74,33 @@ class Enemy: Person {
         return cards
     }
     
+    func playTurn(){
+        setHand()
+        reaction()
+    }
+    
+    func playOneCard() -> Card{
+        let randomNumber = Int.random(in: 0 ..< hand.cards.count)
+        return hand.getCard(randomNumber)
+    }
+    
+    func reaction(){
+        switch self.emotion {
+        case .aggro:
+            print("VOCÊ TÁ MALUCÃO?")
+        default:
+            print("eae bichao")
+        }
+    }
+    
     func setInitialAtributes(){
         currentLife = 10
         maxLife = 10
         
         currentEmpathy = 0
         maxEmpathy = 10
+        
+        emotion = BattleEmotion.aggro
         
         }
     

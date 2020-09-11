@@ -253,8 +253,12 @@ class GameScene: SKScene {
     var nextTurning = false
     func nextTurn () {
         nextTurning = true
+        battleManager.enemyTurn(){
+            
+        }
+        battleManager.endTurn()
         self.discardOngoing()
-        discardHand() {
+        self.discardHand() {
             print("Discard: \(Player.shared.discard.cards.count)")
             print("Deck   : \(Player.shared.deck.cards.count)")
             print("Hand   : \(Player.shared.hand.cards.count)")
@@ -272,21 +276,15 @@ class GameScene: SKScene {
             }
         }
         
-        if battleManager.battleState == .playerTurn {
-            battleManager.battleState = .enemyTurn
-        }else{
-            battleManager.battleState = .playerTurn
-        }
-        
         print("new turn")
+
+        self.rearangeManaNodes()
         
-        
-        rearangeManaNodes()
     }
     
     func drawCards () {
         // calculates number of cards needed to be drawn to fill hand
-        let cardsToDraw = 5 - Player.shared.hand.cards.count
+        let cardsToDraw = 5
         
         // If deck doesn't have all the cards
         if Player.shared.deck.cards.count < cardsToDraw {
@@ -309,7 +307,9 @@ class GameScene: SKScene {
     }
     
     func drawHandCards (_ amount: Int) {
-        if !gettingCardsFromDiscard {
+        //AQUI FOI COMENTADO PARA O FIX DE DAR DRAW EM QUANTIDADES MENORES DO QUE O NECESSÁRIO (5)
+        //AINDA TEM DEFEITO, MAS JÁ FUNCIONA MINIMAMENTE
+//        if !gettingCardsFromDiscard {
             print(">> Drawing hand cards: \(amount)")
             // Gets how many cards are already in the Player's Hand
             let handCards = Player.shared.hand.cards.count
@@ -330,7 +330,7 @@ class GameScene: SKScene {
             // Make sure card nodes are in the correct place
             // And move cards to correct Nodes
             distributeCardNodes()
-        }
+//        }
     }
     
     func playCard (index: Int, manaType: ManaType) {
@@ -359,7 +359,7 @@ class GameScene: SKScene {
         moveAndRotateCard(card: card, to: pos, to: 0.0) {
             Player.shared.playCard(index: index)
             // Store card played for applying effect later
-//            self.battleManager.cardsPlayed.append(Player.shared.hand.cards[index])
+            self.battleManager.storeCard(card: card)
             card.node.position = pos
             self.distributeCardNodes()
             // Checks if there are still mana left
@@ -395,6 +395,8 @@ class GameScene: SKScene {
                 self.gettingCardsFromDiscard = false
                 completion()
             }
+            //Shuffle verything in deck
+            Player.shared.deck.shuffle()
         }
     }
     
@@ -610,8 +612,8 @@ class GameScene: SKScene {
                 }
             }
         }
-//        print("> Card is not in any area")
-//        moveCardBack()
+        print("> Card is not in any area")
+        moveCardBack()
     }
     
     func moveCardToPlayArea () {

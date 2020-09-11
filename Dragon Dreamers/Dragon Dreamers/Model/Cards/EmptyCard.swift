@@ -32,6 +32,7 @@ class EmptyCard{
     var emotion: BattleEmotion!
     
     func setRandomEmotion(){
-        self.emotion = BattleEmotion.random()
+//        self.emotion = BattleEmotion.random()
+        self.emotion = .aggro
     }
 }
