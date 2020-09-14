@@ -16,7 +16,7 @@ class Player: Person {
     init () {
         super.init()
         print(">>> Init Player...")
-        for i in 0 ..< cardsPool.cards.count - 1 {
+        for i in 0 ..< cardsPool.cards.count{
             deck.cards.append(cardsPool.cards[i])
         }
         print("added cards to deck")

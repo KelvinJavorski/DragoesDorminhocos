@@ -24,37 +24,38 @@ class Enemy: Person {
     
     func setInitialDeck(){
         cardsPool.cards.shuffle()
-        for card in cardsPool.cards {
-            if card.effect == EffectType.addCard {
-                deck.cards.append(card)
-                break
-            }
-            break
-        }
-        
-        for card in cardsPool.cards {
-            if card.effect == EffectType.dealDamage {
-                deck.cards.append(card)
-                break
-            }
-            break
-        }
-        
-        for card in cardsPool.cards {
-            if card.effect == EffectType.dealAndSufferDamage {
-                deck.cards.append(card)
-                break
-            }
-            break
-        }
-        
-        for card in cardsPool.cards {
-            if card.effect == EffectType.heal {
-                deck.cards.append(card)
-                break
-            }
-            break
-        }
+        self.deck.addCards(cardsPool.cards)
+//        for card in cardsPool.cards {
+//            if card.effect == EffectType.addCard {
+//                deck.cards.append(card)
+//                break
+//            }
+//            break
+//        }
+//        
+//        for card in cardsPool.cards {
+//            if card.effect == EffectType.dealDamage {
+//                deck.cards.append(card)
+//                break
+//            }
+//            break
+//        }
+//        
+//        for card in cardsPool.cards {
+//            if card.effect == EffectType.dealAndSufferDamage {
+//                deck.cards.append(card)
+//                break
+//            }
+//            break
+//        }
+//        
+//        for card in cardsPool.cards {
+//            if card.effect == EffectType.heal {
+//                deck.cards.append(card)
+//                break
+//            }
+//            break
+//        }
     }
     
     func setHand(){
