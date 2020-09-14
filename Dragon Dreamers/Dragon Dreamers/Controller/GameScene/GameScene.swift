@@ -313,7 +313,7 @@ class GameScene: SKScene {
     func drawHandCards (_ amount: Int) {
         //AQUI FOI COMENTADO PARA O FIX DE DAR DRAW EM QUANTIDADES MENORES DO QUE O NECESSÁRIO (5)
         //AINDA TEM DEFEITO, MAS JÁ FUNCIONA MINIMAMENTE
-//        if !gettingCardsFromDiscard {
+        if !gettingCardsFromDiscard {
             print(">> Drawing hand cards: \(amount)")
             // Gets how many cards are already in the Player's Hand
             let handCards = Player.shared.hand.cards.count
@@ -334,7 +334,7 @@ class GameScene: SKScene {
             // Make sure card nodes are in the correct place
             // And move cards to correct Nodes
             distributeCardNodes()
-//        }
+        }
     }
     
     func playCard (index: Int, manaType: ManaType) {
