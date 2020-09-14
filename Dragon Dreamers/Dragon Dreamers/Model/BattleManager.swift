@@ -37,9 +37,10 @@ class BattleManager{
             showCurrentInformations()
             print("---")
         }
+        cardsPlayed.removeAll()
     }
     
-    func enemyTurn(completion: @escaping () -> () ) {
+    func enemyTurn() {
         enemy.playTurn()
         self.storeCard(card: enemy.playOneCard())
     }
