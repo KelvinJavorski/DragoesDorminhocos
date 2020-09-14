@@ -436,8 +436,8 @@ class GameScene: SKScene {
     
     func discardCard (card : Card, completion: @escaping () -> () = { }) {
         // Moves card's node into discart deck node
+        Player.shared.discard.addCard(card)
         moveAndRotateCard(card: card, to: discardNode.position, to: 0) {
-            Player.shared.discard.addCard(card)
             card.node.removeFromParent()
             completion()
         }
