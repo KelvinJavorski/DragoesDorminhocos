@@ -35,6 +35,13 @@ class GameScene: SKScene {
     var halfWidth  : CGFloat = 130
     
     //Provisório pro alpha mudar depois
+    
+    var playerNode  : SKNode!
+    var playerLife  : SKLabelNode!
+    var playerLifeBar : SKShapeNode!
+    var playerOther : SKLabelNode!
+    var playerOtherBar : SKShapeNode!
+    
     var enemyNode    : SKNode!
     var enemyLife    : SKLabelNode!
     var enemyLifeBar : SKShapeNode!
@@ -82,6 +89,15 @@ class GameScene: SKScene {
         
         
         //Provisorio pro alpha, mudar depois
+        playerNode = childNode(withName: "Player")!
+        let playerLifeNode = playerNode.childNode(withName: "LifeBar")!
+        playerLife = playerLifeNode.childNode(withName: "Value") as? SKLabelNode
+        playerLifeBar = playerLifeNode.childNode(withName: "Bar") as? SKShapeNode
+        
+        let playerOtherNode = playerNode.childNode(withName: "OtherBar")!
+        playerOther = playerOtherNode.childNode(withName: "Value") as? SKLabelNode
+        playerOtherBar = playerOtherNode.childNode(withName: "Bar") as? SKShapeNode
+        
         enemyNode = childNode(withName: "Enemy")!
         let enemyLifeNode = enemyNode.childNode(withName: "LifeBar")!
         enemyLife = enemyLifeNode.childNode(withName: "Value") as? SKLabelNode
@@ -295,7 +311,6 @@ class GameScene: SKScene {
             // Saves the number of cards that still need to be drawn
             let remainingCards = cardsToDraw - Player.shared.deck.cards.count
             print(">> Remaining cards: \(remainingCards)")
-            
             // gets new deck from the discard pile
             self.getCardsFromDiscard() {
                 print("Getting remaining cards")
@@ -436,8 +451,8 @@ class GameScene: SKScene {
     
     func discardCard (card : Card, completion: @escaping () -> () = { }) {
         // Moves card's node into discart deck node
+        Player.shared.discard.addCard(card)
         moveAndRotateCard(card: card, to: discardNode.position, to: 0) {
-            Player.shared.discard.addCard(card)
             card.node.removeFromParent()
             completion()
         }
@@ -478,6 +493,19 @@ class GameScene: SKScene {
         bannedNumber.text = "\(bannedCardsAmount)"
         
         //corrigir depois do alpha
+        if let playerCurrentLife = Player.shared.currentLife {
+            playerLife.text = "\(playerCurrentLife)"
+            let percentage = (playerCurrentLife / Player.shared.maxLife) * 100
+            let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
+            playerLifeBar?.run(updateBar)
+        }
+        if let playerCurrentOther = Player.shared.currentReason{
+            playerOther.text = "\(playerCurrentOther)"
+            let percentage = (playerCurrentOther / Player.shared.maxEmpathy) * 100
+            let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
+            playerOtherBar?.run(updateBar)
+        }
+        
         if let enemyCurrentLife = Enemy.shared.currentLife {
             enemyLife.text = "\(enemyCurrentLife)"
             let percentage = (enemyCurrentLife / Enemy.shared.maxLife) * 100
