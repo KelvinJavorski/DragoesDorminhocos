@@ -312,7 +312,8 @@ class GameScene: SKScene {
             let remainingCards = cardsToDraw - Player.shared.deck.cards.count
             print(">> Remaining cards: \(remainingCards)")
             // gets new deck from the discard pile
-            self.getCardsFromDiscard() {
+            
+            self.getCardsFromDiscard(){
                 print("Getting remaining cards")
                 // draws the remaining cards
                 self.drawHandCards(remainingCards)
@@ -325,7 +326,7 @@ class GameScene: SKScene {
         }
     }
     
-    func drawHandCards (_ amount: Int) {
+    func drawHandCards (_ amount: Int){
         //AQUI FOI COMENTADO PARA O FIX DE DAR DRAW EM QUANTIDADES MENORES DO QUE O NECESSÁRIO (5)
         //AINDA TEM DEFEITO, MAS JÁ FUNCIONA MINIMAMENTE
 //        if !gettingCardsFromDiscard {
@@ -345,11 +346,13 @@ class GameScene: SKScene {
         
             print("Player Hand Amount: \(Player.shared.hand.cards.count)")
             print("------- Done drawing cards: \(amount)")
-            
             // Make sure card nodes are in the correct place
             // And move cards to correct Nodes
+        if !gettingCardsFromDiscard {
             distributeCardNodes()
+        }
 //        }
+            
     }
     
     func playCard (index: Int, manaType: ManaType) {
@@ -492,7 +495,7 @@ class GameScene: SKScene {
         let bannedCardsAmount = Player.shared.banished.cards.count
         bannedNumber.text = "\(bannedCardsAmount)"
         
-        //corrigir depois do alpha
+        //Animações nao funcionam
         if let playerCurrentLife = Player.shared.currentLife {
             playerLife.text = "\(playerCurrentLife)"
             let percentage = (playerCurrentLife / Player.shared.maxLife) * 100
