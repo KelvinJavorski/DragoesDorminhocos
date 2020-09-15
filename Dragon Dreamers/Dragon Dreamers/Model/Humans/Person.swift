@@ -57,7 +57,7 @@ class Person{
             for _ in 0 ..< amount {
                 changeDeckOfCard(deck, hand, 0)
             }
-        } else if deck.cards.count >= 0 {
+        } else if deck.cards.count > 0 {
             for _ in 0 ..< deck.cards.count {
                 changeDeckOfCard(deck, hand, 0)
             }
