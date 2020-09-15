@@ -30,12 +30,12 @@ class CardsPool{
         Card(name: "Card Damage15", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
 //
         Card(name: "Card Damage16", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
-        Card(name: "Card Damage17", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
-        Card(name: "Card Damage18", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
-        Card(name: "Card Damage19", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
-//
-        Card(name: "Card Damage20", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
-        Card(name: "Card Damage21", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+//        Card(name: "Card Damage17", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+//        Card(name: "Card Damage18", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+//        Card(name: "Card Damage19", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+////
+//        Card(name: "Card Damage20", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
+//        Card(name: "Card Damage21", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
 //        Card(name: "Card Damage22", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
 //        Card(name: "Card Damage23", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
 //        Card(name: "Card Damage24", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life),
