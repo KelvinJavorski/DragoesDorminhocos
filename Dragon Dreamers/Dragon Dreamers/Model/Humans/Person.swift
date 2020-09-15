@@ -51,6 +51,7 @@ class Person{
     func getCardFromDiscard (_ index: Int) {
         changeDeckOfCard(discard, deck, index)
     }
+    
     func drawCards (amount : Int) {
         if deck.cards.count >= amount {
             for _ in 0 ..< amount {
