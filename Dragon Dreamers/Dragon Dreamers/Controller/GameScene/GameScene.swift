@@ -494,26 +494,26 @@ class GameScene: SKScene {
         
         //Animações nao funcionam
         if let playerCurrentLife = Player.shared.currentLife {
-            playerLife.text = "\(playerCurrentLife)"
+            playerLife.text = "Player life:\(playerCurrentLife)"
             let percentage = (playerCurrentLife / Player.shared.maxLife) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             playerLifeBar?.run(updateBar)
         }
         if let playerCurrentOther = Player.shared.currentEmpathy{
-            playerOther.text = "\(playerCurrentOther)"
+            playerOther.text = "Player empathy: \(playerCurrentOther)"
             let percentage = (playerCurrentOther / Player.shared.maxEmpathy) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             playerOtherBar?.run(updateBar)
         }
         
         if let enemyCurrentLife = Enemy.shared.currentLife {
-            enemyLife.text = "\(enemyCurrentLife)"
+            enemyLife.text = "Enemy life: \(enemyCurrentLife)"
             let percentage = (enemyCurrentLife / Enemy.shared.maxLife) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyLifeBar?.run(updateBar)
         }
         if let enemyCurrentOther = Enemy.shared.currentReason{
-            enemyOther.text = "\(enemyCurrentOther)"
+            enemyOther.text = "Enemy empathy: \(enemyCurrentOther)"
             let percentage = (enemyCurrentOther / Enemy.shared.maxReason) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyOtherBar?.run(updateBar)
