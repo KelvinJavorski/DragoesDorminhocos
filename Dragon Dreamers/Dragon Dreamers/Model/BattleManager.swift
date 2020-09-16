@@ -23,7 +23,24 @@ class BattleManager{
     }
     
     func endBattle(){
-        
+        if player.isAtributeFinished(atribute: .life){
+            sendToOutcome()
+        }
+        else if player.isAtributeFinished(atribute: .empathy){
+            sendToOutcome()
+        }
+        else if enemy.isAtributeFinished(atribute: .life){
+            sendToOutcome()
+        }
+        else if enemy.isAtributeFinished(atribute: .reason){
+            sendToOutcome()
+        }
+    }
+    
+    func sendToOutcome(){
+        print("acabou")
+        print("acabou")
+        print("acabou")
     }
     
     func initTurn(){
@@ -38,6 +55,7 @@ class BattleManager{
             print("---")
         }
         cardsPlayed.removeAll()
+        endBattle()
     }
     
     func enemyTurn() {

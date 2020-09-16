@@ -66,6 +66,7 @@ class Enemy: Person {
     func setInitialAtributes(){
         currentLife = 10
         maxLife = 10
+        minLife = 0
         
         currentReason = 0
         maxReason = 10
