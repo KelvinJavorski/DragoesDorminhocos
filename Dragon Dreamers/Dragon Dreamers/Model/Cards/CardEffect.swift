@@ -84,8 +84,8 @@ class CardEffect{
                           selfDamage: Int,
                           selfDamageType: EnergyType){
         
-        dealDamage(person: person.opponent, damage: damage, type: damageType)
-        dealDamage(person: person, damage: selfDamage, type: selfDamageType)
+        dealDamage(person: person, damage: damage, type: damageType)
+        dealDamage(person: person.opponent, damage: selfDamage, type: selfDamageType)
     }
     
 }

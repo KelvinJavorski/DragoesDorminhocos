@@ -174,7 +174,7 @@ class GameScene: SKScene {
     
     func moveCard (card: Card, to pos: CGPoint, completion: @escaping () -> () = { }) {
         // Moves a card to another node's location
-        let move = SKAction.move(to: pos, duration: 0.2)
+        let move = SKAction.move(to: pos, duration: 1)
         card.node.run(move) {
             completion()
         }
@@ -287,7 +287,6 @@ class GameScene: SKScene {
             self.nextTurning = false
             self.drawCards()
             print("Hand   : \(Player.shared.hand.cards.count)")
-            //self.distributeCardNodes()
         }
         Player.shared.manaManager.resetAllManaFromManaPool()
         
@@ -327,32 +326,27 @@ class GameScene: SKScene {
     }
     
     func drawHandCards (_ amount: Int){
-        //AQUI FOI COMENTADO PARA O FIX DE DAR DRAW EM QUANTIDADES MENORES DO QUE O NECESSÁRIO (5)
-        //AINDA TEM DEFEITO, MAS JÁ FUNCIONA MINIMAMENTE
-//        if !gettingCardsFromDiscard {
-            print(">> Drawing hand cards: \(amount)")
-            // Gets how many cards are already in the Player's Hand
-            let handCards = Player.shared.hand.cards.count
-            
-            // Changes cards between decks (from deck to hand)
-            Player.shared.drawCards(amount: amount)
-            
-            // Create card nodes from top cards in player's deck
-            // (Only for cards that don't already have nodes)
-            for i in handCards ..< Player.shared.hand.cards.count {
-                let card = Player.shared.hand.cards[i]
-                createCardNode(card: card, at: deckNode)
-            }
+        print(">> Drawing hand cards: \(amount)")
+        // Gets how many cards are already in the Player's Hand
+        let handCards = Player.shared.hand.cards.count
         
-            print("Player Hand Amount: \(Player.shared.hand.cards.count)")
-            print("------- Done drawing cards: \(amount)")
-            // Make sure card nodes are in the correct place
-            // And move cards to correct Nodes
+        // Changes cards between decks (from deck to hand)
+        Player.shared.drawCards(amount: amount)
+        
+        // Create card nodes from top cards in player's deck
+        // (Only for cards that don't already have nodes)
+        for i in handCards ..< Player.shared.hand.cards.count {
+            let card = Player.shared.hand.cards[i]
+            createCardNode(card: card, at: deckNode)
+        }
+    
+        print("Player Hand Amount: \(Player.shared.hand.cards.count)")
+        print("------- Done drawing cards: \(amount)")
+        // Make sure card nodes are in the correct place
+        // And move cards to correct Nodes
         if !gettingCardsFromDiscard {
             distributeCardNodes()
         }
-//        }
-            
     }
     
     func playCard (index: Int, manaType: ManaType) {
@@ -393,7 +387,7 @@ class GameScene: SKScene {
     }
     
     var gettingCardsFromDiscard = false
-    
+    var i = 0
     func getCardsFromDiscard (completion: @escaping () -> () = { }) {
         if !gettingCardsFromDiscard {
             print(">> Getting cards from Discard")
@@ -401,8 +395,9 @@ class GameScene: SKScene {
             Player.shared.discard.shuffle()
             
             // Create actions
-            let delay = SKAction.wait(forDuration: 0.05)
+            let delay = SKAction.wait(forDuration: 0.10)
             let code  = SKAction.run {
+                self.i+=1
                 self.runCardFromDiscardToDeck(card: Player.shared.discard.cards[0])
                 Player.shared.getCardFromDiscard(0)
             }
@@ -469,12 +464,14 @@ class GameScene: SKScene {
         }
     }
     
-    
+    var counter = 0
     func runCardFromDiscardToDeck (card: Card) {
         createCardNode(card: card, at: discardNode)
         
         moveCard(card: card, to: deckNode.position) {
             card.node.removeFromParent()
+            //debbug
+            self.counter+=1
         }
     }
     
@@ -502,7 +499,7 @@ class GameScene: SKScene {
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             playerLifeBar?.run(updateBar)
         }
-        if let playerCurrentOther = Player.shared.currentReason{
+        if let playerCurrentOther = Player.shared.currentEmpathy{
             playerOther.text = "\(playerCurrentOther)"
             let percentage = (playerCurrentOther / Player.shared.maxEmpathy) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)

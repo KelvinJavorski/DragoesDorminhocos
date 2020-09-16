@@ -16,9 +16,7 @@ class Player: Person {
     init () {
         super.init()
         print(">>> Init Player...")
-        for i in 0 ..< cardsPool.cards.count{
-            deck.cards.append(cardsPool.cards[i])
-        }
+        deck.addCards(cardsPool.playerCards())
         print("added cards to deck")
         print("Deck: \(deck.cards.count)")
         self.setOwner()
