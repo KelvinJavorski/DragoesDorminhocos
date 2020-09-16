@@ -318,6 +318,7 @@ class GameScene: SKScene {
                 self.drawHandCards(remainingCards)
                 self.nextTurning = false
             }
+            drawHandCards(cardsToDraw - remainingCards)
         } else {
             drawHandCards(cardsToDraw)
             nextTurning = false
@@ -402,8 +403,6 @@ class GameScene: SKScene {
             }
             let sequence = SKAction.sequence([delay, code])
             let loop = SKAction.repeat(sequence, count: Player.shared.discard.cards.count)
-            //print("QUANTIDADE DE CARTAS NO DISCARD")
-            //print(Player.shared.discard.cards.count)
             
             // Run loop of actions
             print("Start Loop of getting cards from Discard")
