@@ -14,6 +14,8 @@ class GameScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
+    weak var navigation: UIViewController!
+    
     var deckNode      : SKNode!
     var deckNumber    : SKLabelNode!
     var discardNode   : SKNode!
@@ -130,6 +132,8 @@ class GameScene: SKScene {
         
         drawCards()
         
+        battleManager.scene = self
+        
         battleManager.startBattle()
     }
     
@@ -185,7 +189,7 @@ class GameScene: SKScene {
     
     func moveCard (card: Card, to pos: CGPoint, completion: @escaping () -> () = { }) {
         // Moves a card to another node's location
-        let move = SKAction.move(to: pos, duration: 1)
+        let move = SKAction.move(to: pos, duration: 0.8)
         card.node.run(move) {
             completion()
         }
@@ -234,7 +238,7 @@ class GameScene: SKScene {
     func distributeCardNodes () {
         // Check if there are cards in the Player's Hand
 
-            print("> Distributing cards!")
+//            print("> Distributing cards!")
             if Player.shared.hand.isEmpty() && !nextTurning {
                 print("Hand Empty: Trigger Next Turn")
                 self.nextTurn()
@@ -287,14 +291,18 @@ class GameScene: SKScene {
     var nextTurning = false
     func nextTurn () {
         nextTurning = true
+        print("Batalha do inimigo")
         battleManager.enemyTurn()
         battleManager.endTurn()
+        
+        print("Descarta a mesa")
         self.discardOngoing()
+        
         self.discardHand() {
             print("Discard: \(Player.shared.discard.cards.count)")
             print("Deck   : \(Player.shared.deck.cards.count)")
             print("Hand   : \(Player.shared.hand.cards.count)")
-            print(">> Drawing Cards")
+//            print(">> Drawing Cards")
             self.nextTurning = false
             self.drawCards()
             print("Hand   : \(Player.shared.hand.cards.count)")
@@ -352,7 +360,7 @@ class GameScene: SKScene {
         }
     
         print("Player Hand Amount: \(Player.shared.hand.cards.count)")
-        print("------- Done drawing cards: \(amount)")
+//        print("------- Done drawing cards: \(amount)")
         // Make sure card nodes are in the correct place
         // And move cards to correct Nodes
         if !gettingCardsFromDiscard {
@@ -421,10 +429,13 @@ class GameScene: SKScene {
             discardNode.run(loop) {
                 print("----- Finished Getting cards from Discard")
                 self.gettingCardsFromDiscard = false
+                for card in Player.shared.deck.cards{
+                    print("Card ID no deck: \(card.id)")
+                }
                 completion()
             }
             //Shuffle verything in deck
-            Player.shared.deck.shuffle()
+//            Player.shared.deck.shuffle()
         }
     }
     
@@ -453,6 +464,7 @@ class GameScene: SKScene {
     func discardOngoing () {
         // Runs through all cards in player's ongoing deck and discarts them
         for card in Player.shared.ongoing.cards {
+            print("Mandou carta da mesa pro Discard")
             discardCard(card: card)
         }
         Player.shared.ongoing.removeAllCards()
@@ -461,6 +473,7 @@ class GameScene: SKScene {
     func discardCard (card : Card, completion: @escaping () -> () = { }) {
         // Moves card's node into discart deck node
         Player.shared.discard.addCard(card)
+        print("Mesa para o Discard")
         moveAndRotateCard(card: card, to: discardNode.position, to: 0) {
             card.node.removeFromParent()
             completion()
@@ -478,8 +491,8 @@ class GameScene: SKScene {
     var counter = 0
     func runCardFromDiscardToDeck (card: Card) {
         createCardNode(card: card, at: discardNode)
-        
         moveCard(card: card, to: deckNode.position) {
+            print("Mandou carta do Discard para o Deck, \(card.id)")
             card.node.removeFromParent()
             //debbug
             self.counter+=1
@@ -672,10 +685,10 @@ class GameScene: SKScene {
         
         printManaType(manaType: manaType)
         // Check if player HAS the mana to play before!!
-        print("checking for mana type")
+//        print("checking for mana type")
         if Player.shared.manaManager.useManaFromManaPool(type: manaType) {
             // If the player has, play the card!
-            print("playing the card")
+//            print("playing the card")
             playCard(index: movingCardIndex!, manaType: manaType)
         } else {
             // if not, card goes back to hand

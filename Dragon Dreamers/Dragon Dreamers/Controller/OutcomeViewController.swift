@@ -1,8 +1,8 @@
 //
-//  GameViewController.swift
+//  OutcomeViewController.swift
 //  Dragon Dreamers
 //
-//  Created by Kelvin Javorski Soares on 04/08/20.
+//  Created by Kelvin Javorski Soares on 16/09/20.
 //  Copyright © 2020 Kelvin Javorski Soares. All rights reserved.
 //
 
@@ -10,24 +10,26 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
-
+class OutcomeViewController: UIViewController {
     
     @IBOutlet weak var skView: SKView!
     
     var scene : GameScene!
     
+    var teste : Int!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
+        if let scene = SKScene(fileNamed: "GameSceneOutcome") as? GameScene {
             self.scene = scene
             self.scene.initScene()
             self.scene.scaleMode = .aspectFill
             
-            self.scene.navigation = self
             skView.presentScene(self.scene)
         }
+        
+        skView.showsFPS = true
+        skView.showsNodeCount = true
         
         /*
         if let view = self.view as! SKView? {
@@ -46,12 +48,6 @@ class GameViewController: UIViewController {
         }
         */
     }
-    
-    
-    @IBAction func nextTurnClicked(_ sender: UIButton) {
-        scene.nextTurn()
-    }
-    
     
     override var shouldAutorotate: Bool {
         return true

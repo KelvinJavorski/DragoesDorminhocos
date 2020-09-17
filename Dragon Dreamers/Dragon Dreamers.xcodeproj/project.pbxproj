@@ -45,6 +45,7 @@
 		B69CC5A624F04F96003663D0 /* CardsPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CC5A524F04F96003663D0 /* CardsPool.swift */; };
 		B69CC5A824F30027003663D0 /* EnergyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CC5A724F30027003663D0 /* EnergyType.swift */; };
 		B6CE729A251287AA00AF2553 /* HumanType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CE7299251287AA00AF2553 /* HumanType.swift */; };
+		B6CE729C25129DC900AF2553 /* OutcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CE729B25129DC900AF2553 /* OutcomeViewController.swift */; };
 		B6EF3A2024D9CCCE00FD840E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF3A1F24D9CCCE00FD840E /* AppDelegate.swift */; };
 		B6EF3A2224D9CCCE00FD840E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B6EF3A2124D9CCCE00FD840E /* GameScene.sks */; };
 		B6EF3A2424D9CCCE00FD840E /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = B6EF3A2324D9CCCE00FD840E /* Actions.sks */; };
@@ -100,6 +101,7 @@
 		B69CC5A524F04F96003663D0 /* CardsPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsPool.swift; sourceTree = "<group>"; };
 		B69CC5A724F30027003663D0 /* EnergyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyType.swift; sourceTree = "<group>"; };
 		B6CE7299251287AA00AF2553 /* HumanType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanType.swift; sourceTree = "<group>"; };
+		B6CE729B25129DC900AF2553 /* OutcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomeViewController.swift; sourceTree = "<group>"; };
 		B6EF3A1C24D9CCCE00FD840E /* Dragon Dreamers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dragon Dreamers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6EF3A1F24D9CCCE00FD840E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6EF3A2124D9CCCE00FD840E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				649A21EB250AAB9300F6A7CE /* GameScene */,
 				B6EF3A2724D9CCCE00FD840E /* GameViewController.swift */,
 				649A221D250ABE9100F6A7CE /* MenuViewController.swift */,
+				B6CE729B25129DC900AF2553 /* OutcomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				649A2214250ABA7E00F6A7CE /* GameSceneDuel.swift in Sources */,
 				649A21F6250AB5D600F6A7CE /* BasicConfiguration.swift in Sources */,
 				649A221C250ABB1F00F6A7CE /* GameSceneCardChoice.swift in Sources */,
+				B6CE729C25129DC900AF2553 /* OutcomeViewController.swift in Sources */,
 				B6EF3A3F24DB396500FD840E /* BattleManager.swift in Sources */,
 				B69CC5A624F04F96003663D0 /* CardsPool.swift in Sources */,
 				B6EF3A2624D9CCCE00FD840E /* GameScene.swift in Sources */,

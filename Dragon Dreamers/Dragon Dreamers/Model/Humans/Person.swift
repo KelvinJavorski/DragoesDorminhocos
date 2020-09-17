@@ -80,6 +80,23 @@ class Person{
         }
     }
     
+    func isAtributeFinished(atribute: EnergyType) -> Bool{
+        if atribute == .empathy{
+            if self.currentEmpathy >= self.maxEmpathy{
+                return true
+            }
+        }else if atribute == .life{
+            if self.currentLife <= self.minLife{
+                return true
+            }
+        }else if atribute == .reason{
+            if self.currentReason >= self.maxReason{
+                return true
+            }
+        }
+        return false
+    }
+    
     func setOpponent(person: Person){
         self.opponent = person
     }
@@ -93,6 +110,7 @@ class Person{
     var opponent: Person!
     var currentLife: Int!
     var maxLife: Int!
+    var minLife: Int!
     
     var currentEmpathy: Int!
     var maxEmpathy: Int!

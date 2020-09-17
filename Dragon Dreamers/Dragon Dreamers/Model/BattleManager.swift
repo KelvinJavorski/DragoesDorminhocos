@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import SpriteKit
+import GameplayKit
 
 class BattleManager{
     var player: Player!
     var enemy: Enemy!
+    var scene: GameScene!
     //var enemy: Enemy
     var battleState: BattleState = .playerTurn
     var cardsPlayed: [Card] = []
@@ -27,7 +30,23 @@ class BattleManager{
     }
     
     func endBattle(){
-        
+        if player.isAtributeFinished(atribute: .life){
+            sendToOutcome()
+        }
+        else if player.isAtributeFinished(atribute: .empathy){
+            sendToOutcome()
+        }
+        else if enemy.isAtributeFinished(atribute: .life){
+            sendToOutcome()
+        }
+        else if enemy.isAtributeFinished(atribute: .reason){
+            sendToOutcome()
+        }
+    }
+    
+    func sendToOutcome(){
+        print("Acabou a batalha")
+//        scene.view?.presentScene(<#T##scene: SKScene?##SKScene?#>)
     }
     
     func initTurn(){
@@ -37,11 +56,12 @@ class BattleManager{
     func endTurn(){
         for card in cardsPlayed.reversed(){
             card.playCard()
-            print("\(card.name!) played by \(card.owner)")
-            showCurrentInformations()
-            print("---")
+//            print("\(card.name!) played by \(card.owner)")
+//            showCurrentInformations()
+//            print("---")
         }
         cardsPlayed.removeAll()
+        endBattle()
     }
     
     func enemyTurn() {
