@@ -9,9 +9,11 @@
 import Foundation
 
 class Enemy: Person {
-    static let shared = Enemy()
+    //static let shared = Enemy()
+    var name: String!
+    var discussion: Discussion!
 
-    init () {
+    init (name: String, discussion: Discussion) {
         super.init()
         print(">>> Init Enemy...")
         print("added cards to deck")
@@ -20,6 +22,9 @@ class Enemy: Person {
         self.setOwner()
         self.setInitialAtributes()
         print("-------")
+        
+        self.name = name
+        self.discussion = discussion
     }
     
     func setInitialDeck(){
@@ -66,6 +71,7 @@ class Enemy: Person {
     func setInitialAtributes(){
         currentLife = 10
         maxLife = 10
+        minLife = 0
         
         currentReason = 0
         maxReason = 10
