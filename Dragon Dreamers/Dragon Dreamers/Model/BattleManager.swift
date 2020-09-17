@@ -15,9 +15,13 @@ class BattleManager{
     var battleState: BattleState = .playerTurn
     var cardsPlayed: [Card] = []
     
+    func setEnemy(enemy: Enemy) {
+        self.enemy = enemy
+    }
+    
     func startBattle(){
         player = Player.shared
-        enemy = Enemy.shared
+        //enemy = Enemy.shared
         player.setOpponent(person: enemy.self)
         enemy.setOpponent(person: player.self)
     }

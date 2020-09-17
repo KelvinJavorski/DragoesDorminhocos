@@ -52,6 +52,17 @@ class GameScene: SKScene {
     
     
     func initScene () { // ALWAYS CALL THIS BEFORE PRESENTING SCENE
+        
+        //Código a ser implementado na GameSceneNPCChoice//
+        for enemy in DataSave.shared.enemys {
+            if enemy.name == "Vó Matilda" {
+                DataTemp.shared.setChosenEnemy(enemy: enemy)
+            }
+        }
+        //Código a ser implementado na GameSceneNPCChoice//
+        
+        battleManager.setEnemy(enemy: DataTemp.shared.chosenEnemy)
+        
         deckNode = childNode(withName: "Deck")!
         deckNumber = deckNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
         
@@ -506,15 +517,15 @@ class GameScene: SKScene {
             playerOtherBar?.run(updateBar)
         }
         
-        if let enemyCurrentLife = Enemy.shared.currentLife {
+        if let enemyCurrentLife = battleManager.enemy.currentLife {
             enemyLife.text = "Enemy life: \(enemyCurrentLife)"
-            let percentage = (enemyCurrentLife / Enemy.shared.maxLife) * 100
+            let percentage = (enemyCurrentLife / battleManager.enemy.maxLife) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyLifeBar?.run(updateBar)
         }
-        if let enemyCurrentOther = Enemy.shared.currentReason{
+        if let enemyCurrentOther = battleManager.enemy.currentReason{
             enemyOther.text = "Enemy empathy: \(enemyCurrentOther)"
-            let percentage = (enemyCurrentOther / Enemy.shared.maxReason) * 100
+            let percentage = (enemyCurrentOther / battleManager.enemy.maxReason) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyOtherBar?.run(updateBar)
         }
