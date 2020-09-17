@@ -17,7 +17,6 @@ class GameViewController: UIViewController {
     
     var scene : GameScene!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +25,7 @@ class GameViewController: UIViewController {
             self.scene.initScene()
             self.scene.scaleMode = .aspectFill
             
+            self.scene.navigation = self
             skView.presentScene(self.scene)
         }
         

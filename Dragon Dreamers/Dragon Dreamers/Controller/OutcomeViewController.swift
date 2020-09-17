@@ -16,6 +16,7 @@ class OutcomeViewController: UIViewController {
     
     var scene : GameScene!
     
+    var teste : Int!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +27,9 @@ class OutcomeViewController: UIViewController {
             
             skView.presentScene(self.scene)
         }
+        
+        skView.showsFPS = true
+        skView.showsNodeCount = true
         
         /*
         if let view = self.view as! SKView? {
