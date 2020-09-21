@@ -28,6 +28,7 @@ class GameViewController: UIViewController {
             self.scene.navigation = self
             skView.presentScene(self.scene)
         }
+        self.scene.navigation = self
         
         /*
         if let view = self.view as! SKView? {
