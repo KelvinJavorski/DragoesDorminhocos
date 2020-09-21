@@ -309,18 +309,18 @@ class GameScene: SKScene {
         battleManager.endTurn()
         
         print("Descarta a Mesa")
-        self.discardOngoing()
-        print("Descarta a Hand")
-        self.discardHand() {
-            self.printDiscard()
-            self.printDeck()
-            self.printHand()
-            self.nextTurning = false
-            self.drawCards()
-            print("HandAfterDraw   : \(Player.shared.hand.cards.count)")
+        self.discardOngoing(){
+            self.discardHand() {
+                self.printDiscard()
+                self.printDeck()
+                self.printHand()
+                self.nextTurning = false
+                self.drawCards()
+                print("HandAfterDraw   : \(Player.shared.hand.cards.count)")
+            }
         }
+        print("Descarta a Hand")
         Player.shared.manaManager.resetAllManaFromManaPool()
-        
         for mana in Player.shared.manaManager.manaPool {
             if mana.node?.isHidden == true{
                 mana.node?.isHidden = false
@@ -409,6 +409,7 @@ class GameScene: SKScene {
         }
     }
     
+    var sendCardFromDiscardToDeckHasFinished = false
     var gettingCardsFromDiscard = false
     var i = 0
     func getCardsFromDiscard (completion: @escaping () -> () = { }) {
@@ -457,13 +458,19 @@ class GameScene: SKScene {
         //Player.shared.hand.removeAllCards()
     }
     
-    func discardOngoing () {
+    func discardOngoing (completion: @escaping () -> () = { }) {
         // Runs through all cards in player's ongoing deck and discarts them
         for card in Player.shared.ongoing.cards {
 //            print("Mesa para o Discard, \(card.id)")
-            discardCard(card: card)
+            discardCard(card: card){
+                Player.shared.ongoing.removeCard(id: card.id)
+//                Player.shared.ongoing.removeAllCards()
+                if Player.shared.ongoing.cards.count == 0{
+                    completion()
+                }
+            }
         }
-        Player.shared.ongoing.removeAllCards()
+        
     }
     
     func discardCard (card : Card, completion: @escaping () -> () = { }) {
@@ -489,7 +496,8 @@ class GameScene: SKScene {
         createCardNode(card: card, at: discardNode)
         moveCard(card: card, to: deckNode.position) {
             print("Mandou carta do Discard para o Deck, \(card.id), CARDNODE: \(card.node!), deckPosition: \(card.node.position)")
-            card.node.removeFromParent()
+            //UM DOS BUGS FUD&***&*ˆ&*ˆ& ESTAVA AQUI, SÓ PRECISA TRATAR
+//            card.node.removeFromParent()
             //debbug
             self.counter+=1
         }
