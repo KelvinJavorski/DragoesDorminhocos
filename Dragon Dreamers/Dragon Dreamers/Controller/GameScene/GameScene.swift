@@ -134,7 +134,7 @@ class GameScene: SKScene {
         
         let ellipse = SKShapeNode.init(ellipseIn: rect)
         ellipse.fillColor = .black
-        ellipse.strokeColor = .blue
+        ellipse.strokeColor = .black
         ellipse.lineWidth = 2
         
         self.addChild(ellipse)
@@ -463,26 +463,26 @@ class GameScene: SKScene {
         
         //Animações nao funcionam
         if let playerCurrentLife = Player.shared.currentLife {
-            playerLife.text = "Player life:\(playerCurrentLife)"
+            playerLife.text = "Criticar a Vó:\(playerCurrentLife)"
             let percentage = (playerCurrentLife / Player.shared.maxLife) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             playerLifeBar?.run(updateBar)
         }
         if let playerCurrentOther = Player.shared.currentEmpathy{
-            playerOther.text = "Player empathy: \(playerCurrentOther)"
+            playerOther.text = "Ignorar a Vó: \(playerCurrentOther)"
             let percentage = (playerCurrentOther / Player.shared.maxEmpathy) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             playerOtherBar?.run(updateBar)
         }
         
         if let enemyCurrentLife = battleManager.enemy.currentLife {
-            enemyLife.text = "Enemy life: \(enemyCurrentLife)"
+            enemyLife.text = "Debater com a Vó: \(enemyCurrentLife)"
             let percentage = (enemyCurrentLife / battleManager.enemy.maxLife) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyLifeBar?.run(updateBar)
         }
         if let enemyCurrentOther = battleManager.enemy.currentReason{
-            enemyOther.text = "Enemy empathy: \(enemyCurrentOther)"
+            enemyOther.text = "Concordar com a Vó: \(enemyCurrentOther)"
             let percentage = (enemyCurrentOther / battleManager.enemy.maxReason) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyOtherBar?.run(updateBar)
