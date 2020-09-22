@@ -46,7 +46,7 @@ class BattleManager{
     
     func sendToOutcome(){
         print("Acabou a batalha")
-        scene.navigation.performSegue(withIdentifier: "toOutcome", sender: self)
+//        scene.navigation.performSegue(withIdentifier: "toOutcome", sender: self)
     }
     
     func initTurn(){
