@@ -63,41 +63,30 @@ protocol NewGameCollectionViewCellDelegate {
     func hasClicked (_ newGameCollectionViewCell: NewGameCollectionViewCell)
 }
 
-
-class DynamicHeightCollectionView: UICollectionView {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        if !__CGSizeEqualToSize(bounds.size, self.intrinsicContentSize) {
-            self.invalidateIntrinsicContentSize()
-        }
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        return contentSize
-    }
-}
-
-
-class CollectionViewFlowLayout: UICollectionViewFlowLayout {
+class DynamicMenuCollectionViewFlowLayout: UICollectionViewFlowLayout {
     var tempCellAttributesArray = [UICollectionViewLayoutAttributes]()
     let leftEdgeInset: CGFloat = 10
     
     override func prepare() {
         super.prepare()
-            
+        
         guard let collectionView = collectionView else { return }
             
         let availableHeight = collectionView.bounds.inset(by: collectionView.layoutMargins).height
+        let availableWidth  = collectionView.bounds.inset(by: collectionView.layoutMargins).width
+        
         let aspectRatio = CGFloat(1 / 1)
         
         let cellHeight = (availableHeight).rounded(.down)
         let cellWidth = cellHeight * aspectRatio
-            
-        self.itemSize = CGSize(width: cellWidth, height: cellHeight)
+        
+        self.itemSize = CGSize(width: cellHeight, height: cellWidth)
             
         self.scrollDirection = .horizontal
             
-        self.sectionInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        let leftInset = availableWidth * 0.7
+        
+        self.sectionInset = UIEdgeInsets(top: 10.0, left: leftInset, bottom: 10.0, right: 10.0)
         self.sectionInsetReference = .fromSafeArea
     }
 }

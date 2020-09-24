@@ -59,9 +59,6 @@ class MainMenuViewController : UIViewController, UICollectionViewDataSource {
             // Make title cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TitleCell", for: indexPath)
             
-            let size = CGSize(width: cell.frame.width * 2, height: cell.frame.height)
-            cell.sizeThatFits(size)
-            
             return cell
         }
         if daysAvailable.count > 0 {
