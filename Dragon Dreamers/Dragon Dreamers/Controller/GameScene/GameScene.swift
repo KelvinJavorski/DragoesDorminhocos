@@ -142,15 +142,56 @@ class GameScene: SKScene {
     
     /// >>>----------> BASE FUNCs
     
+    func createCircleNode(radius: CGFloat) -> SKShapeNode{
+        let circle = SKShapeNode(circleOfRadius: radius)
+        circle.fillColor = UIColor.red
+        return circle
+    }
+    
     func createCardNode (card : Card, at pos: SKNode) {
         let bases = self.childNode(withName: "Bases")!
         let cardBase = bases.childNode(withName: "CardBase")!
         let cardNode = cardBase.copy() as! SKNode
         cardNode.position = pos.position
-        
         card.node = cardNode
         card.node.name = "\(card.id)"
+        
+//        card.node.insertChild(<#T##node: SKNode##SKNode#>, at: <#T##Int#>)
+//        card.node.insertChild(createCircleNode(radius: 30), at: 0)
+
+        for node in card.node.children{
+            if node.name == "ManaLabel"{
+                guard let nodeTest = node as? SKLabelNode else{ continue }
+                if nodeTest.name == "ManaLabel"{
+                    nodeTest.text = String(Int.random(in: 1...5))
+                }
+            }
+            if node.name == "ManaBackground"{
+                guard let nodeBack = node as? SKShapeNode else{ continue }
+                if nodeBack.name == "ManaBackground"{
+//                    nodeBack.fillColor = SKColor.black
+                }
+            }
+        }
+        
+//        card.node.children[1] = setColorByHumor(card: card)
         self.addChild(card.node)
+    }
+    
+    func setColorByHumor(card: Card) -> SKColor{
+        if card.type == CardType.red{
+            return SKColor.red
+        }
+        else if card.type == CardType.blue{
+            return SKColor.blue
+        }
+        else if card.type == CardType.green{
+            return SKColor.green
+        }
+        else{
+            return SKColor.yellow
+        }
+        
     }
     
     func createManaNode (mana: Mana, at pos: CGPoint) {
@@ -173,7 +214,9 @@ class GameScene: SKScene {
             break
         }
         
-        let manaNode = manaBase.copy() as! SKNode
+        
+        var manaNode = manaBase.copy() as! SKNode
+        manaNode = createCircleNode(radius: 20)
         manaNode.position = pos
         mana.node = manaNode
         self.addChild(mana.node!)
