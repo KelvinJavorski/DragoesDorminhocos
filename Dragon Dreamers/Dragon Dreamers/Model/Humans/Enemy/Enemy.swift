@@ -61,7 +61,7 @@ class Enemy: Person {
     
     func reaction(){
         switch self.emotion {
-        case .aggro:
+        case .agree:
             print("VOCÊ TÁ MALUCÃO?")
         default:
             print("eae bichao")
@@ -76,7 +76,7 @@ class Enemy: Person {
         currentReason = 0
         maxReason = 10
         
-        emotion = BattleEmotion.aggro
+        emotion = BattleEmotion.agree
         
         }
     

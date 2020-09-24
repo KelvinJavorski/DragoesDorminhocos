@@ -28,22 +28,22 @@ class Discussion {
         
         self.agree = []
         for aux in 0..<agree.count {
-            self.agree[aux] = Phrase(text: agree[aux], isAvaliable: true)
+            self.agree.append(Phrase(text: agree[aux], isAvaliable: true))
         }
         
         self.avoid = []
         for aux in 0..<avoid.count {
-            self.avoid[aux] = Phrase(text: avoid[aux], isAvaliable: true)
+            self.avoid.append(Phrase(text: avoid[aux], isAvaliable: true))
         }
         
         self.questioning = []
         for aux in 0..<questioning.count {
-            self.questioning[aux] = Phrase(text: questioning[aux], isAvaliable: true)
+            self.questioning.append(Phrase(text: questioning[aux], isAvaliable: true))
         }
         
         self.criticize = []
         for aux in 0..<criticize.count {
-            self.criticize[aux] = Phrase(text: criticize[aux], isAvaliable: true)
+            self.criticize.append(Phrase(text: criticize[aux], isAvaliable: true))
         }
         
         self.humor = humor
