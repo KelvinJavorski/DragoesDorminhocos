@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H9r-4m-Pq5">
     <device id="retina6_5" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -77,6 +77,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <connections>
                                                         <action selector="clickedDay:" destination="ovM-a2-jGO" eventType="touchUpInside" id="uI9-7s-RXa"/>
+                                                        <segue destination="BV1-FR-VrT" kind="show" id="LiP-oP-gRR"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -144,7 +145,7 @@ do Jogo</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KLz-SJ-iik" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-764.0625" y="-675.36231884057975"/>
+            <point key="canvasLocation" x="-764" y="-868"/>
         </scene>
         <!--Conversation-->
         <scene sceneID="bgq-Ji-Kt1">
@@ -459,6 +460,7 @@ do Jogo</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
+                    <navigationItem key="navigationItem" id="kDX-6f-uXe"/>
                     <connections>
                         <outlet property="skView" destination="ekW-xL-PaE" id="d9Y-UQ-x85"/>
                         <segue destination="AX9-BS-zGg" kind="presentation" identifier="toOutcome" id="Qnb-rp-ZbT"/>
