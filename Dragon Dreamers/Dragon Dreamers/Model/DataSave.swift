@@ -10,8 +10,8 @@ import Foundation
 
 class DataSave {
     static let shared = DataSave()
-    
-    var enemys: [Enemy] = [Enemy(name: "Vó Matilda",discussion: Discussion())]
+
+    var gameCampaign = GameCampaign()
 
     init () {
     
