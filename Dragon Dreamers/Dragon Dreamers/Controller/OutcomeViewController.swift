@@ -28,8 +28,8 @@ class OutcomeViewController: UIViewController {
             skView.presentScene(self.scene)
         }
         
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+//        skView.showsFPS = true
+//        skView.showsNodeCount = true
         
         /*
         if let view = self.view as! SKView? {

@@ -36,8 +36,6 @@ class GameScene: SKScene {
     var halfHeight : CGFloat = 60
     var halfWidth  : CGFloat = 130
     
-    //Provisório pro alpha mudar depois
-    
     var playerNode  : SKNode!
     var playerLife  : SKLabelNode!
     var playerLifeBar : SKShapeNode!
@@ -69,11 +67,9 @@ class GameScene: SKScene {
         deckNumber = deckNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
 
         discardNode = childNode(withName: "Discard")!
-//        print("Discard Node Position: \(discardNode.position)")
         discardNumber = discardNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
 
         bannedNode = childNode(withName: "Banned")!
-//        print("Banned Node Position: \(bannedNode.position)")
         bannedNumber = bannedNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
         
         manaNode = childNode(withName: "Mana")!
@@ -100,8 +96,6 @@ class GameScene: SKScene {
             }
         }
         
-        
-        //Provisorio pro alpha, mudar depois
         playerNode = childNode(withName: "Player")!
         let playerLifeNode = playerNode.childNode(withName: "LifeBar")!
         playerLife = playerLifeNode.childNode(withName: "Value") as? SKLabelNode
@@ -129,11 +123,9 @@ class GameScene: SKScene {
         }
         
         createHandEllipse()
-        
         drawCards()
         
         battleManager.scene = self
-        
         battleManager.startBattle()
     }
     
@@ -142,7 +134,7 @@ class GameScene: SKScene {
         
         let ellipse = SKShapeNode.init(ellipseIn: rect)
         ellipse.fillColor = .black
-        ellipse.strokeColor = .blue
+        ellipse.strokeColor = .black
         ellipse.lineWidth = 2
         
         self.addChild(ellipse)
@@ -188,7 +180,6 @@ class GameScene: SKScene {
     }
     
     func moveCard (card: Card, to pos: CGPoint, completion: @escaping () -> () = { }) {
-        // Moves a card to another node's location
         let move = SKAction.move(to: pos, duration: 0.5)
         card.node.run(move) {
             completion()
@@ -205,7 +196,6 @@ class GameScene: SKScene {
     func moveAndRotateCard (card: Card, to pos: CGPoint, to angle: CGFloat, completion: @escaping () -> () = { }) {
         let move = SKAction.move(to: pos, duration: 0.2)
         let rotate = SKAction.rotate(toAngle: degrees2radians(angle), duration: 0.2, shortestUnitArc: true)
-        
         let actions = SKAction.group([move, rotate])
         card.node.run(actions) {
             completion()
@@ -223,7 +213,6 @@ class GameScene: SKScene {
         let sine = CGFloat(sin(tang))
         let x = handNode.position.x + halfWidth  * cose
         let y = handNode.position.y + halfHeight * sine
-        
         return CGPoint(x: x, y: y)
     }
     
@@ -236,28 +225,23 @@ class GameScene: SKScene {
     /// >>>----------> REARANGING STUFF
     
     func distributeCardNodes () {
-        // Check if there are cards in the Player's Hand
-            if Player.shared.hand.isEmpty() && !nextTurning {
-                
-                self.nextTurn()
-            } else if !nextTurning {
-                //Verify number of cards the player has
-                let numberOfCards = Player.shared.hand.cards.count
-                // Divide the space between the cards
-                let angle : CGFloat = 180.0 / CGFloat(numberOfCards + 1)
-                // Move the nodes to the correct positions
-                for i in 0 ..< numberOfCards {
-                    
-                    let ang = 180.0 - CGFloat(i + 1) * angle
-                    let pos = calculateCardPosition(angle: ang)
-                    let cardAngle = calculateCardAngle(angle: ang)
-                    handNodes[i].position = self.convert(pos, to: handNode)
-                    
-                    if i < numberOfCards {
-                        moveAndRotateCard(card: Player.shared.hand.cards[i], to: pos, to: cardAngle)
-                    }
+        if Player.shared.hand.isEmpty() && !nextTurning {
+            self.nextTurn()
+        } else if !nextTurning {
+            let numberOfCards = Player.shared.hand.cards.count
+            // Divide the space between the cards
+            let angle : CGFloat = 180.0 / CGFloat(numberOfCards + 1)
+            // Move the nodes to the correct positions
+            for i in 0 ..< numberOfCards {
+                let ang = 180.0 - CGFloat(i + 1) * angle
+                let pos = calculateCardPosition(angle: ang)
+                let cardAngle = calculateCardAngle(angle: ang)
+                handNodes[i].position = self.convert(pos, to: handNode)
+                if i < numberOfCards {
+                    moveAndRotateCard(card: Player.shared.hand.cards[i], to: pos, to: cardAngle)
                 }
             }
+        }
     }
     
     func rearangeManaNodes () {
@@ -289,7 +273,6 @@ class GameScene: SKScene {
         for card in Player.shared.deck.cards{
             print("Carta no Deck: \(card.id)")
         }
-        
     }
     
     func printHand(){
@@ -307,7 +290,6 @@ class GameScene: SKScene {
         print("Batalha do inimigo")
         battleManager.enemyTurn()
         battleManager.endTurn()
-        
         print("Descarta a Mesa")
         self.discardOngoing(){
             self.discardHand() {
@@ -331,52 +313,33 @@ class GameScene: SKScene {
     
     func drawCards () {
         let cardsToDraw = 5
-        
-        // If deck doesn't have all the cards
-        if Player.shared.deck.cards.count < cardsToDraw {
-            // Saves the number of cards that still need to be drawn
+            if Player.shared.deck.cards.count < cardsToDraw {
             let remainingCards = cardsToDraw - Player.shared.deck.cards.count
-            // gets new deck from the discard pile
             self.getCardsFromDiscard(){
-                // draws the remaining cards
                 self.drawHandCards(remainingCards)
-//                self.nextTurning = false
             }
             drawHandCards(cardsToDraw - remainingCards)
         } else {
             drawHandCards(cardsToDraw)
-//            nextTurning = false
         }
     }
     
     func drawHandCards (_ amount: Int){
-        // Gets how many cards are already in the Player's Hand
         let handCards = 0
-        
-        // Changes cards between decks (from deck to hand)
         Player.shared.drawCards(amount: amount)
-        
-        // Create card nodes from top cards in player's deck
-        // (Only for cards that don't already have nodes)
         for i in handCards ..< Player.shared.hand.cards.count {
             let card = Player.shared.hand.cards[i]
             createCardNode(card: card, at: deckNode)
         }
     
         print("Player Hand Amount: \(Player.shared.hand.cards.count)")
-//        print("------- Done drawing cards: \(amount)")
-        // Make sure card nodes are in the correct place
-        // And move cards to correct Nodes
         if !gettingCardsFromDiscard {
             distributeCardNodes()
         }
     }
     
     func playCard (index: Int, manaType: ManaType) {
-        // Moves card node to play area
-        
         var aux = false
-            
         for mana in Player.shared.manaManager.manaPool {
             if mana.type == manaType {
                 if !mana.isAvaliable && mana.node?.isHidden == false && aux == false{
@@ -386,14 +349,11 @@ class GameScene: SKScene {
                 }
             }
         }
-        
-        // Gets number of cards that are already in the Play Area
         let i = Player.shared.ongoing.cards.count
         // Calculates the position for this card
         let pos = self.convert(playAreaNodes[i].position, from: playAreaNode)
         // Gets card from player's hand
         let card = Player.shared.hand.cards[index]
-        
         // Moves card node to play area
         moveAndRotateCard(card: card, to: pos, to: 0.0) {
             Player.shared.playCard(index: index)
@@ -401,9 +361,7 @@ class GameScene: SKScene {
             self.battleManager.storeCard(card: card)
             card.node.position = pos
             self.distributeCardNodes()
-            // Checks if there are still mana left
             if Player.shared.manaManager.checkPoolIsAllUsed() {
-                // if there is no more mana, trigger next turn
                 self.nextTurn()
             }
         }
@@ -414,7 +372,6 @@ class GameScene: SKScene {
     var i = 0
     func getCardsFromDiscard (completion: @escaping () -> () = { }) {
         if !gettingCardsFromDiscard {
-            // Create actions
             let delay = SKAction.wait(forDuration: 0.10)
             let code  = SKAction.run {
                 self.i+=1
@@ -423,8 +380,6 @@ class GameScene: SKScene {
             }
             let sequence = SKAction.sequence([delay, code])
             let loop = SKAction.repeat(sequence, count: Player.shared.discard.cards.count)
-            
-            // Run loop of actions
             gettingCardsFromDiscard = true
             discardNode.run(loop) {
                 self.gettingCardsFromDiscard = false
@@ -433,18 +388,13 @@ class GameScene: SKScene {
                 }
                 completion()
             }
-            //Shuffle verything in deck
-//            Player.shared.deck.shuffle()
         }
     }
-    
     
     /// >>>----------> GAMEPLAY ASSIST FUNCs
     
     func discardHand (completion: @escaping () -> () = { }) {
-        // Runs through all cards in player's hand and discards them
         for card in Player.shared.hand.cards {
-//            print("Hand para o Discard, \(card.id)")
             discardCard(card: card) {
                 Player.shared.hand.removeCard(id: card.id)
                 if Player.shared.hand.cards.count == 0 {
@@ -455,16 +405,12 @@ class GameScene: SKScene {
         if Player.shared.hand.cards.count == 0 {
             completion()
         }
-        //Player.shared.hand.removeAllCards()
     }
     
     func discardOngoing (completion: @escaping () -> () = { }) {
-        // Runs through all cards in player's ongoing deck and discarts them
         for card in Player.shared.ongoing.cards {
-//            print("Mesa para o Discard, \(card.id)")
             discardCard(card: card){
                 Player.shared.ongoing.removeCard(id: card.id)
-//                Player.shared.ongoing.removeAllCards()
                 if Player.shared.ongoing.cards.count == 0{
                     completion()
                 }
@@ -474,7 +420,6 @@ class GameScene: SKScene {
     }
     
     func discardCard (card : Card, completion: @escaping () -> () = { }) {
-        // Moves card's node into discart deck node
         Player.shared.discard.addCard(card)
         moveAndRotateCard(card: card, to: discardNode.position, to: 0) {
             print("Remove Card: \(card.id) from Parent. CardNode: \(card.node!), deckPosition: \(card.node.position)")
@@ -491,22 +436,18 @@ class GameScene: SKScene {
         }
     }
     
-    var counter = 0
     func runCardFromDiscardToDeck (card: Card) {
         createCardNode(card: card, at: discardNode)
         moveCard(card: card, to: deckNode.position) {
             print("Mandou carta do Discard para o Deck, \(card.id), CARDNODE: \(card.node!), deckPosition: \(card.node.position)")
             //UM DOS BUGS FUD&***&*ˆ&*ˆ& ESTAVA AQUI, SÓ PRECISA TRATAR
 //            card.node.removeFromParent()
-            //debbug
-            self.counter+=1
         }
     }
     
     func degrees2radians(_ angle: CGFloat) -> CGFloat {
         return angle * CGFloat(Double.pi) / 180.0
     }
-    
     
     /// >>>----------> EXTRA FUNCs
     
@@ -522,26 +463,26 @@ class GameScene: SKScene {
         
         //Animações nao funcionam
         if let playerCurrentLife = Player.shared.currentLife {
-            playerLife.text = "Player life:\(playerCurrentLife)"
+            playerLife.text = "Criticar a Vó:\(playerCurrentLife)"
             let percentage = (playerCurrentLife / Player.shared.maxLife) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             playerLifeBar?.run(updateBar)
         }
         if let playerCurrentOther = Player.shared.currentEmpathy{
-            playerOther.text = "Player empathy: \(playerCurrentOther)"
+            playerOther.text = "Ignorar a Vó: \(playerCurrentOther)"
             let percentage = (playerCurrentOther / Player.shared.maxEmpathy) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             playerOtherBar?.run(updateBar)
         }
         
         if let enemyCurrentLife = battleManager.enemy.currentLife {
-            enemyLife.text = "Enemy life: \(enemyCurrentLife)"
+            enemyLife.text = "Debater com a Vó: \(enemyCurrentLife)"
             let percentage = (enemyCurrentLife / battleManager.enemy.maxLife) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyLifeBar?.run(updateBar)
         }
         if let enemyCurrentOther = battleManager.enemy.currentReason{
-            enemyOther.text = "Enemy empathy: \(enemyCurrentOther)"
+            enemyOther.text = "Concordar com a Vó: \(enemyCurrentOther)"
             let percentage = (enemyCurrentOther / battleManager.enemy.maxReason) * 100
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyOtherBar?.run(updateBar)
@@ -579,9 +520,7 @@ class GameScene: SKScene {
             let line = SKShapeNode(path: path.cgPath)
             line.lineWidth = 2
             line.strokeColor = .magenta
-            
             lines.append(line)
-            
             self.addChild(line)
         }
     }
@@ -596,18 +535,15 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let location = touch.location(in: self)
-            
             let touchedNodes = self.nodes(at: location)
             for node in touchedNodes.reversed() {
                 if node.name == "CardShape" {
                     if let parentNode = node.parent {
                         var found = false
-                        
                         while !found {
                             for i in 0 ..< Player.shared.hand.cards.count {
                                 let card = Player.shared.hand.getCard(i)
                                 if parentNode.name == "\(card.id)" {
-//                                    print(">>------> got card from hand")
                                     movingCard = card
                                     movingCardDeck = Player.shared.hand
                                     movingCardIndex = i
@@ -632,7 +568,6 @@ class GameScene: SKScene {
         }
     }
     
-    // Touch moved (draging on the screen)
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first, let card = self.movingCard {
             let touchLocation = touch.location(in: self)
@@ -642,20 +577,14 @@ class GameScene: SKScene {
     
     func finishTouches (nodes: [SKNode]) {
         for node in nodes.reversed() {
-            // If card is on top of Play Area...
             if node.name == "Play Area" {
-//                print("> card is in the play area")
                 if let deckName = movingCardDeck?.name {
-                    // And the deck of the card is Hand...
                     if deckName == "Hand" {
-                        // Play the card!
-//                        print("Moving card to play area")
                         moveCardToPlayArea()
                         return
                     }
                 }
             } else if node.name == "Banned Area" {
-//                print("> Card has been Banned")
                 if let deckName = movingCardDeck?.name {
                     if deckName == "Hand" {
                         let card = Player.shared.hand.cards[movingCardIndex!]
@@ -666,7 +595,6 @@ class GameScene: SKScene {
                     }
                 }
             } else if node.name == "Discard Area" {
-//                print("> Card has been Discarded")
                 if let deckName = movingCardDeck?.name {
                     if deckName == "Hand" {
                         let card = Player.shared.hand.cards[movingCardIndex!]
@@ -678,24 +606,15 @@ class GameScene: SKScene {
                 }
             }
         }
-//        print("> Card is not in any area")
         moveCardBack()
     }
     
     func moveCardToPlayArea () {
-        // Get info on Card and ManaType
         let card = Player.shared.hand.cards[movingCardIndex!]
         let manaType : ManaType = card.switchCardTypeToManaType()
-        
-//        printManaType(manaType: manaType)
-        // Check if player HAS the mana to play before!!
-//        print("checking for mana type")
         if Player.shared.manaManager.useManaFromManaPool(type: manaType) {
-            // If the player has, play the card!
-//            print("playing the card")
             playCard(index: movingCardIndex!, manaType: manaType)
         } else {
-            // if not, card goes back to hand
             moveCardBack()
         }
         clearVars()
@@ -717,7 +636,6 @@ class GameScene: SKScene {
     }
     
     func moveCardBack() {
-//        print("moving card back")
         if let deckName = movingCardDeck?.name {
             if deckName == "Hand" {
                 // move card back to hand
@@ -760,9 +678,7 @@ class GameScene: SKScene {
     }
     
     
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        
+    override func update(_ currentTime: TimeInterval) {        
         self.updateValues()
     }
 }
