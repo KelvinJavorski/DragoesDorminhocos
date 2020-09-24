@@ -16,7 +16,7 @@ class MainMenuViewController : UIViewController, UICollectionViewDataSource {
     
     func refreshInterface () {
         
-        daysAvailable = ["Day 0", "Day 1", "Day 2", "Day 3"]
+        daysAvailable = []
         
         daysCollectionView.reloadData()
         
@@ -43,6 +43,9 @@ class MainMenuViewController : UIViewController, UICollectionViewDataSource {
         print("Start Game for")
         
         // INPUT GAME START
+        if day == 0 { //>>---> New Game
+            
+        }
     }
     
     
@@ -66,6 +69,7 @@ class MainMenuViewController : UIViewController, UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath) as! DayCollectionViewCell
             
             cell.configureCell(indexPath.row - 1)
+            cell.delegate = self
             
             print("Configured Day Cell")
             return cell
@@ -74,6 +78,7 @@ class MainMenuViewController : UIViewController, UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewGameCell", for: indexPath) as! NewGameCollectionViewCell
             
             cell.configureCell()
+            cell.delegate = self
             
             print("Configured New Game Cell")
             
