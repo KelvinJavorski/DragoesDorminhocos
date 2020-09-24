@@ -56,7 +56,7 @@ class GameScene: SKScene {
     func initScene () { // ALWAYS CALL THIS BEFORE PRESENTING SCENE
         
         //Código a ser implementado na GameSceneNPCChoice//
-        for enemy in DataSave.shared.enemys {
+        for enemy in DataSave.shared.gameCampaign.enemys {
             if enemy.name == "Vó Matilda" {
                 DataTemp.shared.setChosenEnemy(enemy: enemy)
             }
