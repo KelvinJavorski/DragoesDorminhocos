@@ -118,7 +118,7 @@ class GameScene: SKScene {
         
         
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
-        Player.shared.manaManager.fillPool(manas: [ManaType.r, ManaType.r, ManaType.r, ManaType.r, ManaType.r])
+        Player.shared.manaManager.fillPool(manas: [ManaType.r, ManaType.b, ManaType.g])
         for i in 0 ..< Player.shared.manaManager.manaPool.count {
             let pos = self.convert(manaNodes[i].position, from: manaNode)
             createManaNode(mana: Player.shared.manaManager.manaPool[i], at: pos)
@@ -172,7 +172,7 @@ class GameScene: SKScene {
     
     func createCircleNode(radius: CGFloat) -> SKShapeNode{
         let circle = SKShapeNode(circleOfRadius: radius)
-        circle.fillColor = UIColor.red
+        circle.fillColor = SKColor.blue
         return circle
     }
     
@@ -220,7 +220,7 @@ class GameScene: SKScene {
         
         
         var manaNode = manaBase.copy() as! SKNode
-        manaNode = createCircleNode(radius: 20)
+//        manaNode = createCircleNode(radius: 15)
         manaNode.position = pos
         mana.node = manaNode
         self.addChild(mana.node!)
@@ -432,7 +432,7 @@ class GameScene: SKScene {
             let delay = SKAction.wait(forDuration: 0.10)
             let code  = SKAction.run {
                 self.i+=1
-                self.runCardFromDiscardToDeck(card: Player.shared.discard.cards[0])
+//                self.runCardFromDiscardToDeck(card: Player.shared.discard.cards[0])
                 Player.shared.getCardFromDiscard(0)
             }
             let sequence = SKAction.sequence([delay, code])
