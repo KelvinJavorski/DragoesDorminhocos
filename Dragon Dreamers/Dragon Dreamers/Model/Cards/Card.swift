@@ -71,4 +71,19 @@ class Card : EmptyCard{
         }
     }
     
+    func getCardTypeColor() -> SKColor{
+        if type == CardType.red{
+            return SKColor.red
+        }
+        else if type == CardType.blue{
+            return SKColor.blue
+        }
+        else if type == CardType.green{
+            return SKColor.green
+        }
+        else{
+            return SKColor.yellow
+        }
+    }
+    
 }
