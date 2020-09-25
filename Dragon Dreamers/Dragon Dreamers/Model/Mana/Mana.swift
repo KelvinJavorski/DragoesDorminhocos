@@ -72,6 +72,9 @@ class Mana {
         self.isInPool = false
     }
     
+    func getColor(){
+        
+    }
     func updateNodeFromType () -> SKSpriteNode{
         switch self.type {
             case ManaType.b: return SKSpriteNode(fileNamed: "b")!

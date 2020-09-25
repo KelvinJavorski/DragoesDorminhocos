@@ -187,7 +187,7 @@ class ManaManager {
                         ["yg00","yg01","yg02","yg03","yg04"]]
         
         for mana in 0 ..< manaTypes.count {
-            for n in 0 ..< 5 {
+            for n in 0 ..< 3 {
                 self.manaCollection.append(Mana(id: manaIds[mana][n], type: manaTypes[mana]))
             }
         }

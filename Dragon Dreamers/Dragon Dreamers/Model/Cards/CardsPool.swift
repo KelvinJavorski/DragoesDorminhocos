@@ -38,9 +38,9 @@ class CardsPool{
 
         
         //Deal damage to life and take reason (Enemy Card)
-        Card(name: "Card SelfDamage1", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -3),
-        Card(name: "Card SelfDamage2", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -4),
-        Card(name: "Card SelfDamage3", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -5),
+        Card(name: "Card SelfDamage1", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: 5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -3),
+        Card(name: "Card SelfDamage2", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: 5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -4),
+        Card(name: "Card SelfDamage3", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: 5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -5),
         Card(name: "Card SelfDamage4", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -6),
         Card(name: "Card SelfDamage5", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -7),
         
