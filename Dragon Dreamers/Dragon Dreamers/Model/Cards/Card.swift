@@ -74,16 +74,16 @@ class Card : EmptyCard{
     
     func getCardTypeColor() -> SKColor{
         if type == CardType.red{
-            return SKColor.red
+            return UIColor(hexString: "#FF0000")
         }
         else if type == CardType.blue{
-            return SKColor.blue
+            return UIColor(hexString: "#5F5DC1")
         }
         else if type == CardType.green{
-            return SKColor.green
+            return UIColor(hexString: "#ACC15D")
         }
         else{
-            return SKColor.yellow
+            return UIColor(hexString: "#CD9D5B")
         }
     }
     
