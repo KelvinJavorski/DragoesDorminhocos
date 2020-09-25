@@ -23,8 +23,9 @@ class Discussion {
     var questioning: [Phrase]
     var criticize: [Phrase]
     var humor: BattleEmotion
+    var humorPoints: Int
     
-    init(agree: [String], avoid: [String], questioning: [String], criticize: [String], humor: BattleEmotion) {
+    init(agree: [String], avoid: [String], questioning: [String], criticize: [String], humorPoits: Int) {
         
         self.agree = []
         for aux in 0..<agree.count {
@@ -46,11 +47,39 @@ class Discussion {
             self.criticize.append(Phrase(text: criticize[aux], isAvaliable: true))
         }
         
-        self.humor = humor
+        self.humor = BattleEmotion.random()
+        self.humorPoints = humorPoits
+        self.setHumorPoints(humorPoints: humorPoits)
+    }
+    
+    func setHumorPoints (humorPoints: Int) {
+        self.humorPoints = humorPoints
+        
+        if self.humorPoints>0 && self.humorPoints<=5 {
+            self.setHumor(humor: BattleEmotion.agree)
+        }
+        if self.humorPoints>5 && self.humorPoints<=10 {
+            self.setHumor(humor: BattleEmotion.avoid)
+        }
+        if self.humorPoints>10 && self.humorPoints<=15 {
+            self.setHumor(humor: BattleEmotion.questioning)
+        }
+        if self.humorPoints>15 && self.humorPoints<=20 {
+            self.setHumor(humor: BattleEmotion.criticize)
+        }
     }
     
     func setHumor (humor: BattleEmotion) {
         self.humor = humor
+        
+    }
+    
+    func getHumorPoints () -> Int{
+        return self.humorPoints
+    }
+    
+    func getHumor() -> BattleEmotion {
+        return self.humor
     }
     
     func useNextPhraseAvaliableText (type: PhraseType) -> String? {
