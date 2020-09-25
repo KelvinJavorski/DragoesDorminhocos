@@ -20,11 +20,11 @@ class Enemy: Person {
         print("Deck: \(deck.cards.count)")
         self.setInitialDeck()
         self.setOwner()
-        self.setInitialAtributes()
         print("-------")
         
         self.name = name
         self.discussion = discussion
+        self.setInitialAtributes()
     }
     
     func setInitialDeck(){
@@ -68,6 +68,10 @@ class Enemy: Person {
         }
     }
     
+    func updateHumor() {
+        self.emotion = self.discussion.getHumor()
+    }
+    
     func setInitialAtributes(){
         currentLife = 10
         maxLife = 10
@@ -76,9 +80,11 @@ class Enemy: Person {
         currentReason = 0
         maxReason = 10
         
-        emotion = BattleEmotion.agree
+        emotion = self.discussion.humor
         
         }
+    
+    //func setEmotion ()
     
     
 }

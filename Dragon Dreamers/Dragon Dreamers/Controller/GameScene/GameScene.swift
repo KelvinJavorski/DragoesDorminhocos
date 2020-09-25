@@ -47,6 +47,7 @@ class GameScene: SKScene {
     var enemyLifeBar : SKNode!
     var enemyOther   : SKLabelNode!
     var enemyOtherBar : SKNode!
+    var humorPoints: Int = 0
     
     var battleManager: BattleManager = BattleManager()
     
@@ -62,6 +63,7 @@ class GameScene: SKScene {
         //Código a ser implementado na GameSceneNPCChoice//
         
         battleManager.setEnemy(enemy: DataTemp.shared.chosenEnemy)
+        humorPoints = battleManager.enemy.discussion.humorPoints
         
         deckNode = childNode(withName: "Deck")!
         deckNumber = deckNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
@@ -141,6 +143,32 @@ class GameScene: SKScene {
     }
     
     /// >>>----------> BASE FUNCs
+    
+    //
+    
+    func setupEnemyHumor (card: Card, completion: @escaping () -> () = { }) {
+        var humorInfluence : Int
+        
+        humorInfluence = card.humorInfluence
+        
+        var humorCombine = 0
+        
+        humorCombine = humorCombine + humorInfluence
+        
+        var humorResult = self.humorPoints + humorCombine
+        
+        if humorResult<0 {
+            humorResult = 0
+        }
+        if humorResult>20 {
+            humorResult = 20
+        }
+        
+        self.humorPoints = humorResult
+        
+        completion()
+        //battleManager.enemy.discussion.setHumorPoints(humorPoints: humorResult)
+    }
     
     func createCircleNode(radius: CGFloat) -> SKShapeNode{
         let circle = SKShapeNode(circleOfRadius: radius)
@@ -307,8 +335,13 @@ class GameScene: SKScene {
     func nextTurn () {
         nextTurning = true
         print("Batalha do inimigo")
+        
         battleManager.enemyTurn()
         battleManager.endTurn()
+        
+        battleManager.enemy.discussion.setHumorPoints(humorPoints: self.humorPoints)
+        battleManager.enemy.updateHumor()
+        
         print("Descarta a Mesa")
         self.discardOngoing(){
             self.discardHand() {
@@ -373,6 +406,11 @@ class GameScene: SKScene {
         let pos = self.convert(playAreaNodes[i].position, from: playAreaNode)
         // Gets card from player's hand
         let card = Player.shared.hand.cards[index]
+        
+        setupEnemyHumor(card: card){
+            print("Humor atualizado")
+        }
+        
         // Moves card node to play area
         moveAndRotateCard(card: card, to: pos, to: 0.0) {
             Player.shared.playCard(index: index)
