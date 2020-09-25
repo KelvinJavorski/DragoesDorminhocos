@@ -18,25 +18,26 @@ class Card : EmptyCard{
     var selfDamageType: EnergyType!
     var heal : Int!
     var healType: EnergyType!
+
     
     init(){}
     
     //Send a card from Collection to Deck using ID
-    init (name: String, effect: EffectType, cost: Int, cardType: CardType, cardIdEffect: Int, humanType: HumanType) {
-        super.init(name: name, effect: effect, cost: cost, type: cardType, humanType: humanType)
+    init (name: String, effect: EffectType, cost: Int, cardType: CardType, cardIdEffect: Int, humanType: HumanType, humorInfluence: Int) {
+        super.init(name: name, effect: effect, cost: cost, type: cardType, humanType: humanType, humorInfluence: humorInfluence)
         self.idEffect = cardIdEffect
     }
     
     //Damage Card init
-    init (name: String, effect: EffectType, cost: Int, cardType: CardType, damage: Int, damageType: EnergyType, humanType: HumanType) {
-        super.init(name: name, effect: effect, cost: cost, type: cardType, humanType: humanType)
+    init (name: String, effect: EffectType, cost: Int, cardType: CardType, damage: Int, damageType: EnergyType, humanType: HumanType, humorInfluence: Int) {
+        super.init(name: name, effect: effect, cost: cost, type: cardType, humanType: humanType, humorInfluence: humorInfluence)
         self.damage  = damage
         self.damageType = damageType
     }
     
     //Deal damage by using own resource/energy
-    init (name: String, effect: EffectType, cost: Int, cardType: CardType, damage: Int, damageType: EnergyType, selfDamage: Int, selfDamageType: EnergyType, humanType: HumanType) {
-        super.init(name: name,  effect: effect, cost: cost, type: cardType, humanType: humanType)
+    init (name: String, effect: EffectType, cost: Int, cardType: CardType, damage: Int, damageType: EnergyType, selfDamage: Int, selfDamageType: EnergyType, humanType: HumanType, humorInfluence: Int) {
+        super.init(name: name,  effect: effect, cost: cost, type: cardType, humanType: humanType, humorInfluence: humorInfluence)
         self.damage = damage
         self.damageType = damageType
         self.selfDamage = selfDamage
@@ -44,8 +45,8 @@ class Card : EmptyCard{
     }
     
     //Heal your own resource/energy by some amount
-    init (name: String, effect: EffectType, cost: Int, cardType: CardType, heal: Int, healType: EnergyType, humanType: HumanType) {
-        super.init(name: name,  effect: effect, cost: cost, type: cardType, humanType: humanType)
+    init (name: String, effect: EffectType, cost: Int, cardType: CardType, heal: Int, healType: EnergyType, humanType: HumanType, humorInfluence: Int) {
+        super.init(name: name,  effect: effect, cost: cost, type: cardType, humanType: humanType, humorInfluence: humorInfluence)
         self.heal = heal
         self.healType = healType
     }

@@ -9,10 +9,10 @@
 import Foundation
 
 enum BattleEmotion: CaseIterable{
-    case aggro
-    case centerAggro
-    case centerCalm
-    case calm
+    case agree
+    case avoid
+    case questioning
+    case criticize
     
     static func random<G: RandomNumberGenerator>(using generator: inout G) -> BattleEmotion {
         return BattleEmotion.allCases.randomElement(using: &generator)!
