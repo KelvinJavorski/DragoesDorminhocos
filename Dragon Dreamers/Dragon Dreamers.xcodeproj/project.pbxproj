@@ -42,6 +42,7 @@
 		6F44E7EF24DB36630034CDE1 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F44E7EE24DB36630034CDE1 /* CardType.swift */; };
 		6F71B26B24DB2A5E009EB5CB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F71B26A24DB2A5E009EB5CB /* Card.swift */; };
 		6F71B26D24DB2A6F009EB5CB /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F71B26C24DB2A6F009EB5CB /* Deck.swift */; };
+		B6202898251E7AB30024DC8A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6202897251E7AB20024DC8A /* UIColor.swift */; };
 		B69CC5A224F04231003663D0 /* CardEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CC5A124F04231003663D0 /* CardEffect.swift */; };
 		B69CC5A424F04254003663D0 /* EffectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CC5A324F04254003663D0 /* EffectType.swift */; };
 		B69CC5A624F04F96003663D0 /* CardsPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CC5A524F04F96003663D0 /* CardsPool.swift */; };
@@ -100,6 +101,7 @@
 		6F44E7EE24DB36630034CDE1 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		6F71B26A24DB2A5E009EB5CB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Card.swift; path = "Dragon Dreamers/Model/Cards/Card.swift"; sourceTree = SOURCE_ROOT; };
 		6F71B26C24DB2A6F009EB5CB /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Deck.swift; path = "Dragon Dreamers/Model/Cards/Deck.swift"; sourceTree = SOURCE_ROOT; };
+		B6202897251E7AB20024DC8A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B69CC5A124F04231003663D0 /* CardEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEffect.swift; sourceTree = "<group>"; };
 		B69CC5A324F04254003663D0 /* EffectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectType.swift; sourceTree = "<group>"; };
 		B69CC5A524F04F96003663D0 /* CardsPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsPool.swift; sourceTree = "<group>"; };
@@ -202,6 +204,14 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		B6202896251E7A9F0024DC8A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B6202897251E7AB20024DC8A /* UIColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		B6D1C29C250BCA2D0097A979 /* Humans */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +241,7 @@
 		B6EF3A1E24D9CCCE00FD840E /* Dragon Dreamers */ = {
 			isa = PBXGroup;
 			children = (
+				B6202896251E7A9F0024DC8A /* Extension */,
 				B6EF3A3924DB26FF00FD840E /* Model */,
 				B6EF3A3824DB26F800FD840E /* Controller */,
 				B6EF3A3724DB26EB00FD840E /* View */,
@@ -406,6 +417,7 @@
 				6F71B26B24DB2A5E009EB5CB /* Card.swift in Sources */,
 				649A21F4250AB49D00F6A7CE /* Discussion.swift in Sources */,
 				649A2210250AB9EE00F6A7CE /* GameSceneAppendix.swift in Sources */,
+				B6202898251E7AB30024DC8A /* UIColor.swift in Sources */,
 				6F44E7ED24DB34340034CDE1 /* Player.swift in Sources */,
 				649A2216250ABAA700F6A7CE /* GameSceneDeckChoice.swift in Sources */,
 				6423EC122513E12000E202D1 /* DataTemp.swift in Sources */,
