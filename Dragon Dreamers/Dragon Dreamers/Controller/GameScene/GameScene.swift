@@ -38,15 +38,15 @@ class GameScene: SKScene {
     
     var playerNode  : SKNode!
     var playerLife  : SKLabelNode!
-    var playerLifeBar : SKShapeNode!
+    var playerLifeBar : SKNode!
     var playerOther : SKLabelNode!
-    var playerOtherBar : SKShapeNode!
+    var playerOtherBar : SKNode!
     
     var enemyNode    : SKNode!
     var enemyLife    : SKLabelNode!
-    var enemyLifeBar : SKShapeNode!
+    var enemyLifeBar : SKNode!
     var enemyOther   : SKLabelNode!
-    var enemyOtherBar : SKShapeNode!
+    var enemyOtherBar : SKNode!
     
     var battleManager: BattleManager = BattleManager()
     
@@ -99,20 +99,20 @@ class GameScene: SKScene {
         playerNode = childNode(withName: "Player")!
         let playerLifeNode = playerNode.childNode(withName: "LifeBar")!
         playerLife = playerLifeNode.childNode(withName: "Value") as? SKLabelNode
-        playerLifeBar = playerLifeNode.childNode(withName: "Bar") as? SKShapeNode
+        playerLifeBar = playerLifeNode.childNode(withName: "Bar") as? SKSpriteNode
         
         let playerOtherNode = playerNode.childNode(withName: "OtherBar")!
         playerOther = playerOtherNode.childNode(withName: "Value") as? SKLabelNode
-        playerOtherBar = playerOtherNode.childNode(withName: "Bar") as? SKShapeNode
+        playerOtherBar = playerOtherNode.childNode(withName: "Bar") as? SKSpriteNode
         
         enemyNode = childNode(withName: "Enemy")!
         let enemyLifeNode = enemyNode.childNode(withName: "LifeBar")!
         enemyLife = enemyLifeNode.childNode(withName: "Value") as? SKLabelNode
-        enemyLifeBar = enemyLifeNode.childNode(withName: "Bar") as? SKShapeNode
+        enemyLifeBar = enemyLifeNode.childNode(withName: "Bar") as? SKSpriteNode
         
         let enemyOtherNode = enemyNode.childNode(withName: "OtherBar")!
         enemyOther = enemyOtherNode.childNode(withName: "Value") as? SKLabelNode
-        enemyOtherBar = enemyOtherNode.childNode(withName: "Bar") as? SKShapeNode
+        enemyOtherBar = enemyOtherNode.childNode(withName: "Bar") as? SKSpriteNode
         
         
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
@@ -142,14 +142,31 @@ class GameScene: SKScene {
     
     /// >>>----------> BASE FUNCs
     
+    func createCircleNode(radius: CGFloat) -> SKShapeNode{
+        let circle = SKShapeNode(circleOfRadius: radius)
+        circle.fillColor = UIColor.red
+        return circle
+    }
+    
     func createCardNode (card : Card, at pos: SKNode) {
         let bases = self.childNode(withName: "Bases")!
         let cardBase = bases.childNode(withName: "CardBase")!
         let cardNode = cardBase.copy() as! SKNode
         cardNode.position = pos.position
-        
         card.node = cardNode
         card.node.name = "\(card.id)"
+        for node in card.node.children{
+            if node.name == "ManaLabel"{
+                guard let nodeTest = node as? SKLabelNode else{ continue }
+                if nodeTest.name == "ManaLabel"{
+                    nodeTest.text = String(card.cost)
+                }
+            }
+            if node.name == "ManaBackground"{
+                guard let nodeBack = node as? SKSpriteNode else{ continue }
+                nodeBack.color = card.getCardTypeColor()
+            }
+        }
         self.addChild(card.node)
     }
     
@@ -173,7 +190,9 @@ class GameScene: SKScene {
             break
         }
         
-        let manaNode = manaBase.copy() as! SKNode
+        
+        var manaNode = manaBase.copy() as! SKNode
+        manaNode = createCircleNode(radius: 20)
         manaNode.position = pos
         mana.node = manaNode
         self.addChild(mana.node!)
@@ -464,32 +483,45 @@ class GameScene: SKScene {
         //Animações nao funcionam
         if let playerCurrentLife = Player.shared.currentLife {
             playerLife.text = "Criticar a Vó:\(playerCurrentLife)"
-            let percentage = (playerCurrentLife / Player.shared.maxLife) * 100
+            var percentage = (CGFloat(playerCurrentLife) / CGFloat(Player.shared.maxLife!)) * 100
+            percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             playerLifeBar?.run(updateBar)
         }
         if let playerCurrentOther = Player.shared.currentEmpathy{
             playerOther.text = "Ignorar a Vó: \(playerCurrentOther)"
-            let percentage = (playerCurrentOther / Player.shared.maxEmpathy) * 100
+            var percentage = (CGFloat(playerCurrentOther) / CGFloat(Player.shared.maxEmpathy)) * 100
+            percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             playerOtherBar?.run(updateBar)
         }
         
         if let enemyCurrentLife = battleManager.enemy.currentLife {
             enemyLife.text = "Debater com a Vó: \(enemyCurrentLife)"
-            let percentage = (enemyCurrentLife / battleManager.enemy.maxLife) * 100
+            var percentage = (CGFloat(enemyCurrentLife) / CGFloat(battleManager.enemy.maxLife)) * 100
+            percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyLifeBar?.run(updateBar)
         }
         if let enemyCurrentOther = battleManager.enemy.currentReason{
             enemyOther.text = "Concordar com a Vó: \(enemyCurrentOther)"
-            let percentage = (enemyCurrentOther / battleManager.enemy.maxReason) * 100
+            var percentage = (CGFloat(enemyCurrentOther) / CGFloat(battleManager.enemy.maxReason)) * 100
+            percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyOtherBar?.run(updateBar)
         }
         
     }
     
+    func setZeroOrHundred(number: CGFloat) -> CGFloat{
+        if number < 0{
+            return 0.0
+        }else if number > 100{
+            return 100.0
+        }
+        return number
+        
+    }
     func createCircle (at pos: CGPoint, i: Int) {
         if circles.count > i {
             circles[i].position = pos

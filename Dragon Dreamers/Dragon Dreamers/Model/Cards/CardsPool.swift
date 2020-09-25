@@ -61,6 +61,7 @@ class CardsPool{
 //        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),
 //        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),
 //        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),
+//        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),
 //        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player)
     ]
     
