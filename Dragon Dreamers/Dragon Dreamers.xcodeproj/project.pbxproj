@@ -160,10 +160,10 @@
 			isa = PBXGroup;
 			children = (
 				B6EF3A2124D9CCCE00FD840E /* GameScene.sks */,
+				649A21FF250AB74D00F6A7CE /* GameSceneInteraction.sks */,
 				649A21F9250AB6D700F6A7CE /* GameScenePlaces.sks */,
 				649A21FB250AB6FA00F6A7CE /* GameSceneNPCChoice.sks */,
 				649A21FD250AB70F00F6A7CE /* GameSceneAppendix.sks */,
-				649A21FF250AB74D00F6A7CE /* GameSceneInteraction.sks */,
 				649A2201250AB77600F6A7CE /* GameSceneDuel.sks */,
 				649A2203250AB7EF00F6A7CE /* GameSceneDeckChoice.sks */,
 				649A2205250AB80900F6A7CE /* GameSceneEnd.sks */,
@@ -177,10 +177,10 @@
 			isa = PBXGroup;
 			children = (
 				B6EF3A2524D9CCCE00FD840E /* GameScene.swift */,
+				649A2211250ABA5000F6A7CE /* GameSceneInteraction.swift */,
 				649A220B250AB91700F6A7CE /* GameScenePlaces.swift */,
 				649A220D250AB98500F6A7CE /* GameSceneNPCChoice.swift */,
 				649A220F250AB9EE00F6A7CE /* GameSceneAppendix.swift */,
-				649A2211250ABA5000F6A7CE /* GameSceneInteraction.swift */,
 				649A2213250ABA7E00F6A7CE /* GameSceneDuel.swift */,
 				649A2215250ABAA700F6A7CE /* GameSceneDeckChoice.swift */,
 				649A2217250ABACC00F6A7CE /* GameSceneEnd.swift */,

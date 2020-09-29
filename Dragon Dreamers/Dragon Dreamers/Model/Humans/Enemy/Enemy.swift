@@ -32,6 +32,10 @@ class Enemy: Person {
         self.deck.addCards(cardsPool.enemyCards())
     }
     
+    func getName () -> String{
+        return self.name
+    }
+    
     func setHand(){
         let cards = getAllCardByEmotion(emotion: self.emotion)
         if !cards.isEmpty{

@@ -14,10 +14,11 @@ class Discussion {
     var avoid: [Phrase]
     var questioning: [Phrase]
     var criticize: [Phrase]
+    var before: [Phrase]
     var humor: BattleEmotion
     var humorPoints: Int
     
-    init(agree: [String], avoid: [String], questioning: [String], criticize: [String], humorPoits: Int) {
+    init(agree: [String], avoid: [String], questioning: [String], criticize: [String], before: [String], humorPoits: Int) {
         
         self.agree = []
         for aux in 0..<agree.count {
@@ -41,6 +42,12 @@ class Discussion {
         
         self.humor = BattleEmotion.random()
         self.humorPoints = humorPoits
+        
+        self.before = []
+        for aux in 0..<before.count {
+            self.before.append(Phrase(text: before[aux], isAvaliable: true))
+        }
+        
         self.setHumorPoints(humorPoints: humorPoits)
     }
     
@@ -72,6 +79,19 @@ class Discussion {
     
     func getHumor() -> BattleEmotion {
         return self.humor
+    }
+    
+    func useNextBeforePhraseAvaliableText () -> String? {
+        
+        for phrase in self.before {
+            if phrase.isAvaliable {
+                phrase.setAvaliable(isAvaliable: false)
+                return phrase.text
+            }
+        }
+        
+        return nil
+        
     }
     
     func useNextPhraseAvaliableText (type: BattleEmotion) -> String? {

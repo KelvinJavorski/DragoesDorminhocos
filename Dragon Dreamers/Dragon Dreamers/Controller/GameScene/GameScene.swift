@@ -63,6 +63,7 @@ class GameScene: SKScene {
         //Código a ser implementado na GameSceneNPCChoice//
         
         battleManager.setEnemy(enemy: DataTemp.shared.chosenEnemy)
+        
         humorPoints = battleManager.enemy.discussion.humorPoints
         
         deckNode = childNode(withName: "Deck")!
