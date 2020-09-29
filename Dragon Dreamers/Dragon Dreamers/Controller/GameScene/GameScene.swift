@@ -15,6 +15,8 @@ class GameScene: SKScene {
     private var spinnyNode : SKShapeNode?
     
     weak var navigation: UIViewController!
+    weak var talkView: UIView!
+    weak var speechButton: UIButton!
     
     var deckNode      : SKNode!
     var deckNumber    : SKLabelNode!
@@ -360,7 +362,6 @@ class GameScene: SKScene {
             
             self.battleManager.enemy.discussion.setHumorPoints(humorPoints: self.humorPoints)
             self.battleManager.enemy.updateHumor()
-            self.enemyPlayingCard()
             
             print("Descarta a Mesa")
             self.discardOngoing(){
@@ -382,7 +383,17 @@ class GameScene: SKScene {
             }
             self.rearangeManaNodes()
         }
+        self.pauseGame()
         self.battleManager.endTurn()
+        
+    }
+    
+    func pauseGame(){
+        if !self.isPaused{
+            self.isPaused = true
+            self.talkView.isHidden = false
+            self.speechButton.isHidden = false
+        }
         
     }
     
@@ -447,11 +458,9 @@ class GameScene: SKScene {
         }
     }
     
-    func enemyPlayingCard(){
-//        let pos = self.convert(enemyHandNode.position, to: enemyHandNode)
-//        createEnemyCardNode(card: battleManager.enemy.hand.cards[0], at: enemyHandNode)
-        moveCard(card: battleManager.enemy.hand.cards[0], to: enemyPlayAreaNode.position)
-    }
+//    func enemyPlayingCard(){
+//        moveCard(card: battleManager.enemy.hand.cards[0], to: enemyPlayAreaNode.position)
+//    }
     
     var sendCardFromDiscardToDeckHasFinished = false
     var gettingCardsFromDiscard = false
