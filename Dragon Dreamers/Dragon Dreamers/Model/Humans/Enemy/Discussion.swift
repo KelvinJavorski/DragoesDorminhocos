@@ -8,14 +8,6 @@
 
 import Foundation
 
-enum PhraseType{
-    
-    case agree
-    case avoid
-    case questioning
-    case criticize
-}
-
 class Discussion {
     
     var agree: [Phrase]
@@ -82,7 +74,7 @@ class Discussion {
         return self.humor
     }
     
-    func useNextPhraseAvaliableText (type: PhraseType) -> String? {
+    func useNextPhraseAvaliableText (type: BattleEmotion) -> String? {
         
         switch type {
             
@@ -126,7 +118,7 @@ class Discussion {
         return nil
     }
     
-    func usePhraseText (type: PhraseType, index: Int) -> String? {
+    func usePhraseText (type: BattleEmotion, index: Int) -> String? {
         switch type {
             
         case .agree:
@@ -167,7 +159,7 @@ class Discussion {
         self.resetPhrasesToAvaliable(type: .criticize)
     }
     
-    func resetPhrasesToAvaliable (type: PhraseType) {
+    func resetPhrasesToAvaliable (type: BattleEmotion) {
         switch type {
                 
             case .agree:
