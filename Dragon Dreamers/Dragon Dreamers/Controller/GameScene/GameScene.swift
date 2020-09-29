@@ -23,6 +23,10 @@ class GameScene: SKScene {
     var bannedNode    : SKNode!
     var bannedNumber  : SKLabelNode!
     
+    var enemyCardNode : SKNode!
+    var enemyPlayAreaNode : SKNode!
+    var enemyHandNode : SKNode!
+    
     var handNode      : SKNode!
     var handNodes     : [SKNode] = []
     var playAreaNode  : SKNode!
@@ -116,6 +120,9 @@ class GameScene: SKScene {
         enemyOther = enemyOtherNode.childNode(withName: "Value") as? SKLabelNode
         enemyOtherBar = enemyOtherNode.childNode(withName: "Bar") as? SKSpriteNode
         
+        enemyPlayAreaNode = childNode(withName: "EnemyPlayAreaNode")!
+        enemyHandNode = childNode(withName: "EnemyHandNode")!
+        
         
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
         Player.shared.manaManager.fillPool(manas: [ManaType.r, ManaType.b, ManaType.g])
@@ -129,6 +136,7 @@ class GameScene: SKScene {
         
         battleManager.scene = self
         battleManager.startBattle()
+        createEnemyCardNode(card: battleManager.enemy.hand.cards[0], at: enemyHandNode)
     }
     
     func createHandEllipse () {
@@ -174,6 +182,16 @@ class GameScene: SKScene {
         let circle = SKShapeNode(circleOfRadius: radius)
         circle.fillColor = SKColor.blue
         return circle
+    }
+    
+    func createEnemyCardNode(card: Card, at pos: SKNode){
+        let bases = self.childNode(withName: "Bases")!
+        let cardBase = bases.childNode(withName: "EnemyCardBase")!
+        let cardNode = cardBase.copy() as! SKNode
+        cardNode.position = pos.position
+        card.node = cardNode
+        card.node.name = "\(card.id)"
+        self.addChild(card.node)
     }
     
     func createCardNode (card : Card, at pos: SKNode) {
@@ -336,31 +354,36 @@ class GameScene: SKScene {
         nextTurning = true
         print("Batalha do inimigo")
         
-        battleManager.enemyTurn()
         battleManager.endTurn()
-        
-        battleManager.enemy.discussion.setHumorPoints(humorPoints: self.humorPoints)
-        battleManager.enemy.updateHumor()
-        
-        print("Descarta a Mesa")
-        self.discardOngoing(){
-            self.discardHand() {
-                self.printDiscard()
-                self.printDeck()
-                self.printHand()
-                self.nextTurning = false
-                self.drawCards()
-                print("HandAfterDraw   : \(Player.shared.hand.cards.count)")
+        battleManager.enemyTurn(){
+            
+            
+            self.battleManager.enemy.discussion.setHumorPoints(humorPoints: self.humorPoints)
+            self.battleManager.enemy.updateHumor()
+            self.enemyPlayingCard()
+            
+            print("Descarta a Mesa")
+            self.discardOngoing(){
+                self.discardHand() {
+                    self.printDiscard()
+                    self.printDeck()
+                    self.printHand()
+                    self.nextTurning = false
+                    self.drawCards()
+                    print("HandAfterDraw   : \(Player.shared.hand.cards.count)")
+                }
             }
-        }
-        print("Descarta a Hand")
-        Player.shared.manaManager.resetAllManaFromManaPool()
-        for mana in Player.shared.manaManager.manaPool {
-            if mana.node?.isHidden == true{
-                mana.node?.isHidden = false
+            print("Descarta a Hand")
+            Player.shared.manaManager.resetAllManaFromManaPool()
+            for mana in Player.shared.manaManager.manaPool {
+                if mana.node?.isHidden == true{
+                    mana.node?.isHidden = false
+                }
             }
+            self.rearangeManaNodes()
         }
-        self.rearangeManaNodes()
+        self.battleManager.endTurn()
+        
     }
     
     func drawCards () {
@@ -422,6 +445,12 @@ class GameScene: SKScene {
                 self.nextTurn()
             }
         }
+    }
+    
+    func enemyPlayingCard(){
+//        let pos = self.convert(enemyHandNode.position, to: enemyHandNode)
+//        createEnemyCardNode(card: battleManager.enemy.hand.cards[0], at: enemyHandNode)
+        moveCard(card: battleManager.enemy.hand.cards[0], to: enemyPlayAreaNode.position)
     }
     
     var sendCardFromDiscardToDeckHasFinished = false
