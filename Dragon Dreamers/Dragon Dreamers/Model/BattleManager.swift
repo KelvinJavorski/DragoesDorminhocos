@@ -27,6 +27,7 @@ class BattleManager{
         //enemy = Enemy.shared
         player.setOpponent(person: enemy.self)
         enemy.setOpponent(person: player.self)
+        enemy.setHand()
     }
     
     func endBattle(){
@@ -64,9 +65,10 @@ class BattleManager{
         endBattle()
     }
     
-    func enemyTurn() {
+    func enemyTurn(completion: @escaping () -> () = { }) {
         enemy.playTurn()
         self.storeCard(card: enemy.playOneCard())
+        completion()
     }
     
     func showCurrentInformations(){

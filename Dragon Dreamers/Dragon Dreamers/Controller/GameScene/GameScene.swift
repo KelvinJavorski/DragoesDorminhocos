@@ -15,6 +15,8 @@ class GameScene: SKScene {
     private var spinnyNode : SKShapeNode?
     
     weak var navigation: UIViewController!
+    weak var talkView: UIView!
+    weak var speechButton: UIButton!
     
     var deckNode      : SKNode!
     var deckNumber    : SKLabelNode!
@@ -22,6 +24,10 @@ class GameScene: SKScene {
     var discardNumber : SKLabelNode!
     var bannedNode    : SKNode!
     var bannedNumber  : SKLabelNode!
+    
+    var enemyCardNode : SKNode!
+    var enemyPlayAreaNode : SKNode!
+    var enemyHandNode : SKNode!
     
     var handNode      : SKNode!
     var handNodes     : [SKNode] = []
@@ -117,6 +123,9 @@ class GameScene: SKScene {
         enemyOther = enemyOtherNode.childNode(withName: "Value") as? SKLabelNode
         enemyOtherBar = enemyOtherNode.childNode(withName: "Bar") as? SKSpriteNode
         
+        enemyPlayAreaNode = childNode(withName: "EnemyPlayAreaNode")!
+        enemyHandNode = childNode(withName: "EnemyHandNode")!
+        
         
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
         Player.shared.manaManager.fillPool(manas: [ManaType.r, ManaType.b, ManaType.g])
@@ -130,6 +139,7 @@ class GameScene: SKScene {
         
         battleManager.scene = self
         battleManager.startBattle()
+        createEnemyCardNode(card: battleManager.enemy.hand.cards[0], at: enemyHandNode)
     }
     
     func createHandEllipse () {
@@ -175,6 +185,16 @@ class GameScene: SKScene {
         let circle = SKShapeNode(circleOfRadius: radius)
         circle.fillColor = SKColor.blue
         return circle
+    }
+    
+    func createEnemyCardNode(card: Card, at pos: SKNode){
+        let bases = self.childNode(withName: "Bases")!
+        let cardBase = bases.childNode(withName: "EnemyCardBase")!
+        let cardNode = cardBase.copy() as! SKNode
+        cardNode.position = pos.position
+        card.node = cardNode
+        card.node.name = "\(card.id)"
+        self.addChild(card.node)
     }
     
     func createCardNode (card : Card, at pos: SKNode) {
@@ -337,7 +357,6 @@ class GameScene: SKScene {
         nextTurning = true
         print("Batalha do inimigo")
         
-        battleManager.enemyTurn()
         battleManager.endTurn()
         
         battleManager.enemy.discussion.setHumorPoints(humorPoints: self.humorPoints)
@@ -354,15 +373,27 @@ class GameScene: SKScene {
                 self.drawCards()
                 print("HandAfterDraw   : \(Player.shared.hand.cards.count)")
             }
-        }
-        print("Descarta a Hand")
-        Player.shared.manaManager.resetAllManaFromManaPool()
-        for mana in Player.shared.manaManager.manaPool {
-            if mana.node?.isHidden == true{
-                mana.node?.isHidden = false
+            print("Descarta a Hand")
+            Player.shared.manaManager.resetAllManaFromManaPool()
+            for mana in Player.shared.manaManager.manaPool {
+                if mana.node?.isHidden == true{
+                    mana.node?.isHidden = false
+                }
             }
+            self.rearangeManaNodes()
         }
-        self.rearangeManaNodes()
+        self.pauseGame()
+        self.battleManager.endTurn()
+        
+    }
+    
+    func pauseGame(){
+        if !self.isPaused{
+            self.isPaused = true
+            self.talkView.isHidden = false
+            self.speechButton.isHidden = false
+        }
+        
     }
     
     func drawCards () {
@@ -425,6 +456,10 @@ class GameScene: SKScene {
             }
         }
     }
+    
+//    func enemyPlayingCard(){
+//        moveCard(card: battleManager.enemy.hand.cards[0], to: enemyPlayAreaNode.position)
+//    }
     
     var sendCardFromDiscardToDeckHasFinished = false
     var gettingCardsFromDiscard = false

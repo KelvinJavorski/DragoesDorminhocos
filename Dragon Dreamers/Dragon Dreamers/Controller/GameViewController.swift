@@ -14,6 +14,8 @@ class GameViewController: UIViewController {
 
     
     @IBOutlet weak var skView: SKView!
+    @IBOutlet weak var talkView: UIView!
+    @IBOutlet weak var speechButton: UIButton!
     
     var scene : GameScene!
     
@@ -25,10 +27,12 @@ class GameViewController: UIViewController {
             self.scene.initScene()
             self.scene.scaleMode = .aspectFill
             
+            self.scene.talkView = talkView
+            self.scene.speechButton = speechButton
             self.scene.navigation = self
             skView.presentScene(self.scene)
         }
-        self.scene.navigation = self
+//        self.scene.navigation = self
         
         /*
         if let view = self.view as! SKView? {
@@ -53,6 +57,11 @@ class GameViewController: UIViewController {
         scene.nextTurn()
     }
     
+    @IBAction func speechClicked(_ sender: Any) {
+        self.scene.isPaused = false
+        self.talkView.isHidden = true
+        self.speechButton.isHidden = true
+    }
     
     override var shouldAutorotate: Bool {
         return true
