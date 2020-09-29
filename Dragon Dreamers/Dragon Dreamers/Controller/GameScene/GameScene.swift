@@ -341,6 +341,7 @@ class GameScene: SKScene {
         
         battleManager.enemy.discussion.setHumorPoints(humorPoints: self.humorPoints)
         battleManager.enemy.updateHumor()
+        self.getPhrase()
         
         print("Descarta a Mesa")
         self.discardOngoing(){
@@ -449,6 +450,12 @@ class GameScene: SKScene {
     }
     
     /// >>>----------> GAMEPLAY ASSIST FUNCs
+    
+    func getPhrase() -> String{
+        let phrase = self.battleManager.enemy.discussion.useNextPhraseAvaliableText(type: self.battleManager.enemy.discussion.getHumor()) ?? "Null"
+        
+        return phrase
+    }
     
     func discardHand (completion: @escaping () -> () = { }) {
         for card in Player.shared.hand.cards {
