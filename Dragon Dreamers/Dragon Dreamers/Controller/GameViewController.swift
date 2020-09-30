@@ -21,7 +21,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setButton()
         if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
             self.scene = scene
             self.scene.initScene()
@@ -52,6 +52,12 @@ class GameViewController: UIViewController {
         */
     }
     
+    func setButton(){
+        self.speechButton.setTitle("Talking", for: .normal)
+        self.speechButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.speechButton.titleLabel?.minimumScaleFactor = 0.4
+        self.speechButton.titleLabel?.numberOfLines = 0
+    }
     
     @IBAction func nextTurnClicked(_ sender: UIButton) {
         scene.nextTurn()
