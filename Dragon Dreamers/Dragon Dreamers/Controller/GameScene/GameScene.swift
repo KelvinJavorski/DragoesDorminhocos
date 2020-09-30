@@ -39,8 +39,8 @@ class GameScene: SKScene {
     var circles : [SKShapeNode] = []
     var lines   : [SKShapeNode] = []
     
-    var halfHeight : CGFloat = 60
-    var halfWidth  : CGFloat = 130
+    var halfHeight : CGFloat = 80
+    var halfWidth  : CGFloat = 150
     
     var playerNode  : SKNode!
     var playerLife  : SKLabelNode!
@@ -276,7 +276,7 @@ class GameScene: SKScene {
     }
     
     func calculateCardPosition (angle: CGFloat) -> CGPoint {
-        let tang = Double(angle) * Double.pi / 180.0
+        let tang = Double(angle) * Double.pi / 210.0
         let cose = CGFloat(cos(tang))
         let sine = CGFloat(sin(tang))
         let x = handNode.position.x + halfWidth  * cose
@@ -366,6 +366,7 @@ class GameScene: SKScene {
         print("Descarta a Mesa")
         self.discardOngoing(){
             self.discardHand() {
+                self.pauseGame()
                 self.printDiscard()
                 self.printDeck()
                 self.printHand()
@@ -382,7 +383,7 @@ class GameScene: SKScene {
             }
             self.rearangeManaNodes()
         }
-        self.pauseGame()
+        
         self.battleManager.endTurn()
         
     }
@@ -392,6 +393,8 @@ class GameScene: SKScene {
             self.isPaused = true
             self.talkView.isHidden = false
             self.speechButton.isHidden = false
+            self.speechButton.setTitle(getPhrase(), for: .normal)
+            
         }
         
     }
