@@ -15,8 +15,11 @@ class GameScene: SKScene {
     private var spinnyNode : SKShapeNode?
     
     weak var navigation: UIViewController!
-    weak var talkView: UIView!
+    weak var modalBackView: UIView!
+    weak var talkingView: UIView!
     weak var speechButton: UIButton!
+    weak var speechText: UILabel!
+    weak var endMyTurnButton: UIView!
     
     var deckNode      : SKNode!
     var deckNumber    : SKLabelNode!
@@ -361,12 +364,11 @@ class GameScene: SKScene {
         
         battleManager.enemy.discussion.setHumorPoints(humorPoints: self.humorPoints)
         battleManager.enemy.updateHumor()
-        self.getPhrase()
         
         print("Descarta a Mesa")
         self.discardOngoing(){
             self.discardHand() {
-                self.pauseGame()
+                self.showDialogBox()
                 self.printDiscard()
                 self.printDeck()
                 self.printHand()
@@ -388,15 +390,16 @@ class GameScene: SKScene {
         
     }
     
-    func pauseGame(){
+    func showDialogBox(){
         if !self.isPaused{
             self.isPaused = true
-            self.talkView.isHidden = false
+            self.talkingView.isHidden = false
             self.speechButton.isHidden = false
-            self.speechButton.setTitle(getPhrase(), for: .normal)
-            
+            self.speechText.isHidden = false
+            self.speechText.text = getPhrase()
+            self.modalBackView.isHidden = false
+            self.endMyTurnButton.isHidden = true
         }
-        
     }
     
     func drawCards () {
