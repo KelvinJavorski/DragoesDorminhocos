@@ -14,24 +14,31 @@ class GameViewController: UIViewController {
 
     
     @IBOutlet weak var skView: SKView!
-    @IBOutlet weak var talkView: UIView!
+    @IBOutlet weak var talkingView: UIView!
     @IBOutlet weak var speechButton: UIButton!
+    @IBOutlet weak var modalBackView: UIView!
+    @IBOutlet weak var speechText: UILabel!
+    @IBOutlet weak var endMyTurnButton: UIView!
     
     var scene : GameScene!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setButton()
+        
         if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
             self.scene = scene
             self.scene.initScene()
             self.scene.scaleMode = .aspectFill
             
-            self.scene.talkView = talkView
+            self.scene.modalBackView = modalBackView 
+            self.scene.talkingView = talkingView
             self.scene.speechButton = speechButton
+            self.scene.speechText = speechText
+            self.scene.endMyTurnButton = endMyTurnButton
             self.scene.navigation = self
             skView.presentScene(self.scene)
         }
+        setButton()
 //        self.scene.navigation = self
         
         /*
@@ -53,10 +60,12 @@ class GameViewController: UIViewController {
     }
     
     func setButton(){
-        self.speechButton.setTitle("Talking", for: .normal)
-        self.speechButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        self.speechButton.titleLabel?.minimumScaleFactor = 0.4
-        self.speechButton.titleLabel?.numberOfLines = 0
+        scene.showDialogBox()
+        self.speechText.numberOfLines = 0
+        self.speechText.adjustsFontSizeToFitWidth = true
+        self.speechText.minimumScaleFactor = 0.4
+        self.modalBackView.alpha = 0.15
+        self.modalBackView.backgroundColor = .black
     }
     
     @IBAction func nextTurnClicked(_ sender: UIButton) {
@@ -65,8 +74,10 @@ class GameViewController: UIViewController {
     
     @IBAction func speechClicked(_ sender: Any) {
         self.scene.isPaused = false
-        self.talkView.isHidden = true
+        self.talkingView.isHidden = true
         self.speechButton.isHidden = true
+        self.modalBackView.isHidden = true
+        self.endMyTurnButton.isHidden = false
     }
     
     override var shouldAutorotate: Bool {
