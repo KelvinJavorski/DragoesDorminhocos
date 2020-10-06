@@ -76,7 +76,7 @@ class GameScene: SKScene {
     var criticizeBackground : SKSpriteNode!
     var criticizeColor : SKSpriteNode!
 
-    
+    var nextTurnAvailable: Bool!
     var battleManager: BattleManager = BattleManager()
     
     
@@ -150,6 +150,8 @@ class GameScene: SKScene {
         
         setupHumorNode()
         selectEnemyHumor()
+        
+        nextTurnAvailable = false
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
         Player.shared.manaManager.fillPool(manas: [ManaType.r, ManaType.b, ManaType.g])
         for i in 0 ..< Player.shared.manaManager.manaPool.count {
@@ -419,6 +421,7 @@ class GameScene: SKScene {
     var nextTurning = false
     func nextTurn () {
         nextTurning = true
+        nextTurnAvailable = false
         print("Batalha do inimigo")
         
         battleManager.endTurn()
@@ -519,15 +522,12 @@ class GameScene: SKScene {
 //            self.battleManager.storeCard(card: card)
             card.node.position = pos
             self.distributeCardNodes()
+            self.nextTurnAvailable = true
             if Player.shared.manaManager.checkPoolIsAllUsed() {
                 self.nextTurn()
             }
         }
     }
-    
-//    func enemyPlayingCard(){
-//        moveCard(card: battleManager.enemy.hand.cards[0], to: enemyPlayAreaNode.position)
-//    }
     
     var sendCardFromDiscardToDeckHasFinished = false
     var gettingCardsFromDiscard = false
@@ -608,8 +608,6 @@ class GameScene: SKScene {
         createCardNode(card: card, at: discardNode)
         moveCard(card: card, to: deckNode.position) {
             print("Mandou carta do Discard para o Deck, \(card.id), CARDNODE: \(card.node!), deckPosition: \(card.node.position)")
-            //UM DOS BUGS FUD&***&*ˆ&*ˆ& ESTAVA AQUI, SÓ PRECISA TRATAR
-//            card.node.removeFromParent()
         }
     }
     

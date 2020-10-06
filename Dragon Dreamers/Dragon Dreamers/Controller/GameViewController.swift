@@ -38,6 +38,7 @@ class GameViewController: UIViewController {
             self.scene.navigation = self
             skView.presentScene(self.scene)
         }
+        setButton()
     }
     
     func setButton(){
@@ -50,7 +51,9 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func nextTurnClicked(_ sender: UIButton) {
-        scene.nextTurn()
+        if scene.nextTurnAvailable{
+            scene.nextTurn()
+        }
     }
     
     @IBAction func speechClicked(_ sender: Any) {
