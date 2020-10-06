@@ -143,6 +143,7 @@ class GameScene: SKScene {
         battleManager.scene = self
         battleManager.startBattle()
         createEnemyCardNode(card: battleManager.enemy.hand.cards[0], at: enemyHandNode)
+        
     }
     
     func createHandEllipse () {
