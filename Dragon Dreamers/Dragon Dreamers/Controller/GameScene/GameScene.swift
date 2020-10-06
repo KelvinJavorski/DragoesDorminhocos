@@ -56,7 +56,26 @@ class GameScene: SKScene {
     var enemyLifeBar : SKNode!
     var enemyOther   : SKLabelNode!
     var enemyOtherBar : SKNode!
+    
+    //Humor Nodes
     var humorPoints: Int = 0
+    var humorNode : SKNode!
+//    var agreeNode : SKNode!
+    var agreeBackground : SKSpriteNode!
+    var agreeColor : SKSpriteNode!
+    
+//    var avoidNode : SKNode!
+    var avoidBackground : SKSpriteNode!
+    var avoidColor : SKSpriteNode!
+    
+//    var questioningNode : SKNode!
+    var questioningBackground : SKSpriteNode!
+    var questioningColor : SKSpriteNode!
+    
+//    var criticizeNode : SKNode!
+    var criticizeBackground : SKSpriteNode!
+    var criticizeColor : SKSpriteNode!
+
     
     var battleManager: BattleManager = BattleManager()
     
@@ -129,7 +148,8 @@ class GameScene: SKScene {
         enemyPlayAreaNode = childNode(withName: "EnemyPlayAreaNode")!
         enemyHandNode = childNode(withName: "EnemyHandNode")!
         
-        
+        setupHumorNode()
+        selectEnemyHumor()
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
         Player.shared.manaManager.fillPool(manas: [ManaType.r, ManaType.b, ManaType.g])
         for i in 0 ..< Player.shared.manaManager.manaPool.count {
@@ -160,6 +180,23 @@ class GameScene: SKScene {
     
     //
     
+    func setupHumorNode(){
+        humorNode = childNode(withName: "Humor")!
+        let agree = humorNode.childNode(withName: "Agree")!
+        let avoid = humorNode.childNode(withName: "Avoid")!
+        let questioning = humorNode.childNode(withName: "Questioning")!
+        let criticize = humorNode.childNode(withName: "Criticize")!
+        
+        agreeBackground = agree.childNode(withName: "Background") as? SKSpriteNode
+        agreeBackground.color = .black
+        avoidBackground = avoid.childNode(withName: "Background") as? SKSpriteNode
+        avoidBackground.color = .black
+        questioningBackground = questioning.childNode(withName: "Background") as? SKSpriteNode
+        questioningBackground.color = .black
+        criticizeBackground = criticize.childNode(withName: "Background") as? SKSpriteNode
+        criticizeBackground.color = .black
+    }
+    
     func setupEnemyHumor (card: Card, completion: @escaping () -> () = { }) {
         var humorInfluence : Int
         
@@ -182,6 +219,29 @@ class GameScene: SKScene {
         
         completion()
         //battleManager.enemy.discussion.setHumorPoints(humorPoints: humorResult)
+    }
+    
+    func selectEnemyHumor(){
+        agreeBackground.isHidden = true
+        avoidBackground.isHidden = true
+        questioningBackground.isHidden = true
+        criticizeBackground.isHidden = true
+        
+        let humor = self.battleManager.enemy.discussion.getHumor()
+        switch humor {
+        case .agree:
+            agreeBackground.isHidden = false
+            break
+        case .avoid:
+            avoidBackground.isHidden = false
+            break
+        case .questioning:
+            questioningBackground.isHidden = false
+            break
+        case .criticize:
+            criticizeBackground.isHidden = false
+            break
+        }
     }
     
     func createCircleNode(radius: CGFloat) -> SKShapeNode{
@@ -364,7 +424,7 @@ class GameScene: SKScene {
         
         battleManager.enemy.discussion.setHumorPoints(humorPoints: self.humorPoints)
         battleManager.enemy.updateHumor()
-        
+        selectEnemyHumor()
         print("Descarta a Mesa")
         self.discardOngoing(){
             self.discardHand() {
@@ -386,7 +446,7 @@ class GameScene: SKScene {
             self.rearangeManaNodes()
         }
         
-        self.battleManager.endTurn()
+//        self.battleManager.endTurn()
         
     }
     
@@ -453,8 +513,9 @@ class GameScene: SKScene {
         // Moves card node to play area
         moveAndRotateCard(card: card, to: pos, to: 0.0) {
             Player.shared.playCard(index: index)
+            card.playCard()
             // Store card played for applying effect later
-            self.battleManager.storeCard(card: card)
+//            self.battleManager.storeCard(card: card)
             card.node.position = pos
             self.distributeCardNodes()
             if Player.shared.manaManager.checkPoolIsAllUsed() {
