@@ -46,13 +46,18 @@ class OutcomeViewController: UIViewController {
     }
     
     func placeInfo () {
+        for view in stackView.arrangedSubviews {
+            stackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
+        }
+        
         if image != nil {
             let imageView = UIImageView(image: image)
-            stackView.addSubview(imageView)
+            stackView.addArrangedSubview(imageView)
         }
         let label = UILabel()
         label.text = self.text
-        stackView.addSubview(label)
+        stackView.addArrangedSubview(label)
         
         stackView.distribution = .fillEqually
     }

@@ -51,7 +51,6 @@ class GameViewController: UIViewController {
     
     @IBAction func nextTurnClicked(_ sender: UIButton) {
         scene.nextTurn()
-        //sendToOutcome()
     }
     
     @IBAction func speechClicked(_ sender: Any) {
