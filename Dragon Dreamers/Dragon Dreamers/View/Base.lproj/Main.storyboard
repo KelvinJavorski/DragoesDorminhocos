@@ -269,7 +269,7 @@ do Jogo</string>
         <!--Outcome View Controller-->
         <scene sceneID="IHa-6E-6pi">
             <objects>
-                <viewController id="AX9-BS-zGg" customClass="OutcomeViewController" customModule="Dragon_Dreamers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Outcome" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AX9-BS-zGg" customClass="OutcomeViewController" customModule="Dragon_Dreamers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Hk-fZ-sKR">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

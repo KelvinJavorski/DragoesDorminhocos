@@ -15,8 +15,6 @@ class OutcomeViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextView: UIView!
     
-    @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var combatTitle: UILabel!
@@ -48,13 +46,18 @@ class OutcomeViewController: UIViewController {
     }
     
     func placeInfo () {
+        for view in stackView.arrangedSubviews {
+            stackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
+        }
+        
         if image != nil {
             let imageView = UIImageView(image: image)
-            stackView.addSubview(imageView)
+            stackView.addArrangedSubview(imageView)
         }
         let label = UILabel()
         label.text = self.text
-        stackView.addSubview(label)
+        stackView.addArrangedSubview(label)
         
         stackView.distribution = .fillEqually
     }
