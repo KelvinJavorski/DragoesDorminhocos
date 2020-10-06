@@ -50,8 +50,8 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func nextTurnClicked(_ sender: UIButton) {
-        //scene.nextTurn()
-        sendToOutcome()
+        scene.nextTurn()
+        //sendToOutcome()
     }
     
     @IBAction func speechClicked(_ sender: Any) {
@@ -65,8 +65,9 @@ class GameViewController: UIViewController {
     func sendToOutcome () {
         if let vc = self.storyboard?.instantiateViewController(identifier: "Outcome") as? OutcomeViewController {
             vc.inputInfo(text: "This is the battle's outcome")
-            self.show(vc, sender: self)
-            //self.present(vc, animated: true, completion: nil)
+            //self.show(vc, sender: self)
+            vc.inputInfo(text: "This is the outcome screen")
+            self.present(vc, animated: true, completion: nil)
         }
     }
     
