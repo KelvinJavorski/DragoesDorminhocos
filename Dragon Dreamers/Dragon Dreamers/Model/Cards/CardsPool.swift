@@ -38,24 +38,24 @@ class CardsPool{
 
         
         //Deal damage to life and take reason (Enemy Card)
-        Card(name: "Card SelfDamage1", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -6),
-        Card(name: "Card SelfDamage2", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -8),
+        Card(name: "Card SelfDamage1", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .empathy, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -6),
+        Card(name: "Card SelfDamage2", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .empathy, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -8),
         Card(name: "Card SelfDamage3", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -10),
         Card(name: "Card SelfDamage4", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -12),
         Card(name: "Card SelfDamage5", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .life, selfDamage: -5, selfDamageType: .reason, humanType: .enemy, humorInfluence: -14),
         
         
         //Deal damage to reason and take empathy (Player card)
-        Card(name: "Card SelfDamage1", effect: .dealAndSufferDamage, cost: 1, cardType: .blue, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 6),
-        Card(name: "Card SelfDamage2", effect: .dealAndSufferDamage, cost: 1, cardType: .green, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 8),
-        Card(name: "Card SelfDamage3", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 10),
-        Card(name: "Card SelfDamage4", effect: .dealAndSufferDamage, cost: 1, cardType: .green, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 12),
-        Card(name: "Card SelfDamage5", effect: .dealAndSufferDamage, cost: 1, cardType: .blue, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 14),
-        Card(name: "Card SelfDamage6", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: -2),
-        Card(name: "Card SelfDamage7", effect: .dealAndSufferDamage, cost: 1, cardType: .blue, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: -4),
+        Card(name: "Card SelfDamage1", effect: .dealAndSufferDamage, cost: 1, cardType: .blue, damage: -5, damageType: .life, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 2),
+        Card(name: "Card SelfDamage2", effect: .dealAndSufferDamage, cost: 1, cardType: .green, damage: -5, damageType: .life, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: -5),
+        Card(name: "Card SelfDamage3", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .life, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 2),
+        Card(name: "Card SelfDamage4", effect: .dealAndSufferDamage, cost: 1, cardType: .green, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: -5),
+        Card(name: "Card SelfDamage5", effect: .dealAndSufferDamage, cost: 1, cardType: .blue, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 4),
+        Card(name: "Card SelfDamage6", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 2),
+        Card(name: "Card SelfDamage7", effect: .dealAndSufferDamage, cost: 1, cardType: .blue, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 2),
         Card(name: "Card SelfDamage8", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 2),
-        Card(name: "Card SelfDamage9", effect: .dealAndSufferDamage, cost: 1, cardType: .green, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 4),
-        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 0),
+        Card(name: "Card SelfDamage9", effect: .dealAndSufferDamage, cost: 1, cardType: .green, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: -5),
+        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player, humorInfluence: 2),
 //        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),
 //        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),
 //        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),

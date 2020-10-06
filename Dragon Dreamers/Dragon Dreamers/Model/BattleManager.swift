@@ -55,19 +55,13 @@ class BattleManager{
     }
     
     func endTurn(){
-        for card in cardsPlayed.reversed(){
-            card.playCard()
-//            print("\(card.name!) played by \(card.owner)")
-//            showCurrentInformations()
-//            print("---")
-        }
-        cardsPlayed.removeAll()
+        enemyTurn()
         endBattle()
     }
     
     func enemyTurn(completion: @escaping () -> () = { }) {
         enemy.playTurn()
-        self.storeCard(card: enemy.playOneCard())
+//        self.storeCard(card: enemy.playOneCard())
         completion()
     }
     
