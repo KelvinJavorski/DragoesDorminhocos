@@ -25,14 +25,14 @@ class Player: Person {
     }
     
     func setInitialAtributes(){
-        currentLife = 10
-        maxLife = 10
+        currentLife = 0
+        maxLife = 50
         minLife = 0
         
         currentEmpathy = 0
-        maxEmpathy = 10
+        maxEmpathy = 50
         
         currentUnderstanding = 0
-        maxUnderstanding = 10
+        maxUnderstanding = 50
     }
 }

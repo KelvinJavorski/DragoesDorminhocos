@@ -55,7 +55,9 @@ class Enemy: Person {
     
     func playTurn(){
         setHand()
-        reaction()
+        let card = playOneCard()
+        card.playCard()
+//        reaction()
     }
     
     func playOneCard() -> Card{
@@ -77,12 +79,12 @@ class Enemy: Person {
     }
     
     func setInitialAtributes(){
-        currentLife = 10
-        maxLife = 10
+        currentLife = 0
+        maxLife = 50
         minLife = 0
         
         currentReason = 0
-        maxReason = 10
+        maxReason = 50
         
         emotion = self.discussion.humor
         
