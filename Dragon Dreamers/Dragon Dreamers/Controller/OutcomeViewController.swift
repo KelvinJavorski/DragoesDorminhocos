@@ -12,41 +12,32 @@ import GameplayKit
 
 class OutcomeViewController: UIViewController {
     
-    @IBOutlet weak var skView: SKView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var nextView: UIView!
     
-    var scene : GameScene!
+    @IBOutlet weak var textContent: UIView!
+    @IBOutlet weak var textLabel: UILabel!
     
-    var teste : Int!
+    @IBOutlet weak var imageContent: UIView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageText: UILabel!
+    
+    @IBOutlet weak var combatTitle: UILabel!
+    
+    var text : String = "placeholder"
+    
+    func refreshInterface () {
+        textLabel.text = text
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let scene = SKScene(fileNamed: "GameSceneOutcome") as? GameScene {
-            self.scene = scene
-            self.scene.initScene()
-            self.scene.scaleMode = .aspectFill
-            
-            skView.presentScene(self.scene)
-        }
-        
-//        skView.showsFPS = true
-//        skView.showsNodeCount = true
-        
-        /*
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
-            
-            view.ignoresSiblingOrder = true
-            view.showsFPS = true
-            view.showsNodeCount = true
-        }
-        */
+        contentView.layer.cornerRadius = 30
+        nextView.layer.cornerRadius = 15
+    }
+    
+    func inputInfo (text: String) {
+        self.text = text
     }
     
     override var shouldAutorotate: Bool {

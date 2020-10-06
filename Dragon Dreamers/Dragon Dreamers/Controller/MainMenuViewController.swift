@@ -85,11 +85,6 @@ class MainMenuViewController : UIViewController, UICollectionViewDataSource {
             return cell
         }
     }
-    
-    
-    
-    
-    
 }
 
 extension MainMenuViewController : DayCollectionViewCellDelegate {

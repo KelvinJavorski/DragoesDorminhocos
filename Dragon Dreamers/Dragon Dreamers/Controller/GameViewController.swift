@@ -38,25 +38,6 @@ class GameViewController: UIViewController {
             self.scene.navigation = self
             skView.presentScene(self.scene)
         }
-        setButton()
-//        self.scene.navigation = self
-        
-        /*
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
-            
-            view.ignoresSiblingOrder = true
-            view.showsFPS = true
-            view.showsNodeCount = true
-        }
-        */
     }
     
     func setButton(){
@@ -70,6 +51,7 @@ class GameViewController: UIViewController {
     
     @IBAction func nextTurnClicked(_ sender: UIButton) {
         scene.nextTurn()
+        sendToOutcome()
     }
     
     @IBAction func speechClicked(_ sender: Any) {
@@ -78,6 +60,14 @@ class GameViewController: UIViewController {
         self.speechButton.isHidden = true
         self.modalBackView.isHidden = true
         self.endMyTurnButton.isHidden = false
+    }
+    
+    func sendToOutcome () {
+        if let vc = self.storyboard?.instantiateViewController(identifier: "Outcome") as? OutcomeViewController {
+            vc.inputInfo(text: "This is the battle's outcome")
+            self.show(vc, sender: self)
+            //self.present(vc, animated: true, completion: nil)
+        }
     }
     
     override var shouldAutorotate: Bool {
