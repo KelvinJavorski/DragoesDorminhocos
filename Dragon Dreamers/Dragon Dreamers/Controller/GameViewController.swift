@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func nextTurnClicked(_ sender: UIButton) {
-        scene.nextTurn()
+        //scene.nextTurn()
         sendToOutcome()
     }
     

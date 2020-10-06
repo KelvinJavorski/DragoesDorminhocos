@@ -15,30 +15,50 @@ class OutcomeViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextView: UIView!
     
-    @IBOutlet weak var textContent: UIView!
     @IBOutlet weak var textLabel: UILabel!
-    
-    @IBOutlet weak var imageContent: UIView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var imageText: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var combatTitle: UILabel!
     
-    var text : String = "placeholder"
+    var image : UIImage?
+    var text  : String   = "placeholder"
     
     func refreshInterface () {
-        textLabel.text = text
+        placeInfo()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.layer.cornerRadius = 30
         nextView.layer.cornerRadius = 15
+        
+        refreshInterface()
     }
     
-    func inputInfo (text: String) {
-        self.text = text
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        refreshInterface()
     }
+    
+    func inputInfo (text: String, image: UIImage? = nil) {
+        self.text  = text
+        self.image = image
+    }
+    
+    func placeInfo () {
+        if image != nil {
+            let imageView = UIImageView(image: image)
+            stackView.addSubview(imageView)
+        }
+        let label = UILabel()
+        label.text = self.text
+        stackView.addSubview(label)
+        
+        stackView.distribution = .fillEqually
+    }
+    
     
     override var shouldAutorotate: Bool {
         return true
