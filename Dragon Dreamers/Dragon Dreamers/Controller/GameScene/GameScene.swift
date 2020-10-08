@@ -628,31 +628,31 @@ class GameScene: SKScene {
         bannedNumber.text = "\(bannedCardsAmount)"
         
         //Animações nao funcionam
-        if let playerCurrentLife = Player.shared.currentLife {
+        if let playerCurrentLife = Player.shared.currentAgree {
             playerLife.text = "Criticar a Vó:\(playerCurrentLife)"
-            var percentage = (CGFloat(playerCurrentLife) / CGFloat(Player.shared.maxLife!)) * 100
+            var percentage = (CGFloat(playerCurrentLife) / CGFloat(Player.shared.maxAgree!)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             playerLifeBar?.run(updateBar)
         }
-        if let playerCurrentOther = Player.shared.currentEmpathy{
+        if let playerCurrentOther = Player.shared.currentAvoid{
             playerOther.text = "Ignorar a Vó: \(playerCurrentOther)"
-            var percentage = (CGFloat(playerCurrentOther) / CGFloat(Player.shared.maxEmpathy)) * 100
+            var percentage = (CGFloat(playerCurrentOther) / CGFloat(Player.shared.maxAvoid)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             playerOtherBar?.run(updateBar)
         }
         
-        if let enemyCurrentLife = battleManager.enemy.currentLife {
+        if let enemyCurrentLife = battleManager.enemy.currentAgree {
             enemyLife.text = "Debater com a Vó: \(enemyCurrentLife)"
-            var percentage = (CGFloat(enemyCurrentLife) / CGFloat(battleManager.enemy.maxLife)) * 100
+            var percentage = (CGFloat(enemyCurrentLife) / CGFloat(battleManager.enemy.maxAgree)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyLifeBar?.run(updateBar)
         }
-        if let enemyCurrentOther = battleManager.enemy.currentReason{
+        if let enemyCurrentOther = battleManager.enemy.currentQuestioning{
             enemyOther.text = "Concordar com a Vó: \(enemyCurrentOther)"
-            var percentage = (CGFloat(enemyCurrentOther) / CGFloat(battleManager.enemy.maxReason)) * 100
+            var percentage = (CGFloat(enemyCurrentOther) / CGFloat(battleManager.enemy.maxQuestioning)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             enemyOtherBar?.run(updateBar)
