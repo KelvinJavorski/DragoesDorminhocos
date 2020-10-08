@@ -46,16 +46,16 @@ class GameScene: SKScene {
     var halfWidth  : CGFloat = 150
     
     var playerNode  : SKNode!
-    var playerLife  : SKLabelNode!
-    var playerLifeBar : SKNode!
-    var playerOther : SKLabelNode!
-    var playerOtherBar : SKNode!
+    var agreeValue  : SKLabelNode!
+    var agreeBarNode : SKNode!
+    var avoidValue : SKLabelNode!
+    var avoidBarNode : SKNode!
     
     var enemyNode    : SKNode!
-    var enemyLife    : SKLabelNode!
-    var enemyLifeBar : SKNode!
-    var enemyOther   : SKLabelNode!
-    var enemyOtherBar : SKNode!
+    var questioningValue    : SKLabelNode!
+    var questioningBarNode : SKNode!
+    var criticizeValue   : SKLabelNode!
+    var criticizeBarNode : SKNode!
     
     //Humor Nodes
     var humorPoints: Int = 0
@@ -81,7 +81,7 @@ class GameScene: SKScene {
     
     
     func initScene () { // ALWAYS CALL THIS BEFORE PRESENTING SCENE
-        
+        battleManager.setup()
         //Código a ser implementado na GameSceneNPCChoice//
         for enemy in DataSave.shared.gameCampaign.enemys {
             if enemy.name == "Vó Matilda" {
@@ -129,21 +129,21 @@ class GameScene: SKScene {
         
         playerNode = childNode(withName: "Player")!
         let playerLifeNode = playerNode.childNode(withName: "LifeBar")!
-        playerLife = playerLifeNode.childNode(withName: "Value") as? SKLabelNode
-        playerLifeBar = playerLifeNode.childNode(withName: "Bar") as? SKSpriteNode
+        agreeValue = playerLifeNode.childNode(withName: "Value") as? SKLabelNode
+        agreeBarNode = playerLifeNode.childNode(withName: "Bar") as? SKSpriteNode
         
         let playerOtherNode = playerNode.childNode(withName: "OtherBar")!
-        playerOther = playerOtherNode.childNode(withName: "Value") as? SKLabelNode
-        playerOtherBar = playerOtherNode.childNode(withName: "Bar") as? SKSpriteNode
+        avoidValue = playerOtherNode.childNode(withName: "Value") as? SKLabelNode
+        avoidBarNode = playerOtherNode.childNode(withName: "Bar") as? SKSpriteNode
         
         enemyNode = childNode(withName: "Enemy")!
         let enemyLifeNode = enemyNode.childNode(withName: "LifeBar")!
-        enemyLife = enemyLifeNode.childNode(withName: "Value") as? SKLabelNode
-        enemyLifeBar = enemyLifeNode.childNode(withName: "Bar") as? SKSpriteNode
+        questioningValue = enemyLifeNode.childNode(withName: "Value") as? SKLabelNode
+        questioningBarNode = enemyLifeNode.childNode(withName: "Bar") as? SKSpriteNode
         
         let enemyOtherNode = enemyNode.childNode(withName: "OtherBar")!
-        enemyOther = enemyOtherNode.childNode(withName: "Value") as? SKLabelNode
-        enemyOtherBar = enemyOtherNode.childNode(withName: "Bar") as? SKSpriteNode
+        criticizeValue = enemyOtherNode.childNode(withName: "Value") as? SKLabelNode
+        criticizeBarNode = enemyOtherNode.childNode(withName: "Bar") as? SKSpriteNode
         
         enemyPlayAreaNode = childNode(withName: "EnemyPlayAreaNode")!
         enemyHandNode = childNode(withName: "EnemyHandNode")!
@@ -517,7 +517,8 @@ class GameScene: SKScene {
         // Moves card node to play area
         moveAndRotateCard(card: card, to: pos, to: 0.0) {
             Player.shared.playCard(index: index)
-            card.playCard()
+            card.applyEffects()
+//            card.playCard()
             // Store card played for applying effect later
 //            self.battleManager.storeCard(card: card)
             card.node.position = pos
@@ -628,34 +629,34 @@ class GameScene: SKScene {
         bannedNumber.text = "\(bannedCardsAmount)"
         
         //Animações nao funcionam
-        if let playerCurrentLife = Player.shared.currentAgree {
-            playerLife.text = "Criticar a Vó:\(playerCurrentLife)"
-            var percentage = (CGFloat(playerCurrentLife) / CGFloat(Player.shared.maxAgree!)) * 100
+        if let currentAgree = Player.shared.currentAgree {
+            agreeValue.text = "Criticar a Vó:\(currentAgree)"
+            var percentage = (CGFloat(currentAgree) / CGFloat(Player.shared.maxAgree!)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
-            playerLifeBar?.run(updateBar)
+            agreeBarNode?.run(updateBar)
         }
-        if let playerCurrentOther = Player.shared.currentAvoid{
-            playerOther.text = "Ignorar a Vó: \(playerCurrentOther)"
-            var percentage = (CGFloat(playerCurrentOther) / CGFloat(Player.shared.maxAvoid)) * 100
+        if let currentAvoid = Player.shared.currentAvoid{
+            avoidValue.text = "Ignorar a Vó: \(currentAvoid)"
+            var percentage = (CGFloat(currentAvoid) / CGFloat(Player.shared.maxAvoid)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
-            playerOtherBar?.run(updateBar)
+            avoidBarNode?.run(updateBar)
         }
         
-        if let enemyCurrentLife = battleManager.enemy.currentAgree {
-            enemyLife.text = "Debater com a Vó: \(enemyCurrentLife)"
-            var percentage = (CGFloat(enemyCurrentLife) / CGFloat(battleManager.enemy.maxAgree)) * 100
+        if let currentQuestioning = Player.shared.currentQuestioning {
+            questioningValue.text = "Debater com a Vó: \(currentQuestioning)"
+            var percentage = (CGFloat(currentQuestioning) / CGFloat(Player.shared.maxAgree)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
-            enemyLifeBar?.run(updateBar)
+            questioningBarNode?.run(updateBar)
         }
-        if let enemyCurrentOther = battleManager.enemy.currentQuestioning{
-            enemyOther.text = "Concordar com a Vó: \(enemyCurrentOther)"
-            var percentage = (CGFloat(enemyCurrentOther) / CGFloat(battleManager.enemy.maxQuestioning)) * 100
+        if let currentCriticize = Player.shared.currentCriticize{
+            criticizeValue.text = "Concordar com a Vó: \(currentCriticize)"
+            var percentage = (CGFloat(currentCriticize) / CGFloat(Player.shared.maxQuestioning)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
-            enemyOtherBar?.run(updateBar)
+            criticizeBarNode?.run(updateBar)
         }
         
     }

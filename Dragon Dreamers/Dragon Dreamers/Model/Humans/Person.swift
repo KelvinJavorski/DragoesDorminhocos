@@ -9,24 +9,23 @@
 import Foundation
 
 class Person{
-    internal init(currentLife: Int? = nil, maxLife: Int? = nil, currentEmpathy: Int? = nil, maxEmpathy: Int? = nil, currentReason: Int? = nil, maxReason: Int? = nil, currentUnderstanding: Int? = nil, maxUnderstanding: Int? = nil, actionPoints: Int? = nil, emotion: BattleEmotion? = nil) {
-        self.currentAgree = currentLife
-        self.maxAgree = maxLife
-        self.currentAvoid = currentEmpathy
-        self.maxAvoid = maxEmpathy
-        self.currentQuestioning = currentReason
-        self.maxQuestioning = maxReason
-        self.currentCriticize = currentUnderstanding
-        self.maxCriticize = maxUnderstanding
-        self.actionPoints = actionPoints
+    internal init(currentAgree: Int? = nil, maxAgree: Int? = nil, currentAvoid: Int? = nil, maxAvoid: Int? = nil, currentQuestioning: Int? = nil, maxQuestioning: Int? = nil, currentCriticize: Int? = nil, maxCriticize: Int? = nil, actionPoints: Int? = nil, emotion: BattleEmotion? = nil) {
+        self.currentAgree = currentAgree
+        self.maxAgree = maxAgree
+        self.currentAvoid = currentAvoid
+        self.maxAvoid = maxAvoid
+        self.currentQuestioning = currentQuestioning
+        self.maxQuestioning = maxQuestioning
+        self.currentCriticize = currentCriticize
+        self.maxCriticize = maxCriticize
         self.emotion = emotion
     }
     
-    func loseLife(value: Int){
+    func loseAgree(value: Int){
         self.currentAgree -= value
     }
     
-    func loseEmpathy(value: Int){
+    func loseAvoid(value: Int){
         self.currentAvoid -= value
     }
     
@@ -112,6 +111,7 @@ class Person{
     var discard : Deck = Deck(name: "Discard")
 
     var opponent: Person!
+    
     var currentAgree: Int!
     var maxAgree: Int!
     var minAgree: Int!
@@ -129,9 +129,6 @@ class Person{
     var maxReasoning: Int!
     
     var currentStatus: [BattleStatus] = [BattleStatus]()
-
-    var actionPoints: Int!
-    var maxActionPoints: Int!
     var emotion: BattleEmotion!
     
     

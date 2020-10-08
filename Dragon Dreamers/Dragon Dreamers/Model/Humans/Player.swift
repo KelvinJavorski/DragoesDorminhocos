@@ -16,7 +16,8 @@ class Player: Person {
     init () {
         super.init()
         print(">>> Init Player...")
-        deck.addCards(cardsPool.playerCards())
+        cardsPool.getADeck()
+        deck.addCards(cardsPool.deck.cards)
         print("added cards to deck")
         print("Deck: \(deck.cards.count)")
         self.setOwner()
@@ -31,6 +32,9 @@ class Player: Person {
         
         currentAvoid = 0
         maxAvoid = 50
+        
+        currentQuestioning = 0
+        maxQuestioning = 50
         
         currentCriticize = 0
         maxCriticize = 50

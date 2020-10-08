@@ -29,7 +29,8 @@ class Enemy: Person {
     
     func setInitialDeck(){
 //        cardsPool.cards.shuffle()
-        self.deck.addCards(cardsPool.enemyCards())
+        cardsPool.getADeck()
+        self.deck.addCards(cardsPool.deck.cards)
     }
     
     func getName () -> String{
@@ -56,8 +57,7 @@ class Enemy: Person {
     func playTurn(){
         setHand()
         let card = playOneCard()
-        card.playCard()
-//        reaction()
+        card.applyEffects()
     }
     
     func playOneCard() -> Card{
@@ -87,10 +87,5 @@ class Enemy: Person {
         maxQuestioning = 50
         
         emotion = self.discussion.humor
-        
         }
-    
-    //func setEmotion ()
-    
-    
 }
