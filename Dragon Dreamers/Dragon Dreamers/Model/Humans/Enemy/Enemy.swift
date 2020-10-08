@@ -79,12 +79,12 @@ class Enemy: Person {
     }
     
     func setInitialAtributes(){
-        currentLife = 0
-        maxLife = 50
-        minLife = 0
+        currentAgree = 0
+        maxAgree = 50
+        minAgree = 0
         
-        currentReason = 0
-        maxReason = 50
+        currentQuestioning = 0
+        maxQuestioning = 50
         
         emotion = self.discussion.humor
         

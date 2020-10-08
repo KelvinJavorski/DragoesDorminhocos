@@ -10,29 +10,29 @@ import Foundation
 
 class Person{
     internal init(currentLife: Int? = nil, maxLife: Int? = nil, currentEmpathy: Int? = nil, maxEmpathy: Int? = nil, currentReason: Int? = nil, maxReason: Int? = nil, currentUnderstanding: Int? = nil, maxUnderstanding: Int? = nil, actionPoints: Int? = nil, emotion: BattleEmotion? = nil) {
-        self.currentLife = currentLife
-        self.maxLife = maxLife
-        self.currentEmpathy = currentEmpathy
-        self.maxEmpathy = maxEmpathy
-        self.currentReason = currentReason
-        self.maxReason = maxReason
-        self.currentUnderstanding = currentUnderstanding
-        self.maxUnderstanding = maxUnderstanding
+        self.currentAgree = currentLife
+        self.maxAgree = maxLife
+        self.currentAvoid = currentEmpathy
+        self.maxAvoid = maxEmpathy
+        self.currentQuestioning = currentReason
+        self.maxQuestioning = maxReason
+        self.currentCriticize = currentUnderstanding
+        self.maxCriticize = maxUnderstanding
         self.actionPoints = actionPoints
         self.emotion = emotion
     }
     
     func loseLife(value: Int){
-        self.currentLife -= value
+        self.currentAgree -= value
     }
     
     func loseEmpathy(value: Int){
-        self.currentEmpathy -= value
+        self.currentAvoid -= value
     }
     
     func resetAllStats(){
-        self.currentLife = self.maxLife
-        self.currentEmpathy = self.maxEmpathy
+        self.currentAgree = self.maxAgree
+        self.currentAvoid = self.maxAvoid
     }
     
     func changeDeckOfCard (_ from: Deck, _ to: Deck, _ index: Int) {
@@ -81,20 +81,24 @@ class Person{
     }
     
     func isAtributeFinished(atribute: EnergyType) -> Bool{
-        if atribute == .empathy{
-            if self.currentEmpathy >= self.maxEmpathy{
+        if atribute == .avoid{
+            if self.currentAvoid >= self.maxAvoid{
                 return true
             }
-        }else if atribute == .life{
-            if self.currentLife <= self.minLife{
+        }else if atribute == .agree{
+            if self.currentAgree <= self.minAgree{
                 return true
             }
-        }else if atribute == .reason{
-            if self.currentReason >= self.maxReason{
+        }else if atribute == .questioning{
+            if self.currentQuestioning >= self.maxQuestioning{
                 return true
             }
         }
         return false
+    }
+    
+    func createPermanentEffect(status: BattleStatus){
+        currentStatus.append(status)
     }
     
     func setOpponent(person: Person){
@@ -108,19 +112,24 @@ class Person{
     var discard : Deck = Deck(name: "Discard")
 
     var opponent: Person!
-    var currentLife: Int!
-    var maxLife: Int!
-    var minLife: Int!
+    var currentAgree: Int!
+    var maxAgree: Int!
+    var minAgree: Int!
     
-    var currentEmpathy: Int!
-    var maxEmpathy: Int!
+    var currentAvoid: Int!
+    var maxAvoid: Int!
     
-    var currentReason: Int!
-    var maxReason: Int!
+    var currentQuestioning: Int!
+    var maxQuestioning: Int!
     
-    var currentUnderstanding: Int!
-    var maxUnderstanding: Int!
+    var currentCriticize: Int!
+    var maxCriticize: Int!
     
+    var currentReasoning: Int!
+    var maxReasoning: Int!
+    
+    var currentStatus: [BattleStatus] = [BattleStatus]()
+
     var actionPoints: Int!
     var maxActionPoints: Int!
     var emotion: BattleEmotion!
