@@ -18,42 +18,26 @@ class Card : EmptyCard{
     var selfDamageType: EnergyType!
     var heal : Int!
     var healType: EnergyType!
-
+    var effectsFunction: [EffectProtocol]! = []
     
     init(){}
     
-    //Send a card from Collection to Deck using ID
-    init (name: String, effect: EffectType, cost: Int, cardType: CardType, cardIdEffect: Int, humanType: HumanType, humorInfluence: Int) {
-        super.init(name: name, effect: effect, cost: cost, type: cardType, humanType: humanType, humorInfluence: humorInfluence)
-        self.idEffect = cardIdEffect
+    //Default card
+    init(name: String, effects: [EffectType], cost: Int, cardType: CardType, humanType: TargetType, humorInfluence: Int){
+        super.init(name: name, effects: effects, cost: cost, type: cardType, humanType: humanType, humorInfluence: humorInfluence)
     }
     
-    //Damage Card init
-    init (name: String, effect: EffectType, cost: Int, cardType: CardType, damage: Int, damageType: EnergyType, humanType: HumanType, humorInfluence: Int) {
-        super.init(name: name, effect: effect, cost: cost, type: cardType, humanType: humanType, humorInfluence: humorInfluence)
-        self.damage  = damage
-        self.damageType = damageType
+    //Create a List with every FUNCTION EFFECT this card will apply.
+    func setupEffectsFunction(){
+        for effect in self.effects{
+            effectsFunction.append(Effect.shared.allEffects[effect.rawValue])
+        }
     }
     
-    //Deal damage by using own resource/energy
-    init (name: String, effect: EffectType, cost: Int, cardType: CardType, damage: Int, damageType: EnergyType, selfDamage: Int, selfDamageType: EnergyType, humanType: HumanType, humorInfluence: Int) {
-        super.init(name: name,  effect: effect, cost: cost, type: cardType, humanType: humanType, humorInfluence: humorInfluence)
-        self.damage = damage
-        self.damageType = damageType
-        self.selfDamage = selfDamage
-        self.selfDamageType = selfDamageType
-    }
-    
-    //Heal your own resource/energy by some amount
-    init (name: String, effect: EffectType, cost: Int, cardType: CardType, heal: Int, healType: EnergyType, humanType: HumanType, humorInfluence: Int) {
-        super.init(name: name,  effect: effect, cost: cost, type: cardType, humanType: humanType, humorInfluence: humorInfluence)
-        self.heal = heal
-        self.healType = healType
-    }
-
-    func playCard () {
-        // Loops through actions and applies their effects
-        CardEffect.runEffects(card: self, person: owner)
+    func applyEffects(){
+        for effect in effectsFunction{
+            effect.applyEffects(card: self)
+        }
     }
     
     // Return the type of mana the card uses

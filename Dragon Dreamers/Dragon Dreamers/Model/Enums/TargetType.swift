@@ -7,7 +7,7 @@
 //
 
 import Foundation
-enum HumanType{
+enum TargetType{
     case player
     case enemy
     case both

@@ -9,8 +9,9 @@
 import Foundation
 
 enum EnergyType{
-    case life
-    case empathy
-    case reason
-    case understanding
+    case agree
+    case avoid
+    case questioning
+    case criticize
+    case reasoning
 }

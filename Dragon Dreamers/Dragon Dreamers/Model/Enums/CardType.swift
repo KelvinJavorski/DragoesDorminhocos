@@ -13,4 +13,5 @@ enum CardType {
     case yellow
     case red
     case blue
+    case empty
 }

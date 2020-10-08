@@ -18,6 +18,9 @@ class BattleManager{
     var battleState: BattleState = .playerTurn
     var cardsPlayed: [Card] = []
     
+    func setup(){
+        Effect.shared.setupEffects()
+    }
     func setEnemy(enemy: Enemy) {
         self.enemy = enemy
     }
@@ -31,16 +34,16 @@ class BattleManager{
     }
     
     func endBattle(){
-        if player.isAtributeFinished(atribute: .life){
+        if player.isAtributeFinished(atribute: .agree){
             sendToOutcome()
         }
-        else if player.isAtributeFinished(atribute: .empathy){
+        else if player.isAtributeFinished(atribute: .avoid){
             sendToOutcome()
         }
-        else if enemy.isAtributeFinished(atribute: .life){
+        else if enemy.isAtributeFinished(atribute: .agree){
             sendToOutcome()
         }
-        else if enemy.isAtributeFinished(atribute: .reason){
+        else if enemy.isAtributeFinished(atribute: .questioning){
             sendToOutcome()
         }
     }
@@ -66,10 +69,10 @@ class BattleManager{
     }
     
     func showCurrentInformations(){
-        if let playerLife = player.currentLife{
+        if let playerLife = player.currentAgree{
             print("Player life \(playerLife)")
         }
-        if let enemyLife = enemy.currentLife{
+        if let enemyLife = enemy.currentAgree{
             print("Enemy life \(enemyLife)")
         }
     }
