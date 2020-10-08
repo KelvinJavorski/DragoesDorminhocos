@@ -225,7 +225,9 @@
 		B65B6966252F93DC009CB85E /* Effects */ = {
 			isa = PBXGroup;
 			children = (
+				B65B6959252E588C009CB85E /* Effect.swift */,
 				B65B6967252F9403009CB85E /* ValueChangeEffects.swift */,
+				B65B6963252F863D009CB85E /* EffectProtocol.swift */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -319,8 +321,6 @@
 				6F71B26A24DB2A5E009EB5CB /* Card.swift */,
 				6F71B26C24DB2A6F009EB5CB /* Deck.swift */,
 				B6F80011250A6A9B00152227 /* EmptyCard.swift */,
-				B65B6959252E588C009CB85E /* Effect.swift */,
-				B65B6963252F863D009CB85E /* EffectProtocol.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";

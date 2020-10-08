@@ -18,6 +18,9 @@ class BattleManager{
     var battleState: BattleState = .playerTurn
     var cardsPlayed: [Card] = []
     
+    func setup(){
+        Effect.shared.setupEffects()
+    }
     func setEnemy(enemy: Enemy) {
         self.enemy = enemy
     }
