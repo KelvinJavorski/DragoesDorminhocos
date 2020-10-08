@@ -10,11 +10,11 @@ import Foundation
 import SpriteKit
 
 class EmptyCard{
-    init(name: String? = nil, effect: EffectType? = nil, cost: Int = 0, type: CardType? = nil, humanType: HumanType? = nil, humorInfluence: Int = 0) {
+    init(name: String? = nil, effects: [EffectType]? = nil, cost: Int = 0, type: CardType? = nil, humanType: TargetType? = nil, humorInfluence: Int = 0) {
         self.name = name
         self.id = EmptyCard.nextID
         EmptyCard.nextID += 1
-        self.effect = effect
+        self.effects = effects
         self.cost = cost
         self.type = type
         self.setRandomEmotion()
@@ -27,13 +27,15 @@ class EmptyCard{
     var owner: Person!
     var name: String!
     var id : Int = 0
-    var effect : EffectType!
+    var effects : [EffectType]!
     var cost : Int = 0
     var node : SKNode!
     var type : CardType!
-    var humanType: HumanType!
+    var humanType: TargetType!
     var emotion: BattleEmotion!
     var humorInfluence: Int!
+    
+    var amount: Int!
     
     func setRandomEmotion(){
 //        self.emotion = BattleEmotion.random()
