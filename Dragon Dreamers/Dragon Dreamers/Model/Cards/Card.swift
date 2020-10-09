@@ -29,9 +29,11 @@ class Card : EmptyCard{
     
     //Create a List with every FUNCTION EFFECT this card will apply.
     func setupEffectsFunction(){
-        for effect in self.effects{
-            effectsFunction.append(Effect.shared.allEffects[effect.rawValue])
-        }
+        let effects = Effect.shared.getEffectByIdsEffect(enumEffect: self.effectsEnum)
+        effectsFunction.append(contentsOf: effects)
+//        for effect in self.effects{
+//            effectsFunction.append(Effect.shared.allEffects[effect.rawValue])
+//        }
     }
     
     func applyEffects(){

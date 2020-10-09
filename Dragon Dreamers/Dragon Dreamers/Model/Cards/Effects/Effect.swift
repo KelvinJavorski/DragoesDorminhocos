@@ -13,6 +13,14 @@ class Effect{
     static let shared = Effect()
     var allEffects: [EffectProtocol] = []
     
+    func getEffectByIdsEffect(enumEffect : [EffectType]) -> [EffectProtocol]{
+        var effects : [EffectProtocol] = []
+        for i in 0..<enumEffect.count{
+            effects.append(allEffects[(enumEffect[i]).rawValue])
+        }
+        return effects
+    }
+    
     func setupEffects(){
         let agreeIncreaseEffect = AgreeIncrease()
         allEffects.append(agreeIncreaseEffect)
