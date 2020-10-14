@@ -7,3 +7,39 @@
 //
 
 import Foundation
+
+class DrawCard : EffectProtocol{
+    func applyEffects(card: Card) {
+        card.owner.drawCards(amount: card.amount)
+    }
+}
+
+class DiscardCard : EffectProtocol{
+    func applyEffects(card: Card) {
+        card.owner.hand.removeCard(id: card.cardTargetId)
+    }
+}
+
+class BanCard : EffectProtocol{
+    func applyEffects(card: Card) {
+        let cardToBan = card.owner.hand.getCard(card.cardTargetId)
+        card.owner.banished.addCard(cardToBan)
+        card.owner.hand.removeCard(Card: cardToBan)
+    }
+}
+
+class AddCardToDiscard : EffectProtocol{
+    func applyEffects(card: Card) {
+        let copy = card
+        card.owner.discard.addCard(copy)
+    }
+}
+
+class AddLastPlayedCardToDeck : EffectProtocol{
+    func applyEffects(card: Card) {
+        let lastCard = card.owner.discard.cards.last
+        card.owner.deck.cards.insert(lastCard!, at: 0)
+    }
+}
+
+class

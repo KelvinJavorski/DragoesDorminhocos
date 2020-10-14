@@ -7,3 +7,39 @@
 //
 
 import Foundation
+
+class PlayBlueCardTwice: EffectProtocol{
+    func applyEffects(card: Card) {
+        card.owner.currentStatus.append(.blue)
+    }
+}
+
+class PlayGreenCardTwice: EffectProtocol{
+    func applyEffects(card: Card) {
+        card.owner.currentStatus.append(.green)
+    }
+}
+
+class PlayRedCardTwice: EffectProtocol{
+    func applyEffects(card: Card) {
+        card.owner.currentStatus.append(.red)
+    }
+}
+
+class PlayYellowCardTwice: EffectProtocol{
+    func applyEffects(card: Card) {
+        card.owner.currentStatus.append(.yellow)
+    }
+}
+
+class AddReasoningStatus: EffectProtocol{
+    func applyEffects(card: Card) {
+        card.owner.currentStatus.append(.reasoning)
+    }
+}
+
+class AddVulnerableStatus: EffectProtocol{
+    func applyEffects(card: Card) {
+        card.owner.currentStatus.append(.vulnerable)
+    }
+}
