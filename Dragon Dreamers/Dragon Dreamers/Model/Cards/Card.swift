@@ -10,14 +10,7 @@ import Foundation
 import SpriteKit
 
 
-class Card : EmptyCard{
-    var damage : Int!
-    var damageType: EnergyType!
-    var idEffect: Int!
-    var selfDamage: Int!
-    var selfDamageType: EnergyType!
-    var heal : Int!
-    var healType: EnergyType!
+class Card : EmptyCard, NSCopying{
     var effectsFunction: [EffectProtocol]! = []
     
     init(){}
@@ -29,15 +22,19 @@ class Card : EmptyCard{
     
     //Create a List with every FUNCTION EFFECT this card will apply.
     func setupEffectsFunction(){
-        for effect in self.effects{
-            effectsFunction.append(Effect.shared.allEffects[effect.rawValue])
-        }
+        let effects = Effect.shared.getEffectByIdsEffect(enumEffect: self.effectsEnum)
+        effectsFunction.append(contentsOf: effects)
     }
     
     func applyEffects(){
         for effect in effectsFunction{
             effect.applyEffects(card: self)
         }
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let card = Card(name: name, effects: effectsEnum, cost: cost, cardType: type, humanType: humanType, humorInfluence: humorInfluence)
+        return card
     }
     
     // Return the type of mana the card uses

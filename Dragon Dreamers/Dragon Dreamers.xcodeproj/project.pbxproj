@@ -48,11 +48,15 @@
 		B65B695A252E588C009CB85E /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B6959252E588C009CB85E /* Effect.swift */; };
 		B65B6964252F863D009CB85E /* EffectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B6963252F863D009CB85E /* EffectProtocol.swift */; };
 		B65B6968252F9403009CB85E /* ValueChangeEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B6967252F9403009CB85E /* ValueChangeEffects.swift */; };
+		B65B69722530E4EF009CB85E /* CardModifyEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B69712530E4EF009CB85E /* CardModifyEffects.swift */; };
+		B65B69752530E9BD009CB85E /* LongTermEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B69742530E9BD009CB85E /* LongTermEffects.swift */; };
+		B65B69792530EC21009CB85E /* StatusAdditionEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B69782530EC21009CB85E /* StatusAdditionEffects.swift */; };
 		B69CC5A424F04254003663D0 /* EffectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CC5A324F04254003663D0 /* EffectType.swift */; };
 		B69CC5A624F04F96003663D0 /* CardsPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CC5A524F04F96003663D0 /* CardsPool.swift */; };
 		B69CC5A824F30027003663D0 /* EnergyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CC5A724F30027003663D0 /* EnergyType.swift */; };
 		B6CE729A251287AA00AF2553 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CE7299251287AA00AF2553 /* TargetType.swift */; };
 		B6CE729C25129DC900AF2553 /* OutcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CE729B25129DC900AF2553 /* OutcomeViewController.swift */; };
+		B6E647E2253672B400D23C41 /* BattleTurnStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E647E1253672B400D23C41 /* BattleTurnStatus.swift */; };
 		B6EF3A2024D9CCCE00FD840E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF3A1F24D9CCCE00FD840E /* AppDelegate.swift */; };
 		B6EF3A2224D9CCCE00FD840E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B6EF3A2124D9CCCE00FD840E /* GameScene.sks */; };
 		B6EF3A2424D9CCCE00FD840E /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = B6EF3A2324D9CCCE00FD840E /* Actions.sks */; };
@@ -111,11 +115,15 @@
 		B65B6959252E588C009CB85E /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		B65B6963252F863D009CB85E /* EffectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectProtocol.swift; sourceTree = "<group>"; };
 		B65B6967252F9403009CB85E /* ValueChangeEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueChangeEffects.swift; sourceTree = "<group>"; };
+		B65B69712530E4EF009CB85E /* CardModifyEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifyEffects.swift; sourceTree = "<group>"; };
+		B65B69742530E9BD009CB85E /* LongTermEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTermEffects.swift; sourceTree = "<group>"; };
+		B65B69782530EC21009CB85E /* StatusAdditionEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusAdditionEffects.swift; sourceTree = "<group>"; };
 		B69CC5A324F04254003663D0 /* EffectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectType.swift; sourceTree = "<group>"; };
 		B69CC5A524F04F96003663D0 /* CardsPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsPool.swift; sourceTree = "<group>"; };
 		B69CC5A724F30027003663D0 /* EnergyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyType.swift; sourceTree = "<group>"; };
 		B6CE7299251287AA00AF2553 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		B6CE729B25129DC900AF2553 /* OutcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomeViewController.swift; sourceTree = "<group>"; };
+		B6E647E1253672B400D23C41 /* BattleTurnStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleTurnStatus.swift; sourceTree = "<group>"; };
 		B6EF3A1C24D9CCCE00FD840E /* Dragon Dreamers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dragon Dreamers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6EF3A1F24D9CCCE00FD840E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6EF3A2124D9CCCE00FD840E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -210,6 +218,7 @@
 				B69CC5A724F30027003663D0 /* EnergyType.swift */,
 				B6CE7299251287AA00AF2553 /* TargetType.swift */,
 				B65B6955252E4EA8009CB85E /* BattleStatus.swift */,
+				B6E647E1253672B400D23C41 /* BattleTurnStatus.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -226,8 +235,11 @@
 			isa = PBXGroup;
 			children = (
 				B65B6959252E588C009CB85E /* Effect.swift */,
+				B65B69712530E4EF009CB85E /* CardModifyEffects.swift */,
 				B65B6967252F9403009CB85E /* ValueChangeEffects.swift */,
 				B65B6963252F863D009CB85E /* EffectProtocol.swift */,
+				B65B69742530E9BD009CB85E /* LongTermEffects.swift */,
+				B65B69782530EC21009CB85E /* StatusAdditionEffects.swift */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -418,6 +430,7 @@
 				649A2214250ABA7E00F6A7CE /* GameSceneDuel.swift in Sources */,
 				649A21F6250AB5D600F6A7CE /* BasicConfiguration.swift in Sources */,
 				649A221C250ABB1F00F6A7CE /* GameSceneCardChoice.swift in Sources */,
+				B65B69752530E9BD009CB85E /* LongTermEffects.swift in Sources */,
 				B6CE729C25129DC900AF2553 /* OutcomeViewController.swift in Sources */,
 				B6EF3A3F24DB396500FD840E /* BattleManager.swift in Sources */,
 				B65B6964252F863D009CB85E /* EffectProtocol.swift in Sources */,
@@ -428,6 +441,8 @@
 				641BFB6D24EDA64300829F6E /* ManaManager.swift in Sources */,
 				641BFB6B24ED9D3100829F6E /* Mana.swift in Sources */,
 				B6CE729A251287AA00AF2553 /* TargetType.swift in Sources */,
+				B65B69722530E4EF009CB85E /* CardModifyEffects.swift in Sources */,
+				B6E647E2253672B400D23C41 /* BattleTurnStatus.swift in Sources */,
 				B6EF3A2824D9CCCE00FD840E /* GameViewController.swift in Sources */,
 				649A2218250ABACC00F6A7CE /* GameSceneEnd.swift in Sources */,
 				649A2212250ABA5000F6A7CE /* GameSceneInteraction.swift in Sources */,
@@ -444,6 +459,7 @@
 				B65B695A252E588C009CB85E /* Effect.swift in Sources */,
 				6F44E7ED24DB34340034CDE1 /* Player.swift in Sources */,
 				649A2216250ABAA700F6A7CE /* GameSceneDeckChoice.swift in Sources */,
+				B65B69792530EC21009CB85E /* StatusAdditionEffects.swift in Sources */,
 				6423EC122513E12000E202D1 /* DataTemp.swift in Sources */,
 				B6EF3A3D24DB390B00FD840E /* BattleState.swift in Sources */,
 				B6F80012250A6A9B00152227 /* EmptyCard.swift in Sources */,

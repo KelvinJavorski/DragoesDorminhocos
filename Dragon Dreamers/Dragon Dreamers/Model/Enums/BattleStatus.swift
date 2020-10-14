@@ -9,10 +9,10 @@
 import Foundation
 
 enum BattleStatus{
-    case raciocinio
-    case vulneravel
-    case sol
-    case areia
-    case oceano
-    case brisa
+    case blue
+    case green
+    case red
+    case yellow
+    case vulnerable
+    case doubleCard    
 }

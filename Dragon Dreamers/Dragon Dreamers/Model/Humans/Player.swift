@@ -10,7 +10,6 @@ import Foundation
 
 class Player: Person {
     static let shared = Player()
-    var banished : Deck = Deck(name: "Banished")
     var manaManager: ManaManager = ManaManager()
     
     init () {

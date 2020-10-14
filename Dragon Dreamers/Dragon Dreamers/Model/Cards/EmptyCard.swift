@@ -14,7 +14,7 @@ class EmptyCard{
         self.name = name
         self.id = EmptyCard.nextID
         EmptyCard.nextID += 1
-        self.effects = effects
+        self.effectsEnum = effects
         self.cost = cost
         self.type = type
         self.setRandomEmotion()
@@ -27,7 +27,7 @@ class EmptyCard{
     var owner: Person!
     var name: String!
     var id : Int = 0
-    var effects : [EffectType]!
+    var effectsEnum : [EffectType]!
     var cost : Int = 0
     var node : SKNode!
     var type : CardType!
@@ -36,6 +36,7 @@ class EmptyCard{
     var humorInfluence: Int!
     
     var amount: Int!
+    var cardTargetId: Int!
     
     func setRandomEmotion(){
 //        self.emotion = BattleEmotion.random()

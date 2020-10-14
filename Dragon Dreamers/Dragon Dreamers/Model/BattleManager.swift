@@ -27,7 +27,6 @@ class BattleManager{
     
     func startBattle(){
         player = Player.shared
-        //enemy = Enemy.shared
         player.setOpponent(person: enemy.self)
         enemy.setOpponent(person: player.self)
         enemy.setHand()
@@ -47,15 +46,23 @@ class BattleManager{
             sendToOutcome()
         }
     }
-    
     func sendToOutcome(){
-        print("Acabou a batalha")
-//        scene.navigation.performSegue(withIdentifier: "toOutcome", sender: self)
-    }
+         print("Acabou a batalha")
+ //        scene.navigation.performSegue(withIdentifier: "toOutcome", sender: self)
+     }
+ 
     
     func initTurn(){
         enemy.setHand()
+        applyTurnEffects()
     }
+    
+    func applyTurnEffects(){
+        for status in player.currentTurnStatus{
+            
+        }
+    }
+    
     
     func endTurn(){
         enemyTurn()

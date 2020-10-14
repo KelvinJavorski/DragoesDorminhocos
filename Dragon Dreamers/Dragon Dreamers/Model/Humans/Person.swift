@@ -69,6 +69,10 @@ class Person{
         }
     }
     
+    func discarCardById(cardId:Int){
+        self.hand.removeCard(atIndex: cardId)
+    }
+    
     func playCard (index : Int) {
         changeDeckOfCard(hand, ongoing, index)
     }
@@ -109,6 +113,7 @@ class Person{
     var hand     : Deck = Deck(name: "Hand")
     var ongoing  : Deck = Deck(name: "Ongoing")
     var discard : Deck = Deck(name: "Discard")
+    var banished : Deck = Deck(name: "Banished")
 
     var opponent: Person!
     
@@ -128,7 +133,9 @@ class Person{
     var currentReasoning: Int!
     var maxReasoning: Int!
     
-    var currentStatus: [BattleStatus] = [BattleStatus]()
+    var currentStatus: [BattleStatus]!
+    var currentTurnStatus: [BattleTurnStatus]!
+    
     var emotion: BattleEmotion!
     
     

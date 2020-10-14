@@ -50,66 +50,66 @@ class CardsPool{
     
     func getAgreeIncreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
-        newCard.effects.append(contentsOf: [.addAgree])
+        newCard.effectsEnum.append(contentsOf: [.addAgree])
         newCard.amount = amount
         return newCard
     }
     
     func getAgreeDecreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
-        newCard.effects.append(contentsOf: [.removeAgree])
+        newCard.effectsEnum.append(contentsOf: [.removeAgree])
         newCard.amount = amount
         return newCard
     }
     
     func getAvoidIncreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
-        newCard.effects.append(contentsOf: [.addAvoid])
+        newCard.effectsEnum.append(contentsOf: [.addAvoid])
         newCard.amount = amount
         return newCard
     }
     
     func getAvoidDecreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
-        newCard.effects.append(contentsOf: [.removeAvoid])
+        newCard.effectsEnum.append(contentsOf: [.removeAvoid])
         newCard.amount = amount
         return newCard
     }
     func getQuestioningIncreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
-        newCard.effects.append(contentsOf: [.addQuestioning])
+        newCard.effectsEnum.append(contentsOf: [.addQuestioning])
         newCard.amount = amount
         return newCard
     }
     func getQuestioningDecreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
-        newCard.effects.append(contentsOf: [.removeQuestioning])
+        newCard.effectsEnum.append(contentsOf: [.removeQuestioning])
         newCard.amount = amount
         return newCard
     }
     func getCriticizeIncreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
-        newCard.effects.append(contentsOf: [.addCriticize])
+        newCard.effectsEnum.append(contentsOf: [.addCriticize])
         newCard.amount = amount
         return newCard
     }
     
     func getCriticizeDecreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
-        newCard.effects.append(contentsOf: [.removeCriticize])
+        newCard.effectsEnum.append(contentsOf: [.removeCriticize])
         newCard.amount = amount
         return newCard
     }
     
     func getReasoningIncreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
-        newCard.effects.append(contentsOf: [.addReasoning])
+        newCard.effectsEnum.append(contentsOf: [.addReasoning])
         newCard.amount = amount
         return newCard
     }
     func getReasoningDecreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
-        newCard.effects.append(contentsOf: [.removeReasoning])
+        newCard.effectsEnum.append(contentsOf: [.removeReasoning])
         newCard.amount = amount
         return newCard
     }
