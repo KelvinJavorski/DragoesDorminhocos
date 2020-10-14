@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+enum BattleTurnStatus{
+    case reasoning
+}
