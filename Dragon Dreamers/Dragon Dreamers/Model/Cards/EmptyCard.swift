@@ -36,6 +36,7 @@ class EmptyCard{
     var humorInfluence: Int!
     
     var amount: Int!
+    var cardTargetId: Int!
     
     func setRandomEmotion(){
 //        self.emotion = BattleEmotion.random()
