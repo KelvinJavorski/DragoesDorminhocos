@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+class ApplyVulnerability: EffectProtocol{
+    func applyEffects(card: Card) {
+        card.multiplier = 1.5
+    }
+}

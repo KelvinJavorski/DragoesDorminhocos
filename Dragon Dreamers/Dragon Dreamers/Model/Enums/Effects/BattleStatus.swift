@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum BattleStatus{
+enum BattleStatus : Int, CaseIterable{
     case blue
     case green
     case red
