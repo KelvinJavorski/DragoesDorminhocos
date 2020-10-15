@@ -24,8 +24,11 @@ class CardsPool{
         let criticizeRemove = getCriticizeDecreaseCard(amount: 5)
         let reasoningAdd = getReasoningIncreaseCard(amount: 5)
         let reasoningRemove = getReasoningDecreaseCard(amount: 5)
+        let reasoningStatus = getReasoningStatusCard(amount: 4)
+        let vulnerableStatus = getVulnerableStatusCard()
         
-        allCards.append(contentsOf: [agreeAdd, agreeRemove, avoidAdd, avoidRemove, questioningAdd, questioningRemove, criticizeAdd, criticizeRemove, reasoningAdd, reasoningRemove])
+//        allCards.append(contentsOf: [agreeAdd, agreeRemove, avoidAdd, avoidRemove, questioningAdd, questioningRemove, criticizeAdd, criticizeRemove, reasoningAdd, reasoningRemove, reasoningStatus, vulnerableStatus])
+        allCards.append(contentsOf: [criticizeRemove, reasoningAdd, reasoningRemove, reasoningStatus, vulnerableStatus])
     }
     
     func getADeck(){
@@ -50,6 +53,7 @@ class CardsPool{
     
     func getAgreeIncreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
+        newCard.name = "Agree+"
         newCard.effectsEnum.append(contentsOf: [.addAgree])
         newCard.amount = amount
         return newCard
@@ -57,6 +61,7 @@ class CardsPool{
     
     func getAgreeDecreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
+        newCard.name = "Agree-"
         newCard.effectsEnum.append(contentsOf: [.removeAgree])
         newCard.amount = amount
         return newCard
@@ -64,6 +69,7 @@ class CardsPool{
     
     func getAvoidIncreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
+        newCard.name = "Avoid+"
         newCard.effectsEnum.append(contentsOf: [.addAvoid])
         newCard.amount = amount
         return newCard
@@ -71,24 +77,28 @@ class CardsPool{
     
     func getAvoidDecreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
+        newCard.name = "Avoid-"
         newCard.effectsEnum.append(contentsOf: [.removeAvoid])
         newCard.amount = amount
         return newCard
     }
     func getQuestioningIncreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
+        newCard.name = "Questioning+"
         newCard.effectsEnum.append(contentsOf: [.addQuestioning])
         newCard.amount = amount
         return newCard
     }
     func getQuestioningDecreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
+        newCard.name = "Questioning-"
         newCard.effectsEnum.append(contentsOf: [.removeQuestioning])
         newCard.amount = amount
         return newCard
     }
     func getCriticizeIncreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
+        newCard.name = "Criticize+"
         newCard.effectsEnum.append(contentsOf: [.addCriticize])
         newCard.amount = amount
         return newCard
@@ -96,6 +106,7 @@ class CardsPool{
     
     func getCriticizeDecreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
+        newCard.name = "Criticize-"
         newCard.effectsEnum.append(contentsOf: [.removeCriticize])
         newCard.amount = amount
         return newCard
@@ -103,91 +114,29 @@ class CardsPool{
     
     func getReasoningIncreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
+        newCard.name = "Reasoning+"
         newCard.effectsEnum.append(contentsOf: [.addReasoning])
         newCard.amount = amount
         return newCard
     }
     func getReasoningDecreaseCard(amount: Int) -> Card{
         let newCard = getNoEffectCard()
+        newCard.name = "Reasoning-"
         newCard.effectsEnum.append(contentsOf: [.removeReasoning])
         newCard.amount = amount
         return newCard
     }
-    
-    
-    
-//    var cards = [
-//        Card(name: "Card Damage", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage2", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage3", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage4", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//
-//        Card(name: "Card Damage5", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage6", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage7", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage8", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//
-//        Card(name: "Card Damage9", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage10", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage11", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage12", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage13", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage14", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage15", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//
-//        Card(name: "Card Damage16", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage17", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage18", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-//        Card(name: "Card Damage19", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-////
-//        Card(name: "Card Damage20", effect: .dealDamage, cost: 1, cardType: .red, damage: 4, damageType: .life, humanType: .both),
-
-        
-        //Deal damage to life and take reason (Enemy Card)
-//        Card(name: "Card SelfDamage1", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .avoid, selfDamage: -5, selfDamageType: .questioning, humanType: .enemy, humorInfluence: -6),
-//        Card(name: "Card SelfDamage2", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .avoid, selfDamage: -5, selfDamageType: .questioning, humanType: .enemy, humorInfluence: -8),
-//        Card(name: "Card SelfDamage3", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .agree, selfDamage: -5, selfDamageType: .questioning, humanType: .enemy, humorInfluence: -10),
-//        Card(name: "Card SelfDamage4", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .agree, selfDamage: -5, selfDamageType: .questioning, humanType: .enemy, humorInfluence: -12),
-//        Card(name: "Card SelfDamage5", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .agree, selfDamage: -5, selfDamageType: .questioning, humanType: .enemy, humorInfluence: -14),
-        
-        
-        //Deal damage to reason and take empathy (Player card)
-//        Card(name: "Card SelfDamage1", effect: .dealAndSufferDamage, cost: 1, cardType: .blue, damage: -5, damageType: .agree, selfDamage: -3, selfDamageType: .avoid, humanType: .player, humorInfluence: 2),
-//        Card(name: "Card SelfDamage2", effect: .dealAndSufferDamage, cost: 1, cardType: .green, damage: -5, damageType: .agree, selfDamage: -3, selfDamageType: .avoid, humanType: .player, humorInfluence: -5),
-//        Card(name: "Card SelfDamage3", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .agree, selfDamage: -3, selfDamageType: .avoid, humanType: .player, humorInfluence: 2),
-//        Card(name: "Card SelfDamage4", effect: .dealAndSufferDamage, cost: 1, cardType: .green, damage: -5, damageType: .questioning, selfDamage: -3, selfDamageType: .avoid, humanType: .player, humorInfluence: -5),
-//        Card(name: "Card SelfDamage5", effect: .dealAndSufferDamage, cost: 1, cardType: .blue, damage: -5, damageType: .questioning, selfDamage: -3, selfDamageType: .avoid, humanType: .player, humorInfluence: 4),
-//        Card(name: "Card SelfDamage6", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .questioning, selfDamage: -3, selfDamageType: .avoid, humanType: .player, humorInfluence: 2),
-//        Card(name: "Card SelfDamage7", effect: .dealAndSufferDamage, cost: 1, cardType: .blue, damage: -5, damageType: .questioning, selfDamage: -3, selfDamageType: .avoid, humanType: .player, humorInfluence: 2),
-//        Card(name: "Card SelfDamage8", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .questioning, selfDamage: -3, selfDamageType: .avoid, humanType: .player, humorInfluence: 2),
-//        Card(name: "Card SelfDamage9", effect: .dealAndSufferDamage, cost: 1, cardType: .green, damage: -5, damageType: .questioning, selfDamage: -3, selfDamageType: .avoid, humanType: .player, humorInfluence: -5),
-//        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .questioning, selfDamage: -3, selfDamageType: .avoid, humanType: .player, humorInfluence: 2),
-//        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),
-//        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),
-//        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),
-//        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),
-//        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),
-//        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player),
-//        Card(name: "Card SelfDamage10", effect: .dealAndSufferDamage, cost: 1, cardType: .red, damage: -5, damageType: .reason, selfDamage: -3, selfDamageType: .empathy, humanType: .player)
-//    ]
-    
-//    func enemyCards() -> [Card]{
-//        var enemyCards : [Card] = [Card]()
-//        for card in cards{
-//            if card.humanType != TargetType.player{
-//                enemyCards.append(card)
-//            }
-//        }
-//        return enemyCards
-//    }
-//
-//    func playerCards() -> [Card]{
-//        var playerCards : [Card] = [Card]()
-//        for card in cards{
-//            if card.humanType != TargetType.enemy{
-//                playerCards.append(card)
-//            }
-//        }
-//        return playerCards
-//    }
+    func getReasoningStatusCard(amount: Int) -> Card{
+        let newCard = getNoEffectCard()
+        newCard.name = "ReasStatus"
+        newCard.effectsEnum.append(contentsOf: [.setReasoningStatus])
+        newCard.amount = amount
+        return newCard
+    }
+    func getVulnerableStatusCard() -> Card{
+        let newCard = getNoEffectCard()
+        newCard.name = "VulnStatus"
+        newCard.effectsEnum.append(contentsOf: [.setVulnerableStatus])
+        return newCard
+    }
 }
