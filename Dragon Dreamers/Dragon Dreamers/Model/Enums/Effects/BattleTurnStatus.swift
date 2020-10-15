@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum BattleTurnStatus{
-    case reasoning
+enum BattleTurnStatus : Int, CaseIterable{
+    case reasoning = 0
 }

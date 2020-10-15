@@ -28,18 +28,16 @@ class BanCard : EffectProtocol{
     }
 }
 
-class AddCardToDiscard : EffectProtocol{
+class SendCardToDiscard : EffectProtocol{
     func applyEffects(card: Card) {
-        let copy = card
+        let copy = card.copy() as! Card
         card.owner.discard.addCard(copy)
     }
 }
 
 class AddLastPlayedCardToDeck : EffectProtocol{
     func applyEffects(card: Card) {
-        let lastCard = card.owner.discard.cards.last
+        let lastCard = card.owner.ongoing.cards.last
         card.owner.deck.cards.insert(lastCard!, at: 0)
     }
 }
-
-class

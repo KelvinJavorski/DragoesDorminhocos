@@ -16,10 +16,14 @@ class BattleManager{
     var scene: GameScene!
     //var enemy: Enemy
     var battleState: BattleState = .playerTurn
+    var turnEffects: [EffectProtocol] = []
+    var buffEffects: [EffectProtocol] = []
     var cardsPlayed: [Card] = []
     
     func setup(){
         Effect.shared.setupEffects()
+        Effect.shared.setupBuffEffects()
+        Effect.shared.setupTurnEffects()
     }
     func setEnemy(enemy: Enemy) {
         self.enemy = enemy
@@ -50,23 +54,47 @@ class BattleManager{
          print("Acabou a batalha")
  //        scene.navigation.performSegue(withIdentifier: "toOutcome", sender: self)
      }
- 
     
     func initTurn(){
         enemy.setHand()
+        setTurnEffects()
         applyTurnEffects()
     }
     
-    func applyTurnEffects(){
-        for status in player.currentTurnStatus{
-            
+    func playerTurn(){
+        
+    }
+    
+    func playCard(card: Card){
+//        let person = card.owner.opponent!
+        applyBuffEffects(card: card)
+        card.applyEffects()
+    }
+    
+    func setBuffEffects(){
+        let buffsEnum = player.currentStatus
+        self.buffEffects = Effect.shared.getBuffEffectByIds(enumEffect: buffsEnum)
+    }
+    
+    func setTurnEffects(){
+        let effectsEnum = player.currentTurnStatus
+        self.turnEffects =  Effect.shared.getTurnEffectByIds(enumEffect: effectsEnum)
+    }
+    
+    func applyBuffEffects(card: Card){
+        setBuffEffects()
+        for buff in buffEffects{
+            buff.applyEffects(card: card)
         }
     }
     
+    func applyTurnEffects(){
+        for effect in turnEffects{
+            effect.applyEffects(card: Card())
+        }
+    }
     
-    func endTurn(){
-        enemyTurn()
-        endBattle()
+    func endPlayerTurn(){
     }
     
     func enemyTurn(completion: @escaping () -> () = { }) {
@@ -75,13 +103,8 @@ class BattleManager{
         completion()
     }
     
-    func showCurrentInformations(){
-        if let playerLife = player.currentAgree{
-            print("Player life \(playerLife)")
-        }
-        if let enemyLife = enemy.currentAgree{
-            print("Enemy life \(enemyLife)")
-        }
+    func endEnemyTurn(){
+        endBattle()
     }
     
     func storeCard(card : Card){

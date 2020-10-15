@@ -133,8 +133,8 @@ class Person{
     var currentReasoning: Int!
     var maxReasoning: Int!
     
-    var currentStatus: [BattleStatus]!
-    var currentTurnStatus: [BattleTurnStatus]!
+    var currentStatus: [BattleStatus] = []
+    var currentTurnStatus: [BattleTurnStatus] = []
     
     var emotion: BattleEmotion!
     

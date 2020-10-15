@@ -1,32 +1,32 @@
 //
-//  StatusAdditionEffects.swift
+//  AddStatusEffect.swift
 //  Dragon Dreamers
 //
-//  Created by Kelvin Javorski Soares on 09/10/20.
+//  Created by Kelvin Javorski Soares on 14/10/20.
 //  Copyright © 2020 Kelvin Javorski Soares. All rights reserved.
 //
 
 import Foundation
 
-class PlayBlueCardTwice: EffectProtocol{
+class AddPlayBlueCardTwiceStatus: EffectProtocol{
     func applyEffects(card: Card) {
         card.owner.currentStatus.append(.blue)
     }
 }
 
-class PlayGreenCardTwice: EffectProtocol{
+class AddPlayGreenCardTwiceStatus: EffectProtocol{
     func applyEffects(card: Card) {
         card.owner.currentStatus.append(.green)
     }
 }
 
-class PlayRedCardTwice: EffectProtocol{
+class AddPlayRedCardTwiceStatus: EffectProtocol{
     func applyEffects(card: Card) {
         card.owner.currentStatus.append(.red)
     }
 }
 
-class PlayYellowCardTwice: EffectProtocol{
+class AddPlayYellowCardTwiceStatus: EffectProtocol{
     func applyEffects(card: Card) {
         card.owner.currentStatus.append(.yellow)
     }
@@ -34,7 +34,7 @@ class PlayYellowCardTwice: EffectProtocol{
 
 class AddReasoningStatus: EffectProtocol{
     func applyEffects(card: Card) {
-        card.owner.currentStatus.append(.reasoning)
+        card.owner.currentTurnStatus.append(.reasoning)
     }
 }
 
