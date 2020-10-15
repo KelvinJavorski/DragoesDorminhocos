@@ -14,5 +14,6 @@ enum BattleStatus{
     case red
     case yellow
     case vulnerable
-    case doubleCard    
+    case doubleCard
+    case reasoning
 }
