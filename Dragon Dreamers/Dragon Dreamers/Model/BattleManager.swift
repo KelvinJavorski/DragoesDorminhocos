@@ -72,18 +72,17 @@ class BattleManager{
     }
     
     func setBuffEffects(){
-        self.buffEffects.removeAll()
-        let buffsEnum = player.currentStatus!
+        let buffsEnum = player.currentStatus
         self.buffEffects = Effect.shared.getBuffEffectByIds(enumEffect: buffsEnum)
     }
     
     func setTurnEffects(){
-        self.turnEffects.removeAll()
-        let effectsEnum = player.currentTurnStatus!
+        let effectsEnum = player.currentTurnStatus
         self.turnEffects =  Effect.shared.getTurnEffectByIds(enumEffect: effectsEnum)
     }
     
     func applyBuffEffects(card: Card){
+        setBuffEffects()
         for buff in buffEffects{
             buff.applyEffects(card: card)
         }
@@ -96,7 +95,6 @@ class BattleManager{
     }
     
     func endPlayerTurn(){
-        enemyTurn()
     }
     
     func enemyTurn(completion: @escaping () -> () = { }) {
