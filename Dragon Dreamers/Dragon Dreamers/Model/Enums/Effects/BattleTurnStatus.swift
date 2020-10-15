@@ -9,5 +9,5 @@
 import Foundation
 
 enum BattleTurnStatus : Int, CaseIterable{
-    case reasoning
+    case reasoning = 0
 }

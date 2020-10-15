@@ -76,7 +76,7 @@ class CriticizeDecrease: EffectProtocol{
     
     func applyEffects(card: Card) {
         self.person = Player.shared
-        self.person.currentCriticize -= card.amount * Int(card.multiplier)
+        self.person.currentCriticize -= Int(Double(card.amount) * card.multiplier)
     }
 }
 

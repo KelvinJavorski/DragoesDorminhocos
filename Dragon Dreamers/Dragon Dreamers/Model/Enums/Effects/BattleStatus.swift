@@ -9,11 +9,12 @@
 import Foundation
 
 enum BattleStatus : Int, CaseIterable{
-    case blue
-    case green
-    case red
-    case yellow
-    case vulnerable
-    case doubleCard
-    case reasoning
+    case vulnerable = 0
+    case blue = 1
+    case green = 2
+    case red = 3
+    case yellow = 4
+    
+    case doubleCard = 5
+    case reasoning = 6
 }

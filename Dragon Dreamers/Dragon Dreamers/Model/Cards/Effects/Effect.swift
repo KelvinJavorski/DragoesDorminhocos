@@ -107,7 +107,6 @@ class Effect{
     func setupBuffEffects(){
         let applyVulnerability = ApplyVulnerability()
         allBuffEffects.append(applyVulnerability)
-        
     }
     
     func setupTurnEffects(){

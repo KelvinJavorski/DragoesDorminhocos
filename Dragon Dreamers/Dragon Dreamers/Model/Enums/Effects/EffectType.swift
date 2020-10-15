@@ -29,6 +29,7 @@ enum EffectType : Int, CaseIterable{
     case setRedTwice = 17
     case setYellowTwice = 18
     case setReasoningStatus = 19
+    case setVulnerableStatus = 20
 //    case addCard = 0
 //    case dealDamage = 1
 //    case dealAndSufferDamage = 2

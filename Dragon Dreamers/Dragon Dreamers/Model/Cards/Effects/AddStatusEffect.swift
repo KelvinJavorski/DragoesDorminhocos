@@ -34,7 +34,7 @@ class AddPlayYellowCardTwiceStatus: EffectProtocol{
 
 class AddReasoningStatus: EffectProtocol{
     func applyEffects(card: Card) {
-        card.owner.currentStatus.append(.reasoning)
+        card.owner.currentTurnStatus.append(.reasoning)
     }
 }
 
