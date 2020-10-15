@@ -281,6 +281,10 @@ class GameScene: SKScene {
                 guard let nodeBack = node as? SKSpriteNode else{ continue }
                 nodeBack.color = card.getCardTypeColor()
             }
+            if node.name == "CardName"{
+                guard let nodeName = node as? SKLabelNode else{ continue }
+                nodeName.text = card.name
+            }
         }
         self.addChild(card.node)
     }
@@ -424,14 +428,15 @@ class GameScene: SKScene {
         nextTurnAvailable = false
         print("Batalha do inimigo")
         
-        battleManager.endTurn()
-        
+        battleManager.endPlayerTurn()
+        battleManager.enemyTurn()
         battleManager.enemy.discussion.setHumorPoints(humorPoints: self.humorPoints)
         battleManager.enemy.updateHumor()
         selectEnemyHumor()
         print("Descarta a Mesa")
         self.discardOngoing(){
             self.discardHand() {
+                self.battleManager.initTurn()
                 self.showDialogBox()
                 self.printDiscard()
                 self.printDeck()
@@ -517,7 +522,7 @@ class GameScene: SKScene {
         // Moves card node to play area
         moveAndRotateCard(card: card, to: pos, to: 0.0) {
             Player.shared.playCard(index: index)
-            card.applyEffects()
+            self.battleManager.playCard(card: card)
 //            card.playCard()
             // Store card played for applying effect later
 //            self.battleManager.storeCard(card: card)
