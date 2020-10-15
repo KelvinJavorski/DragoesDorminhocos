@@ -36,6 +36,7 @@ class EmptyCard{
     var humorInfluence: Int!
     
     var amount: Int!
+    var multiplier: Double = 1.0
     var cardTargetId: Int!
     
     func setRandomEmotion(){
