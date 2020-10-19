@@ -139,4 +139,25 @@ class CardsPool{
         newCard.effectsEnum.append(contentsOf: [.setVulnerableStatus])
         return newCard
     }
+    
+    
+    func getBolarPlano() -> Card{
+        let newCard = getNoEffectCard()
+        newCard.name = "Bolar Plano"
+        newCard.effectsEnum.append(contentsOf: [.setReasoningStatus])
+        newCard.amount = 2
+        newCard.cost = 1
+        newCard.type = .yellow
+        return newCard
+    }
+    
+    func getOdioAcumulado() -> Card{
+        let newCard = getNoEffectCard()
+        newCard.name = "Odio Acumulado"
+        newCard.effectsEnum.append(contentsOf: [.setReasoningStatus])
+        newCard.amount = 2
+        newCard.cost = 1
+        newCard.type = .yellow
+        return newCard
+    }
 }
