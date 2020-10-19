@@ -33,8 +33,13 @@ class AddPlayYellowCardTwiceStatus: EffectProtocol{
 }
 
 class AddReasoningStatus: EffectProtocol{
+    let value: Int
+    init(value: Int) {
+        self.value = value
+    }
     func applyEffects(card: Card) {
         card.owner.currentTurnStatus.append(.reasoning)
+        card.owner.amountInTurnEffect = value
     }
 }
 
