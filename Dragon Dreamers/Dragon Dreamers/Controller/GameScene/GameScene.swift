@@ -729,6 +729,7 @@ class GameScene: SKScene {
                             for i in 0 ..< Player.shared.hand.cards.count {
                                 let card = Player.shared.hand.getCard(i)
                                 if parentNode.name == "\(card.id)" {
+                                    card.node.setScale(1.6)
                                     movingCard = card
                                     movingCardDeck = Player.shared.hand
                                     movingCardIndex = i
@@ -826,6 +827,7 @@ class GameScene: SKScene {
                 // move card back to hand
                 let pos = self.convert(handNodes[movingCardIndex!].position, from: handNode)
                 let move = SKAction.move(to: pos, duration: 0.0)
+                movingCard!.node.setScale(0.80)
                 movingCard!.node.run(move)
                 distributeCardNodes()
                 clearVars()
