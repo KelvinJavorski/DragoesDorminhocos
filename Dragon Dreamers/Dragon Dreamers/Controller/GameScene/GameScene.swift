@@ -153,7 +153,7 @@ class GameScene: SKScene {
         
         nextTurnAvailable = false
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
-        Player.shared.manaManager.fillPool(manas: [ManaType.r, ManaType.b, ManaType.g])
+        Player.shared.manaManager.fillPool(manas: [ManaType.g, ManaType.g, ManaType.g])
         for i in 0 ..< Player.shared.manaManager.manaPool.count {
             let pos = self.convert(manaNodes[i].position, from: manaNode)
             createManaNode(mana: Player.shared.manaManager.manaPool[i], at: pos)
@@ -436,7 +436,7 @@ class GameScene: SKScene {
         print("Descarta a Mesa")
         self.discardOngoing(){
             self.discardHand() {
-                self.battleManager.initTurn()
+                self.battleManager.initPlayerTurn()
                 self.showDialogBox()
                 self.printDiscard()
                 self.printDeck()
