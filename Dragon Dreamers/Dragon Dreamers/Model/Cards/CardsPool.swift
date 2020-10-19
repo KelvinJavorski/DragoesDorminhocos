@@ -27,8 +27,8 @@ class CardsPool{
         let reasoningStatus = getReasoningStatusCard(amount: 4)
         let vulnerableStatus = getVulnerableStatusCard()
         
-//        allCards.append(contentsOf: [agreeAdd, agreeRemove, avoidAdd, avoidRemove, questioningAdd, questioningRemove, criticizeAdd, criticizeRemove, reasoningAdd, reasoningRemove, reasoningStatus, vulnerableStatus])
-        allCards.append(contentsOf: [criticizeRemove, reasoningAdd, reasoningRemove, reasoningStatus, vulnerableStatus])
+        allCards.append(contentsOf: [agreeAdd, agreeRemove, avoidAdd, avoidRemove, questioningAdd, questioningRemove, criticizeAdd, criticizeRemove, reasoningAdd, reasoningRemove, reasoningStatus, vulnerableStatus])
+//        allCards.append(contentsOf: [criticizeRemove, reasoningAdd, reasoningRemove, reasoningStatus, vulnerableStatus])
     }
     
     func getADeck(){
@@ -47,7 +47,7 @@ class CardsPool{
     
     //### Create one card of each effect
     func getNoEffectCard() -> Card {
-        let card = Card(name: "No name", effects: [], cost: 1, cardType: .empty, humanType: .enemy, humorInfluence: 0)
+        let card = Card(name: "No name", effects: [], cost: 1, cardType: .green, humanType: .enemy, humorInfluence: 0)
         return card
     }
     

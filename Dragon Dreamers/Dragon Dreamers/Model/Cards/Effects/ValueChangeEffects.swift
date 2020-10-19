@@ -13,7 +13,7 @@ class AgreeIncrease: EffectProtocol{
     
     func applyEffects(card: Card) {
         self.person = Player.shared
-        self.person.currentAgree += card.amount * Int(card.multiplier)
+        self.person.currentAgree += Int(Double(card.amount) * card.multiplier)
     }
 }
 
@@ -22,7 +22,7 @@ class AgreeDecrease: EffectProtocol{
     
     func applyEffects(card: Card) {
         self.person = Player.shared
-        self.person.currentAgree -= card.amount * Int(card.multiplier)
+        self.person.currentAgree -= Int(Double(card.amount) * card.multiplier)
     }
 }
 
@@ -31,7 +31,7 @@ class AvoidIncrease: EffectProtocol{
     
     func applyEffects(card: Card) {
         self.person = Player.shared
-        self.person.currentAvoid += card.amount * Int(card.multiplier)
+        self.person.currentAvoid += Int(Double(card.amount) * card.multiplier)
     }
 }
 
@@ -40,7 +40,7 @@ class AvoidDecrease: EffectProtocol{
     
     func applyEffects(card: Card) {
         self.person = Player.shared
-        self.person.currentAvoid -= card.amount * Int(card.multiplier)
+        self.person.currentAvoid -= Int(Double(card.amount) * card.multiplier)
     }
 }
 
@@ -49,7 +49,7 @@ class QuestioningIncrease: EffectProtocol{
     
     func applyEffects(card: Card) {
         self.person = Player.shared
-        self.person.currentQuestioning += card.amount * Int(card.multiplier)
+        self.person.currentQuestioning += Int(Double(card.amount) * card.multiplier)
     }
 }
 
@@ -58,7 +58,7 @@ class QuestioningDecrease: EffectProtocol{
     
     func applyEffects(card: Card) {
         self.person = Player.shared
-        self.person.currentQuestioning -= card.amount * Int(card.multiplier)
+        self.person.currentQuestioning -= Int(Double(card.amount) * card.multiplier)
     }
 }
 
@@ -67,7 +67,7 @@ class CriticizeIncrease: EffectProtocol{
     
     func applyEffects(card: Card) {
         self.person = Player.shared
-        self.person.currentCriticize += card.amount * Int(card.multiplier)
+        self.person.currentCriticize += Int(Double(card.amount) * card.multiplier)
     }
 }
 
@@ -85,7 +85,7 @@ class ReasoningIncrease: EffectProtocol{
     
     func applyEffects(card: Card) {
         self.person = Player.shared
-        self.person.currentReasoning += card.amount * Int(card.multiplier)
+        self.person.currentReasoning += Int(Double(card.amount) * card.multiplier)
     }
 }
 
@@ -94,7 +94,7 @@ class ReasoningDecrease: EffectProtocol{
     
     func applyEffects(card: Card) {
         self.person = Player.shared
-        self.person.currentReasoning -= card.amount * Int(card.multiplier)
+        self.person.currentReasoning -= Int(Double(card.amount) * card.multiplier)
     }
 }
 

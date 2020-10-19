@@ -20,6 +20,7 @@ class BattleManager{
     var buffEffects: [EffectProtocol] = []
     var cardsPlayed: [Card] = []
     
+    // MARK: Setup
     func setup(){
         Effect.shared.setupEffects()
         Effect.shared.setupBuffEffects()
@@ -29,6 +30,7 @@ class BattleManager{
         self.enemy = enemy
     }
     
+    //MARK: Turns
     func startBattle(){
         player = Player.shared
         player.setOpponent(person: enemy.self)
@@ -50,26 +52,27 @@ class BattleManager{
             sendToOutcome()
         }
     }
-    func sendToOutcome(){
-         print("Acabou a batalha")
- //        scene.navigation.performSegue(withIdentifier: "toOutcome", sender: self)
-     }
     
-    func initTurn(){
+    func initPlayerTurn(){
         enemy.setHand()
         setTurnEffects()
         applyTurnEffects()
     }
     
-    func playerTurn(){
-        
+    func endPlayerTurn(){
     }
     
-    func playCard(card: Card){
-//        let person = card.owner.opponent!
-        applyBuffEffects(card: card)
-        card.applyEffects()
+    func enemyTurn(completion: @escaping () -> () = { }) {
+        enemy.playTurn()
+//        self.storeCard(card: enemy.playOneCard())
+        completion()
     }
+    
+    func endEnemyTurn(){
+        endBattle()
+    }
+    
+    //MARK: Effects
     
     func setBuffEffects(){
         let buffsEnum = player.currentStatus
@@ -94,19 +97,19 @@ class BattleManager{
         }
     }
     
-    func endPlayerTurn(){
+    //MARK: Others
+    
+    func sendToOutcome(){
+         print("Acabou a batalha")
+ //        scene.navigation.performSegue(withIdentifier: "toOutcome", sender: self)
     }
     
-    func enemyTurn(completion: @escaping () -> () = { }) {
-        enemy.playTurn()
-//        self.storeCard(card: enemy.playOneCard())
-        completion()
+    func playCard(card: Card){
+//        let person = card.owner.opponent!
+        applyBuffEffects(card: card)
+        card.applyEffects()
     }
-    
-    func endEnemyTurn(){
-        endBattle()
-    }
-    
+
     func storeCard(card : Card){
         cardsPlayed.append(card)
     }

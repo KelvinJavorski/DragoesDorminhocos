@@ -97,7 +97,7 @@ class Effect{
         let addplayYellowTwice = AddPlayYellowCardTwiceStatus()
         allEffects.append(addplayYellowTwice)
         
-        let addReasoning = AddReasoningStatus()
+        let addReasoning = AddReasoningStatus(value: 3)
         allEffects.append(addReasoning)
         
         let addVulnerable = AddVulnerableStatus()
@@ -110,7 +110,7 @@ class Effect{
     }
     
     func setupTurnEffects(){
-        let reasoning = ReasoningIncrease()
+        let reasoning = ApplyReasoning()
         allTurnEffects.append(reasoning)
     }
 }

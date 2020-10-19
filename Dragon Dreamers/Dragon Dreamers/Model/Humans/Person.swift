@@ -9,7 +9,7 @@
 import Foundation
 
 class Person{
-    internal init(currentAgree: Int? = nil, maxAgree: Int? = nil, currentAvoid: Int? = nil, maxAvoid: Int? = nil, currentQuestioning: Int? = nil, maxQuestioning: Int? = nil, currentCriticize: Int? = nil, maxCriticize: Int? = nil, actionPoints: Int? = nil, emotion: BattleEmotion? = nil) {
+    internal init(currentAgree: Int? = nil, maxAgree: Int? = nil, currentAvoid: Int? = nil, maxAvoid: Int? = nil, currentQuestioning: Int? = nil, maxQuestioning: Int? = nil, currentCriticize: Int? = nil, maxCriticize: Int? = nil, actionPoints: Int? = nil, emotion: BattleEmotion? = nil, amountEffect: Int? = nil) {
         self.currentAgree = currentAgree
         self.maxAgree = maxAgree
         self.currentAvoid = currentAvoid
@@ -19,6 +19,7 @@ class Person{
         self.currentCriticize = currentCriticize
         self.maxCriticize = maxCriticize
         self.emotion = emotion
+        self.amountInTurnEffect = amountEffect
     }
     
     func loseAgree(value: Int){
@@ -135,6 +136,7 @@ class Person{
     
     var currentStatus: [BattleStatus] = []
     var currentTurnStatus: [BattleTurnStatus] = []
+    var amountInTurnEffect: Int?
     
     var emotion: BattleEmotion!
     
