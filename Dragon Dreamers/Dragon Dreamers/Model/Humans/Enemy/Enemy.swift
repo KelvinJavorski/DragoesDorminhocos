@@ -55,7 +55,6 @@ class Enemy: Person {
     }
     
     func playTurn(){
-        setHand()
         let card = playOneCard()
         card.applyEffects()
     }
