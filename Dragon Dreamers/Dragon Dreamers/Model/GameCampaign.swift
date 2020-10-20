@@ -20,6 +20,8 @@ class GameCampaign {
                 before: ["Você está morando com a sua vó, a líder religiosa que cuida do templo da cidade. Durante um passeio pela cidade, você conversou com três pessoas e descobriu que cada uma delas tem uma opinião diferente sobre a maneira que a sua vó mantém o templo.","Olamilekan, dono do maior mercado, líder influente da economia local e amigo de infância da sua avó te contou sobre as ações comunitárias e de caridade organizadas pelo templo, e o impacto positivo que o templo teve na cidade.","Ayo, um jovem local que estava vandalizando o templo, fala como as tradições do templo constantemente o fazem se sentir rejeitado e hostilizado.","Monifa, uma jovem pescadora da região, comenta sobre como o templo não é nenhum dos dois extremos e, como todas as coisas no mundo, tem seus lados positivos e negativos. Monifa defende as qualidades do templo, como a maneira que ele auxilia a comunidade e ajuda as pessoas mais carentes, mas acredita que muitas tradições estão ultrapassadas e precisam ser reformadas para que o templo continue relevante em seu trabalho como guia espiritual.","Ao voltar pra casa, você precisa escolher como falará com a sua avó. Você irá desviar do assunto e não comentar sobre o que ouviu sobre o templo? Irá criticar as tradições? Irá comentar os impactos positivos que o templo tem na comunidade? Ou irá falar que talvez mudanças sejam necessárias para que o templo consiga melhorar sua relação com as pessoas da cidade?"],
                 humorPoits: 5))]
     
+    var history = History()
+    
     init() {
         
     }
