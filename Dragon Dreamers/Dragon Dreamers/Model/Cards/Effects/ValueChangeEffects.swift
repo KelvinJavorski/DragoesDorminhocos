@@ -85,7 +85,7 @@ class ReasoningIncrease: EffectProtocol{
     
     func applyEffects(card: Card) {
         self.person = Player.shared
-        self.person.currentReasoning += Int(Double(card.amount) * card.multiplier)
+        self.person.currentTokens += Int(Double(card.amount) * card.multiplier)
     }
 }
 
@@ -94,7 +94,7 @@ class ReasoningDecrease: EffectProtocol{
     
     func applyEffects(card: Card) {
         self.person = Player.shared
-        self.person.currentReasoning -= Int(Double(card.amount) * card.multiplier)
+        self.person.currentTokens -= Int(Double(card.amount) * card.multiplier)
     }
 }
 
