@@ -501,6 +501,9 @@ class GameScene: SKScene {
     }
     
     func enemyDrawCard(){
+        if enemy.hand.cards[0].node != nil {
+            enemy.hand.cards[0].node.removeFromParent()
+        }
         createEnemyCardNode(card: enemy.hand.cards[0], at: enemyHandNode)
     }
     
@@ -517,7 +520,7 @@ class GameScene: SKScene {
         }
         let i = Player.shared.ongoing.cards.count
         // Calculates the position for this card
-        let pos = self.convert(playAreaNodes[i].position, from: playAreaNode)
+        let pos = self.convert(playAreaNodes[i].position, from: discardNode)
         // Gets card from player's hand
         let card = Player.shared.hand.cards[index]
         
@@ -529,9 +532,6 @@ class GameScene: SKScene {
         moveAndRotateCard(card: card, to: pos, to: 0.0) {
             Player.shared.playCard(index: index)
             self.battleManager.playCard(card: card)
-//            card.playCard()
-            // Store card played for applying effect later
-//            self.battleManager.storeCard(card: card)
             let resize = SKAction.scale(to: 1, duration: 0.3)
             card.node.run(resize)
             card.node.position = pos
@@ -551,7 +551,6 @@ class GameScene: SKScene {
             let delay = SKAction.wait(forDuration: 0.10)
             let code  = SKAction.run {
                 self.i+=1
-//                self.runCardFromDiscardToDeck(card: Player.shared.discard.cards[0])
                 Player.shared.getCardFromDiscard(0)
             }
             let sequence = SKAction.sequence([delay, code])
@@ -741,7 +740,7 @@ class GameScene: SKScene {
                                     movingCardDeck = Player.shared.hand
                                     movingCardIndex = i
                                     rotateCard(card: card, to: 0.0)
-                                    card.node.run(SKAction.scale(to: 2.6, duration: 0.2), withKey: "resizeCard")
+                                    card.node.run(SKAction.scale(to: 3.0, duration: 0.2), withKey: "resizeCard")
                                     found = true
                                 }
                             }
