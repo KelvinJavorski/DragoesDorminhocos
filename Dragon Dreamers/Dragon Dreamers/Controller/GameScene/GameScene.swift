@@ -78,7 +78,7 @@ class GameScene: SKScene {
 
     var nextTurnAvailable: Bool!
     var battleManager: BattleManager = BattleManager()
-    
+    var enemy: Enemy!
     
     func initScene () { // ALWAYS CALL THIS BEFORE PRESENTING SCENE
         battleManager.setup()
@@ -91,6 +91,7 @@ class GameScene: SKScene {
         //Código a ser implementado na GameSceneNPCChoice//
         
         battleManager.setEnemy(enemy: DataTemp.shared.chosenEnemy)
+        enemy = battleManager.enemy
         
         humorPoints = battleManager.enemy.discussion.humorPoints
         
@@ -128,22 +129,22 @@ class GameScene: SKScene {
         }
         
         playerNode = childNode(withName: "Player")!
-        let playerLifeNode = playerNode.childNode(withName: "LifeBar")!
-        agreeValue = playerLifeNode.childNode(withName: "Value") as? SKLabelNode
-        agreeBarNode = playerLifeNode.childNode(withName: "Bar") as? SKSpriteNode
+        let agreeNode = playerNode.childNode(withName: "AgreeBar")!
+        agreeValue = agreeNode.childNode(withName: "Value") as? SKLabelNode
+        agreeBarNode = agreeNode.childNode(withName: "Bar") as? SKSpriteNode
         
-        let playerOtherNode = playerNode.childNode(withName: "OtherBar")!
-        avoidValue = playerOtherNode.childNode(withName: "Value") as? SKLabelNode
-        avoidBarNode = playerOtherNode.childNode(withName: "Bar") as? SKSpriteNode
+        let avoidNode = playerNode.childNode(withName: "AvoidBar")!
+        avoidValue = avoidNode.childNode(withName: "Value") as? SKLabelNode
+        avoidBarNode = avoidNode.childNode(withName: "Bar") as? SKSpriteNode
         
         enemyNode = childNode(withName: "Enemy")!
-        let enemyLifeNode = enemyNode.childNode(withName: "LifeBar")!
-        questioningValue = enemyLifeNode.childNode(withName: "Value") as? SKLabelNode
-        questioningBarNode = enemyLifeNode.childNode(withName: "Bar") as? SKSpriteNode
+        let criticizeNode = enemyNode.childNode(withName: "CriticizeBar")!
+        questioningValue = criticizeNode.childNode(withName: "Value") as? SKLabelNode
+        questioningBarNode = criticizeNode.childNode(withName: "Bar") as? SKSpriteNode
         
-        let enemyOtherNode = enemyNode.childNode(withName: "OtherBar")!
-        criticizeValue = enemyOtherNode.childNode(withName: "Value") as? SKLabelNode
-        criticizeBarNode = enemyOtherNode.childNode(withName: "Bar") as? SKSpriteNode
+        let questioningNode = enemyNode.childNode(withName: "QuestioningBar")!
+        criticizeValue = questioningNode.childNode(withName: "Value") as? SKLabelNode
+        criticizeBarNode = questioningNode.childNode(withName: "Bar") as? SKSpriteNode
         
         enemyPlayAreaNode = childNode(withName: "EnemyPlayAreaNode")!
         enemyHandNode = childNode(withName: "EnemyHandNode")!
@@ -158,13 +159,14 @@ class GameScene: SKScene {
             let pos = self.convert(manaNodes[i].position, from: manaNode)
             createManaNode(mana: Player.shared.manaManager.manaPool[i], at: pos)
         }
+
+        battleManager.scene = self
+        battleManager.startBattle()
+        battleManager.initPlayerTurn()
         
         createHandEllipse()
         drawCards()
-        
-        battleManager.scene = self
-        battleManager.startBattle()
-        createEnemyCardNode(card: battleManager.enemy.hand.cards[0], at: enemyHandNode)
+        enemyDrawCard()
         
     }
     
@@ -433,6 +435,7 @@ class GameScene: SKScene {
         battleManager.enemy.discussion.setHumorPoints(humorPoints: self.humorPoints)
         battleManager.enemy.updateHumor()
         selectEnemyHumor()
+        battleManager.endEnemyTurn()
         print("Descarta a Mesa")
         self.discardOngoing(){
             self.discardHand() {
@@ -443,6 +446,7 @@ class GameScene: SKScene {
                 self.printHand()
                 self.nextTurning = false
                 self.drawCards()
+                self.enemyDrawCard()
                 print("HandAfterDraw   : \(Player.shared.hand.cards.count)")
             }
             print("Descarta a Hand")
@@ -454,9 +458,6 @@ class GameScene: SKScene {
             }
             self.rearangeManaNodes()
         }
-        
-//        self.battleManager.endTurn()
-        
     }
     
     func showDialogBox(){
@@ -496,6 +497,11 @@ class GameScene: SKScene {
         if !gettingCardsFromDiscard {
             distributeCardNodes()
         }
+        
+    }
+    
+    func enemyDrawCard(){
+        createEnemyCardNode(card: enemy.hand.cards[0], at: enemyHandNode)
     }
     
     func playCard (index: Int, manaType: ManaType) {
@@ -526,6 +532,8 @@ class GameScene: SKScene {
 //            card.playCard()
             // Store card played for applying effect later
 //            self.battleManager.storeCard(card: card)
+            let resize = SKAction.scale(to: 1, duration: 0.3)
+            card.node.run(resize)
             card.node.position = pos
             self.distributeCardNodes()
             self.nextTurnAvailable = true
@@ -635,14 +643,14 @@ class GameScene: SKScene {
         
         //Animações nao funcionam
         if let currentAgree = Player.shared.currentAgree {
-            agreeValue.text = "Criticar a Vó:\(currentAgree)"
+            agreeValue.text = "Concordar:\(currentAgree)"
             var percentage = (CGFloat(currentAgree) / CGFloat(Player.shared.maxAgree!)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             agreeBarNode?.run(updateBar)
         }
         if let currentAvoid = Player.shared.currentAvoid{
-            avoidValue.text = "Ignorar a Vó: \(currentAvoid)"
+            avoidValue.text = "Ignorar: \(currentAvoid)"
             var percentage = (CGFloat(currentAvoid) / CGFloat(Player.shared.maxAvoid)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
@@ -650,14 +658,14 @@ class GameScene: SKScene {
         }
         
         if let currentQuestioning = Player.shared.currentQuestioning {
-            questioningValue.text = "Debater com a Vó: \(currentQuestioning)"
+            questioningValue.text = "Debater: \(currentQuestioning)"
             var percentage = (CGFloat(currentQuestioning) / CGFloat(Player.shared.maxAgree)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             questioningBarNode?.run(updateBar)
         }
         if let currentCriticize = Player.shared.currentCriticize{
-            criticizeValue.text = "Concordar com a Vó: \(currentCriticize)"
+            criticizeValue.text = "Criticar: \(currentCriticize)"
             var percentage = (CGFloat(currentCriticize) / CGFloat(Player.shared.maxQuestioning)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
@@ -729,21 +737,31 @@ class GameScene: SKScene {
                             for i in 0 ..< Player.shared.hand.cards.count {
                                 let card = Player.shared.hand.getCard(i)
                                 if parentNode.name == "\(card.id)" {
-                                    card.node.setScale(1.6)
                                     movingCard = card
                                     movingCardDeck = Player.shared.hand
                                     movingCardIndex = i
                                     rotateCard(card: card, to: 0.0)
+                                    card.node.run(SKAction.scale(to: 2.6, duration: 0.2), withKey: "resizeCard")
                                     found = true
                                 }
                             }
                             for i in 0 ..< Player.shared.ongoing.cards.count {
                                 let card = Player.shared.ongoing.getCard(i)
                                 if parentNode.name == "\(card.id)" {
-                                    movingCard = card
-                                    movingCardDeck = Player.shared.ongoing
-                                    movingCardIndex = i
-                                    rotateCard(card: card, to: 0.0)
+                                    found = true
+                                }
+                            }
+                        }
+                    }
+                }//cardShape If
+                if node.name == "EnemyCardShape"{
+                    if let parentNode = node.parent {
+                        var found = false
+                        while !found {
+                            for i in 0 ..< enemy.hand.cards.count {
+                                let card = enemy.hand.getCard(i)
+                                if parentNode.name == "\(card.id)" {
+                                    card.node.run(SKAction.scale(to: 2.6, duration: 0.2), withKey: "resizeCard")
                                     found = true
                                 }
                             }
@@ -790,8 +808,14 @@ class GameScene: SKScene {
                         return
                     }
                 }
+            } else if node.name == "EnemyCardShape"{
+                let card = enemy.hand.cards[0]
+                let resize = SKAction.scale(to: 1, duration: 0.3)
+                card.node.run(resize)
+                return
             }
         }
+        
         moveCardBack()
     }
     
@@ -826,15 +850,18 @@ class GameScene: SKScene {
             if deckName == "Hand" {
                 // move card back to hand
                 let pos = self.convert(handNodes[movingCardIndex!].position, from: handNode)
+                let resize = SKAction.scale(to: 1, duration: 0.3)
                 let move = SKAction.move(to: pos, duration: 0.0)
-                movingCard!.node.setScale(0.80)
+                movingCard!.node.run(resize)
                 movingCard!.node.run(move)
                 distributeCardNodes()
                 clearVars()
             } else if deckName == "Ongoing" {
                 // move card back to play area
                 let pos = self.convert(playAreaNodes[movingCardIndex!].position, from: playAreaNode)
+                let resize = SKAction.scale(to: 1, duration: 0.3)
                 let move = SKAction.move(to: pos, duration: 0.0)
+                movingCard!.node.run(resize)
                 movingCard!.node.run(move)
                 clearVars()
             }
