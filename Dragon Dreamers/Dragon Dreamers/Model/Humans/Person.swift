@@ -70,7 +70,7 @@ class Person{
         }
     }
     
-    func discarCardById(cardId:Int){
+    func discardCardById(cardId:Int){
         self.hand.removeCard(atIndex: cardId)
     }
     
@@ -131,7 +131,7 @@ class Person{
     var currentCriticize: Int!
     var maxCriticize: Int!
     
-    var currentReasoning: Int!
+    var currentTokens: Int!
     var maxReasoning: Int!
     
     var currentStatus: [BattleStatus] = []

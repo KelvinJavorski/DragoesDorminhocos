@@ -25,20 +25,20 @@ class Player: Person {
     }
     
     func setInitialAtributes(){
-        currentAgree = 0
+        currentAgree = 20
         maxAgree = 50
         minAgree = 0
         
-        currentAvoid = 0
+        currentAvoid = 20
         maxAvoid = 50
         
-        currentQuestioning = 0
+        currentQuestioning = 20
         maxQuestioning = 50
         
-        currentCriticize = 0
+        currentCriticize = 20
         maxCriticize = 50
         
-        currentReasoning = 0
+        currentTokens = 5
         maxReasoning = 15
     }
 }

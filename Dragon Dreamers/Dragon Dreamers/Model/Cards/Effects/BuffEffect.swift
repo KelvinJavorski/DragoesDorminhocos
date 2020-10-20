@@ -17,6 +17,6 @@ class ApplyVulnerability: EffectProtocol{
 class ApplyReasoning: EffectProtocol{
     func applyEffects(card: Card) {
         let person = Player.shared
-        person.currentReasoning += person.amountInTurnEffect!
+        person.currentTokens += person.amountInTurnEffect!
     }
 }
