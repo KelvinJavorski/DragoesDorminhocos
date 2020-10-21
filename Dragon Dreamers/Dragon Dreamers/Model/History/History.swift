@@ -10,7 +10,7 @@ import Foundation
 
 class History {
     
-    var chapters = [Chapter(), Chapter(), Chapter()]
+    var chapters = [Chapter(speechs: [Speech(text: "")]), Chapter(speechs: [Speech(text: "")]), Chapter(speechs: [Speech(text: "")])]
     
     init() {
         
