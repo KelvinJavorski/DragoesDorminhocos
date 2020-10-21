@@ -9,12 +9,14 @@
 import Foundation
 
 class ApplyVulnerability: EffectProtocol{
+    var name = "Vulnerability"
     func applyEffects(card: Card) {
         card.multiplier = 1.5
     }
 }
 
 class ApplyReasoning: EffectProtocol{
+    var name = "Vulnerability"
     func applyEffects(card: Card) {
         let person = Player.shared
         person.currentTokens += person.amountInTurnEffect!

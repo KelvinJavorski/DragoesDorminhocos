@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum BattleStatus : Int, CaseIterable{
+enum BattleStatus : Int, CaseIterable, CustomStringConvertible{
     case vulnerable = 0
     case blue = 1
     case green = 2
@@ -17,4 +17,13 @@ enum BattleStatus : Int, CaseIterable{
     
     case doubleCard = 5
     case reasoning = 6
+    
+    var description: String{
+        switch self {
+        case .reasoning: return "Reasoning"
+        case .vulnerable: return "Vulnerable"
+        default: return ""
+        }
+    }
+    
 }

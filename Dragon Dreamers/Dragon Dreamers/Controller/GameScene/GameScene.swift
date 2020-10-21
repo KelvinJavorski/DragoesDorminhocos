@@ -38,6 +38,7 @@ class GameScene: SKScene {
     var playAreaNodes : [SKNode] = []
     var manaNode      : SKNode!
     var manaNodes     : [SKNode] = []
+    var effectsNode : [SKLabelNode] = []
     
     var circles : [SKShapeNode] = []
     var lines   : [SKShapeNode] = []
@@ -148,6 +149,16 @@ class GameScene: SKScene {
         
         enemyPlayAreaNode = childNode(withName: "EnemyPlayAreaNode")!
         enemyHandNode = childNode(withName: "EnemyHandNode")!
+        
+        let turnEffectNode = childNode(withName: "TurnEffects")!
+        for node in turnEffectNode.children{
+            for element in node.children{
+                if element.name == "Value"{
+                    effectsNode.append(element as! SKLabelNode)
+                }
+            }
+        }
+        
         
         setupHumorNode()
         selectEnemyHumor()
@@ -670,7 +681,22 @@ class GameScene: SKScene {
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             criticizeBarNode?.run(updateBar)
         }
-        
+        setCurrentEffectsLabel()
+    }
+    
+    func setCurrentEffectsLabel(){
+        var turn = battleManager.currentTurnStatus
+        var buff = battleManager.currentBuffStatus
+        for node in effectsNode{
+            if (turn.first?.rawValue) != nil{
+                node.text = turn.first?.description
+                turn.remove(at: 0)
+            }
+            else if (buff.first?.rawValue) != nil{
+                node.text = buff.first?.description
+                buff.remove(at: 0)
+            }
+        }
     }
     
     func setZeroOrHundred(number: CGFloat) -> CGFloat{

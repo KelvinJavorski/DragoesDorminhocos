@@ -19,6 +19,8 @@ class BattleManager{
     var turnEffects: [EffectProtocol] = []
     var buffEffects: [EffectProtocol] = []
     var cardsPlayed: [Card] = []
+    var currentTurnStatus: [BattleTurnStatus] = []
+    var currentBuffStatus: [BattleStatus] = []
     
     // MARK: Setup
     func setup(){
@@ -56,6 +58,8 @@ class BattleManager{
     func initPlayerTurn(){
         enemy.setHand()
         setTurnEffects()
+        currentTurnStatus = Player.shared.currentTurnStatus
+        currentBuffStatus = Player.shared.currentStatus
         applyTurnEffects()
     }
     
