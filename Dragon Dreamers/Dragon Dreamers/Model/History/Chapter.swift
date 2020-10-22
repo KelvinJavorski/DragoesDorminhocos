@@ -12,13 +12,22 @@ class Chapter {
     
     var isConsumed: Bool = false
     var speechs: [Speech]
+    static var next_id: Int = 0
+    let id: Int
     
     init(speechs: [Speech]) {
         self.speechs = speechs
+        
+        self.id = Speech.next_id
+        Speech.next_id += 1
     }
     
     func consumeChapter() {
         
+    }
+    
+    func setIsConsumed(isConsumed: Bool) {
+        self.isConsumed = isConsumed
     }
     
 }
