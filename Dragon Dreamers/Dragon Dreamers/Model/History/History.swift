@@ -95,11 +95,11 @@ class History {
             return nil
         }
         
-        auxChapter!.setIsConsumed(isConsumed: true)
+        //auxChapter!.setIsConsumed(isConsumed: true)
         
-        for speech in auxChapter!.speechs {
-            speech.setIsConsumed(isConsumed: true)
-        }
+//        for speech in auxChapter!.speechs {
+//            speech.setIsConsumed(isConsumed: true)
+//        }
         
         return auxChapter!
         

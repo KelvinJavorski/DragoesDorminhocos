@@ -22,10 +22,6 @@ class Chapter {
         Speech.next_id += 1
     }
     
-    func consumeChapter() {
-        
-    }
-    
     func setIsConsumed(isConsumed: Bool) {
         self.isConsumed = isConsumed
     }
