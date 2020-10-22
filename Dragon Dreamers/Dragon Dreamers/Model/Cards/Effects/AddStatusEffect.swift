@@ -37,7 +37,13 @@ class AddReasoningStatus: EffectProtocol{
     init(value: Int) {
         self.value = value
     }
+    
     func applyEffects(card: Card) {
+        for status in card.owner.currentTurnStatus{
+            if status == .reasoning{
+                return
+            }
+        }
         card.owner.currentTurnStatus.append(.reasoning)
         card.owner.amountInTurnEffect = value
     }
@@ -45,6 +51,11 @@ class AddReasoningStatus: EffectProtocol{
 
 class AddVulnerableStatus: EffectProtocol{
     func applyEffects(card: Card) {
+        for status in card.owner.currentStatus{
+            if status == .vulnerable{
+                return
+            }
+        }
         card.owner.currentStatus.append(.vulnerable)
     }
 }

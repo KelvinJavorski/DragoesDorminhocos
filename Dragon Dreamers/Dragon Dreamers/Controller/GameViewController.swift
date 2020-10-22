@@ -46,7 +46,7 @@ class GameViewController: UIViewController {
         self.speechText.numberOfLines = 0
         self.speechText.adjustsFontSizeToFitWidth = true
         self.speechText.minimumScaleFactor = 0.4
-        self.modalBackView.alpha = 0.15
+        self.modalBackView.alpha = 0.20
         self.modalBackView.backgroundColor = .black
     }
     

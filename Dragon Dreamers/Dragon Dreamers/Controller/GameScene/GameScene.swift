@@ -451,6 +451,7 @@ class GameScene: SKScene {
         self.discardOngoing(){
             self.discardHand() {
                 self.battleManager.initPlayerTurn()
+                self.enemyPlayingTurn()
                 self.showDialogBox()
                 self.printDiscard()
                 self.printDeck()
@@ -518,6 +519,10 @@ class GameScene: SKScene {
         createEnemyCardNode(card: enemy.hand.cards[0], at: enemyHandNode)
     }
     
+    func enemyPlayingTurn(){
+        let card = enemy.hand.cards[0]
+        moveCard(card: card, to: playAreaNode.position)
+    }
     func playCard (index: Int, manaType: ManaType) {
         var aux = false
         for mana in Player.shared.manaManager.manaPool {
