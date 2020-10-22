@@ -349,11 +349,11 @@ do Jogo</string>
                     <connections>
                         <outlet property="backgroudImageView" destination="E1a-xr-y9O" id="vua-lS-mfL"/>
                         <outlet property="baloonImageView" destination="P4Z-FA-1nb" id="RTj-Hc-4Di"/>
-                        <outlet property="choice1Button" destination="86S-SC-Ukv" id="6iu-M8-Xca"/>
-                        <outlet property="choice2Button" destination="rFw-Yf-VLS" id="WTr-9Q-AYO"/>
-                        <outlet property="choice3Button" destination="rY4-B3-KG7" id="qGX-E8-pSL"/>
-                        <outlet property="choice4Button" destination="w49-uL-Hlx" id="PfF-4n-JIM"/>
-                        <outlet property="choice5Button" destination="Kfr-m9-Su0" id="FxO-iI-vpG"/>
+                        <outlet property="choice1ButtonOutlet" destination="86S-SC-Ukv" id="716-K0-2NF"/>
+                        <outlet property="choice2ButtonOutlet" destination="rFw-Yf-VLS" id="BcP-qK-AOD"/>
+                        <outlet property="choice3ButtonOutlet" destination="rY4-B3-KG7" id="PjV-YR-Bzi"/>
+                        <outlet property="choice4ButtonOutlet" destination="w49-uL-Hlx" id="pFx-0h-atb"/>
+                        <outlet property="choice5ButtonOutlet" destination="Kfr-m9-Su0" id="vS9-WW-Qfi"/>
                         <outlet property="nameImageView" destination="oZD-B0-yWs" id="xzp-Ui-lT2"/>
                         <outlet property="perfilImageView" destination="wAz-8y-6ad" id="0bb-n7-Rtp"/>
                         <outlet property="textLabel" destination="oOp-4J-6Kb" id="d0D-Vy-gs3"/>
