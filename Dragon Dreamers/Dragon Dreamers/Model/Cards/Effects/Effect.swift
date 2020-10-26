@@ -85,18 +85,6 @@ class Effect{
         let addLastPlayedCardToDeck = AddLastPlayedCardToDeck()
         allEffects.append(addLastPlayedCardToDeck)
         
-        let addplayBlueTwice = AddPlayBlueCardTwiceStatus()
-        allEffects.append(addplayBlueTwice)
-        
-        let addplayGreenTwice = AddPlayGreenCardTwiceStatus()
-        allEffects.append(addplayGreenTwice)
-        
-        let addplayRedTwice = AddPlayRedCardTwiceStatus()
-        allEffects.append(addplayRedTwice)
-        
-        let addplayYellowTwice = AddPlayYellowCardTwiceStatus()
-        allEffects.append(addplayYellowTwice)
-        
         let addReasoning = AddReasoningStatus(value: 3)
         allEffects.append(addReasoning)
         
