@@ -8,30 +8,6 @@
 
 import Foundation
 
-class AddPlayBlueCardTwiceStatus: EffectProtocol{
-    func applyEffects(card: Card) {
-        card.owner.currentStatus.append(.blue)
-    }
-}
-
-class AddPlayGreenCardTwiceStatus: EffectProtocol{
-    func applyEffects(card: Card) {
-        card.owner.currentStatus.append(.green)
-    }
-}
-
-class AddPlayRedCardTwiceStatus: EffectProtocol{
-    func applyEffects(card: Card) {
-        card.owner.currentStatus.append(.red)
-    }
-}
-
-class AddPlayYellowCardTwiceStatus: EffectProtocol{
-    func applyEffects(card: Card) {
-        card.owner.currentStatus.append(.yellow)
-    }
-}
-
 class AddReasoningStatus: EffectProtocol{
     let value: Int
     init(value: Int) {
