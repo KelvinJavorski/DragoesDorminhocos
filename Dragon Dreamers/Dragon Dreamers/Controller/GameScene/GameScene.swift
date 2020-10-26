@@ -410,29 +410,6 @@ class GameScene: SKScene {
         }
     }
     
-    ///Debug
-    func printDiscard(){
-        print("Discard: \(Player.shared.discard.cards.count)")
-        for card in Player.shared.discard.cards{
-            print("Carta no Discard: \(card.id)")
-        }
-    }
-    
-    
-    func printDeck(){
-        print("Deck   : \(Player.shared.deck.cards.count)")
-        for card in Player.shared.deck.cards{
-            print("Carta no Deck: \(card.id)")
-        }
-    }
-    
-    func printHand(){
-        print("Hand   : \(Player.shared.hand.cards.count)")
-        for card in Player.shared.hand.cards{
-            print("Carta na Hand: \(card.id)")
-        }
-    }
-    
     /// >>>----------> GAMEPLAY FUNCs
     
     var nextTurning = false
@@ -448,28 +425,33 @@ class GameScene: SKScene {
         selectEnemyHumor()
         battleManager.endEnemyTurn()
         print("Descarta a Mesa")
-        self.discardOngoing(){
-            self.discardHand() {
-                self.battleManager.initPlayerTurn()
-                self.enemyPlayingTurn()
-                self.showDialogBox()
-                self.printDiscard()
-                self.printDeck()
-                self.printHand()
-                self.nextTurning = false
-                self.drawCards()
-                self.enemyDrawCard()
-                print("HandAfterDraw   : \(Player.shared.hand.cards.count)")
-            }
-            print("Descarta a Hand")
-            Player.shared.manaManager.resetAllManaFromManaPool()
-            for mana in Player.shared.manaManager.manaPool {
-                if mana.node?.isHidden == true{
-                    mana.node?.isHidden = false
+        discardOngoing() {
+            self.enemyPlayingTurn(){
+                self.discardHand() {
+                    self.battleManager.initPlayerTurn()
+                    self.nextTurning = false
+                    self.drawCards()
                 }
+                
+                self.enemyDiscardCard {
+                    self.showDialogBox()
+                    self.enemyDrawCard()
+                }
+                Player.shared.manaManager.resetAllManaFromManaPool()
+                for mana in Player.shared.manaManager.manaPool {
+                    if mana.node?.isHidden == true{
+                        mana.node?.isHidden = false
+                    }
+                }
+                self.rearangeManaNodes()
             }
-            self.rearangeManaNodes()
+            
         }
+        
+    }
+    
+    func setupNextTurn(){
+        
     }
     
     func showDialogBox(){
@@ -519,10 +501,21 @@ class GameScene: SKScene {
         createEnemyCardNode(card: enemy.hand.cards[0], at: enemyHandNode)
     }
     
-    func enemyPlayingTurn(){
+    func enemyPlayingTurn(completion: @escaping () -> () = { }){
         let card = enemy.hand.cards[0]
-        moveCard(card: card, to: playAreaNode.position)
+        moveCard(card: card, to: playAreaNode.position){
+            completion()
+        }
+        
     }
+    
+    func enemyDiscardCard(completion: @escaping () -> () = { }){
+        let card = enemy.hand.cards[0]
+        moveCard(card: card, to: discardNode.position){
+            completion()
+        }
+    }
+    
     func playCard (index: Int, manaType: ManaType) {
         var aux = false
         for mana in Player.shared.manaManager.manaPool {
@@ -536,7 +529,7 @@ class GameScene: SKScene {
         }
         let i = Player.shared.ongoing.cards.count
         // Calculates the position for this card
-        let pos = self.convert(playAreaNodes[i].position, from: discardNode)
+        let pos = self.convert(playAreaNodes[i].position, from: playAreaNode)
         // Gets card from player's hand
         let card = Player.shared.hand.cards[index]
         
