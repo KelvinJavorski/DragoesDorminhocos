@@ -118,6 +118,8 @@ class Person{
 
     var opponent: Person!
     
+    var sun = Way()
+    
     var currentAgree: Int!
     var maxAgree: Int!
     var minAgree: Int!
@@ -134,6 +136,7 @@ class Person{
     var currentTokens: Int!
     var maxReasoning: Int!
     
+    var tokens : [Token] = []
     var currentStatus: [BattleStatus] = []
     var currentTurnStatus: [BattleTurnStatus] = []
     var amountInTurnEffect: Int?

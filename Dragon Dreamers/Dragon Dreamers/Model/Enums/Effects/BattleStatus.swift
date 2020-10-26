@@ -10,13 +10,9 @@ import Foundation
 
 enum BattleStatus : Int, CaseIterable, CustomStringConvertible{
     case vulnerable = 0
-    case blue = 1
-    case green = 2
-    case red = 3
-    case yellow = 4
+    case reasoning = 1
+    case distant = 2
     
-    case doubleCard = 5
-    case reasoning = 6
     
     var description: String{
         switch self {

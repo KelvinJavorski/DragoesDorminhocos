@@ -40,5 +40,12 @@ class Player: Person {
         
         currentTokens = 5
         maxReasoning = 15
+        
+        let imposition = Token(name: "Imposição", amount: 0, way: .sol)
+        let distant = Token(name: "Distante", amount: 0, way: .areia)
+        let doubt = Token(name: "Dúvida", amount: 0, way: .brisa)
+        let conection = Token(name: "Conexão", amount: 0, way: .oceano)
+        tokens = [imposition, distant, doubt, conection]
+        
     }
 }
