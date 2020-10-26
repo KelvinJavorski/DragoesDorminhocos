@@ -34,7 +34,6 @@ class StoryViewController: UIViewController {
     
     @IBOutlet weak var choice5ButtonOutlet: UIButton!
     
-    
     var chapter: Chapter? = DataSave.shared.gameCampaign.history.consumeChapter()
     var speech: Speech?
     var speechId: Int?
@@ -130,23 +129,23 @@ class StoryViewController: UIViewController {
     }
     
     @IBAction func choice1Button(_ sender: UIButton) {
-        
+        self.nextSpeech()
     }
     
     @IBAction func choice2Button(_ sender: UIButton) {
-        
+        self.nextSpeech()
     }
     
     @IBAction func choice3Button(_ sender: UIButton) {
-        
+        self.nextSpeech()
     }
     
     @IBAction func choice4Button(_ sender: UIButton) {
-        
+        self.nextSpeech()
     }
     
     @IBAction func choice5Button(_ sender: UIButton) {
-        
+        self.nextSpeech()
     }
     
     func setupChoice1Button() {
