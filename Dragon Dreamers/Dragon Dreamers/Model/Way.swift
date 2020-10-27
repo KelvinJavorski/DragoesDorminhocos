@@ -10,34 +10,34 @@ import Foundation
 import SpriteKit
 
 class Way{
-    
     init(name: String){
         self.name = name
         initialValues()
     }
     
-    var name: String!
-    var current: Int!
-    var maxValue: Int!
-    var blocked: Bool = false
+    public var name: String!
+    public var current: Int!
+    public var maxValue: Int!
+    public var blocked: Bool = false
     
-    func initialValues(){
-        
+    private func initialValues(){
+        self.current = 10
+        self.maxValue = 30
     }
     
-    func increaseAmount(amount: Int){
+    public func increaseAmount(amount: Int){
         if !blocked{
             current += amount
         }
     }
     
-    func decreaseAmount(amount: Int){
+    public func decreaseAmount(amount: Int){
         if !blocked{
             current += amount
         }
     }
     
-    func changeBlockStatus(){
-        blocked = !blocked
+    public func changeBlockStatus(_ bool: Bool){
+        blocked = bool
     }
 }

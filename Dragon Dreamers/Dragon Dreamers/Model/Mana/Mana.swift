@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-enum ManaType{
+enum ManaType : String, CaseIterable{
     case b
     case r
     case y
@@ -23,6 +23,16 @@ enum ManaType{
     case rg
     
     case yg
+    
+    static func random<G: RandomNumberGenerator>(using generator: inout G) -> ManaType {
+        return ManaType.allCases.randomElement(using: &generator)!
+    }
+    
+    static func random() -> ManaType {
+        var g = SystemRandomNumberGenerator()
+        return ManaType.random(using: &g)
+    }
+
 }
 
 class Mana {

@@ -111,6 +111,7 @@ class Person{
     
     var cardsPool : CardsPool = CardsPool()
     var deck     : Deck = Deck(name: "Deck")
+    var lastHand : Deck = Deck(name: "LastHand")
     var hand     : Deck = Deck(name: "Hand")
     var ongoing  : Deck = Deck(name: "Ongoing")
     var discard : Deck = Deck(name: "Discard")
@@ -137,6 +138,7 @@ class Person{
     var maxReasoning: Int!
     
     var tokens : [Token] = []
+    var status: [Status] = []
     var currentStatus: [BattleStatus] = []
     var currentTurnStatus: [BattleTurnStatus] = []
     var amountInTurnEffect: Int?

@@ -12,7 +12,7 @@ enum BattleStatus : Int, CaseIterable, CustomStringConvertible{
     case vulnerable = 0
     case reasoning = 1
     case distant = 2
-    
+    case prevent = 3
     
     var description: String{
         switch self {

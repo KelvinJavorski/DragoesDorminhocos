@@ -49,6 +49,9 @@
 		6FD944B0252B970B00229AF0 /* BattleOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD944AF252B970B00229AF0 /* BattleOutcome.swift */; };
 		B6202898251E7AB30024DC8A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6202897251E7AB20024DC8A /* UIColor.swift */; };
 		B6411B70254744A200C616E8 /* Way.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6411B6F254744A200C616E8 /* Way.swift */; };
+		B6411B772547A2CB00C616E8 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6411B762547A2CB00C616E8 /* Status.swift */; };
+		B6411B7E2547AA9700C616E8 /* BreezeEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6411B7D2547AA9700C616E8 /* BreezeEffects.swift */; };
+		B6411B832547C4E000C616E8 /* OceanEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6411B822547C4E000C616E8 /* OceanEffects.swift */; };
 		B646358E25434C18005B4285 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646358D25434C18005B4285 /* Token.swift */; };
 		B646359125434C40005B4285 /* TokenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646359025434C40005B4285 /* TokenProtocol.swift */; };
 		B646359825436BEE005B4285 /* SandEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646359725436BEE005B4285 /* SandEffects.swift */; };
@@ -126,6 +129,9 @@
 		6FD944AF252B970B00229AF0 /* BattleOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleOutcome.swift; sourceTree = "<group>"; };
 		B6202897251E7AB20024DC8A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B6411B6F254744A200C616E8 /* Way.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Way.swift; sourceTree = "<group>"; };
+		B6411B762547A2CB00C616E8 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		B6411B7D2547AA9700C616E8 /* BreezeEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreezeEffects.swift; sourceTree = "<group>"; };
+		B6411B822547C4E000C616E8 /* OceanEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OceanEffects.swift; sourceTree = "<group>"; };
 		B646358D25434C18005B4285 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		B646359025434C40005B4285 /* TokenProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenProtocol.swift; sourceTree = "<group>"; };
 		B646359725436BEE005B4285 /* SandEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandEffects.swift; sourceTree = "<group>"; };
@@ -260,6 +266,42 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		B6411B752547A2B800C616E8 /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				B6411B762547A2CB00C616E8 /* Status.swift */,
+			);
+			path = Status;
+			sourceTree = "<group>";
+		};
+		B6411B7A2547A9AC00C616E8 /* Brisa */ = {
+			isa = PBXGroup;
+			children = (
+				B6411B7D2547AA9700C616E8 /* BreezeEffects.swift */,
+			);
+			name = Brisa;
+			path = Status/Brisa;
+			sourceTree = "<group>";
+		};
+		B6411B7C2547AA3100C616E8 /* Legacy Effects */ = {
+			isa = PBXGroup;
+			children = (
+				B65B69712530E4EF009CB85E /* CardModifyEffects.swift */,
+				B6CEDF7F25379AEA006288A9 /* AddStatusEffect.swift */,
+				B6CEDF8325379B17006288A9 /* BuffEffect.swift */,
+				B65B6967252F9403009CB85E /* ValueChangeEffects.swift */,
+			);
+			path = "Legacy Effects";
+			sourceTree = "<group>";
+		};
+		B6411B812547C4CB00C616E8 /* Oceano */ = {
+			isa = PBXGroup;
+			children = (
+				B6411B822547C4E000C616E8 /* OceanEffects.swift */,
+			);
+			path = Oceano;
+			sourceTree = "<group>";
+		};
 		B646358C25434C08005B4285 /* Tokens */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,14 +322,14 @@
 		B65B6966252F93DC009CB85E /* Effects */ = {
 			isa = PBXGroup;
 			children = (
+				B6411B812547C4CB00C616E8 /* Oceano */,
+				B6411B7C2547AA3100C616E8 /* Legacy Effects */,
+				B6411B752547A2B800C616E8 /* Status */,
 				B646359625436BD1005B4285 /* Areia */,
+				B6411B7A2547A9AC00C616E8 /* Brisa */,
 				B680DE3F253F4B3D004E48B8 /* Sol */,
 				B65B6959252E588C009CB85E /* Effect.swift */,
-				B65B69712530E4EF009CB85E /* CardModifyEffects.swift */,
-				B65B6967252F9403009CB85E /* ValueChangeEffects.swift */,
 				B65B6963252F863D009CB85E /* EffectProtocol.swift */,
-				B6CEDF7F25379AEA006288A9 /* AddStatusEffect.swift */,
-				B6CEDF8325379B17006288A9 /* BuffEffect.swift */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -501,6 +543,7 @@
 				649A220E250AB98500F6A7CE /* GameSceneNPCChoice.swift in Sources */,
 				649A2214250ABA7E00F6A7CE /* GameSceneDuel.swift in Sources */,
 				B646359825436BEE005B4285 /* SandEffects.swift in Sources */,
+				B6411B772547A2CB00C616E8 /* Status.swift in Sources */,
 				649A21F6250AB5D600F6A7CE /* BasicConfiguration.swift in Sources */,
 				649A221C250ABB1F00F6A7CE /* GameSceneCardChoice.swift in Sources */,
 				B6CE729C25129DC900AF2553 /* OutcomeViewController.swift in Sources */,
@@ -518,10 +561,12 @@
 				B646359125434C40005B4285 /* TokenProtocol.swift in Sources */,
 				B6CE729A251287AA00AF2553 /* TargetType.swift in Sources */,
 				B6411B70254744A200C616E8 /* Way.swift in Sources */,
+				B6411B832547C4E000C616E8 /* OceanEffects.swift in Sources */,
 				B680DE45253F4C25004E48B8 /* Ways.swift in Sources */,
 				B65B69722530E4EF009CB85E /* CardModifyEffects.swift in Sources */,
 				B6E647E2253672B400D23C41 /* BattleTurnStatus.swift in Sources */,
 				B6EF3A2824D9CCCE00FD840E /* GameViewController.swift in Sources */,
+				B6411B7E2547AA9700C616E8 /* BreezeEffects.swift in Sources */,
 				649A2218250ABACC00F6A7CE /* GameSceneEnd.swift in Sources */,
 				B6CEDF8025379AEA006288A9 /* AddStatusEffect.swift in Sources */,
 				649A2212250ABA5000F6A7CE /* GameSceneInteraction.swift in Sources */,
