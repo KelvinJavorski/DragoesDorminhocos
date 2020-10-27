@@ -18,8 +18,8 @@ class Chapter {
     init(speechs: [Speech]) {
         self.speechs = speechs
         
-        self.id = Speech.next_id
-        Speech.next_id += 1
+        self.id = Chapter.next_id
+        Chapter.next_id += 1
     }
     
     func setIsConsumed(isConsumed: Bool) {

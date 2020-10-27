@@ -118,7 +118,7 @@ class Person{
 
     var opponent: Person!
     
-    var sun = Way()
+    //var sun = Way()
     
     var currentAgree: Int!
     var maxAgree: Int!

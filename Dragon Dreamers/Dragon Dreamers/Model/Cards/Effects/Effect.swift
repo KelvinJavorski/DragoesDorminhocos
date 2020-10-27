@@ -18,7 +18,7 @@ class Effect{
     func getEffectByIdsEffect(enumEffect : [EffectType]) -> [EffectProtocol]{
         var effects : [EffectProtocol] = []
         for i in 0..<enumEffect.count{
-            effects.append(allEffects[(enumEffect[i]).rawValue])
+            //effects.append(allEffects[(enumEffect[i]).rawValue])
         }
         return effects
     }
