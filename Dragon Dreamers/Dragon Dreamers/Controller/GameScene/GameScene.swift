@@ -177,6 +177,7 @@ class GameScene: SKScene {
         
         createHandEllipse()
         drawCards()
+        Player.shared.lastHand.cards = Player.shared.hand.cards
         enemyDrawCard()
         
     }
@@ -650,31 +651,31 @@ class GameScene: SKScene {
         bannedNumber.text = "\(bannedCardsAmount)"
         
         //Animações nao funcionam
-        if let currentAgree = Player.shared.currentAgree {
+        if let currentAgree = Player.shared.oceano.current {
             agreeValue.text = "Concordar:\(currentAgree)"
-            var percentage = (CGFloat(currentAgree) / CGFloat(Player.shared.maxAgree!)) * 100
+            var percentage = (CGFloat(currentAgree) / CGFloat(Player.shared.oceano.maxValue)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             agreeBarNode?.run(updateBar)
         }
-        if let currentAvoid = Player.shared.currentAvoid{
+        if let currentAvoid = Player.shared.areia.current{
             avoidValue.text = "Ignorar: \(currentAvoid)"
-            var percentage = (CGFloat(currentAvoid) / CGFloat(Player.shared.maxAvoid)) * 100
+            var percentage = (CGFloat(currentAvoid) / CGFloat(Player.shared.areia.maxValue)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             avoidBarNode?.run(updateBar)
         }
         
-        if let currentQuestioning = Player.shared.currentQuestioning {
+        if let currentQuestioning = Player.shared.brisa.current {
             questioningValue.text = "Debater: \(currentQuestioning)"
-            var percentage = (CGFloat(currentQuestioning) / CGFloat(Player.shared.maxAgree)) * 100
+            var percentage = (CGFloat(currentQuestioning) / CGFloat(Player.shared.brisa.maxValue)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             questioningBarNode?.run(updateBar)
         }
-        if let currentCriticize = Player.shared.currentCriticize{
+        if let currentCriticize = Player.shared.sol.current{
             criticizeValue.text = "Criticar: \(currentCriticize)"
-            var percentage = (CGFloat(currentCriticize) / CGFloat(Player.shared.maxQuestioning)) * 100
+            var percentage = (CGFloat(currentCriticize) / CGFloat(Player.shared.sol.maxValue)) * 100
             percentage = setZeroOrHundred(number: percentage)
             let updateBar = SKAction.resize(toWidth: CGFloat(percentage), duration: 0.1)
             criticizeBarNode?.run(updateBar)

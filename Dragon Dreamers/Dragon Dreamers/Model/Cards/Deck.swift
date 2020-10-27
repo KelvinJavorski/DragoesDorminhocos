@@ -84,4 +84,9 @@ class Deck {
         }
         return true
     }
+    
+    func getRandomCardIndex () -> Int {
+        let count = cards.count
+        return Int.random(in: 0..<count)
+    }
 }
