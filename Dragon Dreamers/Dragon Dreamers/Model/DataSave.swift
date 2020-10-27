@@ -12,8 +12,13 @@ class DataSave {
     static let shared = DataSave()
 
     var gameCampaign = GameCampaign()
+    var actualChapterIndex: Int = 0
 
     init () {
     
+    }
+    
+    func setActualChapter(chapterIndex: Int){
+        self.actualChapterIndex = chapterIndex
     }
 }

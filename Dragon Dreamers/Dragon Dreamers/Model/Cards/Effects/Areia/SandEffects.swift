@@ -15,8 +15,8 @@ class Desviar : EffectProtocol{
     }
 }
 
-class Defender : EffectProtocol{
-    func applyEffects(card: Card) {
-        <#code#>
-    }
-}
+//class Defender : EffectProtocol{
+//    func applyEffects(card: Card) {
+//        <#code#>
+//    }
+//}

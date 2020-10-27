@@ -5,14 +5,27 @@
 //  Created by Kevin Ribeiro on 19/10/20.
 //  Copyright © 2020 Kelvin Javorski Soares. All rights reserved.
 //
-enum ViewType{
+enum ViewType {
     case speechAndChoice
     case onlySpeech
+}
+
+extension UIButton {
+    func setTitleWithoutAnimation(title: String?) {
+        UIView.setAnimationsEnabled(false)
+
+        setTitle(title, for: [])
+
+        layoutIfNeeded()
+        UIView.setAnimationsEnabled(true)
+    }
 }
 
 import UIKit
 
 class StoryViewController: UIViewController {
+    
+    @IBOutlet weak var baloonButton: UIButton!
     
     @IBOutlet weak var perfilImageView: UIImageView!
     
@@ -34,9 +47,11 @@ class StoryViewController: UIViewController {
     
     @IBOutlet weak var choice5ButtonOutlet: UIButton!
     
-    var chapter: Chapter? = DataSave.shared.gameCampaign.history.consumeChapter()
+    var history: History = DataSave.shared.gameCampaign.history
+    var chapter: Chapter? = DataSave.shared.gameCampaign.history.chapters[DataSave.shared.actualChapterIndex]
     var speech: Speech?
     var speechId: Int?
+    var chapterid: Int?
     var viewType: ViewType = ViewType.onlySpeech
     
     override func viewDidLoad() {
@@ -48,14 +63,19 @@ class StoryViewController: UIViewController {
             chapter = DataSave.shared.gameCampaign.history.consumeChapter()
         }
         
+        chapterid = chapter!.id
+        
         speech = chapter!.speechs[0]
         speechId = speech!.id
         
+        self.setup()
         
         // Do any additional setup after loading the view.
     }
     
     func setup() {
+        self.setupOrUpdateView()
+        
         self.setupPerfilImageView()
         self.setupNameImageView()
         self.setupTextLabel()
@@ -65,7 +85,7 @@ class StoryViewController: UIViewController {
     }
     
     func update() {
-        self.nextSpeech()
+        self.setupOrUpdateView()
         
         self.updatePerfilImageView()
         self.updateNameImageView()
@@ -76,12 +96,18 @@ class StoryViewController: UIViewController {
     }
     
     func nextSpeech() {
+        
         let pastSpeech = self.speech
+        
+        var speechlag = false
+        
         for auxSpeech in self.chapter!.speechs {
-            if auxSpeech.id == (self.speechId! + 1) {
+            if auxSpeech.id == (self.speechId! + 1) && !speechlag{
+                speechlag = true
                 self.speech!.setIsConsumed(isConsumed: true)
                 self.speech = auxSpeech
                 self.speechId = auxSpeech.id
+                
             }
         }
         
@@ -93,31 +119,73 @@ class StoryViewController: UIViewController {
         else {
             self.endChapter()
         }
+        
+        self.update()
     }
     
     func endChapter() {
         
+        var chapterFlag = false
+        let pastChapter = self.chapter
+        
+        for auxChapter in self.history.chapters {
+            if auxChapter.id == (self.chapterid! + 1) && !chapterFlag{
+                chapterFlag = true
+                self.chapter!.setIsConsumed(isConsumed: true)
+                self.chapter = auxChapter
+                self.chapterid = auxChapter.id
+                
+            }
+        }
+        
+        if pastChapter!.id != 0 {
+            performSegue(withIdentifier: "StoryToBattleSegue", sender: nil)
+            return
+        }
+        
+        if self.chapter != nil && pastChapter!.id != 0{
+            if pastChapter!.id == self.chapter!.id {
+                //ULTIMA BATALHA
+                
+                performSegue(withIdentifier: "StoryToBattleSegue", sender: nil)
+                return
+            }
+        }
+        else if pastChapter!.id != 0{
+            //ULTIMA BATALHA
+            
+            performSegue(withIdentifier: "StoryToBattleSegue", sender: nil)
+            return
+        }
+        
+        
+        self.speech = self.chapter!.speechs[0]
+        self.speechId = self.speech!.id
+        self.update()
     }
     
     func setupOrUpdateView() {
         if self.speech!.isDecision {
             self.viewType = ViewType.speechAndChoice
             
-            self.choice1ButtonOutlet.isHidden = false
-            self.choice2ButtonOutlet.isHidden = false
-            self.choice3ButtonOutlet.isHidden = false
-            self.choice4ButtonOutlet.isHidden = false
-            self.choice5ButtonOutlet.isHidden = false
+            self.baloonButton.isHidden = true
             
             self.setupChoice1Button()
             self.setupChoice2Button()
             self.setupChoice3Button()
             self.setupChoice4Button()
             self.setupChoice5Button()
-                
+            
+            self.choice1ButtonOutlet.isHidden = false
+            self.choice2ButtonOutlet.isHidden = false
+            self.choice3ButtonOutlet.isHidden = false
+            self.choice4ButtonOutlet.isHidden = false
+            self.choice5ButtonOutlet.isHidden = false
         }
         else {
             self.viewType = ViewType.onlySpeech
+            
+            self.baloonButton.isHidden = false
             
             self.choice1ButtonOutlet.isHidden = true
             self.choice2ButtonOutlet.isHidden = true
@@ -126,6 +194,10 @@ class StoryViewController: UIViewController {
             self.choice5ButtonOutlet.isHidden = true
             
         }
+    }
+    
+    @IBAction func baloonButton(_ sender: UIButton) {
+        self.nextSpeech()
     }
     
     @IBAction func choice1Button(_ sender: UIButton) {
@@ -149,23 +221,27 @@ class StoryViewController: UIViewController {
     }
     
     func setupChoice1Button() {
-        self.choice1ButtonOutlet.setTitle(self.speech!.decisionText[0], for: .normal)
+        self.choice1ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[0])
     }
     
     func setupChoice2Button() {
-        self.choice2ButtonOutlet.setTitle(self.speech!.decisionText[1], for: .normal)
+        self.choice2ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[1])
     }
     
     func setupChoice3Button() {
-        self.choice3ButtonOutlet.setTitle(self.speech!.decisionText[2], for: .normal)
+        self.choice3ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[2])
     }
     
     func setupChoice4Button() {
-        self.choice4ButtonOutlet.setTitle(self.speech!.decisionText[3], for: .normal)
+        self.choice4ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[3])
     }
     
     func setupChoice5Button() {
-        self.choice5ButtonOutlet.setTitle(self.speech!.decisionText[4], for: .normal)
+        self.choice5ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[4])
+    }
+    
+    func setupTextLabel() {
+        self.textLabel.text = self.speech!.text
     }
     
     func setupPerfilImageView() {
@@ -173,10 +249,6 @@ class StoryViewController: UIViewController {
     }
     
     func setupNameImageView() {
-        
-    }
-    
-    func setupTextLabel() {
         
     }
     
@@ -188,15 +260,15 @@ class StoryViewController: UIViewController {
         
     }
     
+    func updateTextLabel() {
+        self.textLabel.text = self.speech!.text
+    }
+    
     func updatePerfilImageView() {
         
     }
     
     func updateNameImageView() {
-        
-    }
-    
-    func updateTextLabel() {
         
     }
     
