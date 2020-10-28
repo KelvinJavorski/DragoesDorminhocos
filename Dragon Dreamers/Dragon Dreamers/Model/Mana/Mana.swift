@@ -10,19 +10,11 @@ import Foundation
 import SpriteKit
 
 enum ManaType : String, CaseIterable{
-    case b
-    case r
-    case y
-    case g
-    
-    case br
-    case by
-    case bg
-    
-    case ry
-    case rg
-    
-    case yg
+    case blue
+    case red
+    case yellow
+    case green
+    case colorless
     
     static func random<G: RandomNumberGenerator>(using generator: inout G) -> ManaType {
         return ManaType.allCases.randomElement(using: &generator)!
@@ -87,19 +79,11 @@ class Mana {
     }
     func updateNodeFromType () -> SKSpriteNode{
         switch self.type {
-            case ManaType.b: return SKSpriteNode(fileNamed: "b")!
-            case ManaType.r: return SKSpriteNode(fileNamed: "r")!
-            case ManaType.y: return SKSpriteNode(fileNamed: "y")!
-            case ManaType.g: return SKSpriteNode(fileNamed: "g")!
-            
-            case ManaType.br: return SKSpriteNode(fileNamed: "br")!
-            case ManaType.by: return SKSpriteNode(fileNamed: "by")!
-            case ManaType.bg: return SKSpriteNode(fileNamed: "bg")!
-            
-            case ManaType.ry: return SKSpriteNode(fileNamed: "ry")!
-            case ManaType.rg: return SKSpriteNode(fileNamed: "rg")!
-            
-            case ManaType.yg: return SKSpriteNode(fileNamed: "yg")!
+            case ManaType.blue: return SKSpriteNode(fileNamed: "blue")!
+            case ManaType.red: return SKSpriteNode(fileNamed: "red")!
+            case ManaType.yellow: return SKSpriteNode(fileNamed: "yellow")!
+            case ManaType.green: return SKSpriteNode(fileNamed: "green")!
+            case ManaType.colorless: return SKSpriteNode(fileNamed: "colorless")!
                 
         }
     }

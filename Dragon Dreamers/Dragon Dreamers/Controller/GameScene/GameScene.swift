@@ -165,7 +165,7 @@ class GameScene: SKScene {
         
         nextTurnAvailable = false
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
-        Player.shared.manaManager.fillPool(manas: [ManaType.g, ManaType.g, ManaType.g])
+        //Player.shared.manaManager.fillPool(manas: [ManaType.green, ManaType.green, ManaType.green])
         for i in 0 ..< Player.shared.manaManager.manaPool.count {
             let pos = self.convert(manaNodes[i].position, from: manaNode)
             createManaNode(mana: Player.shared.manaManager.manaPool[i], at: pos)
@@ -311,14 +311,16 @@ class GameScene: SKScene {
         var manaBase = manas.childNode(withName: "B")!
         
         switch manaType {
-        case .b:
+        case .blue:
             manaBase = manas.childNode(withName: "B")!
-        case .g:
+        case .green:
             manaBase = manas.childNode(withName: "G")!
-        case .r:
+        case .red:
             manaBase = manas.childNode(withName: "R")!
-        case .y:
+        case .yellow:
             manaBase = manas.childNode(withName: "Y")!
+        case .colorless:
+            manaBase = manas.childNode(withName: "C")!
         default:
             break
         }
@@ -856,14 +858,16 @@ class GameScene: SKScene {
     
     func printManaType (manaType: ManaType) {
         switch manaType {
-        case .b:
+        case .blue:
             print("mana type: Blue")
-        case .r:
+        case .red:
             print("mana type: Red")
-        case .g:
+        case .green:
             print("mana type: Green")
-        case .y:
+        case .yellow:
             print("mana type: Yellow")
+        case .colorless:
+            print("mana type: Colorless")
         default:
             print("no mana type")
         }

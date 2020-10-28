@@ -53,6 +53,8 @@ class StoryViewController: UIViewController {
     var speechId: Int?
     var chapterid: Int?
     var viewType: ViewType = ViewType.onlySpeech
+    var decisions: [ManaType] = []
+    //var tempDecisions: [ManaType] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,26 +141,31 @@ class StoryViewController: UIViewController {
         }
         
         if pastChapter!.id != 0 {
+            self.adjustMana()
             performSegue(withIdentifier: "StoryToBattleSegue", sender: nil)
+            //self.tempDecisions = []
             return
         }
         
         if self.chapter != nil && pastChapter!.id != 0{
             if pastChapter!.id == self.chapter!.id {
                 //ULTIMA BATALHA
-                
+                self.adjustMana()
                 performSegue(withIdentifier: "StoryToBattleSegue", sender: nil)
+                //self.tempDecisions = []
                 return
             }
         }
         else if pastChapter!.id != 0{
             //ULTIMA BATALHA
-            
+            self.adjustMana()
             performSegue(withIdentifier: "StoryToBattleSegue", sender: nil)
+            //self.tempDecisions = []
             return
         }
         
-        
+        self.adjustMana()
+        //self.tempDecisions = []
         self.speech = self.chapter!.speechs[0]
         self.speechId = self.speech!.id
         self.update()
@@ -196,23 +203,81 @@ class StoryViewController: UIViewController {
         }
     }
     
+    func adjustMana() {
+        //var manas = Player.shared.manaManager.manaPool
+        
+//        for mana in 0..<Player.shared.manaManager.manaPool.count{
+//            self.decisions[mana] = Player.shared.manaManager.manaPool[mana].type
+//        }\
+        
+        var manaAux = [0,0,0,0]
+        var fillPoolAux: [ManaType] = [.colorless]
+        
+        for decision in self.decisions {
+            switch decision {
+            case .blue:
+                manaAux[0] += 1
+            case .yellow:
+                manaAux[1] += 1
+            case .green:
+                manaAux[2] += 1
+            case .red:
+                manaAux[3] += 1
+            default:
+                break
+            }
+        }
+        
+        if manaAux[0] >= manaAux[1] && manaAux[0] >= manaAux[2] && manaAux[0] >= manaAux[3] {
+            fillPoolAux.append(contentsOf: [.blue, .blue])
+            Player.shared.manaManager.fillPool(manas: fillPoolAux)
+            return
+        }
+        if manaAux[1] >= manaAux[0] && manaAux[1] >= manaAux[2] && manaAux[1] >= manaAux[3] {
+            fillPoolAux.append(contentsOf: [.yellow, .yellow])
+            Player.shared.manaManager.fillPool(manas: fillPoolAux)
+            return
+        }
+        if manaAux[2] >= manaAux[0] && manaAux[2] >= manaAux[1] && manaAux[2] >= manaAux[3] {
+            fillPoolAux.append(contentsOf: [.green, .green])
+            Player.shared.manaManager.fillPool(manas: fillPoolAux)
+            return
+        }
+        if manaAux[3] >= manaAux[0] && manaAux[3] >= manaAux[1] && manaAux[3] >= manaAux[2] {
+            fillPoolAux.append(contentsOf: [.red, .red])
+            Player.shared.manaManager.fillPool(manas: fillPoolAux)
+            return
+        }
+
+        //manas.append(contentsOf: self.tempDecisions)
+        
+    }
+    
     @IBAction func baloonButton(_ sender: UIButton) {
         self.nextSpeech()
     }
     
     @IBAction func choice1Button(_ sender: UIButton) {
+        //self.tempDecisions.append(.blue)
+        self.decisions.append(.blue)
         self.nextSpeech()
     }
     
     @IBAction func choice2Button(_ sender: UIButton) {
+        //self.tempDecisions.append(.yellow)
+        self.decisions.append(.yellow)
         self.nextSpeech()
     }
     
     @IBAction func choice3Button(_ sender: UIButton) {
+        //self.tempDecisions.append(.green)
+        self.decisions.append(.green)
         self.nextSpeech()
     }
     
     @IBAction func choice4Button(_ sender: UIButton) {
+        //self.tempDecisions.append(.red)
+        self.decisions.append(.red)
         self.nextSpeech()
     }
     

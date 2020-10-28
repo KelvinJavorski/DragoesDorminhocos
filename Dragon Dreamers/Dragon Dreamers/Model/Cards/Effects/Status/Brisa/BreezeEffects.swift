@@ -22,7 +22,7 @@ class Planejar : EffectProtocol{
             }
             if person.manaManager.checkManaInPool(type: randomMana){
                 let _ = person.manaManager.returnManaFromPoolToCollection(type: randomMana)
-                let _ = person.manaManager.setManaInPool(type: ManaType.g)
+                let _ = person.manaManager.setManaInPool(type: ManaType.green)
                 manaFound = true
                 break
             }
