@@ -847,7 +847,11 @@ class GameScene: SKScene {
         let manaType : ManaType = card.switchCardTypeToManaType()
         if Player.shared.manaManager.useManaFromManaPool(type: manaType) {
             playCard(index: movingCardIndex!, manaType: manaType)
-        } else {
+        }
+        else if  Player.shared.manaManager.useManaFromManaPool(type: .colorless) {
+            playCard(index: movingCardIndex!, manaType: .colorless)
+        }
+        else {
             moveCardBack()
         }
         clearVars()
