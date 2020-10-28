@@ -18,16 +18,16 @@ class BattleManager{
     var battleState: BattleState = .playerTurn
     var turnEffects: [EffectProtocol] = []
     var buffEffects: [EffectProtocol] = []
+    var afterDrawStatus: [Status] = []
     var cardsPlayed: [Card] = []
-    var currentTurnStatus: [BattleTurnStatus] = []
-    var currentBuffStatus: [BattleStatus] = []
+//    var currentTurnStatus: [BattleTurnStatus] = []
+//    var currentBuffStatus: [BattleStatus] = []
     
     // MARK: Setup
     func setup(){
         Effect.shared.setupEffects()
-        Effect.shared.setupBuffEffects()
-        Effect.shared.setupTurnEffects()
     }
+    
     func setEnemy(enemy: Enemy) {
         self.enemy = enemy
     }
@@ -38,6 +38,7 @@ class BattleManager{
         player.setOpponent(person: enemy.self)
         enemy.setOpponent(person: player.self)
         enemy.setHand()
+        player.scene = scene
     }
     
     func endBattle(){
@@ -57,16 +58,15 @@ class BattleManager{
     
     func initPlayerTurn(){
         enemy.setHand()
-        setTurnEffects()
-        currentTurnStatus = Player.shared.currentTurnStatus
-        currentBuffStatus = Player.shared.currentStatus
-        applyTurnEffects()
+        applyPlayerTurnEffects()
+        applyEnemyTurnEffects()
+        player.lastHand.cards = player.hand.cards
     }
     
     func endPlayerTurn(){
     }
     
-    func enemyTurn(completion: @escaping () -> () = { }) {
+    func initEnemyTurn(completion: @escaping () -> () = { }) {
         enemy.playTurn()
 //        self.storeCard(card: enemy.playOneCard())
         completion()
@@ -78,26 +78,36 @@ class BattleManager{
     
     //MARK: Effects
     
-    func setBuffEffects(){
-        let buffsEnum = player.currentStatus
-        self.buffEffects = Effect.shared.getBuffEffectByIds(enumEffect: buffsEnum)
+    func setAfterDrawEffects(){
+        afterDrawStatus.removeAll()
+        afterDrawStatus.append(contentsOf: player.currentAfterDrawStatus)
+        afterDrawStatus.append(contentsOf: enemy.currentAfterDrawStatus)
     }
     
-    func setTurnEffects(){
-        let effectsEnum = player.currentTurnStatus
-        self.turnEffects =  Effect.shared.getTurnEffectByIds(enumEffect: effectsEnum)
-    }
-    
-    func applyBuffEffects(card: Card){
-        setBuffEffects()
-        for buff in buffEffects{
-            buff.applyEffects(card: card)
+    func applyAfterDrawEffects(){
+        setAfterDrawEffects()
+        for status in afterDrawStatus{
+            status.effect.applyEffects(card: Card())
         }
     }
     
-    func applyTurnEffects(){
-        for effect in turnEffects{
-            effect.applyEffects(card: Card())
+    func applyPlayerTurnEffects(){
+        for (i, status) in player.status.enumerated(){
+            status.effect.applyEffects(card: Card())
+            status.decreaseDuration(amount: 1)
+            if status.duration == 0{
+                player.status.remove(at: i)
+            }
+        }
+    }
+    
+    func applyEnemyTurnEffects(){
+        for (i, status) in enemy.status.enumerated(){
+            status.effect.applyEffects(card: Card())
+            status.decreaseDuration(amount: 1)
+            if status.duration == 0{
+                enemy.status.remove(at: i)
+            }
         }
     }
     
@@ -110,8 +120,17 @@ class BattleManager{
     
     func playCard(card: Card){
 //        let person = card.owner.opponent!
-        applyBuffEffects(card: card)
         card.applyEffects()
+        printPlayerInfos()
+    }
+    
+    func printPlayerInfos(){
+        for token in player.tokens{
+            print("Way: \(token.way) - Amount: \(token.amount) - Name: \(token.name)")
+        }
+        for way in player.ways{
+            print("Way: \(way.name) - Blocked: \(way.blocked)")
+        }
     }
 
     func storeCard(card : Card){

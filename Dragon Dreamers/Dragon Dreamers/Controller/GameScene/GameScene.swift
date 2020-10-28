@@ -422,7 +422,7 @@ class GameScene: SKScene {
         print("Batalha do inimigo")
         
         battleManager.endPlayerTurn()
-        battleManager.enemyTurn()
+        battleManager.initEnemyTurn()
         battleManager.enemy.discussion.setHumorPoints(humorPoints: self.humorPoints)
         battleManager.enemy.updateHumor()
         selectEnemyHumor()
@@ -431,12 +431,13 @@ class GameScene: SKScene {
         discardOngoing() {
             self.enemyPlayingTurn(){
                 self.discardHand() {
-                    self.battleManager.initPlayerTurn()
+//                    self.battleManager.initPlayerTurn()
                     self.nextTurning = false
                     self.drawCards()
                 }
                 
                 self.enemyDiscardCard {
+                    self.battleManager.initPlayerTurn()
                     self.showDialogBox()
                     self.enemyDrawCard()
                 }
@@ -501,6 +502,7 @@ class GameScene: SKScene {
         if enemy.hand.cards[0].node != nil {
             enemy.hand.cards[0].node.removeFromParent()
         }
+        battleManager.applyAfterDrawEffects()
         createEnemyCardNode(card: enemy.hand.cards[0], at: enemyHandNode)
     }
     
@@ -615,7 +617,7 @@ class GameScene: SKScene {
     func discardCard (card : Card, completion: @escaping () -> () = { }) {
         Player.shared.discard.addCard(card)
         moveAndRotateCard(card: card, to: discardNode.position, to: 0) {
-            print("Remove Card: \(card.id) from Parent. CardNode: \(card.node!), deckPosition: \(card.node.position)")
+//            print("Remove Card: \(card.id) from Parent. CardNode: \(card.node!), deckPosition: \(card.node.position)")
             card.node.removeFromParent()
             completion()
         }
@@ -686,16 +688,11 @@ class GameScene: SKScene {
     }
     
     func setCurrentEffectsLabel(){
-        var turn = battleManager.currentTurnStatus
-        var buff = battleManager.currentBuffStatus
+        var turn = battleManager.afterDrawStatus
         for node in effectsNode{
-            if (turn.first?.rawValue) != nil{
-                node.text = turn.first?.description
+            if (turn.first) != nil{
+                node.text = turn.first?.name
                 turn.remove(at: 0)
-            }
-            else if (buff.first?.rawValue) != nil{
-                node.text = buff.first?.description
-                buff.remove(at: 0)
             }
         }
     }
