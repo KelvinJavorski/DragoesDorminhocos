@@ -29,7 +29,9 @@ class ManaManager {
     var manaCollection: [Mana]
     
     func fillPool(manas: [ManaType]) {
+        
         self.manaPool = []
+        self.fillCollection()
         
         for mana in manas {
             if self.setManaInPool(type: mana) {
