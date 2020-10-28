@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Provocar : EffectProtocol{
+class Reclamar : EffectProtocol{
     func applyEffects(card: Card) {
         let tokenType = Ways.sol
         let token = card.owner.tokens[tokenType.rawValue]
@@ -16,14 +16,17 @@ class Provocar : EffectProtocol{
     }
 }
 
-class Zombar : EffectProtocol{
+class Afirmar : EffectProtocol{
     func applyEffects(card: Card) {
-        let owner = card.owner
+        let owner = card.owner!
         let tokenType = Ways.sol
-        let token = owner?.tokens[tokenType.rawValue]
-        let handCardsAmount = owner?.hand.cards.count
-        owner?.discardHand()
-        token?.increaseAmount(amount: handCardsAmount!)
+        let token = owner.tokens[tokenType.rawValue]
+        let handCardsAmount = owner.hand.cards.count
+        for card in owner.hand.cards{
+            card.node.removeFromParent()
+        }
+        owner.discardHand()
+        token.increaseAmount(amount: handCardsAmount)
     }
 }
 
@@ -40,17 +43,17 @@ class Incomodar : EffectProtocol{
 
 class Comandar : EffectProtocol{
     func applyEffects(card: Card) {
-        let owner = card.owner!
+        let owner = card.owner as! Player
         let tokenType = Ways.sol
         let token = owner.tokens[tokenType.rawValue]
-        owner.currentCriticize += token.amount
+        owner.sol.increaseAmount(amount: token.amount)
     }
 }
 
 class SemNome : EffectProtocol{
     func applyEffects(card: Card) {
-        let owner = card.owner!
+        let owner = Player.shared
         owner.tokens[Ways.sol.rawValue].decreaseAmount(amount: -1)
-        owner.currentCriticize += 3
+        owner.sol.increaseAmount(amount: 3)
     }
 }

@@ -18,7 +18,8 @@ class DesviarStatus : EffectProtocol{
 
 class DesviarEffect : EffectProtocol{
     func applyEffects(card: Card) {
-        print("cancela efeito da proxima carta da vo")
+        let person = Player.shared.opponent as! Enemy
+        person.cardEffectBlocked = true
     }
 }
 
@@ -34,9 +35,11 @@ class Fugir : EffectProtocol{
     func applyEffects(card: Card) {
         let person = card.owner!
         let count = person.hand.cards.count
+        for card in person.hand.cards {
+            card.node.removeFromParent()
+        }
         person.discardHand()
         Player.shared.areia.increaseAmount(amount: count)
-        
     }
 }
 
@@ -51,8 +54,14 @@ class PrevenirStatus : EffectProtocol{
 class PrevenirEffect : EffectProtocol {
     func applyEffects(card: Card) {
         let person = Player.shared
+        for card in person.hand.cards{
+            card.node.removeFromParent()
+        }
         Player.shared.discardHand()
-        person.hand.addCards(person.lastHand.cards)
+        person.deck.cards.insert(contentsOf: person.lastHand.cards, at: 0)
+//        person.deck.cards.append(contentsOf: person.lastHand.cards)
+        person.scene.drawHandCards(5)
+        //Não funciona ainda
     }
 }
 

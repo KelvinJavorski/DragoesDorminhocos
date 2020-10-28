@@ -26,7 +26,8 @@ class Agradar : EffectProtocol{
 class ConcordarStatus : EffectProtocol{
     func applyEffects(card: Card) {
         let opponent = card.owner.opponent as! Enemy
-        let status = Status(name: "Concordar", duration: 1, target: opponent, effect: ConcordarEffect(card: opponent.hand.getCard(0)))
+        let status = Status(name: "Concordar", duration: 1, target: opponent, effect: ConcordarEffect(card: opponent.hand.cards[0]))
+        opponent.currentAfterDrawStatus.append(status)
     }
 }
 
@@ -49,7 +50,7 @@ class ConcordarEffect : EffectProtocol{
 
 class Aceitar : EffectProtocol{
     func applyEffects(card: Card) {
-        let person = card.owner as! Player
+        let person = Player.shared
         let ocean = Ways.oceano.rawValue
         if person.tokens[ocean].amount >= 10{
             person.oceano.current = person.oceano.maxValue

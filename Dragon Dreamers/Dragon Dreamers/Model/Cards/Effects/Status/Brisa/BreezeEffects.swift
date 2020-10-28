@@ -12,7 +12,7 @@ class Planejar : EffectProtocol{
     func applyEffects(card: Card) {
         let person = Player.shared
         let manas = ManaType.allCases
-        let allMana = manas.filter { !$0.rawValue.contains("g") }
+        var allMana = manas.filter { !$0.rawValue.contains("g") }
         
         var manaFound = false
         while(!manaFound){
@@ -26,20 +26,21 @@ class Planejar : EffectProtocol{
                 manaFound = true
                 break
             }
+            allMana = allMana.filter { $0.rawValue != randomMana.rawValue }
         }
         
     }
 }
 
-class Questionar : EffectProtocol{
+class QuestionarStatus : EffectProtocol{
     func applyEffects(card: Card) {
         let person = Player.shared.opponent!
-        let status = Status(name: "Dúvida", duration: 1, target: person, effect: Duvida())
+        let status = Status(name: "Dúvida", duration: 1, target: person, effect: DuvidaEffect())
         person.status.append(status)
     }
 }
 
-class Duvida : EffectProtocol{
+class DuvidaEffect : EffectProtocol{
     var amount = 0
     func applyEffects(card: Card) {
         Player.shared.brisa.increaseAmount(amount: amount)
@@ -62,6 +63,10 @@ class Argumentar : EffectProtocol{
         handCard = deckCard
         deckCard = auxCard
         
+//        deckCard.node.removeFromParent()
+//        handCard.node = auxCard.node
+//        handCard.node
+        
         if person.status.contains(where: { $0.name == "Examinar" }){
             person.changeDeckOfCard(person.hand, person.discard, randomHandIndex)
             person.brisa.increaseAmount(amount: 1)
@@ -73,6 +78,7 @@ class ExaminarStatus : EffectProtocol{
     func applyEffects(card: Card) {
         let person = Player.shared
         let status = Status(name: "Examinar", duration: -1, target: person, effect: ExaminarEffect())
+        person.status.append(status)
     }
 }
 
