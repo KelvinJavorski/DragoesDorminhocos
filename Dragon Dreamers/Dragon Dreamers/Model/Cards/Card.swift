@@ -41,15 +41,15 @@ class Card : EmptyCard, NSCopying{
     func switchCardTypeToManaType () -> ManaType {
         switch self.type {
         case .blue:
-            return .b
+            return .blue
         case .green:
-            return .g
+            return .green
         case .red:
-            return .r
+            return .red
         case .yellow:
-            return .y
+            return .yellow
         default:
-            return .b
+            return .colorless
         }
     }
     

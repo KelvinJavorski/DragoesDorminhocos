@@ -55,7 +55,7 @@ class ManaManager {
     
     func resetAllManaFromManaPool(){
         
-        let manaTypes = [ManaType.r, ManaType.b, ManaType.y, ManaType.g, ManaType.br, ManaType.by, ManaType.bg, ManaType.ry, ManaType.rg, ManaType.yg]
+        let manaTypes = [ManaType.red, ManaType.blue, ManaType.yellow, ManaType.green, ManaType.colorless]
         
         for _ in self.manaPool {
             for mana in manaTypes {
@@ -173,18 +173,13 @@ class ManaManager {
     func fillCollection() {
         self.manaCollection = []
         
-        let manaTypes = [ManaType.r, ManaType.b, ManaType.y, ManaType.g, ManaType.br, ManaType.by, ManaType.bg, ManaType.ry, ManaType.rg, ManaType.yg]
+        let manaTypes = [ManaType.red, ManaType.blue, ManaType.yellow, ManaType.green, ManaType.colorless]
         
         let manaIds = [["r00","r01","r02","r03","r04"],
                         ["b00","b01","b02","b03","b04"],
                         ["y00","y01","y02","y03","y04"],
                         ["g00","g01","g02","g03","g04"],
-                        ["br00","br01","br02","br03","br04"],
-                        ["by00","by01","by02","by03","by04"],
-                        ["bg00","bg01","bg02","bg03","bg04"],
-                        ["ry00","ry01","ry02","ry03","ry04"],
-                        ["rg00","rg01","rg02","rg03","rg04"],
-                        ["yg00","yg01","yg02","yg03","yg04"]]
+                        ["c00","c01","c02","c03","c04"]]
         
         for mana in 0 ..< manaTypes.count {
             for n in 0 ..< 3 {
