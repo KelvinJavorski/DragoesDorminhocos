@@ -139,6 +139,8 @@ class Person{
     
     var tokens : [Token] = []
     var status: [Status] = []
+    
+    var currentAfterDrawStatus: [Status] = []
     var currentStatus: [BattleStatus] = []
     var currentTurnStatus: [BattleTurnStatus] = []
     var amountInTurnEffect: Int?

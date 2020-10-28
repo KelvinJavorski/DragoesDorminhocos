@@ -33,7 +33,7 @@ class Way{
     
     public func decreaseAmount(amount: Int){
         if !blocked{
-            current += amount
+            current -= amount
         }
     }
     

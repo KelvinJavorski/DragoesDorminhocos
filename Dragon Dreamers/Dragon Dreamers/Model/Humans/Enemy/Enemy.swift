@@ -12,6 +12,7 @@ class Enemy: Person {
     //static let shared = Enemy()
     var name: String!
     var discussion: Discussion!
+    var cardEffectBlocked: Bool = false
 
     init (name: String, discussion: Discussion) {
         super.init()
@@ -29,7 +30,7 @@ class Enemy: Person {
     
     func setInitialDeck(){
 //        cardsPool.cards.shuffle()
-        cardsPool.getADeck()
+        cardsPool.getEnemyDeck()
         self.deck.addCards(cardsPool.deck.cards)
     }
     
@@ -38,7 +39,7 @@ class Enemy: Person {
     }
     
     func setHand(){
-        let cards = getAllCardByEmotion(emotion: self.emotion)
+        let cards = getAllCardByEmotion(emotion: .agree)
         if !cards.isEmpty{
             self.hand.addCards(cards)
         }
@@ -56,6 +57,10 @@ class Enemy: Person {
     
     func playTurn(){
         let card = playOneCard()
+        if cardEffectBlocked{
+            cardEffectBlocked = false
+            return
+        }
         card.applyEffects()
     }
     

@@ -15,6 +15,8 @@ class Player: Person {
     var areia = Way(name: "Areia")
     var brisa = Way(name: "Brisa")
     var oceano = Way(name: "Oceano")
+    var ways : [Way] = []
+    var scene : GameScene!
     init () {
         super.init()
         print(">>> Init Player...")
@@ -49,6 +51,7 @@ class Player: Person {
         let doubt = Token(name: "Dúvida", amount: 0, way: .brisa)
         let connection = Token(name: "Conexão", amount: 0, way: .oceano)
         tokens = [imposition, distant, doubt, connection]
+        ways = [sol, areia, brisa, oceano]
     }
     
     func getRandomWay(except ways: [String]) -> Way{
