@@ -12,8 +12,9 @@ import SpriteKit
 class Effect{
     static let shared = Effect()
     var allEffects: [EffectProtocol] = []
-    var allTurnEffects: [EffectProtocol] = []
-    var allBuffEffects: [EffectProtocol] = []
+//    var allTurnEffects: [EffectProtocol] = []
+//    var allBuffEffects: [EffectProtocol] = []
+//    var allStatus: [EffectProtocol] = []
     
     func getEffectByIdsEffect(enumEffect : [EffectType]) -> [EffectProtocol]{
         var effects : [EffectProtocol] = []
@@ -23,82 +24,95 @@ class Effect{
         return effects
     }
     
-    func getTurnEffectByIds(enumEffect : [BattleTurnStatus]) -> [EffectProtocol]{
-        var turnEffects : [EffectProtocol] = []
-        for i in 0..<enumEffect.count{
-            turnEffects.append(allTurnEffects[(enumEffect[i]).rawValue])
-        }
-        return turnEffects
-    }
     
-    func getBuffEffectByIds(enumEffect : [BattleStatus]) -> [EffectProtocol]{
-        var buffs : [EffectProtocol] = []
-        for i in 0..<enumEffect.count{
-            buffs.append(allBuffEffects[(enumEffect[i]).rawValue])
-        }
-        return buffs
-    }
+//    func getTurnEffectByIds(enumEffect : [BattleTurnStatus]) -> [EffectProtocol]{
+//        var turnEffects : [EffectProtocol] = []
+//        for i in 0..<enumEffect.count{
+//            turnEffects.append(allTurnEffects[(enumEffect[i]).rawValue])
+//        }
+//        return turnEffects
+//    }
+//
+//    func getBuffEffectByIds(enumEffect : [BattleStatus]) -> [EffectProtocol]{
+//        var buffs : [EffectProtocol] = []
+//        for i in 0..<enumEffect.count{
+//            buffs.append(allBuffEffects[(enumEffect[i]).rawValue])
+//        }
+//        return buffs
+//    }
+    
     
     func setupEffects(){
-        let agreeIncreaseEffect = AgreeIncrease()
-        allEffects.append(agreeIncreaseEffect)
+        //Sun Effects
+        let reclamarEffect = Reclamar()
+        allEffects.append(reclamarEffect)
         
-        let agreeDecreaseEffect = AgreeDecrease()
-        allEffects.append(agreeDecreaseEffect)
+        let afirmarEffect = Afirmar()
+        allEffects.append(afirmarEffect)
         
-        let avoidIncreaseEffect = AvoidIncrease()
-        allEffects.append(avoidIncreaseEffect)
+        let incomodarEffect = Incomodar()
+        allEffects.append(incomodarEffect)
         
-        let avoidDecreaseEffect = AvoidDecrease()
-        allEffects.append(avoidDecreaseEffect)
+        let comandarEffect = Comandar()
+        allEffects.append(comandarEffect)
         
-        let questioningIncreaseEffect = QuestioningIncrease()
-        allEffects.append(questioningIncreaseEffect)
+        let semNomeEffect = SemNome()
+        allEffects.append(semNomeEffect)
         
-        let questioningDecreaseEffect = QuestioningDecrease()
-        allEffects.append(questioningDecreaseEffect)
+        //Sand Effects
+        let desviarStatus = DesviarStatus()
+        allEffects.append(desviarStatus)
         
-        let criticizeIncreaseEffect = CriticizeIncrease()
-        allEffects.append(criticizeIncreaseEffect)
+        let defenderEffect = Defender()
+        allEffects.append(defenderEffect)
         
-        let criticizeDecreaseEffect = CriticizeDecrease()
-        allEffects.append(criticizeDecreaseEffect)
+        let fugirEffect = Fugir()
+        allEffects.append(fugirEffect)
         
-        let reasoningIncreaseEffect = ReasoningIncrease()
-        allEffects.append(reasoningIncreaseEffect)
+        let prevenirStatus = PrevenirStatus()
+        allEffects.append(prevenirStatus)
         
-        let reasoningDecreaseEffect = ReasoningDecrease()
-        allEffects.append(reasoningDecreaseEffect)
+        let evitarEffect = Evitar()
+        allEffects.append(evitarEffect)
         
-        let drawCardEffect = DrawCard()
-        allEffects.append(drawCardEffect)
+        let planejarEffect = Planejar()
+        allEffects.append(planejarEffect)
         
-        let discardCardEffect = DiscardCard()
-        allEffects.append(discardCardEffect)
+        let questionarStatus = QuestionarStatus()
+        allEffects.append(questionarStatus)
         
-        let banCardEffect = BanCard()
-        allEffects.append(banCardEffect)
+        let argumentarEffect = Argumentar()
+        allEffects.append(argumentarEffect)
         
-        let sendCardToDiscardEffect = SendCardToDiscard()
-        allEffects.append(sendCardToDiscardEffect)
+        let examinarStatus = ExaminarStatus()
+        allEffects.append(examinarStatus)
         
-        let addLastPlayedCardToDeck = AddLastPlayedCardToDeck()
-        allEffects.append(addLastPlayedCardToDeck)
+        let comentarEffect = Comentar()
+        allEffects.append(comentarEffect)
         
-        let addReasoning = AddReasoningStatus(value: 3)
-        allEffects.append(addReasoning)
+        //Ocean Effects
+        let agradarEffect = Agradar()
+        allEffects.append(agradarEffect)
+
+        let concordarStatus = ConcordarStatus()
+        allEffects.append(concordarStatus)
         
-        let addVulnerable = AddVulnerableStatus()
-        allEffects.append(addVulnerable)
+        let aceitarEffect = Aceitar()
+        allEffects.append(aceitarEffect)
+        
+        let aprovarEffect = Aprovar()
+        allEffects.append(aprovarEffect)
     }
     
-    func setupBuffEffects(){
-        let applyVulnerability = ApplyVulnerability()
-        allBuffEffects.append(applyVulnerability)
-    }
     
-    func setupTurnEffects(){
-        let reasoning = ApplyReasoning()
-        allTurnEffects.append(reasoning)
-    }
+    
+//    func setupBuffEffects(){
+//        let applyVulnerability = ApplyVulnerability()
+//        allBuffEffects.append(applyVulnerability)
+//    }
+//
+//    func setupTurnEffects(){
+//        let reasoning = ApplyReasoning()
+//        allTurnEffects.append(reasoning)
+//    }
 }

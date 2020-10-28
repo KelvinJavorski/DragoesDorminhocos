@@ -9,15 +9,19 @@
 import Foundation
 
 enum BattleStatus : Int, CaseIterable, CustomStringConvertible{
-    case vulnerable = 0
-    case reasoning = 1
-    case distant = 2
-    case prevent = 3
+    case desviar = 0
+    case prevenir = 1
+    case questionar = 2
+    case examinar = 3
+    case concordar = 4
     
     var description: String{
         switch self {
-        case .reasoning: return "Reasoning"
-        case .vulnerable: return "Vulnerable"
+        case .desviar: return "Reasoning"
+        case .prevenir: return "Vulnerable"
+        case .questionar: return "Questionar"
+        case .examinar: return "Examinar"
+        case .concordar: return "Concordar"
         default: return ""
         }
     }
