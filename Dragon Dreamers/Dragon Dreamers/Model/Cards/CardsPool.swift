@@ -79,6 +79,7 @@ class CardsPool{
         newCard.humorInfluence = -30
         newCard.cost = 2
         newCard.emotion = .criticize
+        newCard.type = .red
         return newCard
     }
     
@@ -89,6 +90,7 @@ class CardsPool{
         newCard.humorInfluence = -30
         newCard.cost = 2
         newCard.emotion = .criticize
+        newCard.type = .red
         return newCard
     }
     
@@ -99,6 +101,7 @@ class CardsPool{
         newCard.humorInfluence = -15
         newCard.cost = 1
         newCard.emotion = .criticize
+        newCard.type = .red
         return newCard
     }
     
@@ -109,6 +112,7 @@ class CardsPool{
         newCard.humorInfluence = -15
         newCard.cost = 1
         newCard.emotion = .criticize
+        newCard.type = .red
         return newCard
     }
     
@@ -119,6 +123,7 @@ class CardsPool{
         newCard.humorInfluence = -15
         newCard.cost = 1
         newCard.emotion = .criticize
+        newCard.type = .red
         return newCard
     }
     
@@ -130,6 +135,7 @@ class CardsPool{
         newCard.humorInfluence = 0
         newCard.cost = 2
         newCard.emotion = .avoid
+        newCard.type = .yellow
         return newCard
     }
     
@@ -140,6 +146,7 @@ class CardsPool{
         newCard.humorInfluence = 0
         newCard.cost = 2
         newCard.emotion = .avoid
+        newCard.type = .yellow
         return newCard
     }
     
@@ -150,6 +157,7 @@ class CardsPool{
         newCard.humorInfluence = 0
         newCard.cost = 2
         newCard.emotion = .avoid
+        newCard.type = .yellow
         return newCard
     }
     
@@ -160,6 +168,7 @@ class CardsPool{
         newCard.humorInfluence = 0
         newCard.cost = 1
         newCard.emotion = .avoid
+        newCard.type = .yellow
         return newCard
     }
     
@@ -170,6 +179,7 @@ class CardsPool{
         newCard.humorInfluence = 0
         newCard.cost = 1
         newCard.emotion = .avoid
+        newCard.type = .yellow
         return newCard
     }
     
@@ -181,6 +191,7 @@ class CardsPool{
         newCard.humorInfluence = 0
         newCard.cost = 0
         newCard.emotion = .questioning
+        newCard.type = .green
         return newCard
     }
     
@@ -192,6 +203,7 @@ class CardsPool{
         newCard.humorInfluence = humorOption.randomElement()
         newCard.cost = 2
         newCard.emotion = .questioning
+        newCard.type = .green
         return newCard
     }
     
@@ -203,6 +215,7 @@ class CardsPool{
         newCard.humorInfluence = humorOption.randomElement()
         newCard.cost = 1
         newCard.emotion = .questioning
+        newCard.type = .green
         return newCard
     }
     
@@ -213,6 +226,7 @@ class CardsPool{
         newCard.humorInfluence = 0
         newCard.cost = 1
         newCard.emotion = .questioning
+        newCard.type = .green
         return newCard
     }
     
@@ -224,6 +238,7 @@ class CardsPool{
         newCard.humorInfluence = humorOption.randomElement()
         newCard.cost = 1
         newCard.emotion = .questioning
+        newCard.type = .green
         return newCard
     }
     
@@ -235,6 +250,7 @@ class CardsPool{
         newCard.humorInfluence = 30
         newCard.cost = 2
         newCard.emotion = .agree
+        newCard.type = .blue
         return newCard
     }
     
@@ -245,6 +261,7 @@ class CardsPool{
         newCard.humorInfluence = 30
         newCard.cost = 2
         newCard.emotion = .agree
+        newCard.type = .blue
         return newCard
     }
     
@@ -255,6 +272,7 @@ class CardsPool{
         newCard.humorInfluence = 30
         newCard.cost = 2
         newCard.emotion = .agree
+        newCard.type = .blue
         return newCard
     }
     
@@ -265,6 +283,7 @@ class CardsPool{
         newCard.humorInfluence = 15
         newCard.cost = 1
         newCard.emotion = .agree
+        newCard.type = .blue
         return newCard
     }
     
