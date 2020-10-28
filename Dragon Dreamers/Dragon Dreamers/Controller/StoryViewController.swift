@@ -150,7 +150,9 @@ class StoryViewController: UIViewController {
         if self.chapter != nil && pastChapter!.id != 0{
             if pastChapter!.id == self.chapter!.id {
                 //ULTIMA BATALHA
-                self.adjustMana()
+                if self.chapterid != 1 {
+                    self.adjustMana()
+                }
                 performSegue(withIdentifier: "StoryToBattleSegue", sender: nil)
                 //self.tempDecisions = []
                 return
@@ -158,13 +160,17 @@ class StoryViewController: UIViewController {
         }
         else if pastChapter!.id != 0{
             //ULTIMA BATALHA
-            self.adjustMana()
+            if self.chapterid != 1 {
+                self.adjustMana()
+            }
             performSegue(withIdentifier: "StoryToBattleSegue", sender: nil)
             //self.tempDecisions = []
             return
         }
         
-        self.adjustMana()
+        if self.chapterid != 1 {
+            self.adjustMana()
+        }
         //self.tempDecisions = []
         self.speech = self.chapter!.speechs[0]
         self.speechId = self.speech!.id
@@ -259,25 +265,33 @@ class StoryViewController: UIViewController {
     
     @IBAction func choice1Button(_ sender: UIButton) {
         //self.tempDecisions.append(.blue)
-        self.decisions.append(.blue)
+        if self.chapterid != 1 {
+            self.decisions.append(.blue)
+        }
         self.nextSpeech()
     }
     
     @IBAction func choice2Button(_ sender: UIButton) {
         //self.tempDecisions.append(.yellow)
-        self.decisions.append(.yellow)
+        if self.chapterid != 1 {
+            self.decisions.append(.yellow)
+        }
         self.nextSpeech()
     }
     
     @IBAction func choice3Button(_ sender: UIButton) {
         //self.tempDecisions.append(.green)
-        self.decisions.append(.green)
+        if self.chapterid != 1 {
+            self.decisions.append(.green)
+        }
         self.nextSpeech()
     }
     
     @IBAction func choice4Button(_ sender: UIButton) {
         //self.tempDecisions.append(.red)
-        self.decisions.append(.red)
+        if self.chapterid != 1 {
+            self.decisions.append(.red)
+        }
         self.nextSpeech()
     }
     
