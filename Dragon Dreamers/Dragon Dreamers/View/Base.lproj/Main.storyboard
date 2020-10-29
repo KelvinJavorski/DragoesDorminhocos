@@ -16,9 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="896x414" translatesAutoresizingMaskIntoConstraints="NO" id="s5e-AF-Xlr">
-                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
-                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RrJ-yF-hWz">
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="393"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -104,35 +101,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHt-1P-nzX">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MenuIllustration" translatesAutoresizingMaskIntoConstraints="NO" id="8O0-B5-Fo0">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <string key="text">Nome
-do Jogo</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="BHt-1P-nzX" secondAttribute="bottom" id="7xg-tb-DAg"/>
-                                                <constraint firstItem="BHt-1P-nzX" firstAttribute="top" secondItem="ug5-dM-U1P" secondAttribute="top" id="SOz-nO-dN0"/>
-                                                <constraint firstItem="BHt-1P-nzX" firstAttribute="leading" secondItem="ug5-dM-U1P" secondAttribute="leading" id="iq6-g4-vB0"/>
-                                                <constraint firstAttribute="trailing" secondItem="BHt-1P-nzX" secondAttribute="trailing" id="qTu-I8-Tap"/>
+                                                <constraint firstAttribute="bottom" secondItem="8O0-B5-Fo0" secondAttribute="bottom" id="ZE2-QA-kGH"/>
+                                                <constraint firstAttribute="trailing" secondItem="8O0-B5-Fo0" secondAttribute="trailing" id="b4I-02-dh5"/>
+                                                <constraint firstItem="8O0-B5-Fo0" firstAttribute="leading" secondItem="ug5-dM-U1P" secondAttribute="leading" id="g4P-iM-BQi"/>
+                                                <constraint firstItem="8O0-B5-Fo0" firstAttribute="top" secondItem="ug5-dM-U1P" secondAttribute="top" id="tb9-kF-ub6"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.67843137254901964" green="0.78431372549019607" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="s5e-AF-Xlr" secondAttribute="trailing" id="4E2-Zr-fq5"/>
-                            <constraint firstAttribute="bottom" secondItem="s5e-AF-Xlr" secondAttribute="bottom" id="4Mg-rC-Ryd"/>
                             <constraint firstItem="RrJ-yF-hWz" firstAttribute="leading" secondItem="rsR-j2-6RK" secondAttribute="leading" id="Hdj-xP-HXs"/>
-                            <constraint firstItem="s5e-AF-Xlr" firstAttribute="leading" secondItem="rsR-j2-6RK" secondAttribute="leading" id="PCM-Xb-Knd"/>
                             <constraint firstAttribute="trailing" secondItem="RrJ-yF-hWz" secondAttribute="trailing" id="SfA-XR-YAu"/>
-                            <constraint firstItem="s5e-AF-Xlr" firstAttribute="top" secondItem="rsR-j2-6RK" secondAttribute="top" id="WDH-Bh-Yfr"/>
                             <constraint firstItem="RrJ-yF-hWz" firstAttribute="bottom" secondItem="8ca-YT-H3s" secondAttribute="bottom" id="aib-k0-wKL"/>
                             <constraint firstItem="RrJ-yF-hWz" firstAttribute="top" secondItem="8ca-YT-H3s" secondAttribute="top" id="ucT-ox-aTA"/>
                         </constraints>
@@ -483,8 +471,8 @@ do Jogo</string>
         <segue reference="1IX-qc-cFa"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="896x414" width="896" height="414"/>
         <image name="Batalha" width="667" height="375"/>
+        <image name="MenuIllustration" width="488" height="346"/>
         <image name="NameFill" width="94" height="34"/>
         <image name="WhiteBaloon" width="390" height="141"/>
         <image name="WhiteButton" width="169" height="66"/>
