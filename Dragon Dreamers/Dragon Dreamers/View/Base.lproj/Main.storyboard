@@ -220,9 +220,8 @@ do Jogo</string>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHG-KM-qAv">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
-                                        <color key="backgroundColor" red="0.011764705882352941" green="0.9882352941176471" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="Next Turn!">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Next Turn!" backgroundImage="End Turn Button">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -230,7 +229,6 @@ do Jogo</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="JHG-KM-qAv" secondAttribute="trailing" id="TcQ-Ku-OUD"/>
                                     <constraint firstItem="JHG-KM-qAv" firstAttribute="leading" secondItem="ljb-lL-hXL" secondAttribute="leading" id="gHz-lx-vH0"/>
@@ -485,6 +483,7 @@ do Jogo</string>
     <resources>
         <image name="896x414" width="896" height="414"/>
         <image name="Batalha" width="667" height="375"/>
+        <image name="End Turn Button" width="80" height="40"/>
         <image name="NameFill" width="94" height="34"/>
         <image name="WhiteBaloon" width="390" height="141"/>
         <image name="WhiteButton" width="169" height="66"/>
