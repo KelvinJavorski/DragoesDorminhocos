@@ -5,12 +5,12 @@ enum SongLibrary : String, CaseIterable {
 }
 
 enum IntroWithLoopLibrary: CaseIterable {
-    case first
+    case infancia
     
     var info : (intro: String, loop: String, outro: String) {
         switch self {
-        case .first:
-            return ("intro.mp3", "loop.mp3", "intro.mp3")
+        case .infancia:
+            return ("INTRO_infancia.wav", "LOOP_infancia.wav", "OUTRO_infancia.wav")
         }
     }
 }

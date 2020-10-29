@@ -175,6 +175,12 @@ class StoryViewController: UIViewController {
         //self.tempDecisions = []
         self.speech = self.chapter!.speechs[0]
         self.speechId = self.speech!.id
+        
+        // AUDIO MODULE - Colocar condição de qual chapter é e tocar o proximo loop
+        if self.chapterid! > 1 {
+            AudioManager.shared.stopLoop()
+        }
+        
         self.update()
     }
     
