@@ -1,0 +1,46 @@
+import AVFoundation
+
+class Song : NSObject {
+    
+    public var player : AVAudioPlayer!
+    
+    init(fileName: String) {
+        super.init()
+        self.player = load(fileName: fileName)
+    }
+    
+    internal func load(fileName: String) -> AVAudioPlayer{
+        let path = Bundle.main.path(forResource: fileName, ofType:nil)!
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            let player = try AVAudioPlayer(contentsOf: url)
+            player.numberOfLoops = -1
+            player.prepareToPlay()
+            return player
+        } catch {
+            fatalError("Fatal Error - Song/Intro-Loop Player")
+        }
+    }
+    
+    func play() {
+        if player.isPlaying {
+            return
+        }
+        
+        DispatchQueue.global().async {
+            self.player.play()
+        }
+    }
+    
+    func stop() {
+        player.stop()
+        player.currentTime = 0
+    }
+    
+    func stopLoop() {
+        player.numberOfLoops = 0
+    }
+    
+    
+}
