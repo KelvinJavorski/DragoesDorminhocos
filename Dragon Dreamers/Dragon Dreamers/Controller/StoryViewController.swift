@@ -301,22 +301,42 @@ class StoryViewController: UIViewController {
     
     func setupChoice1Button() {
         self.choice1ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[0])
+        
+        self.choice1ButtonOutlet.titleLabel!.numberOfLines = 0
+        self.choice1ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
+        self.choice1ButtonOutlet.titleLabel!.minimumScaleFactor = 0.3
     }
     
     func setupChoice2Button() {
         self.choice2ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[1])
+        
+        self.choice2ButtonOutlet.titleLabel!.numberOfLines = 0
+        self.choice2ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
+        self.choice2ButtonOutlet.titleLabel!.minimumScaleFactor = 0.3
     }
     
     func setupChoice3Button() {
         self.choice3ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[2])
+        
+        self.choice3ButtonOutlet.titleLabel!.numberOfLines = 0
+        self.choice3ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
+        self.choice3ButtonOutlet.titleLabel!.minimumScaleFactor = 0.3
     }
     
     func setupChoice4Button() {
         self.choice4ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[3])
+        
+        self.choice4ButtonOutlet.titleLabel!.numberOfLines = 0
+        self.choice4ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
+        self.choice4ButtonOutlet.titleLabel!.minimumScaleFactor = 0.3
     }
     
     func setupChoice5Button() {
         self.choice5ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[4])
+        
+        self.choice5ButtonOutlet.titleLabel!.numberOfLines = 0
+        self.choice5ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
+        self.choice5ButtonOutlet.titleLabel!.minimumScaleFactor = 0.3
     }
     
     func setupTextLabel() {
