@@ -304,7 +304,9 @@ class StoryViewController: UIViewController {
         
         self.choice1ButtonOutlet.titleLabel!.numberOfLines = 0
         self.choice1ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
-        self.choice1ButtonOutlet.titleLabel!.minimumScaleFactor = 0.3
+        self.choice1ButtonOutlet.titleLabel!.minimumScaleFactor = 0.7
+        
+        self.choice1ButtonOutlet.titleLabel!.font = self.choice1ButtonOutlet.titleLabel!.font.withSize(self.choice1ButtonOutlet.titleLabel!.font.pointSize * 0.9)
     }
     
     func setupChoice2Button() {
@@ -312,7 +314,9 @@ class StoryViewController: UIViewController {
         
         self.choice2ButtonOutlet.titleLabel!.numberOfLines = 0
         self.choice2ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
-        self.choice2ButtonOutlet.titleLabel!.minimumScaleFactor = 0.3
+        self.choice2ButtonOutlet.titleLabel!.minimumScaleFactor = 0.7
+        
+        self.choice2ButtonOutlet.titleLabel!.font = self.choice2ButtonOutlet.titleLabel!.font.withSize(self.choice2ButtonOutlet.titleLabel!.font.pointSize * 0.9)
     }
     
     func setupChoice3Button() {
@@ -320,7 +324,9 @@ class StoryViewController: UIViewController {
         
         self.choice3ButtonOutlet.titleLabel!.numberOfLines = 0
         self.choice3ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
-        self.choice3ButtonOutlet.titleLabel!.minimumScaleFactor = 0.3
+        self.choice3ButtonOutlet.titleLabel!.minimumScaleFactor = 0.7
+        
+        self.choice3ButtonOutlet.titleLabel!.font = self.choice3ButtonOutlet.titleLabel!.font.withSize(self.choice3ButtonOutlet.titleLabel!.font.pointSize * 0.9)
     }
     
     func setupChoice4Button() {
@@ -328,15 +334,28 @@ class StoryViewController: UIViewController {
         
         self.choice4ButtonOutlet.titleLabel!.numberOfLines = 0
         self.choice4ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
-        self.choice4ButtonOutlet.titleLabel!.minimumScaleFactor = 0.3
+        self.choice4ButtonOutlet.titleLabel!.minimumScaleFactor = 0.7
+        
+        self.choice4ButtonOutlet.titleLabel!.font = self.choice4ButtonOutlet.titleLabel!.font.withSize(self.choice4ButtonOutlet.titleLabel!.font.pointSize * 0.9)
     }
     
     func setupChoice5Button() {
+        
+        if self.viewType == .onlySpeech {
+            self.choice5ButtonOutlet.isHidden = true
+        }
+        else {
+            choice5ButtonOutlet.isHidden = false
+        }
+        
         self.choice5ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[4])
         
         self.choice5ButtonOutlet.titleLabel!.numberOfLines = 0
         self.choice5ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
-        self.choice5ButtonOutlet.titleLabel!.minimumScaleFactor = 0.3
+        self.choice5ButtonOutlet.titleLabel!.minimumScaleFactor = 0.7
+        
+        self.choice5ButtonOutlet.titleLabel!.font = self.choice5ButtonOutlet.titleLabel!.font.withSize(self.choice5ButtonOutlet.titleLabel!.font.pointSize * 0.9)
+        
     }
     
     func setupTextLabel() {
