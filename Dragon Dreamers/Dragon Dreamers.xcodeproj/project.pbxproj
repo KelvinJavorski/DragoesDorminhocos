@@ -49,6 +49,10 @@
 		6F2FC935254B80C80097FDD0 /* LOOP_infancia.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F2FC932254B80C70097FDD0 /* LOOP_infancia.wav */; };
 		6F2FC936254B80C80097FDD0 /* OUTRO_infancia.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F2FC933254B80C70097FDD0 /* OUTRO_infancia.wav */; };
 		6F2FC937254B80C80097FDD0 /* INTRO_infancia.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F2FC934254B80C80097FDD0 /* INTRO_infancia.wav */; };
+		6F2FC93D254B8DEE0097FDD0 /* selected.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F2FC939254B8DED0097FDD0 /* selected.wav */; };
+		6F2FC93E254B8DEE0097FDD0 /* play.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F2FC93A254B8DED0097FDD0 /* play.wav */; };
+		6F2FC93F254B8DEE0097FDD0 /* next.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F2FC93B254B8DED0097FDD0 /* next.wav */; };
+		6F2FC940254B8DEE0097FDD0 /* cardshuffle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F2FC93C254B8DEE0097FDD0 /* cardshuffle.wav */; };
 		6F44E7ED24DB34340034CDE1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F44E7EC24DB34330034CDE1 /* Player.swift */; };
 		6F44E7EF24DB36630034CDE1 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F44E7EE24DB36630034CDE1 /* CardType.swift */; };
 		6F71B26B24DB2A5E009EB5CB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F71B26A24DB2A5E009EB5CB /* Card.swift */; };
@@ -136,6 +140,10 @@
 		6F2FC932254B80C70097FDD0 /* LOOP_infancia.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = LOOP_infancia.wav; sourceTree = "<group>"; };
 		6F2FC933254B80C70097FDD0 /* OUTRO_infancia.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = OUTRO_infancia.wav; sourceTree = "<group>"; };
 		6F2FC934254B80C80097FDD0 /* INTRO_infancia.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = INTRO_infancia.wav; sourceTree = "<group>"; };
+		6F2FC939254B8DED0097FDD0 /* selected.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = selected.wav; sourceTree = "<group>"; };
+		6F2FC93A254B8DED0097FDD0 /* play.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = play.wav; sourceTree = "<group>"; };
+		6F2FC93B254B8DED0097FDD0 /* next.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = next.wav; sourceTree = "<group>"; };
+		6F2FC93C254B8DEE0097FDD0 /* cardshuffle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardshuffle.wav; sourceTree = "<group>"; };
 		6F44E7EC24DB34330034CDE1 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		6F44E7EE24DB36630034CDE1 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		6F71B26A24DB2A5E009EB5CB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Card.swift; path = "Dragon Dreamers/Model/Cards/Card.swift"; sourceTree = SOURCE_ROOT; };
@@ -279,6 +287,7 @@
 		6F2FC930254B80050097FDD0 /* Audios */ = {
 			isa = PBXGroup;
 			children = (
+				6F2FC938254B8DDF0097FDD0 /* SFX */,
 				6F2FC931254B80A20097FDD0 /* Infancia */,
 			);
 			path = Audios;
@@ -292,6 +301,17 @@
 				6F2FC933254B80C70097FDD0 /* OUTRO_infancia.wav */,
 			);
 			path = Infancia;
+			sourceTree = "<group>";
+		};
+		6F2FC938254B8DDF0097FDD0 /* SFX */ = {
+			isa = PBXGroup;
+			children = (
+				6F2FC93C254B8DEE0097FDD0 /* cardshuffle.wav */,
+				6F2FC93B254B8DED0097FDD0 /* next.wav */,
+				6F2FC93A254B8DED0097FDD0 /* play.wav */,
+				6F2FC939254B8DED0097FDD0 /* selected.wav */,
+			);
+			path = SFX;
 			sourceTree = "<group>";
 		};
 		6F44E7E824DB33020034CDE1 /* Enums */ = {
@@ -561,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F2FC936254B80C80097FDD0 /* OUTRO_infancia.wav in Resources */,
+				6F2FC93D254B8DEE0097FDD0 /* selected.wav in Resources */,
 				649A2220250ABEB500F6A7CE /* Menu.storyboard in Resources */,
 				649A21FA250AB6D700F6A7CE /* GameScenePlaces.sks in Resources */,
 				B6EF3A2B24D9CCCE00FD840E /* Main.storyboard in Resources */,
@@ -568,7 +589,9 @@
 				B6EF3A2D24D9CCD100FD840E /* Assets.xcassets in Resources */,
 				649A2202250AB77600F6A7CE /* GameSceneDuel.sks in Resources */,
 				649A2200250AB74D00F6A7CE /* GameSceneInteraction.sks in Resources */,
+				6F2FC93F254B8DEE0097FDD0 /* next.wav in Resources */,
 				B6EF3A3024D9CCD100FD840E /* LaunchScreen.storyboard in Resources */,
+				6F2FC93E254B8DEE0097FDD0 /* play.wav in Resources */,
 				649A21FE250AB70F00F6A7CE /* GameSceneAppendix.sks in Resources */,
 				6F2FC937254B80C80097FDD0 /* INTRO_infancia.wav in Resources */,
 				B6EF3A2424D9CCCE00FD840E /* Actions.sks in Resources */,
@@ -578,6 +601,7 @@
 				649A2208250AB82600F6A7CE /* GameSceneOutcome.sks in Resources */,
 				649A21FC250AB6FA00F6A7CE /* GameSceneNPCChoice.sks in Resources */,
 				6F2FC935254B80C80097FDD0 /* LOOP_infancia.wav in Resources */,
+				6F2FC940254B8DEE0097FDD0 /* cardshuffle.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

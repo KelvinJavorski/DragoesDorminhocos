@@ -16,6 +16,8 @@ enum IntroWithLoopLibrary: CaseIterable {
 }
 
 enum SoundEffectLibrary : String, CaseIterable {
-    case synth = "click-synth.mp3"
-    case double = "click-double.mp3"
+    case cardShuffle = "cardshuffle.wav"
+    case next = "next.wav"
+    case play = "play.wav"
+    case selected = "selected.wav"
 }

@@ -8,7 +8,7 @@ class AudioManager{
     private var introsWithLoops = [IntroWithLoopLibrary : Song]()
 
     private init() {
-        //SoundEffectLibrary.allCases.forEach( { soundEffects[$0] = SoundEffect(fileName: $0.rawValue) } )
+        SoundEffectLibrary.allCases.forEach( { soundEffects[$0] = SoundEffect(fileName: $0.rawValue) } )
         //SongLibrary.allCases.forEach( { songs[$0] = Song(fileName: $0.rawValue) } )
         IntroWithLoopLibrary.allCases.forEach( { introsWithLoops[$0] = IntroWithLoop(introFileName: $0.info.intro, loopFileName: $0.info.loop, outroFileName: $0.info.outro) } )
     }
