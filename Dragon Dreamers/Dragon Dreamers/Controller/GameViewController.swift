@@ -25,6 +25,8 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        endMyTurnButton.self.layer.cornerRadius = 15
+        
         if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
             self.scene = scene
             self.scene.initScene()

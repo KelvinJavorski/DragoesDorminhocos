@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H9r-4m-Pq5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H9r-4m-Pq5">
     <device id="retina6_5" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -16,9 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="896x414" translatesAutoresizingMaskIntoConstraints="NO" id="s5e-AF-Xlr">
-                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
-                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RrJ-yF-hWz">
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="393"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -104,35 +101,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHt-1P-nzX">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MenuIllustration" translatesAutoresizingMaskIntoConstraints="NO" id="8O0-B5-Fo0">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <string key="text">Nome
-do Jogo</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="BHt-1P-nzX" secondAttribute="bottom" id="7xg-tb-DAg"/>
-                                                <constraint firstItem="BHt-1P-nzX" firstAttribute="top" secondItem="ug5-dM-U1P" secondAttribute="top" id="SOz-nO-dN0"/>
-                                                <constraint firstItem="BHt-1P-nzX" firstAttribute="leading" secondItem="ug5-dM-U1P" secondAttribute="leading" id="iq6-g4-vB0"/>
-                                                <constraint firstAttribute="trailing" secondItem="BHt-1P-nzX" secondAttribute="trailing" id="qTu-I8-Tap"/>
+                                                <constraint firstAttribute="bottom" secondItem="8O0-B5-Fo0" secondAttribute="bottom" id="ZE2-QA-kGH"/>
+                                                <constraint firstAttribute="trailing" secondItem="8O0-B5-Fo0" secondAttribute="trailing" id="b4I-02-dh5"/>
+                                                <constraint firstItem="8O0-B5-Fo0" firstAttribute="leading" secondItem="ug5-dM-U1P" secondAttribute="leading" id="g4P-iM-BQi"/>
+                                                <constraint firstItem="8O0-B5-Fo0" firstAttribute="top" secondItem="ug5-dM-U1P" secondAttribute="top" id="tb9-kF-ub6"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.67843137254901964" green="0.78431372549019607" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="s5e-AF-Xlr" secondAttribute="trailing" id="4E2-Zr-fq5"/>
-                            <constraint firstAttribute="bottom" secondItem="s5e-AF-Xlr" secondAttribute="bottom" id="4Mg-rC-Ryd"/>
                             <constraint firstItem="RrJ-yF-hWz" firstAttribute="leading" secondItem="rsR-j2-6RK" secondAttribute="leading" id="Hdj-xP-HXs"/>
-                            <constraint firstItem="s5e-AF-Xlr" firstAttribute="leading" secondItem="rsR-j2-6RK" secondAttribute="leading" id="PCM-Xb-Knd"/>
                             <constraint firstAttribute="trailing" secondItem="RrJ-yF-hWz" secondAttribute="trailing" id="SfA-XR-YAu"/>
-                            <constraint firstItem="s5e-AF-Xlr" firstAttribute="top" secondItem="rsR-j2-6RK" secondAttribute="top" id="WDH-Bh-Yfr"/>
                             <constraint firstItem="RrJ-yF-hWz" firstAttribute="bottom" secondItem="8ca-YT-H3s" secondAttribute="bottom" id="aib-k0-wKL"/>
                             <constraint firstItem="RrJ-yF-hWz" firstAttribute="top" secondItem="8ca-YT-H3s" secondAttribute="top" id="ucT-ox-aTA"/>
                         </constraints>
@@ -216,12 +204,13 @@ do Jogo</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljb-lL-hXL" userLabel="Next Turn">
-                                <rect key="frame" x="746" y="314" width="150" height="100"/>
+                                <rect key="frame" x="768" y="351" width="88" height="43"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHG-KM-qAv">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHG-KM-qAv">
+                                        <rect key="frame" x="0.0" y="0.0" width="88" height="43"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Next Turn!" backgroundImage="End Turn Button">
+                                        <state key="normal" title="Next Turn!">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -229,13 +218,14 @@ do Jogo</string>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="JHG-KM-qAv" secondAttribute="trailing" id="TcQ-Ku-OUD"/>
                                     <constraint firstItem="JHG-KM-qAv" firstAttribute="leading" secondItem="ljb-lL-hXL" secondAttribute="leading" id="gHz-lx-vH0"/>
                                     <constraint firstAttribute="bottom" secondItem="JHG-KM-qAv" secondAttribute="bottom" id="jcG-NN-4ct"/>
                                     <constraint firstItem="JHG-KM-qAv" firstAttribute="top" secondItem="ljb-lL-hXL" secondAttribute="top" id="m4b-Hy-7bW"/>
-                                    <constraint firstAttribute="height" constant="100" id="oXX-hc-L1s"/>
-                                    <constraint firstAttribute="width" constant="150" id="tIB-Kv-l0e"/>
+                                    <constraint firstAttribute="height" constant="43" id="oXX-hc-L1s"/>
+                                    <constraint firstAttribute="width" constant="88" id="tIB-Kv-l0e"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -243,12 +233,12 @@ do Jogo</string>
                         <constraints>
                             <constraint firstItem="dvW-MN-GZY" firstAttribute="bottom" secondItem="ekW-xL-PaE" secondAttribute="bottom" id="4Nx-IC-pP1"/>
                             <constraint firstAttribute="trailing" secondItem="ekW-xL-PaE" secondAttribute="trailing" id="9Ci-qe-Fqh"/>
-                            <constraint firstItem="ljb-lL-hXL" firstAttribute="trailing" secondItem="3se-qz-xqx" secondAttribute="trailing" id="FXw-uE-qN4"/>
+                            <constraint firstItem="ljb-lL-hXL" firstAttribute="trailing" secondItem="3se-qz-xqx" secondAttribute="trailing" constant="-40" id="FXw-uE-qN4"/>
                             <constraint firstItem="ekW-xL-PaE" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="Fil-Ga-Er5"/>
                             <constraint firstItem="dvW-MN-GZY" firstAttribute="top" secondItem="ekW-xL-PaE" secondAttribute="top" id="Mak-Nw-PvD"/>
                             <constraint firstItem="dvW-MN-GZY" firstAttribute="centerX" secondItem="ekW-xL-PaE" secondAttribute="centerX" id="WBz-8O-7TX"/>
                             <constraint firstItem="ekW-xL-PaE" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="bX2-Ln-Eok"/>
-                            <constraint firstItem="ljb-lL-hXL" firstAttribute="bottom" secondItem="3se-qz-xqx" secondAttribute="bottom" id="sqV-zy-KEq"/>
+                            <constraint firstItem="ljb-lL-hXL" firstAttribute="bottom" secondItem="3se-qz-xqx" secondAttribute="bottom" constant="-20" id="sqV-zy-KEq"/>
                             <constraint firstAttribute="bottom" secondItem="ekW-xL-PaE" secondAttribute="bottom" id="ssg-R3-CbO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
@@ -481,9 +471,8 @@ do Jogo</string>
         <segue reference="1IX-qc-cFa"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="896x414" width="896" height="414"/>
         <image name="Batalha" width="667" height="375"/>
-        <image name="End Turn Button" width="80" height="40"/>
+        <image name="MenuIllustration" width="488" height="346"/>
         <image name="NameFill" width="94" height="34"/>
         <image name="WhiteBaloon" width="390" height="141"/>
         <image name="WhiteButton" width="169" height="66"/>

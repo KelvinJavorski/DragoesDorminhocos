@@ -28,6 +28,9 @@ class MainMenuViewController : UIViewController, UICollectionViewDataSource {
         
         daysCollectionView.dataSource = self
         
+        // AUDIO MODULE - Colocar pra tocar dependendo de qual Chapter foi jogado
+        AudioManager.shared.play(introWithLoop: .infancia)
+        
         print("View Did Load")
         refreshInterface()
         // Do any additional setup after loading the view.
