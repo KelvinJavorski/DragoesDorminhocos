@@ -29,7 +29,6 @@
 		649A220C250AB91700F6A7CE /* GameScenePlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649A220B250AB91700F6A7CE /* GameScenePlaces.swift */; };
 		649A220E250AB98500F6A7CE /* GameSceneNPCChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649A220D250AB98500F6A7CE /* GameSceneNPCChoice.swift */; };
 		649A2210250AB9EE00F6A7CE /* GameSceneAppendix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649A220F250AB9EE00F6A7CE /* GameSceneAppendix.swift */; };
-		649A2212250ABA5000F6A7CE /* GameSceneInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649A2211250ABA5000F6A7CE /* GameSceneInteraction.swift */; };
 		649A2214250ABA7E00F6A7CE /* GameSceneDuel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649A2213250ABA7E00F6A7CE /* GameSceneDuel.swift */; };
 		649A2216250ABAA700F6A7CE /* GameSceneDeckChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649A2215250ABAA700F6A7CE /* GameSceneDeckChoice.swift */; };
 		649A2218250ABACC00F6A7CE /* GameSceneEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649A2217250ABACC00F6A7CE /* GameSceneEnd.swift */; };
@@ -109,7 +108,6 @@
 		649A220B250AB91700F6A7CE /* GameScenePlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScenePlaces.swift; sourceTree = "<group>"; };
 		649A220D250AB98500F6A7CE /* GameSceneNPCChoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneNPCChoice.swift; sourceTree = "<group>"; };
 		649A220F250AB9EE00F6A7CE /* GameSceneAppendix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneAppendix.swift; sourceTree = "<group>"; };
-		649A2211250ABA5000F6A7CE /* GameSceneInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneInteraction.swift; sourceTree = "<group>"; };
 		649A2213250ABA7E00F6A7CE /* GameSceneDuel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDuel.swift; sourceTree = "<group>"; };
 		649A2215250ABAA700F6A7CE /* GameSceneDeckChoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDeckChoice.swift; sourceTree = "<group>"; };
 		649A2217250ABACC00F6A7CE /* GameSceneEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneEnd.swift; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				B6EF3A2524D9CCCE00FD840E /* GameScene.swift */,
-				649A2211250ABA5000F6A7CE /* GameSceneInteraction.swift */,
 				649A220B250AB91700F6A7CE /* GameScenePlaces.swift */,
 				649A220D250AB98500F6A7CE /* GameSceneNPCChoice.swift */,
 				649A220F250AB9EE00F6A7CE /* GameSceneAppendix.swift */,
@@ -569,7 +566,6 @@
 				B6411B7E2547AA9700C616E8 /* BreezeEffects.swift in Sources */,
 				649A2218250ABACC00F6A7CE /* GameSceneEnd.swift in Sources */,
 				B6CEDF8025379AEA006288A9 /* AddStatusEffect.swift in Sources */,
-				649A2212250ABA5000F6A7CE /* GameSceneInteraction.swift in Sources */,
 				B69CC5A424F04254003663D0 /* EffectType.swift in Sources */,
 				649A21F0250AB0A600F6A7CE /* Place.swift in Sources */,
 				649A21F2250AB0F800F6A7CE /* GameCampaign.swift in Sources */,
