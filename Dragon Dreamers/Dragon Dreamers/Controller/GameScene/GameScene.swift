@@ -30,6 +30,7 @@ class GameScene: SKScene {
     
     var enemyCardNode : SKNode!
     var enemyPlayAreaNode : SKNode!
+    var yobabaPlayAreaNode: SKNode!
     var enemyHandNode : SKNode!
     
     var handNode      : SKNode!
@@ -105,12 +106,25 @@ class GameScene: SKScene {
         bannedNode = childNode(withName: "Banned")!
         bannedNumber = bannedNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
         
+        let playNode = childNode(withName: "Play")!
+        yobabaPlayAreaNode = playNode.childNode(withName: "YobabaPlayArea")!
+        
         manaNode = childNode(withName: "Mana")!
         for node in manaNode.children {
             if node.name == "Mana" {
                 manaNodes.append(node)
             }
         }
+        
+        let circleNode = SKShapeNode(circleOfRadius: 40)
+        circleNode.position = manaNode.position
+        circleNode.fillColor = UIColor(hexString: "#FFFFFF")
+        addChild(circleNode)
+        
+        let DeckCircleNode = SKShapeNode(circleOfRadius: 40)
+        DeckCircleNode.position = deckNode.position
+        DeckCircleNode.fillColor = UIColor(hexString: "#FFFFFF")
+        addChild(DeckCircleNode)
         
         handNode = childNode(withName: "Hand")!
         let cardsNode = handNode.childNode(withName: "Cards")!
@@ -175,6 +189,7 @@ class GameScene: SKScene {
         battleManager.startBattle()
         battleManager.initPlayerTurn()
         
+        createYobabaPlayArea()
         createHandEllipse()
         drawCards()
         Player.shared.lastHand.cards = Player.shared.hand.cards
@@ -182,15 +197,32 @@ class GameScene: SKScene {
         
     }
     
+    func createYobabaPlayArea(){
+        let cornerRect = SKShapeNode.init(rectOf: CGSize(width: halfWidth * 3.5, height: halfHeight * 1.2), cornerRadius: 30)
+        cornerRect.position = CGPoint(x: handNode.position.x, y: handNode.position.y )
+        
+//        ellipse.fillColor = UIColor(hexString: "#797979")
+//        ellipse.alpha = 0.2
+        cornerRect.fillColor = UIColor(hexString: "#FFFFFF")
+        cornerRect.alpha = 0.75
+        cornerRect.position = yobabaPlayAreaNode.position
+        cornerRect.zPosition = -1
+        
+        self.addChild(cornerRect)
+    }
+    
     func createHandEllipse () {
-        let rect = CGRect(x: handNode.position.x - halfWidth, y: handNode.position.y - halfHeight, width: halfWidth*2 , height: halfHeight*2 )
+        let rect = CGRect(x: handNode.position.x - halfWidth, y: handNode.position.y - halfHeight, width: halfWidth*2.5 , height: halfHeight*1.2)
+//        let ellipse = SKShapeNode.init(rect: rect)
+        let cornerRect = SKShapeNode.init(rectOf: rect.size, cornerRadius: 50)
+        cornerRect.position = CGPoint(x: handNode.position.x, y: handNode.position.y )
         
-        let ellipse = SKShapeNode.init(ellipseIn: rect)
-        ellipse.fillColor = .black
-        ellipse.strokeColor = .black
-        ellipse.lineWidth = 2
+//        ellipse.fillColor = UIColor(hexString: "#797979")
+//        ellipse.alpha = 0.2
+        cornerRect.fillColor = UIColor(hexString: "#797979")
+        cornerRect.alpha = 0.2
         
-        self.addChild(ellipse)
+        self.addChild(cornerRect)
     }
     
     /// >>>----------> BASE FUNCs
@@ -277,9 +309,22 @@ class GameScene: SKScene {
         self.addChild(card.node)
     }
     
-    func createCardNode (card : Card, at pos: SKNode) {
+    func getCardNodeByType(type: CardType) -> SKNode{
         let bases = self.childNode(withName: "Bases")!
-        let cardBase = bases.childNode(withName: "CardBase")!
+        if type == .blue{
+            return bases.childNode(withName: "OceanCardBase")!
+        }else if type == .green{
+            return bases.childNode(withName: "BreezeCardBase")!
+        }else if type == .red{
+            return bases.childNode(withName: "SunCardBase")!
+        }else if type == .yellow{
+            return bases.childNode(withName: "OceanCardBase")!
+        }else{
+            return bases.childNode(withName: "CardBase")!
+        }
+    }
+    func createCardNode (card : Card, at pos: SKNode) {
+        let cardBase = getCardNodeByType(type: card.type)
         let cardNode = cardBase.copy() as! SKNode
         cardNode.position = pos.position
         card.node = cardNode
