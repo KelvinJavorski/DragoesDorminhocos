@@ -63,20 +63,21 @@ class GameScene: SKScene {
     var humorPoints: Int = 0
     var humorNode : SKNode!
 //    var agreeNode : SKNode!
-    var agreeBackground : SKSpriteNode!
-    var agreeColor : SKSpriteNode!
+    
+    var agreeBackground : SKShapeNode!
+    var agreeColor : SKShapeNode!
     
 //    var avoidNode : SKNode!
-    var avoidBackground : SKSpriteNode!
-    var avoidColor : SKSpriteNode!
+    var avoidBackground : SKShapeNode!
+    var avoidColor : SKShapeNode!
     
 //    var questioningNode : SKNode!
-    var questioningBackground : SKSpriteNode!
-    var questioningColor : SKSpriteNode!
+    var questioningBackground : SKShapeNode!
+    var questioningColor : SKShapeNode!
     
 //    var criticizeNode : SKNode!
-    var criticizeBackground : SKSpriteNode!
-    var criticizeColor : SKSpriteNode!
+    var criticizeBackground : SKShapeNode!
+    var criticizeColor : SKShapeNode!
 
     var nextTurnAvailable: Bool!
     var battleManager: BattleManager = BattleManager()
@@ -236,14 +237,34 @@ class GameScene: SKScene {
         let questioning = humorNode.childNode(withName: "Questioning")!
         let criticize = humorNode.childNode(withName: "Criticize")!
         
-        agreeBackground = agree.childNode(withName: "Background") as? SKSpriteNode
-        agreeBackground.color = .black
-        avoidBackground = avoid.childNode(withName: "Background") as? SKSpriteNode
-        avoidBackground.color = .black
-        questioningBackground = questioning.childNode(withName: "Background") as? SKSpriteNode
-        questioningBackground.color = .black
-        criticizeBackground = criticize.childNode(withName: "Background") as? SKSpriteNode
-        criticizeBackground.color = .black
+        let agreeNode = agree.childNode(withName: "Background")!
+        agreeBackground = agree.copy() as? SKShapeNode
+        agreeBackground = SKShapeNode(circleOfRadius: 5)
+        agreeBackground.fillColor = .blue
+        agreeBackground.position = agreeNode.position
+        
+        let avoidNode = avoid.childNode(withName: "Background")!
+        avoidBackground = avoid.copy() as? SKShapeNode
+        avoidBackground = SKShapeNode(circleOfRadius: 5)
+        avoidBackground.fillColor = .yellow
+        avoidBackground.position = avoidNode.position
+        
+//        let questioningNode = questioning.childNode(withName: "Background")!
+//        questioningBackground = questioning.copy() as? SKShapeNode
+        questioningBackground = SKShapeNode(circleOfRadius: 5)
+        questioningBackground.fillColor = .green
+//        questioningBackground.position = questioningNode.position
+        
+        let criticizeNode = criticize.childNode(withName: "Background")!
+        criticizeBackground = criticize.copy() as? SKShapeNode
+        criticizeBackground = SKShapeNode(circleOfRadius: 5)
+        criticizeBackground.fillColor = .red
+//        criticizeBackground.position = criticizeNode.position
+        
+//        self.addChild(agreeBackground)
+        self.addChild(avoidBackground)
+        self.addChild(questioningBackground)
+        self.addChild(criticizeBackground)
     }
     
     func setupEnemyHumor (card: Card, completion: @escaping () -> () = { }) {
@@ -474,16 +495,16 @@ class GameScene: SKScene {
         battleManager.endEnemyTurn()
         print("Descarta a Mesa")
         discardOngoing() {
-            self.enemyPlayingTurn(){
-                self.discardHand() {
+            self.discardHand() {
+                self.enemyPlayingTurn(){
 //                    self.battleManager.initPlayerTurn()
                     self.nextTurning = false
                     self.drawCards()
+                    self.showDialogBox()
                 }
                 
                 self.enemyDiscardCard {
                     self.battleManager.initPlayerTurn()
-                    self.showDialogBox()
                     self.enemyDrawCard()
                 }
                 Player.shared.manaManager.resetAllManaFromManaPool()
@@ -531,13 +552,14 @@ class GameScene: SKScene {
     func drawHandCards (_ amount: Int){
         let handCards = 0
         Player.shared.drawCards(amount: amount)
-        for i in handCards ..< Player.shared.hand.cards.count {
-            let card = Player.shared.hand.cards[i]
-            createCardNode(card: card, at: deckNode)
-        }
+
     
         print("Player Hand Amount: \(Player.shared.hand.cards.count)")
         if !gettingCardsFromDiscard {
+            for i in handCards ..< Player.shared.hand.cards.count {
+                let card = Player.shared.hand.cards[i]
+                createCardNode(card: card, at: deckNode)
+            }
             distributeCardNodes()
         }
         
@@ -607,12 +629,12 @@ class GameScene: SKScene {
     var i = 0
     func getCardsFromDiscard (completion: @escaping () -> () = { }) {
         if !gettingCardsFromDiscard {
-            let delay = SKAction.wait(forDuration: 0.10)
+            let delay = SKAction.wait(forDuration: 0.0)
             let code  = SKAction.run {
                 self.i+=1
                 Player.shared.getCardFromDiscard(0)
             }
-            let sequence = SKAction.sequence([delay, code])
+            let sequence = SKAction.sequence([code])
             let loop = SKAction.repeat(sequence, count: Player.shared.discard.cards.count)
             gettingCardsFromDiscard = true
             discardNode.run(loop) {
