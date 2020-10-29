@@ -10,7 +10,6 @@ enum ViewType {
     case onlySpeech
 }
 
-
 extension UIButton {
     func setTitleWithoutAnimation(title: String?) {
         UIView.setAnimationsEnabled(false)
@@ -317,6 +316,8 @@ class StoryViewController: UIViewController {
         
         self.choice1ButtonOutlet.titleLabel!.widthAnchor.constraint(equalToConstant: self.choice1ButtonOutlet.frame.width*CGFloat(0.85)).isActive = true
         
+        self.choice1ButtonOutlet.titleLabel!.textAlignment = .center
+        
     }
     
     func setupChoice2Button() {
@@ -329,6 +330,8 @@ class StoryViewController: UIViewController {
         self.choice2ButtonOutlet.titleLabel!.font = self.choice2ButtonOutlet.titleLabel!.font.withSize(self.choice2ButtonOutlet.titleLabel!.font.pointSize * 0.85)
         
         self.choice2ButtonOutlet.titleLabel!.widthAnchor.constraint(equalToConstant: self.choice2ButtonOutlet.frame.width*CGFloat(0.85)).isActive = true
+        
+        self.choice2ButtonOutlet.titleLabel!.textAlignment = .center
     }
     
     func setupChoice3Button() {
@@ -342,6 +345,7 @@ class StoryViewController: UIViewController {
         
         self.choice3ButtonOutlet.titleLabel!.widthAnchor.constraint(equalToConstant: self.choice3ButtonOutlet.frame.width*CGFloat(0.85)).isActive = true
         
+        self.choice3ButtonOutlet.titleLabel!.textAlignment = .center
         
     }
     
@@ -355,10 +359,11 @@ class StoryViewController: UIViewController {
         self.choice4ButtonOutlet.titleLabel!.font = self.choice4ButtonOutlet.titleLabel!.font.withSize(self.choice4ButtonOutlet.titleLabel!.font.pointSize * 0.85)
         
         self.choice4ButtonOutlet.titleLabel!.widthAnchor.constraint(equalToConstant: self.choice4ButtonOutlet.frame.width*CGFloat(0.85)).isActive = true
+        
+        self.choice4ButtonOutlet.titleLabel!.textAlignment = .center
     }
     
     func setupChoice5Button() {
-        
 
         self.choice5ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[4])
         
@@ -370,10 +375,20 @@ class StoryViewController: UIViewController {
         
         self.choice5ButtonOutlet.titleLabel!.widthAnchor.constraint(equalToConstant: self.choice5ButtonOutlet.frame.width*CGFloat(0.85)).isActive = true
         
+        self.choice5ButtonOutlet.titleLabel!.textAlignment = .center
+        
     }
     
     func setupTextLabel() {
         self.textLabel.text = self.speech!.text
+        
+        self.textLabel.numberOfLines = 0
+        self.textLabel.adjustsFontSizeToFitWidth = true
+        self.textLabel.minimumScaleFactor = 0.7
+        
+        self.textLabel.font = self.textLabel.font.withSize(self.textLabel.font.pointSize * 0.85)
+        
+        self.textLabel.widthAnchor.constraint(equalToConstant: self.baloonButton.frame.width*CGFloat(0.85)).isActive = true
     }
     
     func setupPerfilImageView() {
