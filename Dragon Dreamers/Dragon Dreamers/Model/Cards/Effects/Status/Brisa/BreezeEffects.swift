@@ -12,22 +12,22 @@ class Planejar : EffectProtocol{
     func applyEffects(card: Card) {
         let person = Player.shared
         let manas = ManaType.allCases
-        var allMana = manas.filter { !$0.rawValue.contains("g") }
+        var allMana = manas.filter { !$0.rawValue.contains("green") }
         
         var manaFound = false
-        while(!manaFound){
-            guard let randomMana = allMana.randomElement()
-            else {
-                return print("no mana left")
-            }
-            if person.manaManager.checkManaInPool(type: randomMana){
-                let _ = person.manaManager.returnManaFromPoolToCollection(type: randomMana)
-                let _ = person.manaManager.setManaInPool(type: ManaType.green)
-                manaFound = true
-                break
-            }
-            allMana = allMana.filter { $0.rawValue != randomMana.rawValue }
-        }
+//        while(!manaFound){
+//            guard let randomMana = allMana.randomElement()
+//            else {
+//                return print("no mana left")
+//            }
+//            if person.manaManager.checkManaAvailableInPool(type: randomMana){
+//                person.manaManager.changeManTypeFromPool(change: randomMana, toType: ManaType.green)
+//                manaFound = true
+//                person.scene.resetManaNodes()
+//                break
+//            }
+//            allMana = allMana.filter { $0.rawValue != randomMana.rawValue }
+//        }
         
     }
 }

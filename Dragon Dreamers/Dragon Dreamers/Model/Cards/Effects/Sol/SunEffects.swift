@@ -50,7 +50,7 @@ class Comandar : EffectProtocol{
     }
 }
 
-class SemNome : EffectProtocol{
+class Criticar : EffectProtocol{
     func applyEffects(card: Card) {
         let owner = Player.shared
         owner.tokens[Ways.sol.rawValue].decreaseAmount(amount: -1)
