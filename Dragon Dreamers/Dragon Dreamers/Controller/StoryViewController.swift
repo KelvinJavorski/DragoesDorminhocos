@@ -99,6 +99,8 @@ class StoryViewController: UIViewController {
     
     func nextSpeech() {
         
+        AudioManager.shared.play(soundEffect: .next)
+        
         let pastSpeech = self.speech
         
         var speechlag = false
@@ -277,6 +279,7 @@ class StoryViewController: UIViewController {
     
     @IBAction func choice1Button(_ sender: UIButton) {
         //self.tempDecisions.append(.blue)
+        AudioManager.shared.play(soundEffect: .selected)
         if self.chapterid != 1 {
             self.decisions.append(.blue)
         }
@@ -285,6 +288,7 @@ class StoryViewController: UIViewController {
     
     @IBAction func choice2Button(_ sender: UIButton) {
         //self.tempDecisions.append(.yellow)
+        AudioManager.shared.play(soundEffect: .selected)
         if self.chapterid != 1 {
             self.decisions.append(.yellow)
         }
@@ -293,6 +297,7 @@ class StoryViewController: UIViewController {
     
     @IBAction func choice3Button(_ sender: UIButton) {
         //self.tempDecisions.append(.green)
+        AudioManager.shared.play(soundEffect: .selected)
         if self.chapterid != 1 {
             self.decisions.append(.green)
         }
@@ -301,6 +306,7 @@ class StoryViewController: UIViewController {
     
     @IBAction func choice4Button(_ sender: UIButton) {
         //self.tempDecisions.append(.red)
+        AudioManager.shared.play(soundEffect: .selected)
         if self.chapterid != 1 {
             self.decisions.append(.red)
         }
@@ -308,6 +314,8 @@ class StoryViewController: UIViewController {
     }
     
     @IBAction func choice5Button(_ sender: UIButton) {
+        
+        AudioManager.shared.play(soundEffect: .selected)
         self.nextSpeech()
     }
     
