@@ -54,6 +54,7 @@ class StoryViewController: UIViewController {
     var chapterid: Int?
     var viewType: ViewType = ViewType.onlySpeech
     var decisions: [ManaType] = []
+    var isSet = false
     //var tempDecisions: [ManaType] = []
     
     override func viewDidLoad() {
@@ -77,7 +78,7 @@ class StoryViewController: UIViewController {
     
     func setup() {
         self.setupOrUpdateView()
-        
+        isSet = true
         self.setupPerfilImageView()
         self.setupNameImageView()
         self.setupTextLabel()
@@ -326,7 +327,9 @@ class StoryViewController: UIViewController {
         self.choice1ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
         self.choice1ButtonOutlet.titleLabel!.minimumScaleFactor = 0.7
         
-        self.choice1ButtonOutlet.titleLabel!.font = self.choice2ButtonOutlet.titleLabel!.font.withSize(self.choice2ButtonOutlet.titleLabel!.font.pointSize * 0.85)
+        if !isSet{
+            self.choice1ButtonOutlet.titleLabel!.font = self.choice1ButtonOutlet.titleLabel!.font.withSize(self.choice1ButtonOutlet.titleLabel!.font.pointSize * 0.85)
+        }
         
         self.choice1ButtonOutlet.titleLabel!.widthAnchor.constraint(equalToConstant: self.choice1ButtonOutlet.frame.width*CGFloat(0.85)).isActive = true
         
@@ -341,7 +344,9 @@ class StoryViewController: UIViewController {
         self.choice2ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
         self.choice2ButtonOutlet.titleLabel!.minimumScaleFactor = 0.7
         
-        self.choice2ButtonOutlet.titleLabel!.font = self.choice2ButtonOutlet.titleLabel!.font.withSize(self.choice2ButtonOutlet.titleLabel!.font.pointSize * 0.85)
+        if !isSet{
+            self.choice2ButtonOutlet.titleLabel!.font = self.choice2ButtonOutlet.titleLabel!.font.withSize(self.choice2ButtonOutlet.titleLabel!.font.pointSize * 0.85)
+        }
         
         self.choice2ButtonOutlet.titleLabel!.widthAnchor.constraint(equalToConstant: self.choice2ButtonOutlet.frame.width*CGFloat(0.85)).isActive = true
         
@@ -355,7 +360,9 @@ class StoryViewController: UIViewController {
         self.choice3ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = false
         self.choice3ButtonOutlet.titleLabel!.minimumScaleFactor = 0.7
         
-        self.choice3ButtonOutlet.titleLabel!.font = self.choice3ButtonOutlet.titleLabel!.font.withSize(self.choice3ButtonOutlet.titleLabel!.font.pointSize * 0.85)
+        if !isSet{
+            self.choice3ButtonOutlet.titleLabel!.font = self.choice3ButtonOutlet.titleLabel!.font.withSize(self.choice3ButtonOutlet.titleLabel!.font.pointSize * 0.85)
+        }
         
         self.choice3ButtonOutlet.titleLabel!.widthAnchor.constraint(equalToConstant: self.choice3ButtonOutlet.frame.width*CGFloat(0.85)).isActive = true
         
@@ -370,7 +377,9 @@ class StoryViewController: UIViewController {
         self.choice4ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
         self.choice4ButtonOutlet.titleLabel!.minimumScaleFactor = 0.7
         
-        self.choice4ButtonOutlet.titleLabel!.font = self.choice4ButtonOutlet.titleLabel!.font.withSize(self.choice4ButtonOutlet.titleLabel!.font.pointSize * 0.85)
+        if !isSet{
+            self.choice4ButtonOutlet.titleLabel!.font = self.choice4ButtonOutlet.titleLabel!.font.withSize(self.choice4ButtonOutlet.titleLabel!.font.pointSize * 0.85)
+        }
         
         self.choice4ButtonOutlet.titleLabel!.widthAnchor.constraint(equalToConstant: self.choice4ButtonOutlet.frame.width*CGFloat(0.85)).isActive = true
         
@@ -385,8 +394,10 @@ class StoryViewController: UIViewController {
         self.choice5ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
         self.choice5ButtonOutlet.titleLabel!.minimumScaleFactor = 0.7
         
-        self.choice5ButtonOutlet.titleLabel!.font = self.choice5ButtonOutlet.titleLabel!.font.withSize(self.choice5ButtonOutlet.titleLabel!.font.pointSize * 0.85)
-        
+        if !isSet{
+            self.choice5ButtonOutlet.titleLabel!.font = self.choice5ButtonOutlet.titleLabel!.font.withSize(self.choice5ButtonOutlet.titleLabel!.font.pointSize * 0.85)
+        }
+    
         self.choice5ButtonOutlet.titleLabel!.widthAnchor.constraint(equalToConstant: self.choice5ButtonOutlet.frame.width*CGFloat(0.85)).isActive = true
         
         self.choice5ButtonOutlet.titleLabel!.textAlignment = .center
