@@ -63,6 +63,7 @@
 		B6411B772547A2CB00C616E8 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6411B762547A2CB00C616E8 /* Status.swift */; };
 		B6411B7E2547AA9700C616E8 /* BreezeEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6411B7D2547AA9700C616E8 /* BreezeEffects.swift */; };
 		B6411B832547C4E000C616E8 /* OceanEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6411B822547C4E000C616E8 /* OceanEffects.swift */; };
+		B6411B91254BC21100C616E8 /* SKAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6411B90254BC20F00C616E8 /* SKAction.swift */; };
 		B646358E25434C18005B4285 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646358D25434C18005B4285 /* Token.swift */; };
 		B646359125434C40005B4285 /* TokenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646359025434C40005B4285 /* TokenProtocol.swift */; };
 		B646359825436BEE005B4285 /* SandEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646359725436BEE005B4285 /* SandEffects.swift */; };
@@ -154,6 +155,7 @@
 		B6411B762547A2CB00C616E8 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		B6411B7D2547AA9700C616E8 /* BreezeEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreezeEffects.swift; sourceTree = "<group>"; };
 		B6411B822547C4E000C616E8 /* OceanEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OceanEffects.swift; sourceTree = "<group>"; };
+		B6411B90254BC20F00C616E8 /* SKAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKAction.swift; sourceTree = "<group>"; };
 		B646358D25434C18005B4285 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		B646359025434C40005B4285 /* TokenProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenProtocol.swift; sourceTree = "<group>"; };
 		B646359725436BEE005B4285 /* SandEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandEffects.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				B6202897251E7AB20024DC8A /* UIColor.swift */,
+				B6411B90254BC20F00C616E8 /* SKAction.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -394,11 +397,11 @@
 		B65B6966252F93DC009CB85E /* Effects */ = {
 			isa = PBXGroup;
 			children = (
-				B6411B812547C4CB00C616E8 /* Oceano */,
 				B6411B7C2547AA3100C616E8 /* Legacy Effects */,
 				B6411B752547A2B800C616E8 /* Status */,
 				B646359625436BD1005B4285 /* Areia */,
 				B6411B7A2547A9AC00C616E8 /* Brisa */,
+				B6411B812547C4CB00C616E8 /* Oceano */,
 				B680DE3F253F4B3D004E48B8 /* Sol */,
 				B65B6959252E588C009CB85E /* Effect.swift */,
 				B65B6963252F863D009CB85E /* EffectProtocol.swift */,
@@ -664,6 +667,7 @@
 				649A21F4250AB49D00F6A7CE /* Discussion.swift in Sources */,
 				649A2210250AB9EE00F6A7CE /* GameSceneAppendix.swift in Sources */,
 				B6202898251E7AB30024DC8A /* UIColor.swift in Sources */,
+				B6411B91254BC21100C616E8 /* SKAction.swift in Sources */,
 				B65B695A252E588C009CB85E /* Effect.swift in Sources */,
 				6F44E7ED24DB34340034CDE1 /* Player.swift in Sources */,
 				B6CEDF8425379B17006288A9 /* BuffEffect.swift in Sources */,
