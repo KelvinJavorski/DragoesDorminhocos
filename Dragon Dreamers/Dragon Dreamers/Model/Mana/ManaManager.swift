@@ -55,6 +55,20 @@ class ManaManager {
         return false
     }
     
+    func changeManTypeFromPool(change type: ManaType, toType: ManaType){
+        if self.checkManaInPool(type: type) {
+            for mana in self.manaPool {
+                if mana.type == type {
+                    if mana.isAvaliable {
+                        mana.setType(type: toType)
+                        return
+                    }
+                }
+            }
+        }
+        return
+    }
+    
     func resetAllManaFromManaPool(){
         
         let manaTypes = [ManaType.red, ManaType.blue, ManaType.yellow, ManaType.green, ManaType.colorless]
@@ -109,6 +123,15 @@ class ManaManager {
     func checkManaInPool(type: ManaType) -> Bool {
         for mana in self.manaPool {
             if mana.type == type {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func checkManaAvailableInPool(type: ManaType) -> Bool {
+        for mana in self.manaPool {
+            if mana.type == type && mana.isAvaliable {
                 return true
             }
         }
