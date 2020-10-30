@@ -42,18 +42,6 @@ class BattleManager{
     }
     
     func endBattle(){
-        if player.isAtributeFinished(atribute: .agree){
-            sendToOutcome()
-        }
-        else if player.isAtributeFinished(atribute: .avoid){
-            sendToOutcome()
-        }
-        else if enemy.isAtributeFinished(atribute: .agree){
-            sendToOutcome()
-        }
-        else if enemy.isAtributeFinished(atribute: .questioning){
-            sendToOutcome()
-        }
     }
     
     func initPlayerTurn(){

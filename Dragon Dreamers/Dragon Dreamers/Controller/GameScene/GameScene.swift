@@ -35,10 +35,12 @@ class GameScene: SKScene {
     
     var handNode      : SKNode!
     var handNodes     : [SKNode] = []
+    var playArea      : SKNode!
     var playAreaNode  : SKNode!
     var playAreaNodes : [SKNode] = []
     var manaNode      : SKNode!
     var manaNodes     : [SKNode] = []
+    var manaCircleNode: SKShapeNode!
     var effectsNode : [SKLabelNode] = []
     
     var circles : [SKShapeNode] = []
@@ -78,6 +80,12 @@ class GameScene: SKScene {
 //    var criticizeNode : SKNode!
     var criticizeBackground : SKShapeNode!
     var criticizeColor : SKShapeNode!
+    
+    var imposicaoBackground : SKNode!
+    var imposicaoValue : SKLabelNode!
+    
+    var conexaoBackground : SKNode!
+    var conexaoValue : SKLabelNode!
 
     var nextTurnAvailable: Bool!
     var battleManager: BattleManager = BattleManager()
@@ -108,6 +116,8 @@ class GameScene: SKScene {
         bannedNumber = bannedNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
         
         let playNode = childNode(withName: "Play")!
+        playArea = playNode.childNode(withName: "Play Area")!
+        createPlayAreaView()
         yobabaPlayAreaNode = playNode.childNode(withName: "YobabaPlayArea")!
         
         manaNode = childNode(withName: "Mana")!
@@ -117,10 +127,10 @@ class GameScene: SKScene {
             }
         }
         
-        let circleNode = SKShapeNode(circleOfRadius: 40)
-        circleNode.position = manaNode.position
-        circleNode.fillColor = UIColor(hexString: "#FFFFFF")
-        addChild(circleNode)
+        manaCircleNode = SKShapeNode(circleOfRadius: 40)
+        manaCircleNode.position = manaNode.position
+        manaCircleNode.fillColor = UIColor(hexString: "#FFFFFF")
+        addChild(manaCircleNode)
         
         let DeckCircleNode = SKShapeNode(circleOfRadius: 40)
         DeckCircleNode.position = deckNode.position
@@ -144,7 +154,10 @@ class GameScene: SKScene {
             }
         }
         
+        
         playerNode = childNode(withName: "Player")!
+        enemyNode = childNode(withName: "Enemy")!
+        
         let agreeNode = playerNode.childNode(withName: "AgreeBar")!
         agreeValue = agreeNode.childNode(withName: "Value") as? SKLabelNode
         agreeBarNode = agreeNode.childNode(withName: "Bar") as? SKSpriteNode
@@ -153,14 +166,13 @@ class GameScene: SKScene {
         avoidValue = avoidNode.childNode(withName: "Value") as? SKLabelNode
         avoidBarNode = avoidNode.childNode(withName: "Bar") as? SKSpriteNode
         
-        enemyNode = childNode(withName: "Enemy")!
-        let criticizeNode = enemyNode.childNode(withName: "CriticizeBar")!
-        questioningValue = criticizeNode.childNode(withName: "Value") as? SKLabelNode
-        questioningBarNode = criticizeNode.childNode(withName: "Bar") as? SKSpriteNode
+        let questioningNode = playerNode.childNode(withName: "QuestioningBar")!
+        questioningValue = questioningNode.childNode(withName: "Value") as? SKLabelNode
+        questioningBarNode = questioningNode.childNode(withName: "Bar") as? SKSpriteNode
         
-        let questioningNode = enemyNode.childNode(withName: "QuestioningBar")!
-        criticizeValue = questioningNode.childNode(withName: "Value") as? SKLabelNode
-        criticizeBarNode = questioningNode.childNode(withName: "Bar") as? SKSpriteNode
+        let criticizeNode = playerNode.childNode(withName: "CriticizeBar")!
+        criticizeValue = criticizeNode.childNode(withName: "Value") as? SKLabelNode
+        criticizeBarNode = criticizeNode.childNode(withName: "Bar") as? SKSpriteNode
         
         enemyPlayAreaNode = childNode(withName: "EnemyPlayAreaNode")!
         enemyHandNode = childNode(withName: "EnemyHandNode")!
@@ -180,7 +192,7 @@ class GameScene: SKScene {
         
         nextTurnAvailable = false
         //fillPool() só está sendo executado aqui pelo alpha, ele deveria ser executado a partir fa primeira fase
-        //Player.shared.manaManager.fillPool(manas: [ManaType.green, ManaType.green, ManaType.green])
+//        Player.shared.manaManager.fillPool(manas: [ManaType.red, ManaType.green, ManaType.colorless])
         for i in 0 ..< Player.shared.manaManager.manaPool.count {
             let pos = self.convert(manaNodes[i].position, from: manaNode)
             createManaNode(mana: Player.shared.manaManager.manaPool[i], at: pos)
@@ -190,18 +202,71 @@ class GameScene: SKScene {
         battleManager.startBattle()
         battleManager.initPlayerTurn()
         
+        createTokens()
         createYobabaPlayArea()
         createHandEllipse()
+        Player.shared.deck.shuffle()
         drawCards()
         Player.shared.lastHand.cards = Player.shared.hand.cards
         enemyDrawCard()
         
     }
     
+    func resetManaNodes(){
+        for mana in Player.shared.manaManager.manaPool{
+            mana.node!.removeFromParent()
+        }
+        for (i, mana) in Player.shared.manaManager.manaPool.enumerated(){
+            if mana.isAvaliable{
+                let pos = self.convert(manaNodes[i].position, from: manaNode)
+                createManaNode(mana: Player.shared.manaManager.manaPool[i], at: pos)
+            }
+        }
+    }
+    
+    func createTokens(){
+        let imposicaoNode = playerNode.childNode(withName: "Imposição")!
+        imposicaoValue = imposicaoNode.childNode(withName: "Value") as? SKLabelNode
+        imposicaoBackground = imposicaoNode.childNode(withName: "Background")
+        
+        let conexaoNode = playerNode.childNode(withName: "Conexão")!
+        conexaoValue = conexaoNode.childNode(withName: "Value") as? SKLabelNode
+        conexaoBackground = conexaoNode.childNode(withName: "Background")
+        
+        let redCircle = SKShapeNode.init(circleOfRadius: 15)
+        let pos = imposicaoBackground.position
+        redCircle.fillColor = UIColor.init(hexString: "#EDA7A7")
+        redCircle.lineWidth = 0
+        redCircle.zPosition = -1
+        
+        imposicaoBackground = redCircle
+        imposicaoBackground.position = self.convert(pos, from: imposicaoNode)
+        addChild(imposicaoBackground)
+        
+        let blueCircle = SKShapeNode.init(circleOfRadius: 15)
+        let posBlue = conexaoBackground.position
+        blueCircle.fillColor = UIColor.init(hexString: "#AAAEF8")
+        blueCircle.lineWidth = 0
+        blueCircle.zPosition = -1
+        
+        conexaoBackground = blueCircle
+        conexaoBackground.position = self.convert(posBlue, from: conexaoNode)
+        addChild(conexaoBackground)
+    }
+    
+    func createPlayAreaView(){
+        let cornerRect = SKShapeNode.init(rectOf: CGSize(width: halfWidth * 2, height: halfHeight * 1.2), cornerRadius: 30)
+        cornerRect.fillColor = UIColor(hexString: "#000000")
+        cornerRect.alpha = 0.01
+        cornerRect.position = playArea.position
+        cornerRect.zPosition = -1
+        cornerRect.name = "Play Area"
+        playArea = cornerRect
+        self.addChild(playArea)
+    }
+    
     func createYobabaPlayArea(){
         let cornerRect = SKShapeNode.init(rectOf: CGSize(width: halfWidth * 3.5, height: halfHeight * 1.2), cornerRadius: 30)
-        cornerRect.position = CGPoint(x: handNode.position.x, y: handNode.position.y )
-        
 //        ellipse.fillColor = UIColor(hexString: "#797979")
 //        ellipse.alpha = 0.2
         cornerRect.fillColor = UIColor(hexString: "#FFFFFF")
@@ -213,7 +278,7 @@ class GameScene: SKScene {
     }
     
     func createHandEllipse () {
-        let rect = CGRect(x: handNode.position.x - halfWidth, y: handNode.position.y - halfHeight, width: halfWidth*2.5 , height: halfHeight*1.2)
+        let rect = CGRect(x: handNode.position.x - halfWidth, y: handNode.position.y - halfHeight, width: halfWidth*2.5 , height: halfHeight*1.4)
 //        let ellipse = SKShapeNode.init(rect: rect)
         let cornerRect = SKShapeNode.init(rectOf: rect.size, cornerRadius: 50)
         cornerRect.position = CGPoint(x: handNode.position.x, y: handNode.position.y )
@@ -382,10 +447,6 @@ class GameScene: SKScene {
                     nodeTest.text = String(card.cost)
                 }
             }
-            if node.name == "ManaBackground"{
-                guard let nodeBack = node as? SKSpriteNode else{ continue }
-                nodeBack.color = card.getCardTypeColor()
-            }
             if node.name == "CardName"{
                 guard let nodeName = node as? SKLabelNode else{ continue }
                 nodeName.text = card.name
@@ -439,7 +500,7 @@ class GameScene: SKScene {
     }
     
     func moveAndRotateCard (card: Card, to pos: CGPoint, to angle: CGFloat, completion: @escaping () -> () = { }) {
-        let move = SKAction.move(to: pos, duration: 0.2)
+        let move = SKAction.move(to: pos, duration: 0.3)
         let rotate = SKAction.rotate(toAngle: degrees2radians(angle), duration: 0.2, shortestUnitArc: true)
         let actions = SKAction.group([move, rotate])
         card.node.run(actions) {
@@ -452,12 +513,15 @@ class GameScene: SKScene {
         mana.node?.run(move)
     }
     
-    func calculateCardPosition (angle: CGFloat) -> CGPoint {
-        let tang = Double(angle) * Double.pi / 210.0
+    func calculateCardPosition (angle: CGFloat, _ i: Int) -> CGPoint {
+        let tang = Double(angle) * Double.pi / 200.0
         let cose = CGFloat(cos(tang))
         let sine = CGFloat(sin(tang))
-        let x = handNode.position.x + halfWidth  * cose
-        let y = handNode.position.y + halfHeight * sine
+        var x = handNode.position.x + halfWidth  * cose
+        if i == 4{
+            x += 20
+        }
+        let y = handNode.position.y + halfHeight
         return CGPoint(x: x, y: y)
     }
     
@@ -479,11 +543,12 @@ class GameScene: SKScene {
             // Move the nodes to the correct positions
             for i in 0 ..< numberOfCards {
                 let ang = 180.0 - CGFloat(i + 1) * angle
-                let pos = calculateCardPosition(angle: ang)
+                let pos = calculateCardPosition(angle: ang, i)
                 let cardAngle = calculateCardAngle(angle: ang)
                 handNodes[i].position = self.convert(pos, to: handNode)
                 if i < numberOfCards {
-                    moveAndRotateCard(card: Player.shared.hand.cards[i], to: pos, to: cardAngle)
+                    moveCard(card: Player.shared.hand.cards[i], to: pos)
+//                    moveAndRotateCard(card: Player.shared.hand.cards[i], to: pos, to: cardAngle)
                 }
             }
         }
@@ -563,7 +628,7 @@ class GameScene: SKScene {
     
     func drawCards () {
         let cardsToDraw = 5
-            if Player.shared.deck.cards.count < cardsToDraw {
+        if Player.shared.deck.cards.count < cardsToDraw {
             let remainingCards = cardsToDraw - Player.shared.deck.cards.count
             self.getCardsFromDiscard(){
                 self.drawHandCards(remainingCards)
@@ -577,6 +642,7 @@ class GameScene: SKScene {
     func drawHandCards (_ amount: Int){
         let handCards = 0
         Player.shared.drawCards(amount: amount)
+        
 
     
         print("Player Hand Amount: \(Player.shared.hand.cards.count)")
@@ -667,6 +733,7 @@ class GameScene: SKScene {
                 for card in Player.shared.deck.cards{
                     print("Card ID no deck: \(card.id)")
                 }
+                Player.shared.deck.shuffle()
                 completion()
             }
         }
@@ -746,6 +813,11 @@ class GameScene: SKScene {
         let bannedCardsAmount = Player.shared.banished.cards.count
         bannedNumber.text = "\(bannedCardsAmount)"
         
+        let imposicaoAmount = Player.shared.tokens[Ways.sol.rawValue].amount
+        let conexaoAmount = Player.shared.tokens[Ways.oceano.rawValue].amount
+        
+        imposicaoValue.text = "\(imposicaoAmount)"
+        conexaoValue.text = "\(conexaoAmount)"
         //Animações nao funcionam
         if let currentAgree = Player.shared.oceano.current {
             agreeValue.text = "Concordar:\(currentAgree)"
@@ -891,10 +963,19 @@ class GameScene: SKScene {
         if let touch = touches.first, let card = self.movingCard {
             let touchLocation = touch.location(in: self)
             card.node.position = touchLocation
+            let touchedNodes = self.nodes(at: touchLocation)
+            let node = touchedNodes.filter({$0.name == "Play Area"})
+            if node.count > 0{
+                playArea.alpha = 0.35
+            }else{
+                playArea.alpha = 0.01
+            }
+            
         }
     }
     
     func finishTouches (nodes: [SKNode]) {
+        playArea.alpha = 0.01
         for node in nodes.reversed() {
             if node.name == "Play Area" {
                 if let deckName = movingCardDeck?.name {
@@ -944,6 +1025,11 @@ class GameScene: SKScene {
             playCard(index: movingCardIndex!, manaType: .colorless)
         }
         else {
+            manaCircleNode.run(SKAction.colorTransitionAction(fromColor: .white, toColor: card.getCardTypeColor(), duration: 0.15)){
+                self.manaCircleNode.fillColor = .white
+                self.manaCircleNode.strokeColor = .white
+            }
+//            manaCircleNode.run(SKAction.colorTransitionAction(fromColor: .red, toColor: .white, duration: 0.1))
             moveCardBack()
         }
         clearVars()

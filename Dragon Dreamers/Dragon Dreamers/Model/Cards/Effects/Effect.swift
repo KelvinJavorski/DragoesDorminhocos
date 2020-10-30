@@ -19,28 +19,10 @@ class Effect{
     func getEffectByIdsEffect(enumEffect : [EffectType]) -> [EffectProtocol]{
         var effects : [EffectProtocol] = []
         for i in 0..<enumEffect.count{
-            //effects.append(allEffects[(enumEffect[i]).rawValue])
+            effects.append(allEffects[(enumEffect[i]).rawValue])
         }
         return effects
     }
-    
-    
-//    func getTurnEffectByIds(enumEffect : [BattleTurnStatus]) -> [EffectProtocol]{
-//        var turnEffects : [EffectProtocol] = []
-//        for i in 0..<enumEffect.count{
-//            turnEffects.append(allTurnEffects[(enumEffect[i]).rawValue])
-//        }
-//        return turnEffects
-//    }
-//
-//    func getBuffEffectByIds(enumEffect : [BattleStatus]) -> [EffectProtocol]{
-//        var buffs : [EffectProtocol] = []
-//        for i in 0..<enumEffect.count{
-//            buffs.append(allBuffEffects[(enumEffect[i]).rawValue])
-//        }
-//        return buffs
-//    }
-    
     
     func setupEffects(){
         //Sun Effects
@@ -56,8 +38,8 @@ class Effect{
         let comandarEffect = Comandar()
         allEffects.append(comandarEffect)
         
-        let semNomeEffect = SemNome()
-        allEffects.append(semNomeEffect)
+        let criticarEffect = Criticar()
+        allEffects.append(criticarEffect)
         
         //Sand Effects
         let desviarStatus = DesviarStatus()
@@ -69,8 +51,8 @@ class Effect{
         let fugirEffect = Fugir()
         allEffects.append(fugirEffect)
         
-        let prevenirStatus = PrevenirStatus()
-        allEffects.append(prevenirStatus)
+//        let prevenirStatus = PrevenirStatus()
+//        allEffects.append(prevenirStatus)
         
         let evitarEffect = Evitar()
         allEffects.append(evitarEffect)

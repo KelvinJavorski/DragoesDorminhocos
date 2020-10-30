@@ -27,6 +27,7 @@ class Card : EmptyCard, NSCopying{
     }
     
     func applyEffects(){
+        setupEffectsFunction()
         for effect in effectsFunction{
             effect.applyEffects(card: self)
         }

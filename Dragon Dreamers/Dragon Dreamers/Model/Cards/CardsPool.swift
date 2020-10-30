@@ -19,11 +19,11 @@ class CardsPool{
         let afirmarCard = getAfirmarCard()
         let incomodarCard = getIncomodarCard()
         let comandarCard = getComandarCard()
-        let semNomeCard = getSemNomeCard()
+        let criticarCard = getCriticarCard()
         let desviarCard = getDesviarCard()
         let defenderCard = getDefenderCard()
         let fugirCard = getFugirCard()
-        let prevenirCard = getNoEffectCard()
+//        let prevenirCard = getNoEffectCard()
         let evitarCard = getEvitarCard()
         let planejarCard = getPlanejarCard()
         let questionarCard = getQuestionarCard()
@@ -35,7 +35,7 @@ class CardsPool{
         let aceitarCard = getAceitarCard()
         let aprovarCard = getAprovarCard()
         
-        allCards.append(contentsOf: [reclamarCard, afirmarCard, incomodarCard, comandarCard, semNomeCard, desviarCard, defenderCard, fugirCard, prevenirCard, evitarCard, planejarCard, questionarCard, argumentarCard, examinarCard, comentarCard, agradarCard, concordarCard, aceitarCard, aprovarCard])
+        allCards.append(contentsOf: [reclamarCard, afirmarCard, incomodarCard, comandarCard, criticarCard, desviarCard, defenderCard, fugirCard, evitarCard, planejarCard, questionarCard, argumentarCard, examinarCard, comentarCard, agradarCard, concordarCard, aceitarCard, aprovarCard])
         
         enemyCards.append(aceitarCard)
         
@@ -44,7 +44,7 @@ class CardsPool{
     func getADeck(){
         setupCardAvailable()
         for card in allCards{
-            card.setupEffectsFunction()
+//            card.setupEffectsFunction()
             deck.addCard(card)
         }
         allCards.removeAll()
@@ -54,7 +54,7 @@ class CardsPool{
     func getEnemyDeck(){
         setupCardAvailable()
         for card in enemyCards{
-            card.setupEffectsFunction()
+//            card.setupEffectsFunction()
             deck.addCard(card)
         }
         allCards.removeAll()
@@ -116,10 +116,10 @@ class CardsPool{
         return newCard
     }
     
-    func getSemNomeCard() -> Card{
+    func getCriticarCard() -> Card{
         let newCard = getNoEffectCard()
-        newCard.name = "SemNome"
-        newCard.effectsEnum.append(.semNome)
+        newCard.name = "Criticar"
+        newCard.effectsEnum.append(.criticar)
         newCard.humorInfluence = -15
         newCard.cost = 1
         newCard.emotion = .criticize
@@ -161,16 +161,16 @@ class CardsPool{
         return newCard
     }
     
-    func getPrevenirCard() -> Card{
-        let newCard = getNoEffectCard()
-        newCard.name = "Prevenir"
-        newCard.effectsEnum.append(.prevenir)
-        newCard.humorInfluence = 0
-        newCard.cost = 1
-        newCard.emotion = .avoid
-        newCard.type = .yellow
-        return newCard
-    }
+//    func getPrevenirCard() -> Card{
+//        let newCard = getNoEffectCard()
+//        newCard.name = "Prevenir"
+//        newCard.effectsEnum.append(.prevenir)
+//        newCard.humorInfluence = 0
+//        newCard.cost = 1
+//        newCard.emotion = .avoid
+//        newCard.type = .yellow
+//        return newCard
+//    }
     
     func getEvitarCard() -> Card{
         let newCard = getNoEffectCard()
