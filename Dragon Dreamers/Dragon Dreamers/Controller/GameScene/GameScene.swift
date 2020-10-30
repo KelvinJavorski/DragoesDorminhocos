@@ -231,41 +231,58 @@ class GameScene: SKScene {
     //
     
     func setupHumorNode(){
-        humorNode = childNode(withName: "Humor")!
-        let agree = humorNode.childNode(withName: "Agree")!
-        let avoid = humorNode.childNode(withName: "Avoid")!
-        let questioning = humorNode.childNode(withName: "Questioning")!
-        let criticize = humorNode.childNode(withName: "Criticize")!
-        
-        let agreeNode = agree.childNode(withName: "Background")!
-        agreeBackground = agree.copy() as? SKShapeNode
-        agreeBackground = SKShapeNode(circleOfRadius: 5)
-        agreeBackground.fillColor = .blue
-        agreeBackground.position = agreeNode.position
-        
-        let avoidNode = avoid.childNode(withName: "Background")!
-        avoidBackground = avoid.copy() as? SKShapeNode
-        avoidBackground = SKShapeNode(circleOfRadius: 5)
-        avoidBackground.fillColor = .yellow
-        avoidBackground.position = avoidNode.position
-        
-//        let questioningNode = questioning.childNode(withName: "Background")!
-//        questioningBackground = questioning.copy() as? SKShapeNode
-        questioningBackground = SKShapeNode(circleOfRadius: 5)
-        questioningBackground.fillColor = .green
-//        questioningBackground.position = questioningNode.position
-        
-        let criticizeNode = criticize.childNode(withName: "Background")!
-        criticizeBackground = criticize.copy() as? SKShapeNode
-        criticizeBackground = SKShapeNode(circleOfRadius: 5)
-        criticizeBackground.fillColor = .red
-//        criticizeBackground.position = criticizeNode.position
-        
-//        self.addChild(agreeBackground)
-        self.addChild(avoidBackground)
-        self.addChild(questioningBackground)
-        self.addChild(criticizeBackground)
-    }
+            humorNode = childNode(withName: "Humor")!
+            let agree = humorNode.childNode(withName: "Agree")!
+            let avoid = humorNode.childNode(withName: "Avoid")!
+            let questioning = humorNode.childNode(withName: "Questioning")!
+            let criticize = humorNode.childNode(withName: "Criticize")!
+            
+            let agreeNode = agree.childNode(withName: "Background")!
+            agreeBackground = SKShapeNode(circleOfRadius: 10)
+            agreeBackground.fillColor = UIColor.init(hexString: "EDA7A7")
+            agreeBackground.lineWidth = 0
+            agreeBackground.position = self.convert(agreeNode.position, from: agree)
+            agreeColor = SKShapeNode(circleOfRadius: 5)
+            agreeColor.fillColor = UIColor.init(hexString: "EDA7A7")
+            agreeColor.lineWidth = 0
+            agreeColor.position = self.convert(agreeNode.position, from: agree)
+            
+            let avoidNode = avoid.childNode(withName: "Background")!
+            avoidBackground = SKShapeNode(circleOfRadius: 10)
+            avoidBackground.fillColor = UIColor.init(hexString: "F1C489")
+            avoidBackground.position = self.convert(avoidNode.position, from: avoid)
+            avoidColor = SKShapeNode(circleOfRadius: 5)
+            avoidColor.fillColor = UIColor.init(hexString: "F1C489")
+            avoidColor.lineWidth = 0
+            avoidColor.position = self.convert(avoidNode.position, from: avoid)
+            
+            let questioningNode = questioning.childNode(withName: "Background")!
+            questioningBackground = SKShapeNode(circleOfRadius: 10)
+            questioningBackground.fillColor = UIColor.init(hexString: "ADC8F5")
+            questioningBackground.position = self.convert(questioningNode.position, from: questioning)
+            questioningColor = SKShapeNode(circleOfRadius: 5)
+            questioningColor.fillColor = UIColor.init(hexString: "ADC8F5")
+            questioningColor.lineWidth = 0
+            questioningColor.position = self.convert(questioningNode.position, from: questioning)
+            
+            let criticizeNode = criticize.childNode(withName: "Background")!
+            criticizeBackground = SKShapeNode(circleOfRadius: 10)
+            criticizeBackground.fillColor = UIColor.init(hexString: "5F5DC1")
+            criticizeBackground.position = self.convert(criticizeNode.position, from: criticize)
+            criticizeColor = SKShapeNode(circleOfRadius: 5)
+            criticizeColor.fillColor = UIColor.init(hexString: "5F5DC1")
+            criticizeColor.lineWidth = 0
+            criticizeColor.position = self.convert(criticizeNode.position, from: criticize)
+            
+            self.addChild(agreeBackground)
+            self.addChild(avoidBackground)
+            self.addChild(questioningBackground)
+            self.addChild(criticizeBackground)
+            self.addChild(agreeColor)
+            self.addChild(avoidColor)
+            self.addChild(questioningColor)
+            self.addChild(criticizeColor)
+        }
     
     func setupEnemyHumor (card: Card, completion: @escaping () -> () = { }) {
         var humorInfluence : Int
@@ -296,20 +313,28 @@ class GameScene: SKScene {
         avoidBackground.isHidden = true
         questioningBackground.isHidden = true
         criticizeBackground.isHidden = true
+        agreeColor.fillColor = UIColor.init(hexString: "EDA7A7")
+        avoidColor.fillColor = UIColor.init(hexString: "F1C489")
+        questioningColor.fillColor = UIColor.init(hexString: "ADC8F5")
+        criticizeColor.fillColor = UIColor.init(hexString: "5F5DC1")
         
         let humor = self.battleManager.enemy.discussion.getHumor()
         switch humor {
         case .agree:
             agreeBackground.isHidden = false
+            agreeColor.fillColor = .white
             break
         case .avoid:
             avoidBackground.isHidden = false
+            avoidColor.fillColor = .white
             break
         case .questioning:
             questioningBackground.isHidden = false
+            questioningColor.fillColor = .white
             break
         case .criticize:
             criticizeBackground.isHidden = false
+            criticizeColor.fillColor = .white
             break
         }
     }
@@ -339,7 +364,7 @@ class GameScene: SKScene {
         }else if type == .red{
             return bases.childNode(withName: "SunCardBase")!
         }else if type == .yellow{
-            return bases.childNode(withName: "OceanCardBase")!
+            return bases.childNode(withName: "SandCardBase")!
         }else{
             return bases.childNode(withName: "CardBase")!
         }
