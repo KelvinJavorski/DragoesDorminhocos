@@ -21,8 +21,8 @@ class Way{
     public var blocked: Bool = false
     
     private func initialValues(){
-        self.current = 10
-        self.maxValue = 30
+        self.current = 0
+        self.maxValue = 10
     }
     
     public func increaseAmount(amount: Int){

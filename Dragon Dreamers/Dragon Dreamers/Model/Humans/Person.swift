@@ -84,23 +84,6 @@ class Person{
         }
     }
     
-    func isAtributeFinished(atribute: EnergyType) -> Bool{
-        if atribute == .avoid{
-            if self.currentAvoid >= self.maxAvoid{
-                return true
-            }
-        }else if atribute == .agree{
-            if self.currentAgree <= self.minAgree{
-                return true
-            }
-        }else if atribute == .questioning{
-            if self.currentQuestioning >= self.maxQuestioning{
-                return true
-            }
-        }
-        return false
-    }
-    
     func createPermanentEffect(status: BattleStatus){
         currentStatus.append(status)
     }
