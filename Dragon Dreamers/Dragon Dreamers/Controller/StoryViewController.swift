@@ -53,6 +53,7 @@ class StoryViewController: UIViewController {
     var speechId: Int?
     var chapterid: Int?
     var viewType: ViewType = ViewType.onlySpeech
+    var posDecisionTextFlag: Bool = false
     var decisions: [ManaType] = []
     var isSet = false
     //var tempDecisions: [ManaType] = []
@@ -275,43 +276,108 @@ class StoryViewController: UIViewController {
     }
     
     @IBAction func baloonButton(_ sender: UIButton) {
+        self.posDecisionTextFlag = false
         self.nextSpeech()
     }
     
     @IBAction func choice1Button(_ sender: UIButton) {
         //self.tempDecisions.append(.blue)
-        AudioManager.shared.play(soundEffect: .selected)
-        if self.chapterid != 1 {
-            self.decisions.append(.blue)
+        
+        if self.posDecisionTextFlag == false {
+            
+            AudioManager.shared.play(soundEffect: .selected)
+            
+            if self.chapterid != 0 {
+                self.decisions.append(.blue)
+            }
+            
+            self.speech!.isDecision = false
+            self.speech!.text = self.speech!.posDecisionText[0]!
+            self.posDecisionTextFlag = true
+            self.update()
         }
-        self.nextSpeech()
+        else {
+            
+            self.posDecisionTextFlag = false
+            self.speech!.isDecision = true
+            self.nextSpeech()
+        }
+        
     }
     
     @IBAction func choice2Button(_ sender: UIButton) {
         //self.tempDecisions.append(.yellow)
-        AudioManager.shared.play(soundEffect: .selected)
-        if self.chapterid != 1 {
-            self.decisions.append(.yellow)
+        
+        if self.posDecisionTextFlag == false {
+            
+            AudioManager.shared.play(soundEffect: .selected)
+            
+            if self.chapterid != 0 {
+                self.decisions.append(.yellow)
+            }
+            
+            self.speech!.isDecision = false
+            self.speech!.text = self.speech!.posDecisionText[1]!
+            self.posDecisionTextFlag = true
+            self.update()
         }
-        self.nextSpeech()
+        else {
+            
+            self.posDecisionTextFlag = false
+            self.speech!.isDecision = true
+            self.nextSpeech()
+        }
+        
     }
     
     @IBAction func choice3Button(_ sender: UIButton) {
         //self.tempDecisions.append(.green)
-        AudioManager.shared.play(soundEffect: .selected)
-        if self.chapterid != 1 {
-            self.decisions.append(.green)
+        
+        if self.posDecisionTextFlag == false {
+            
+            AudioManager.shared.play(soundEffect: .selected)
+            
+            if self.chapterid != 0 {
+                self.decisions.append(.green)
+            }
+            
+            self.speech!.isDecision = false
+            self.speech!.text = self.speech!.posDecisionText[2]!
+            self.posDecisionTextFlag = true
+            self.update()
         }
-        self.nextSpeech()
+        else {
+            
+            self.posDecisionTextFlag = false
+            self.speech!.isDecision = true
+            self.nextSpeech()
+        }
+        
     }
     
     @IBAction func choice4Button(_ sender: UIButton) {
         //self.tempDecisions.append(.red)
-        AudioManager.shared.play(soundEffect: .selected)
-        if self.chapterid != 1 {
-            self.decisions.append(.red)
+        
+        if self.posDecisionTextFlag == false {
+            
+            AudioManager.shared.play(soundEffect: .selected)
+            
+            if self.chapterid != 0 {
+                self.decisions.append(.red)
+            }
+            
+            self.speech!.isDecision = false
+            self.speech!.text = self.speech!.posDecisionText[3]!
+            self.posDecisionTextFlag = true
+            self.update()
         }
-        self.nextSpeech()
+        else {
+            
+            self.posDecisionTextFlag = false
+            self.speech!.isDecision = true
+            self.nextSpeech()
+        }
+    
     }
     
     @IBAction func choice5Button(_ sender: UIButton) {
