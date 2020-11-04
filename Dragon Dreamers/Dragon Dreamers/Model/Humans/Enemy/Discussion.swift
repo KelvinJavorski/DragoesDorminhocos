@@ -48,16 +48,16 @@ class Discussion {
     func setHumorPoints (humorPoints: Int) {
         self.humorPoints = humorPoints
         
-        if self.humorPoints>0 && self.humorPoints<=5 {
+        if self.humorPoints>0 && self.humorPoints<=25 {
             self.setHumor(humor: BattleEmotion.agree)
         }
-        if self.humorPoints>5 && self.humorPoints<=10 {
+        if self.humorPoints>25 && self.humorPoints<=50 {
             self.setHumor(humor: BattleEmotion.avoid)
         }
-        if self.humorPoints>10 && self.humorPoints<=15 {
+        if self.humorPoints>50 && self.humorPoints<=75 {
             self.setHumor(humor: BattleEmotion.questioning)
         }
-        if self.humorPoints>15 && self.humorPoints<=20 {
+        if self.humorPoints>75 && self.humorPoints<=100 {
             self.setHumor(humor: BattleEmotion.criticize)
         }
     }
