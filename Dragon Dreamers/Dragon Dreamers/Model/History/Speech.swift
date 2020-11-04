@@ -14,6 +14,7 @@ class Speech {
     var isConsumed: Bool
     var text: String
     var decisionText: [String?]
+    var posDecisionText: [String?]
     static var next_id: Int = 0
     let id: Int
     
@@ -22,16 +23,18 @@ class Speech {
         self.text = text
         self.isConsumed = false
         decisionText = [""]
+        posDecisionText = [""]
         
         self.id = Speech.next_id
         Speech.next_id += 1
     }
     
-    init(text: String, decisionText: [String]) {
+    init(text: String, decisionText: [String], posDecisionText: [String]) {
         self.isDecision = true
         self.text = text
         self.isConsumed = false
         self.decisionText = decisionText
+        self.posDecisionText = posDecisionText
         
         self.id = Speech.next_id
         Speech.next_id += 1
