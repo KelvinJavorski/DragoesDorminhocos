@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
@@ -20,6 +20,8 @@ class GameScene: SKScene {
     weak var speechButton: UIButton!
     weak var speechText: UILabel!
     weak var endMyTurnButton: UIView!
+
+    var gestureRecognizer : UITapGestureRecognizer!
     
     var deckNode      : SKNode!
     var deckNumber    : SKLabelNode!
@@ -91,6 +93,7 @@ class GameScene: SKScene {
     var battleManager: BattleManager = BattleManager()
     var enemy: Enemy!
     
+    // MARK: - Init
     func initScene () { // ALWAYS CALL THIS BEFORE PRESENTING SCENE
         battleManager.setup()
         //Código a ser implementado na GameSceneNPCChoice//
@@ -210,6 +213,20 @@ class GameScene: SKScene {
         Player.shared.lastHand.cards = Player.shared.hand.cards
         enemyDrawCard()
         
+    }
+    
+    // MARK: Gesture
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    // MARK: didMove
+    override func didMove(to view: SKView) {
+        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapPress(sender:)))
+//        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(sender:)))
+        gestureRecognizer.delegate = self
+//        gestureRecognizer.minimumPressDuration = 0.5
+        self.view?.addGestureRecognizer(gestureRecognizer)
     }
     
     func resetManaNodes(){
@@ -911,9 +928,27 @@ class GameScene: SKScene {
     var movingCardIndex : Int?
     var movingCardDeck  : Deck?
     
+//    @objc func longPress(sender: UILongPressGestureRecognizer){
+////        sender.state == .
+//    }
+    
+    @objc func tapPress(sender: UITapGestureRecognizer){
+        let location = sender.location(in: self.view)
+        let touchedNodes = self.nodes(at: location)
+        for node in touchedNodes.reversed(){
+//            print(node)
+        }
+        finishTouches(nodes: touchedNodes)
+    }
+    
+    var clickedTime: Double = 0.0
     // Start Touch!
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        clickedTime = 0.0
         if let touch = touches.first {
+            for gesture in touch.gestureRecognizers!{
+                print("\(gesture)")
+            }
             let location = touch.location(in: self)
             let touchedNodes = self.nodes(at: location)
             for node in touchedNodes.reversed() {
@@ -976,6 +1011,13 @@ class GameScene: SKScene {
     
     func finishTouches (nodes: [SKNode]) {
         playArea.alpha = 0.01
+        if (clickedTime < 0.4){
+            print("Tap: \(clickedTime)")
+            //Show Card modal
+        }else{
+            print("Long \(clickedTime)")
+        }
+        clickedTime = 0
         for node in nodes.reversed() {
             if node.name == "Play Area" {
                 if let deckName = movingCardDeck?.name {
@@ -1099,7 +1141,18 @@ class GameScene: SKScene {
     }
     
     
-    override func update(_ currentTime: TimeInterval) {        
+    private var lastUpdateTime : TimeInterval = 0
+    override func update(_ currentTime: TimeInterval) {
+        if (self.lastUpdateTime == 0) {
+            self.lastUpdateTime = currentTime
+        }
+        
+        // Calculate time since last update
+        let dt = currentTime - self.lastUpdateTime
+        
+        self.lastUpdateTime = currentTime
+        
+        clickedTime += dt
         self.updateValues()
     }
 }
