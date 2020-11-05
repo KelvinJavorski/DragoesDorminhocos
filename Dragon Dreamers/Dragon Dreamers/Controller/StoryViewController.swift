@@ -453,8 +453,13 @@ class StoryViewController: UIViewController {
     }
     
     func setupChoice5Button() {
-
-        self.choice5ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[4])
+        
+        if 4 < self.speech!.decisionText.count {
+            self.choice5ButtonOutlet.setTitleWithoutAnimation(title: self.speech!.decisionText[4])
+        }
+        else {
+            self.choice5ButtonOutlet.setTitleWithoutAnimation(title: "")
+        }
         
         self.choice5ButtonOutlet.titleLabel!.numberOfLines = 0
         self.choice5ButtonOutlet.titleLabel!.adjustsFontSizeToFitWidth = true
