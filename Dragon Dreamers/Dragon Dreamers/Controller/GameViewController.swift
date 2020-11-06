@@ -52,6 +52,13 @@ class GameViewController: UIViewController {
         self.modalBackView.backgroundColor = .black
     }
     
+    func showCard(card: Card){
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CardViewController") as! CardViewController
+        vc.card = card
+        present(vc, animated: false, completion: nil)
+    }
+    
     @IBAction func nextTurnClicked(_ sender: UIButton) {
         if scene.nextTurnAvailable{
             scene.nextTurn()
