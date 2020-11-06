@@ -14,12 +14,14 @@ class GameScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
-    weak var navigation: UIViewController!
+    weak var navigation: GameViewController!
     weak var modalBackView: UIView!
     weak var talkingView: UIView!
     weak var speechButton: UIButton!
     weak var speechText: UILabel!
     weak var endMyTurnButton: UIView!
+
+//    var gestureRecognizer : UITapGestureRecognizer!
     
     var deckNode      : SKNode!
     var deckNumber    : SKLabelNode!
@@ -211,6 +213,20 @@ class GameScene: SKScene {
         enemyDrawCard()
         
     }
+    
+    // MARK: Gesture
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//        return true
+//    }
+//
+//    // MARK: didMove
+//    override func didMove(to view: SKView) {
+//        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapPress(sender:)))
+////        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(sender:)))
+//        gestureRecognizer.delegate = self
+////        gestureRecognizer.minimumPressDuration = 0.5
+//        self.view?.addGestureRecognizer(gestureRecognizer)
+//    }
     
     func resetManaNodes(){
         for mana in Player.shared.manaManager.manaPool{
@@ -911,8 +927,24 @@ class GameScene: SKScene {
     var movingCardIndex : Int?
     var movingCardDeck  : Deck?
     
+//    @objc func longPress(sender: UILongPressGestureRecognizer){
+////        sender.state == .
+//    }
+    
+//    @objc func tapPress(sender: UITapGestureRecognizer){
+//        let location = sender.location(in: self.view)
+//        let touchedNodes = self.nodes(at: location)
+//        for node in touchedNodes.reversed(){
+////            print(node)
+//        }
+//        finishTouches(nodes: touchedNodes)
+//    }
+    
+    var clickedTime: Double = 0.0
     // Start Touch!
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        clickedTime = 0.0
+//        navigation.showCard(card: Player.shared.hand.cards[0])
         if let touch = touches.first {
             let location = touch.location(in: self)
             let touchedNodes = self.nodes(at: location)
@@ -976,6 +1008,15 @@ class GameScene: SKScene {
     
     func finishTouches (nodes: [SKNode]) {
         playArea.alpha = 0.01
+        //Show Card modal
+        if (clickedTime < 0.3){
+            print("Tap: \(clickedTime)")
+            if let card = movingCard{
+                navigation.showCard(card: card)
+            }
+        }
+        
+        clickedTime = 0
         for node in nodes.reversed() {
             if node.name == "Play Area" {
                 if let deckName = movingCardDeck?.name {
@@ -1009,6 +1050,15 @@ class GameScene: SKScene {
                 let resize = SKAction.scale(to: 1, duration: 0.3)
                 card.node.run(resize)
                 return
+            }
+            else if node.name == "CardShape"{
+//                let playNode = childNode(withName: "Play")!
+//                if let parentNode = node.parent{
+//                    for i in 0 ..< Player.shared.hand.cards.count{
+//
+//                    }
+//                }
+//
             }
         }
         

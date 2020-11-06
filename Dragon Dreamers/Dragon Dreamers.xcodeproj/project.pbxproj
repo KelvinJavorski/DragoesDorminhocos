@@ -74,6 +74,7 @@
 		B65B69722530E4EF009CB85E /* CardModifyEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B69712530E4EF009CB85E /* CardModifyEffects.swift */; };
 		B680DE41253F4B50004E48B8 /* SunEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B680DE40253F4B50004E48B8 /* SunEffects.swift */; };
 		B680DE45253F4C25004E48B8 /* Ways.swift in Sources */ = {isa = PBXBuildFile; fileRef = B680DE44253F4C24004E48B8 /* Ways.swift */; };
+		B68B850D25547561008272DD /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68B850C25547560008272DD /* CardViewController.swift */; };
 		B69CC5A424F04254003663D0 /* EffectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CC5A324F04254003663D0 /* EffectType.swift */; };
 		B69CC5A624F04F96003663D0 /* CardsPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CC5A524F04F96003663D0 /* CardsPool.swift */; };
 		B69CC5A824F30027003663D0 /* EnergyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CC5A724F30027003663D0 /* EnergyType.swift */; };
@@ -166,6 +167,7 @@
 		B65B69712530E4EF009CB85E /* CardModifyEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifyEffects.swift; sourceTree = "<group>"; };
 		B680DE40253F4B50004E48B8 /* SunEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunEffects.swift; sourceTree = "<group>"; };
 		B680DE44253F4C24004E48B8 /* Ways.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ways.swift; sourceTree = "<group>"; };
+		B68B850C25547560008272DD /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		B69CC5A324F04254003663D0 /* EffectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectType.swift; sourceTree = "<group>"; };
 		B69CC5A524F04F96003663D0 /* CardsPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsPool.swift; sourceTree = "<group>"; };
 		B69CC5A724F30027003663D0 /* EnergyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyType.swift; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 				B6CE729B25129DC900AF2553 /* OutcomeViewController.swift */,
 				6F167AC6251A7C1A00EE0674 /* DynamicCollectionView.swift */,
 				64F4B00E253E0EE900C46EC2 /* StoryViewController.swift */,
+				B68B850C25547560008272DD /* CardViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				B65B6968252F9403009CB85E /* ValueChangeEffects.swift in Sources */,
 				B69CC5A824F30027003663D0 /* EnergyType.swift in Sources */,
 				64F4B014253F595000C46EC2 /* Chapter.swift in Sources */,
+				B68B850D25547561008272DD /* CardViewController.swift in Sources */,
 				649A220E250AB98500F6A7CE /* GameSceneNPCChoice.swift in Sources */,
 				649A2214250ABA7E00F6A7CE /* GameSceneDuel.swift in Sources */,
 				B646359825436BEE005B4285 /* SandEffects.swift in Sources */,
