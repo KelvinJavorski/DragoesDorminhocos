@@ -52,6 +52,13 @@ class GameViewController: UIViewController {
         self.modalBackView.backgroundColor = .black
     }
     
+    func endBattle(way: Ways) {
+        let storyBoard = UIStoryboard(name: "StoryView", bundle: nil)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "StoryViewController") as! StoryViewController
+        vc.setEndBattleType(way: way)
+        present(vc, animated: false, completion: nil)
+    }
+    
     func showCard(card: Card){
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard?.instantiateViewController(withIdentifier: "CardViewController") as! CardViewController

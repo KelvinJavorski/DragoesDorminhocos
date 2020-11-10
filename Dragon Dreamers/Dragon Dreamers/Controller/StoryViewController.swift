@@ -56,6 +56,7 @@ class StoryViewController: UIViewController {
     var posDecisionTextFlag: Bool = false
     var decisions: [ManaType] = []
     var isSet = false
+    var endBattleType: Ways?
     //var tempDecisions: [ManaType] = []
     
     override func viewDidLoad() {
@@ -524,6 +525,10 @@ class StoryViewController: UIViewController {
     
     func updateBackgroudImageView() {
         
+    }
+    
+    func setEndBattleType(way: Ways) {
+        self.endBattleType = way
     }
     
 

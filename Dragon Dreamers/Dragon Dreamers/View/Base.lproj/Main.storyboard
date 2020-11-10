@@ -594,7 +594,7 @@
         <image name="NameFill" width="94" height="34"/>
         <image name="WhiteBaloon" width="390" height="141"/>
         <image name="WhiteButton" width="169" height="66"/>
-        <image name="card_base_areia" width="48" height="76"/>
+        <image name="card_base_areia" width="47.333332061767578" height="75.666664123535156"/>
         <image name="grandma_teen" width="2048" height="2732"/>
         <image name="menu_infancia" width="355" height="193"/>
         <systemColor name="darkTextColor">

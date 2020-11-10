@@ -18,6 +18,7 @@ class Way{
     public var name: String!
     public var current: Int!
     public var maxValue: Int!
+    public var endFlag: Bool = false
     public var blocked: Bool = false
     
     private func initialValues(){
@@ -39,5 +40,13 @@ class Way{
     
     public func changeBlockStatus(_ bool: Bool){
         blocked = bool
+    }
+    
+    public func setEndFlagTrue() {
+        self.endFlag = true
+    }
+    
+    public func setResetEngFlag() {
+        self.endFlag = false
     }
 }

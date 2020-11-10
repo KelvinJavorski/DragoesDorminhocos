@@ -42,6 +42,22 @@ class BattleManager{
     }
     
     func endBattle(){
+        if Player.shared.sol.endFlag == true {
+            self.scene.navigation.endBattle(way: .sol)
+        }
+        if Player.shared.oceano.endFlag == true {
+            self.scene.navigation.endBattle(way: .oceano)
+        }
+        if Player.shared.brisa.endFlag == true {
+            self.scene.navigation.endBattle(way: .brisa)
+        }
+        if Player.shared.areia.endFlag == true {
+            self.scene.navigation.endBattle(way: .areia)
+        }
+        Player.shared.sol.setResetEngFlag()
+        Player.shared.oceano.setResetEngFlag()
+        Player.shared.brisa.setResetEngFlag()
+        Player.shared.areia.setResetEngFlag()
     }
     
     func initPlayerTurn(){
@@ -105,6 +121,20 @@ class BattleManager{
     func playCard(card: Card){
 //        let person = card.owner.opponent!
         card.applyEffects()
+        //AQUI SETA A FLAG DO WAY
+        if Player.shared.sol.current >= 10 {
+            Player.shared.sol.setEndFlagTrue()
+        }
+        if Player.shared.oceano.current >= 10 {
+            Player.shared.oceano.setEndFlagTrue()
+        }
+        if Player.shared.brisa.current >= 10 {
+            Player.shared.brisa.setEndFlagTrue()
+        }
+        if Player.shared.areia.current >= 10 {
+            Player.shared.areia.setEndFlagTrue()
+        }
+        
         printPlayerInfos()
     }
     
