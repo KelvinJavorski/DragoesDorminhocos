@@ -96,6 +96,9 @@ class StoryViewController: UIViewController {
         self.updateTextLabel()
         self.updateBaloonImageView()
         self.updateBackgroudImageView()
+        
+        DataSave.shared.gameCampaign.enemys.first!.setDiscussionInUse(chapterIndex: self.chapterid!)
+        DataSave.shared.setActualChapter(chapterIndex: self.chapterid!)
             
     }
     
