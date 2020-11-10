@@ -11,20 +11,20 @@ import Foundation
 class Enemy: Person {
     //static let shared = Enemy()
     var name: String!
-    var discussion: Discussion!
+    var discussions: [Discussion]!
+    var discussionInUse: Discussion
     var cardEffectBlocked: Bool = false
 
-    init (name: String, discussion: Discussion) {
-        super.init()
-        print(">>> Init Enemy...")
-        print("added cards to deck")
-        print("Deck: \(deck.cards.count)")
-        self.setInitialDeck()
-        self.setOwner()
-        print("-------")
+    init (name: String, discussions: [Discussion]) {
         
         self.name = name
-        self.discussion = discussion
+        self.discussions = discussions
+        self.discussionInUse = discussions[0]
+        
+        super.init()
+        
+        self.setInitialDeck()
+        self.setOwner()
         self.setInitialAtributes()
     }
     
@@ -79,7 +79,7 @@ class Enemy: Person {
     }
     
     func updateHumor() {
-        self.emotion = self.discussion.getHumor()
+        self.emotion = self.discussionInUse.getHumor()
     }
     
     func setInitialAtributes(){
@@ -90,6 +90,10 @@ class Enemy: Person {
         currentQuestioning = 0
         maxQuestioning = 50
         
-        emotion = self.discussion.humor
-        }
+        emotion = self.discussions[0].humor
+    }
+    
+    func setDiscussionInUse(chapterIndex: Int) {
+        self.discussionInUse = self.discussions[chapterIndex]
+    }
 }
