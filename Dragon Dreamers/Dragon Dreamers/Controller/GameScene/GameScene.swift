@@ -104,7 +104,7 @@ class GameScene: SKScene {
         battleManager.setEnemy(enemy: DataTemp.shared.chosenEnemy)
         enemy = battleManager.enemy
         
-        humorPoints = battleManager.enemy.discussion.humorPoints
+        humorPoints = battleManager.enemy.discussionInUse.humorPoints
         
         deckNode = childNode(withName: "Deck")!
         deckNumber = deckNode.childNode(withName: "DeckCardAmount") as? SKLabelNode
@@ -383,7 +383,7 @@ class GameScene: SKScene {
         questioningColor.fillColor = UIColor.init(hexString: "ADC8F5")
         criticizeColor.fillColor = UIColor.init(hexString: "5F5DC1")
         
-        let humor = self.battleManager.enemy.discussion.getHumor()
+        let humor = self.battleManager.enemy.discussionInUse.getHumor()
         switch humor {
         case .agree:
             agreeBackground.isHidden = false
@@ -579,7 +579,7 @@ class GameScene: SKScene {
         
         battleManager.endPlayerTurn()
         battleManager.initEnemyTurn()
-        battleManager.enemy.discussion.setHumorPoints(humorPoints: self.humorPoints)
+        battleManager.enemy.discussionInUse.setHumorPoints(humorPoints: self.humorPoints)
         battleManager.enemy.updateHumor()
         selectEnemyHumor()
         battleManager.endEnemyTurn()
@@ -742,7 +742,10 @@ class GameScene: SKScene {
     /// >>>----------> GAMEPLAY ASSIST FUNCs
     
     func getPhrase() -> String{
-        let phrase = self.battleManager.enemy.discussion.useNextPhraseAvaliableText(type: self.battleManager.enemy.discussion.getHumor()) ?? "Null"
+        
+//MARK: trigar o final devidamente e tirar o Null
+    
+        let phrase = self.battleManager.enemy.discussionInUse.useNextPhraseAvaliableText(type: self.battleManager.enemy.discussionInUse.getHumor()) ?? "Null"
         
         return phrase
     }

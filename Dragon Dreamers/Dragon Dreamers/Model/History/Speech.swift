@@ -15,6 +15,7 @@ class Speech {
     var text: String
     var decisionText: [String?]
     var posDecisionText: [String?]
+    var posBattle: [String?]
     static var next_id: Int = 0
     let id: Int
     
@@ -22,8 +23,9 @@ class Speech {
         self.isDecision = false
         self.text = text
         self.isConsumed = false
-        decisionText = [""]
-        posDecisionText = [""]
+        self.decisionText = [""]
+        self.posDecisionText = [""]
+        self.posBattle = [""]
         
         self.id = Speech.next_id
         Speech.next_id += 1
@@ -35,6 +37,19 @@ class Speech {
         self.isConsumed = false
         self.decisionText = decisionText
         self.posDecisionText = posDecisionText
+        self.posBattle = [""]
+        
+        self.id = Speech.next_id
+        Speech.next_id += 1
+    }
+    
+    init(posBattle: [String]) {
+        self.isDecision = false
+        self.text = ""
+        self.isConsumed = false
+        self.decisionText = [""]
+        self.posDecisionText = [""]
+        self.posBattle = posBattle
         
         self.id = Speech.next_id
         Speech.next_id += 1
