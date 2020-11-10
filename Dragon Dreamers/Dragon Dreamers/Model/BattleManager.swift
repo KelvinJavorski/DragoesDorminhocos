@@ -80,23 +80,19 @@ class BattleManager{
     }
     
     func applyPlayerTurnEffects(){
-        for (i, status) in player.status.enumerated(){
+        for status in player.status{
             status.effect.applyEffects(card: Card())
             status.decreaseDuration(amount: 1)
-            if status.duration == 0{
-                player.status.remove(at: i)
-            }
         }
+        player.status.removeAll { $0.duration == 0 }
     }
     
     func applyEnemyTurnEffects(){
-        for (i, status) in enemy.status.enumerated(){
+        for status in enemy.status{
             status.effect.applyEffects(card: Card())
             status.decreaseDuration(amount: 1)
-            if status.duration == 0{
-                enemy.status.remove(at: i)
-            }
         }
+        enemy.status.removeAll { $0.duration == 0 }
     }
     
     //MARK: Others

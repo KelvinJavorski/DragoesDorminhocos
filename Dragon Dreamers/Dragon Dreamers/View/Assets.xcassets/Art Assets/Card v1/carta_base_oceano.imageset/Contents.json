@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "carta_base_oceano.png",
+      "filename" : "card_base_oceano.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "card_base_oceano@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "card_base_oceano@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
