@@ -964,7 +964,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                                     movingCardDeck = Player.shared.hand
                                     movingCardIndex = i
                                     rotateCard(card: card, to: 0.0)
-                                    card.node.run(SKAction.scale(to: 3.0, duration: 0.2), withKey: "resizeCard")
+                                    card.node.run(SKAction.scale(to: 2.0, duration: 0.2), withKey: "resizeCard")
                                     found = true
                                 }
                             }
@@ -998,7 +998,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first, let card = self.movingCard {
             let touchLocation = touch.location(in: self)
-            card.node.position = touchLocation
+            card.node.position.x = touchLocation.x + 60.0
+            card.node.position.y = touchLocation.y + 60.0
             let touchedNodes = self.nodes(at: touchLocation)
             let node = touchedNodes.filter({$0.name == "Play Area"})
             if node.count > 0{
