@@ -209,6 +209,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bN8-p2-G2c">
                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="75.333333333333329"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="playButton:" destination="vNq-MM-mUm" eventType="touchUpInside" id="tgu-rP-VMi"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -261,6 +264,7 @@
                     <navigationItem key="navigationItem" id="Gdv-vs-4Mv"/>
                     <connections>
                         <outlet property="cardView" destination="Y9x-uV-jh1" id="WnY-Az-owc"/>
+                        <outlet property="effectDescription" destination="rqU-Ld-clA" id="Gam-sA-ZFX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mn5-Ws-XSP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -379,7 +383,7 @@
         <!--Story View Controller-->
         <scene sceneID="ibV-sr-eXI">
             <objects>
-                <viewController storyboardIdentifier="StoryView" id="bJw-KJ-zCb" customClass="StoryViewController" customModule="Dragon_Dreamers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryViewController" id="bJw-KJ-zCb" customClass="StoryViewController" customModule="Dragon_Dreamers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oZI-o1-ZB8">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

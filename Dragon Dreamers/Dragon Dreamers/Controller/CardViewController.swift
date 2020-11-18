@@ -11,7 +11,10 @@ import UIKit
 class CardViewController: UIViewController {
 
     var card: Card!
+    var scene: GameScene!
+    
     @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var effectDescription: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,5 +29,10 @@ class CardViewController: UIViewController {
 
     @IBAction func cancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func playButton(_ sender: Any) {
+        self.dismiss(animated: true) {
+            
+        }
     }
 }
