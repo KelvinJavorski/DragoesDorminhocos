@@ -53,7 +53,7 @@ class GameViewController: UIViewController {
     }
     
     func endBattle(way: Ways) {
-        let storyBoard = UIStoryboard(name: "StoryView", bundle: nil)
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard?.instantiateViewController(withIdentifier: "StoryViewController") as! StoryViewController
         vc.setEndBattleType(way: way)
         present(vc, animated: false, completion: nil)
