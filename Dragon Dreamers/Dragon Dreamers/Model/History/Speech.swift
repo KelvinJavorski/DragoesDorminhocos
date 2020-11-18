@@ -12,6 +12,7 @@ class Speech {
     
     var isDecision: Bool
     var isConsumed: Bool
+    var isPosBattle: Bool
     var text: String
     var decisionText: [String?]
     var posDecisionText: [String?]
@@ -29,6 +30,7 @@ class Speech {
         
         self.id = Speech.next_id
         Speech.next_id += 1
+        self.isPosBattle = false
     }
     
     init(text: String, decisionText: [String], posDecisionText: [String]) {
@@ -41,6 +43,7 @@ class Speech {
         
         self.id = Speech.next_id
         Speech.next_id += 1
+        self.isPosBattle = false
     }
     
     init(posBattle: [String]) {
@@ -53,6 +56,7 @@ class Speech {
         
         self.id = Speech.next_id
         Speech.next_id += 1
+        self.isPosBattle = true
     }
     
     func setIsConsumed(isConsumed: Bool) {

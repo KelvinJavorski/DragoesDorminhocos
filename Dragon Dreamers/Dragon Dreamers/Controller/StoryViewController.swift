@@ -480,7 +480,20 @@ class StoryViewController: UIViewController {
     }
     
     func setupTextLabel() {
-        self.textLabel.text = self.speech!.text
+        if self.speech!.isPosBattle {
+            
+            switch endBattleType {
+                case .sol: self.textLabel.text = self.speech!.posBattle[3]
+                case .areia: self.textLabel.text = self.speech!.posBattle[1]
+                case .brisa: self.textLabel.text = self.speech!.posBattle[2]
+                case .oceano: self.textLabel.text = self.speech!.posBattle[0]
+                default: self.textLabel.text = self.speech!.text
+            }
+            
+        }
+        else {
+            self.textLabel.text = self.speech!.text
+        }
         
         self.textLabel.numberOfLines = 0
         self.textLabel.adjustsFontSizeToFitWidth = true
@@ -508,7 +521,21 @@ class StoryViewController: UIViewController {
     }
     
     func updateTextLabel() {
-        self.textLabel.text = self.speech!.text
+        if self.speech!.isPosBattle {
+            
+            switch endBattleType {
+                case .sol: self.textLabel.text = self.speech!.posBattle[3]
+                case .areia: self.textLabel.text = self.speech!.posBattle[1]
+                case .brisa: self.textLabel.text = self.speech!.posBattle[2]
+                case .oceano: self.textLabel.text = self.speech!.posBattle[0]
+                default: self.textLabel.text = self.speech!.text
+            }
+            
+        }
+        else {
+            self.textLabel.text = self.speech!.text
+        }
+        
     }
     
     func updatePerfilImageView() {

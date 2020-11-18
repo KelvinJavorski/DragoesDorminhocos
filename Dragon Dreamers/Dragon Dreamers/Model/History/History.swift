@@ -27,11 +27,12 @@ class History {
                                       Speech(text: "A lição que minha vó me deu sobre os Quatro Caminhos me acompanhou a minha vida inteira"),
                                       Speech(text: "Era uma maneira de enxergar como as coisas podiam ser resolvidas"),
                                       Speech(text: "E o que encontraríamos no final de cada caminho"),
-                                      Speech(text: "Em uma das idas na casa da minha avó durante a minha infância, nós tivemos uma conversa sobre os caminhos que eu estava escolhendo"),
+                                      Speech(text: "Em uma das idas na casa da minha avó durante a minha infância, nós tivemos uma conversa sobre os caminhos que eu estava escolhendo")]),
                                       
-                                      Speech(posBattle: ["Durante minha infância, minha avó sempre adorou como eu me dava bem com as pessoas","Minha avó entendia que eu muitas vezes eu preferia me afastar, ficar mais na minha","Eu sempre me senti incentivado a ser questionador e curioso pela minha avó","Minha avó entendia meu jeito e a minha personalidade forte"]),
-                                      Speech(posBattle: ["Mas também tentou me ensinar a viver por mim mesmo e ter mais independência","Ela sempre tentou me ajudar a me conectar mais com as pessoas ao meu redor, a me socializar mais","Mas ela também tentava me alertar para respeitar as pessoas ao meu redor","Mas sempre me alertou para cuidar para que a pessoas não me enxergassem como alguém grosseiro, rude ou mal-educado"])]),
-                    Chapter(speechs: [Speech(text: "Os anos se passaram mais rápido do que eu imaginava"),
+                    Chapter(speechs: [Speech(posBattle: ["Durante minha infância, minha avó sempre adorou como eu  me dava bem com as pessoas","Minha avó entendia que eu muitas vezes eu preferia me afastar, ficar mais na minha","Eu sempre me senti incentivado a ser questionador e curioso pela minha avó","Minha avó entendia meu jeito e a minha personalidade forte"]),
+                                      Speech(posBattle: ["Mas também tentou me ensinar a viver por mim mesmo e ter mais independência","Ela sempre tentou me ajudar a me conectar mais com as pessoas ao meu redor, a me socializar mais","Mas ela também tentava me alertar para respeitar as pessoas ao meu redor","Mas sempre me alertou para cuidar para que a pessoas não me enxergassem como alguém grosseiro, rude ou mal-educado"]),
+                                
+                                      Speech(text: "Os anos se passaram mais rápido do que eu imaginava"),
                                       Speech(text: "Eu cresci, e a minha relação com minha família começou a mudar"),
                                       Speech(text: "Não foi do dia para noite, claro"),
                                       Speech(text: "As coisas foram mudando pouco a pouco, conforme eu fui deixando de ser criança"),
@@ -46,12 +47,12 @@ class History {
                                       
                                       Speech(text: "Quando eu passei na universidade minha avó veio conversar comigo..."),
                                       Speech(text: "E falar comigo sobre ser adulto"),
-                                      Speech(text: "E lidar com minhas responsabilidades"),
+                                      Speech(text: "E lidar com minhas responsabilidades")]),
                     
-                                      Speech(posBattle: ["Minha avó me falou muito sobre a importância de ser independente, autossuficiente e a me respeitar naquele dia","Ela passou o dia inteiro me incentivando a me aproximar mais das pessoas e aceitar ajuda dos outros","Minha avó sempre admirou minha curiosidade e inteligência","Minha avó sabia que eu sempre entravam em conflito com outras pessoas, mas nunca me julgou por isso"]),
-                                      Speech(posBattle: ["Mesmo que todos me falassem o quanto me admiravam e eram felizes por mim, minha avó era quem realmente se preocupava se eu era feliz comigo mesmo","Ela tinha um jeito de me ensinar as coisas que nunca me fez me sentir errado ou inadequado","Mas sempre me alertou para não afastar as pessoas, para usar minha inteligência para aproximar as pessoas ao meu redor","Ela sempre buscou me ensinar a escolher meus conflitos, a lutar apenas pelo que vale a pena"])]),
-                    
-                    Chapter(speechs: [Speech(text: "Quando eu vi, eu já era adulto"),
+                    Chapter(speechs: [Speech(posBattle: ["Minha avó me falou muito sobre a importância de ser independente, autossuficiente e a me respeitar naquele dia","Ela passou o dia inteiro me incentivando a me aproximar mais das pessoas e aceitar ajuda dos outros","Minha avó sempre admirou minha curiosidade e inteligência","Minha avó sabia que eu sempre entravam em conflito com outras pessoas, mas nunca me julgou por isso"]),
+                                      Speech(posBattle: ["Mesmo que todos me falassem o quanto me admiravam e eram felizes por mim, minha avó era quem realmente se preocupava se eu era feliz comigo mesmo","Ela tinha um jeito de me ensinar as coisas que nunca me fez me sentir errado ou inadequado","Mas sempre me alertou para não afastar as pessoas, para usar minha inteligência para aproximar as pessoas ao meu redor","Ela sempre buscou me ensinar a escolher meus conflitos, a lutar apenas pelo que vale a pena"]),
+                                
+                                      Speech(text: "Quando eu vi, eu já era adulto"),
                                       Speech(text: "Minhas escolhas eram só minhas agora, eu já tinha minha independência"),
                                       Speech(text: "E as consequências das minhas escolhas também eram só minhas"),
                                       Speech(text: "Conforme eu fui criando minha própria vida, eu percebia que me sentia mais distante da minha família"),
@@ -87,12 +88,12 @@ class History {
                                       
                                       Speech(text: "Eu entrei no hospital e fui o mais rápido para o quarto em que ela estava"),
                                       Speech(text: "Ela estava tão miúda, tão magra..."),
-                                      Speech(text: "Eu me aproximei da cama..."),
-                                      
-                                      Speech(posBattle: ["Eu passei um tempo cuidando das pessoas ao meu redor, do meu pai, da minha mãe...","Eu precisei de um tempo sozinho para processar as coisas, foram duas semanas horríveis","Eu busquei ler sobre a doença que ela tinha e conversei com os médicos para tentar entender o que estava acontecendo...","Eu me senti impotente, incapaz, furioso. Assistir tudo aquilo acontecer sem poder fazer nada..."]),
-                                      Speech(posBattle: ["Eu tive que ser forte pelos outros, mas segui os conselhos da minha avó para cuidar de mim mesmo também","Mas não fiquei sozinho por muito tempo. Afinal, as pessoas precisavam de mim por perto para ajudar","Demorou, mas eu aceitei que não havia nada a ser feito. Eu passei um tempo com minha família para ajudá-los","Eu tive que aceitar as coisas como elas eram, e decidi ficar mais próximo dos meus pais para ajudá-los a passar por tudo isso"])]),
+                                      Speech(text: "Eu me aproximei da cama...")]),
                     
-                    Chapter(speechs: [Speech(text: "Nesses últimos dias, me preparando para hoje, eu decidi relembrar todos os momentos que ela passou comigo"),
+                    Chapter(speechs: [Speech(posBattle: ["Eu passei um tempo cuidando das pessoas ao meu redor, do meu pai, da minha mãe...","Eu precisei de um tempo sozinho para processar as coisas, foram duas semanas horríveis","Eu busquei ler sobre a doença que ela tinha e conversei com os médicos para tentar entender o que estava acontecendo...","Eu me senti impotente, incapaz, furioso. Assistir tudo aquilo acontecer sem poder fazer nada..."]),
+                                      Speech(posBattle: ["Eu tive que ser forte pelos outros, mas segui os conselhos da minha avó para cuidar de mim mesmo também","Mas não fiquei sozinho por muito tempo. Afinal, as pessoas precisavam de mim por perto para ajudar","Demorou, mas eu aceitei que não havia nada a ser feito. Eu passei um tempo com minha família para ajudá-los","Eu tive que aceitar as coisas como elas eram, e decidi ficar mais próximo dos meus pais para ajudá-los a passar por tudo isso"]),
+                                      
+                                      Speech(text: "Nesses últimos dias, me preparando para hoje, eu decidi relembrar todos os momentos que ela passou comigo"),
                                       Speech(text: "Foram tantas memórias juntos, tanta coisa que eu poderia falar"),
                                       Speech(text: "Não importa o quanto eu pensasse, planejasse..."),
                                       Speech(text: "Eu sempre sentia que ela merece um discurso melhor do que esse"),
