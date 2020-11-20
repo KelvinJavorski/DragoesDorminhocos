@@ -428,12 +428,29 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     func createEnemyCardNode(card: Card, at pos: SKNode){
-        let bases = self.childNode(withName: "Bases")!
-        let cardBase = bases.childNode(withName: "EnemyCardBase")!
+        let cardBase = getCardNodeByType(type: card.type)
         let cardNode = cardBase.copy() as! SKNode
         cardNode.position = pos.position
         card.node = cardNode
         card.node.name = "\(card.id)"
+        for node in card.node.children{
+            if node.name == "CardShape"{
+                guard let nodeText = node as? SKSpriteNode else{ continue }
+                if nodeText.name == "CardShape"{
+                    nodeText.name = "EnemyCardShape"
+                }
+            }
+            if node.name == "ManaLabel"{
+                guard let nodeText = node as? SKLabelNode else{ continue }
+                if nodeText.name == "ManaLabel"{
+                    nodeText.text = String(card.cost)
+                }
+            }
+            if node.name == "CardName"{
+                guard let nodeName = node as? SKLabelNode else{ continue }
+                nodeName.text = card.name
+            }
+        }
         self.addChild(card.node)
     }
     
@@ -459,9 +476,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         card.node.name = "\(card.id)"
         for node in card.node.children{
             if node.name == "ManaLabel"{
-                guard let nodeTest = node as? SKLabelNode else{ continue }
-                if nodeTest.name == "ManaLabel"{
-                    nodeTest.text = String(card.cost)
+                guard let nodeText = node as? SKLabelNode else{ continue }
+                if nodeText.name == "ManaLabel"{
+                    nodeText.text = String(card.cost)
                 }
             }
             if node.name == "CardName"{
@@ -971,7 +988,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                             for i in 0 ..< enemy.hand.cards.count {
                                 let card = enemy.hand.getCard(i)
                                 if parentNode.name == "\(card.id)" {
-                                    card.node.run(SKAction.scale(to: 2.6, duration: 0.2), withKey: "resizeCard")
+                                    card.node.run(SKAction.scale(to: 2.0, duration: 0.2), withKey: "resizeCard")
                                     found = true
                                 }
                             }
