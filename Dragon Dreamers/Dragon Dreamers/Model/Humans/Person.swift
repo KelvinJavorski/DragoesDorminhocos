@@ -99,9 +99,9 @@ class Person{
     var ongoing  : Deck = Deck(name: "Ongoing")
     var discard : Deck = Deck(name: "Discard")
     var banished : Deck = Deck(name: "Banished")
-
-    var opponent: Person!
     
+    var opponent: Person!
+    var cardEffectBlocked: Bool = false
     //var sun = Way()
     
     var currentAgree: Int!

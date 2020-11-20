@@ -100,3 +100,13 @@ class Comentar : EffectProtocol{
         }
     }
 }
+
+
+//MARK: -CARTAS DA VÓ
+
+class ComentarWeak : EffectProtocol{
+    func applyEffects(card: Card) {
+        let person = Player.shared
+        person.brisa.increaseAmount(amount: 1)
+    }
+}

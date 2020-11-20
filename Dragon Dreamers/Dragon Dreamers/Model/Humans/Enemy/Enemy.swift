@@ -13,7 +13,6 @@ class Enemy: Person {
     var name: String!
     var discussions: [Discussion]!
     var discussionInUse: Discussion
-    var cardEffectBlocked: Bool = false
 
     init (name: String, discussions: [Discussion]) {
         
@@ -39,7 +38,8 @@ class Enemy: Person {
     }
     
     func setHand(){
-        let cards = getAllCardByEmotion(emotion: .agree)
+        self.hand.removeAllCards()
+        let cards = getAllCardByEmotion(emotion: self.emotion)
         if !cards.isEmpty{
             self.hand.addCards(cards)
         }

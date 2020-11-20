@@ -11,14 +11,18 @@ import Foundation
 class DesviarStatus : EffectProtocol{
     func applyEffects(card: Card) {
         let opponent = card.owner.opponent!
-        let status = Status(name: "Distante", duration: 1, target: opponent, effect: DesviarEffect())
+        let status = Status(name: "Distante", duration: 1, target: opponent, effect: DesviarEffect(target: opponent))
         opponent.status.append(status)
     }
 }
 
 class DesviarEffect : EffectProtocol{
+    let person: Person
+    init(target: Person){
+        person = target
+    }
     func applyEffects(card: Card) {
-        let person = Player.shared.opponent as! Enemy
+//        let person = card.owner.opponent!
         person.cardEffectBlocked = true
     }
 }
@@ -75,5 +79,22 @@ class Evitar : EffectProtocol{
                 break
             }
         }
+    }
+}
+
+
+//MARK: -CARTAS DA VÓ
+
+class DefenderWeak : EffectProtocol{
+    func applyEffects(card: Card) {
+        let person = Player.shared
+        person.areia.increaseAmount(amount: 1)
+    }
+}
+
+class DesviarWeak : EffectProtocol{
+    func applyEffects(card: Card) {
+        let person = card.owner.opponent!
+        person.currentStatus.append(.desviar)
     }
 }
