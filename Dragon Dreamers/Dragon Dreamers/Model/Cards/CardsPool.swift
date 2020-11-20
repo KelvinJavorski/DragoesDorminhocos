@@ -37,7 +37,16 @@ class CardsPool{
         
         allCards.append(contentsOf: [reclamarCard, afirmarCard, incomodarCard, comandarCard, criticarCard, desviarCard, defenderCard, fugirCard, evitarCard, planejarCard, questionarCard, argumentarCard, examinarCard, comentarCard, agradarCard, concordarCard, aceitarCard, aprovarCard])
         
-        enemyCards.append(aceitarCard)
+        let criticarWeakCard = getCriticarWeakCard()
+        let incomodarWeakCard = getIncomodarWeakCard()
+        let defenderWeakCard = getDefenderWeakCard()
+        let desviarWeakCard = getDesviarWeakCard()
+        let comentarWeakCard = getComentarWeakCard()
+        let planejarWeakCard = getPlanejarWeakCard()
+        let aprovarWeakCard = getAprovarWeakCard()
+        let aceitarWeakCard = getAceitarWeakCard()
+        
+        enemyCards.append(contentsOf: [criticarWeakCard, incomodarWeakCard, defenderWeakCard, desviarWeakCard, comentarWeakCard, planejarWeakCard, aprovarWeakCard, aceitarWeakCard])
         
     }
     
@@ -288,113 +297,90 @@ class CardsPool{
     }
     
     
-//    func getAgreeIncreaseCard(amount: Int) -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "Agree+"
-//        newCard.effectsEnum.append(contentsOf: [.addAgree])
-//        newCard.amount = amount
-//        return newCard
-//    }
-//
-//    func getAgreeDecreaseCard(amount: Int) -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "Agree-"
-//        newCard.effectsEnum.append(contentsOf: [.removeAgree])
-//        newCard.amount = amount
-//        return newCard
-//    }
-//
-//    func getAvoidIncreaseCard(amount: Int) -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "Avoid+"
-//        newCard.effectsEnum.append(contentsOf: [.addAvoid])
-//        newCard.amount = amount
-//        return newCard
-//    }
-//
-//    func getAvoidDecreaseCard(amount: Int) -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "Avoid-"
-//        newCard.effectsEnum.append(contentsOf: [.removeAvoid])
-//        newCard.amount = amount
-//        return newCard
-//    }
-//    func getQuestioningIncreaseCard(amount: Int) -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "Questioning+"
-//        newCard.effectsEnum.append(contentsOf: [.addQuestioning])
-//        newCard.amount = amount
-//        return newCard
-//    }
-//    func getQuestioningDecreaseCard(amount: Int) -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "Questioning-"
-//        newCard.effectsEnum.append(contentsOf: [.removeQuestioning])
-//        newCard.amount = amount
-//        return newCard
-//    }
-//    func getCriticizeIncreaseCard(amount: Int) -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "Criticize+"
-//        newCard.effectsEnum.append(contentsOf: [.addCriticize])
-//        newCard.amount = amount
-//        return newCard
-//    }
-//
-//    func getCriticizeDecreaseCard(amount: Int) -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "Criticize-"
-//        newCard.effectsEnum.append(contentsOf: [.removeCriticize])
-//        newCard.amount = amount
-//        return newCard
-//    }
-//
-//    func getReasoningIncreaseCard(amount: Int) -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "Reasoning+"
-//        newCard.effectsEnum.append(contentsOf: [.addReasoning])
-//        newCard.amount = amount
-//        return newCard
-//    }
-//    func getReasoningDecreaseCard(amount: Int) -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "Reasoning-"
-//        newCard.effectsEnum.append(contentsOf: [.removeReasoning])
-//        newCard.amount = amount
-//        return newCard
-//    }
-//    func getReasoningStatusCard(amount: Int) -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "ReasStatus"
-//        newCard.effectsEnum.append(contentsOf: [.setReasoningStatus])
-//        newCard.amount = amount
-//        return newCard
-//    }
-//    func getVulnerableStatusCard() -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "VulnStatus"
-//        newCard.effectsEnum.append(contentsOf: [.setVulnerableStatus])
-//        return newCard
-//    }
-//
-//
-//    func getBolarPlano() -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "Bolar Plano"
-//        newCard.effectsEnum.append(contentsOf: [.setReasoningStatus])
-//        newCard.amount = 2
-//        newCard.cost = 1
-//        newCard.type = .yellow
-//        return newCard
-//    }
-//
-//    func getOdioAcumulado() -> Card{
-//        let newCard = getNoEffectCard()
-//        newCard.name = "Odio Acumulado"
-//        newCard.effectsEnum.append(contentsOf: [.setReasoningStatus])
-//        newCard.amount = 2
-//        newCard.cost = 1
-//        newCard.type = .yellow
-//        return newCard
-//    }
+// MARK: -Enemy Cards
+    func getEnemyNoEffectCard() -> Card {
+        let card = Card(name: "No name", effects: [], cost: 1, cardType: .green, humanType: .player, humorInfluence: 0)
+        return card
+    }
+    
+    func getCriticarWeakCard() -> Card{
+        let newCard = getEnemyNoEffectCard()
+        newCard.name = "Criticar"
+        newCard.effectsEnum.append(.criticarWeak)
+        newCard.cost = 1
+        newCard.emotion = .criticize
+        newCard.type = .red
+        return newCard
+    }
+    
+    func getIncomodarWeakCard() -> Card{
+        let newCard = getEnemyNoEffectCard()
+        newCard.name = "Incomodar"
+        newCard.effectsEnum.append(.incomodarWeak)
+        newCard.cost = 2
+        newCard.emotion = .criticize
+        newCard.type = .red
+        return newCard
+    }
+    
+    func getDefenderWeakCard() -> Card{
+        let newCard = getEnemyNoEffectCard()
+        newCard.name = "Defender"
+        newCard.effectsEnum.append(.defenderWeak)
+        newCard.cost = 1
+        newCard.emotion = .avoid
+        newCard.type = .yellow
+        return newCard
+    }
+    
+    func getDesviarWeakCard() -> Card{
+        let newCard = getEnemyNoEffectCard()
+        newCard.name = "Desviar"
+        newCard.effectsEnum.append(.desviarWeak)
+        newCard.cost = 2
+        newCard.emotion = .avoid
+        newCard.type = .yellow
+        return newCard
+    }
+    
+    func getComentarWeakCard() -> Card{
+        let newCard = getEnemyNoEffectCard()
+        newCard.name = "Comentar"
+        newCard.effectsEnum.append(.comentarWeak)
+        newCard.cost = 1
+        newCard.emotion = .questioning
+        newCard.type = .green
+        return newCard
+    }
+    
+    func getPlanejarWeakCard() -> Card{
+        let newCard = getEnemyNoEffectCard()
+        newCard.name = "Planejar"
+        newCard.effectsEnum.append(.planejarWeak)
+        newCard.cost = 3
+        newCard.emotion = .questioning
+        newCard.type = .green
+        return newCard
+    }
+    
+    func getAprovarWeakCard() -> Card{
+        let newCard = getEnemyNoEffectCard()
+        newCard.name = "Aprovar"
+        newCard.effectsEnum.append(.aprovarWeak)
+        newCard.cost = 1
+        newCard.emotion = .agree
+        newCard.type = .blue
+        return newCard
+    }
+    
+    func getAceitarWeakCard() -> Card{
+        let newCard = getEnemyNoEffectCard()
+        newCard.name = "Aceitar"
+        newCard.effectsEnum.append(.aceitarWeak)
+        newCard.cost = 3
+        newCard.emotion = .agree
+        newCard.type = .blue
+        return newCard
+    }
+    
 }
