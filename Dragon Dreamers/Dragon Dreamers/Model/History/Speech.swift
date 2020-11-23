@@ -17,6 +17,7 @@ class Speech {
     var decisionText: [String?]
     var posDecisionText: [String?]
     var posBattle: [String?]
+    var isEnemySpeech : Bool = false
     static var next_id: Int = 0
     let id: Int
     
@@ -31,6 +32,35 @@ class Speech {
         self.id = Speech.next_id
         Speech.next_id += 1
         self.isPosBattle = false
+        self.isEnemySpeech = false
+    }
+    
+    init(enemySpeech: String) {
+        self.isDecision = false
+        self.text = enemySpeech
+        self.isConsumed = false
+        self.decisionText = [""]
+        self.posDecisionText = [""]
+        self.posBattle = [""]
+        
+        self.id = Speech.next_id
+        Speech.next_id += 1
+        self.isPosBattle = false
+        self.isEnemySpeech = true
+    }
+    
+    init(enemySpeech: String, decisionText: [String]) {
+        self.isDecision = true
+        self.text = enemySpeech
+        self.isConsumed = false
+        self.decisionText = decisionText
+        self.posDecisionText = [""]
+        self.posBattle = [""]
+        
+        self.id = Speech.next_id
+        Speech.next_id += 1
+        self.isPosBattle = false
+        self.isEnemySpeech = true
     }
     
     init(text: String, decisionText: [String], posDecisionText: [String]) {
@@ -44,6 +74,7 @@ class Speech {
         self.id = Speech.next_id
         Speech.next_id += 1
         self.isPosBattle = false
+        self.isEnemySpeech = false
     }
     
     init(posBattle: [String]) {
@@ -57,6 +88,7 @@ class Speech {
         self.id = Speech.next_id
         Speech.next_id += 1
         self.isPosBattle = true
+        self.isEnemySpeech = false
     }
     
     func setIsConsumed(isConsumed: Bool) {

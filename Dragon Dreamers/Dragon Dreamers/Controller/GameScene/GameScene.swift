@@ -638,6 +638,13 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             self.speechButton.isHidden = false
             self.speechText.isHidden = false
             self.speechText.text = getPhrase()
+            
+            if self.speechText.text == ""{
+                self.speechText.isHidden = true
+            } else {
+                self.speechText.isHidden = false
+            }
+            
             self.modalBackView.isHidden = false
             self.endMyTurnButton.isHidden = true
         }
@@ -762,7 +769,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         
 //MARK: trigar o final devidamente e tirar o Null
     
-        let phrase = self.battleManager.enemy.discussionInUse.useNextPhraseAvaliableText(type: self.battleManager.enemy.discussionInUse.getHumor()) ?? "Null"
+        let phrase = self.battleManager.enemy.discussionInUse.useNextPhraseAvaliableText(type: self.battleManager.enemy.discussionInUse.getHumor()) ?? ""
         
         return phrase
     }
