@@ -86,7 +86,9 @@ class StoryViewController: UIViewController {
         self.setupTextLabel()
         self.setupBaloonImageView()
         self.setupBackgroudImageView()
-    
+        self.setupNameImageView()
+        self.setupPerfilImageView()
+        
     }
     
     func update() {
@@ -97,6 +99,8 @@ class StoryViewController: UIViewController {
         self.updateTextLabel()
         self.updateBaloonImageView()
         self.updateBackgroudImageView()
+        self.updateNameImageView()
+        self.updatePerfilImageView()
         
         DataSave.shared.gameCampaign.enemys.first!.setDiscussionInUse(chapterIndex: self.chapterid!)
         DataSave.shared.setActualChapter(chapterIndex: self.chapterid!)
@@ -293,11 +297,16 @@ class StoryViewController: UIViewController {
             
             if self.chapterid != 0 {
                 self.decisions.append(.blue)
+                self.speech!.isDecision = false
+                self.speech!.text = self.speech!.posDecisionText[0]!
+                self.posDecisionTextFlag = true
             }
-            
-            self.speech!.isDecision = false
-            self.speech!.text = self.speech!.posDecisionText[0]!
-            self.posDecisionTextFlag = true
+            else {
+                self.posDecisionTextFlag = false
+                self.speech!.isDecision = true
+                self.nextSpeech()
+            }
+
             self.update()
         }
         else {
@@ -343,11 +352,16 @@ class StoryViewController: UIViewController {
             
             if self.chapterid != 0 {
                 self.decisions.append(.green)
+                self.speech!.isDecision = false
+                self.speech!.text = self.speech!.posDecisionText[2]!
+                self.posDecisionTextFlag = true
             }
-            
-            self.speech!.isDecision = false
-            self.speech!.text = self.speech!.posDecisionText[2]!
-            self.posDecisionTextFlag = true
+            else {
+                self.posDecisionTextFlag = false
+                self.speech!.isDecision = true
+                self.endChapter()
+            }
+        
             self.update()
         }
         else {
@@ -505,11 +519,21 @@ class StoryViewController: UIViewController {
     }
     
     func setupPerfilImageView() {
-        
+        if self.speech!.isEnemySpeech {
+            self.perfilImageView.isHidden = false
+        }
+        else {
+            self.perfilImageView.isHidden = true
+        }
     }
     
     func setupNameImageView() {
-        
+        if self.speech!.isEnemySpeech {
+            self.nameImageView.isHidden = false
+        }
+        else {
+            self.nameImageView.isHidden = true
+        }
     }
     
     func setupBaloonImageView() {
@@ -539,11 +563,21 @@ class StoryViewController: UIViewController {
     }
     
     func updatePerfilImageView() {
-        
+        if self.speech!.isEnemySpeech {
+            self.perfilImageView.isHidden = false
+        }
+        else {
+            self.perfilImageView.isHidden = true
+        }
     }
     
     func updateNameImageView() {
-        
+        if self.speech!.isEnemySpeech {
+            self.nameImageView.isHidden = false
+        }
+        else {
+            self.nameImageView.isHidden = true
+        }
     }
     
     func updateBaloonImageView() {
