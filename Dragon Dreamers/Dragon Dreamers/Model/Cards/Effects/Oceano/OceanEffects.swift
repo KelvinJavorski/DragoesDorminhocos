@@ -66,3 +66,26 @@ class Aprovar : EffectProtocol{
         person.tokens[ocean].increaseAmount(amount: 1)
     }
 }
+
+
+//MARK: -CARTAS DA VÓ
+
+class AprovarWeak : EffectProtocol{
+    func applyEffects(card: Card) {
+        let person = Player.shared
+        person.oceano.increaseAmount(amount: 1)
+    }
+}
+
+class AceitarWeak : EffectProtocol{
+    func applyEffects(card: Card) {
+        let person = Player.shared
+        let ways = person.ways
+        var maior = 0
+        ways.forEach { (way) in
+            if way.current > maior{ maior = way.current }
+        }
+        person.oceano.current = maior
+        
+    }
+}

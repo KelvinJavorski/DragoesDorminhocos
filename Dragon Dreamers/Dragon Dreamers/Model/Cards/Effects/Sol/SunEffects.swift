@@ -57,3 +57,21 @@ class Criticar : EffectProtocol{
         owner.sol.increaseAmount(amount: 3)
     }
 }
+
+
+//MARK: -CARTAS DA VÓ
+
+class CriticarWeak: EffectProtocol{
+    func applyEffects(card: Card) {
+        let person = Player.shared
+        person.sol.increaseAmount(amount: 1)
+    }
+}
+
+class IncomodarWeak: EffectProtocol{
+    func applyEffects(card: Card) {
+        let person = Player.shared
+        let randomWay = person.getRandomWay(except: ["Sol"])
+        randomWay.decreaseAmount(amount: person.sol.current)
+    }
+}

@@ -14,18 +14,16 @@ class BattleManager{
     var player: Player!
     var enemy: Enemy!
     var scene: GameScene!
-    //var enemy: Enemy
     var battleState: BattleState = .playerTurn
     var turnEffects: [EffectProtocol] = []
     var buffEffects: [EffectProtocol] = []
     var afterDrawStatus: [Status] = []
     var cardsPlayed: [Card] = []
-//    var currentTurnStatus: [BattleTurnStatus] = []
-//    var currentBuffStatus: [BattleStatus] = []
     
     // MARK: Setup
     func setup(){
         Effect.shared.setupEffects()
+        Effect.shared.setupEnemyEffects()
     }
     
     func setEnemy(enemy: Enemy) {
@@ -120,7 +118,9 @@ class BattleManager{
     
     func playCard(card: Card){
 //        let person = card.owner.opponent!
-        card.applyEffects()
+        if !card.owner.cardEffectBlocked{
+            card.applyEffects()
+        }
         //AQUI SETA A FLAG DO WAY
         if Player.shared.sol.current >= 10 {
             Player.shared.sol.setEndFlagTrue()

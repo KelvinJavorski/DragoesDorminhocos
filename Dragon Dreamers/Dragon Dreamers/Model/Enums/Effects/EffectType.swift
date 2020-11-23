@@ -27,4 +27,12 @@ enum EffectType : Int, CaseIterable{
     case concordar = 15
     case aceitar = 16
     case aprovar = 17
+    case criticarWeak = 18
+    case incomodarWeak = 19
+    case defenderWeak = 20
+    case desviarWeak = 21
+    case comentarWeak = 22
+    case planejarWeak = 23
+    case aprovarWeak = 24
+    case aceitarWeak = 25
 }

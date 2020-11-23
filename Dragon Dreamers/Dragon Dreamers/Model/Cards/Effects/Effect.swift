@@ -12,9 +12,7 @@ import SpriteKit
 class Effect{
     static let shared = Effect()
     var allEffects: [EffectProtocol] = []
-//    var allTurnEffects: [EffectProtocol] = []
-//    var allBuffEffects: [EffectProtocol] = []
-//    var allStatus: [EffectProtocol] = []
+    var allEnemyEffects: [EffectProtocol] = []
     
     func getEffectByIdsEffect(enumEffect : [EffectType]) -> [EffectProtocol]{
         var effects : [EffectProtocol] = []
@@ -84,8 +82,59 @@ class Effect{
         
         let aprovarEffect = Aprovar()
         allEffects.append(aprovarEffect)
+        
+        let criticarWeakEffect = CriticarWeak()
+        allEffects.append(criticarWeakEffect)
+        
+        let incomodarWeakEffect = IncomodarWeak()
+        allEffects.append(incomodarWeakEffect)
+        
+        let defenderWeakEffect = DefenderWeak()
+        allEffects.append(defenderWeakEffect)
+        
+        let desviarWeakEffect = DesviarWeak()
+        allEffects.append(desviarWeakEffect)
+        
+        let comentarWeakEffect = ComentarWeak()
+        allEffects.append(comentarWeakEffect)
+        
+        let planejarWeakEffect = Planejar()
+        allEffects.append(planejarWeakEffect)
+        
+        let aprovarWeakEffect = AprovarWeak()
+        allEffects.append(aprovarWeakEffect)
+        
+        let aceitarWeakEffect = AceitarWeak()
+        allEffects.append(aceitarWeakEffect)
     }
     
+    func setupEnemyEffects(){
+        //Sun Effects
+        let criticarWeakEffect = CriticarWeak()
+        allEnemyEffects.append(criticarWeakEffect)
+        
+        let incomodarWeakEffect = IncomodarWeak()
+        allEnemyEffects.append(incomodarWeakEffect)
+        
+        let defenderWeakEffect = DefenderWeak()
+        allEnemyEffects.append(defenderWeakEffect)
+        
+        let desviarWeakEffect = DesviarWeak()
+        allEnemyEffects.append(desviarWeakEffect)
+        
+        let comentarWeakEffect = ComentarWeak()
+        allEnemyEffects.append(comentarWeakEffect)
+        
+        let planejarWeakEffect = Planejar()
+        allEnemyEffects.append(planejarWeakEffect)
+        
+        let aprovarWeakEffect = AprovarWeak()
+        allEnemyEffects.append(aprovarWeakEffect)
+        
+        let aceitarWeakEffect = AceitarWeak()
+        allEnemyEffects.append(aceitarWeakEffect)
+        
+    }
     
     
 //    func setupBuffEffects(){

@@ -319,15 +319,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             let questioning = humorNode.childNode(withName: "Questioning")!
             let criticize = humorNode.childNode(withName: "Criticize")!
             
-            let agreeNode = agree.childNode(withName: "Background")!
-            agreeBackground = SKShapeNode(circleOfRadius: 10)
-            agreeBackground.fillColor = UIColor.init(hexString: "EDA7A7")
-            agreeBackground.lineWidth = 0
-            agreeBackground.position = self.convert(agreeNode.position, from: agree)
-            agreeColor = SKShapeNode(circleOfRadius: 5)
-            agreeColor.fillColor = UIColor.init(hexString: "EDA7A7")
-            agreeColor.lineWidth = 0
-            agreeColor.position = self.convert(agreeNode.position, from: agree)
+            let criticizeNode = criticize.childNode(withName: "Background")!
+            criticizeBackground = SKShapeNode(circleOfRadius: 10)
+            criticizeBackground.fillColor = UIColor.init(hexString: "EDA7A7")
+            criticizeBackground.lineWidth = 0
+            criticizeBackground.position = self.convert(criticizeNode.position, from: criticize)
+            criticizeColor = SKShapeNode(circleOfRadius: 5)
+            criticizeColor.fillColor = UIColor.init(hexString: "EDA7A7")
+            criticizeColor.lineWidth = 0
+            criticizeColor.position = self.convert(criticizeNode.position, from: criticize)
             
             let avoidNode = avoid.childNode(withName: "Background")!
             avoidBackground = SKShapeNode(circleOfRadius: 10)
@@ -347,19 +347,19 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             questioningColor.lineWidth = 0
             questioningColor.position = self.convert(questioningNode.position, from: questioning)
             
-            let criticizeNode = criticize.childNode(withName: "Background")!
-            criticizeBackground = SKShapeNode(circleOfRadius: 10)
-            criticizeBackground.fillColor = UIColor.init(hexString: "5F5DC1")
-            criticizeBackground.position = self.convert(criticizeNode.position, from: criticize)
-            criticizeColor = SKShapeNode(circleOfRadius: 5)
-            criticizeColor.fillColor = UIColor.init(hexString: "5F5DC1")
-            criticizeColor.lineWidth = 0
-            criticizeColor.position = self.convert(criticizeNode.position, from: criticize)
+            let agreeNode = agree.childNode(withName: "Background")!
+            agreeBackground = SKShapeNode(circleOfRadius: 10)
+            agreeBackground.fillColor = UIColor.init(hexString: "5F5DC1")
+            agreeBackground.position = self.convert(agreeNode.position, from: agree)
+            agreeColor = SKShapeNode(circleOfRadius: 5)
+            agreeColor.fillColor = UIColor.init(hexString: "5F5DC1")
+            agreeColor.lineWidth = 0
+            agreeColor.position = self.convert(agreeNode.position, from: agree)
             
-            self.addChild(agreeBackground)
+            self.addChild(criticizeBackground)
             self.addChild(avoidBackground)
             self.addChild(questioningBackground)
-            self.addChild(criticizeBackground)
+            self.addChild(agreeBackground)
             self.addChild(agreeColor)
             self.addChild(avoidColor)
             self.addChild(questioningColor)
@@ -380,8 +380,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         if humorResult<0 {
             humorResult = 0
         }
-        if humorResult>20 {
-            humorResult = 20
+        if humorResult>100 {
+            humorResult = 100
         }
         
         self.humorPoints = humorResult
@@ -394,11 +394,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         agreeBackground.isHidden = true
         avoidBackground.isHidden = true
         questioningBackground.isHidden = true
-        criticizeBackground.isHidden = true
-        agreeColor.fillColor = UIColor.init(hexString: "EDA7A7")
+        criticizeColor.isHidden = true
+        criticizeColor.fillColor = UIColor.init(hexString: "EDA7A7")
         avoidColor.fillColor = UIColor.init(hexString: "F1C489")
         questioningColor.fillColor = UIColor.init(hexString: "ADC8F5")
-        criticizeColor.fillColor = UIColor.init(hexString: "5F5DC1")
+        agreeColor.fillColor = UIColor.init(hexString: "5F5DC1")
         
         let humor = self.battleManager.enemy.discussionInUse.getHumor()
         switch humor {
@@ -415,7 +415,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             questioningColor.fillColor = .white
             break
         case .criticize:
-            criticizeBackground.isHidden = false
+            criticizeColor.isHidden = false
             criticizeColor.fillColor = .white
             break
         }
@@ -428,12 +428,29 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     }
     
     func createEnemyCardNode(card: Card, at pos: SKNode){
-        let bases = self.childNode(withName: "Bases")!
-        let cardBase = bases.childNode(withName: "EnemyCardBase")!
+        let cardBase = getCardNodeByType(type: card.type)
         let cardNode = cardBase.copy() as! SKNode
         cardNode.position = pos.position
         card.node = cardNode
         card.node.name = "\(card.id)"
+        for node in card.node.children{
+            if node.name == "CardShape"{
+                guard let nodeText = node as? SKSpriteNode else{ continue }
+                if nodeText.name == "CardShape"{
+                    nodeText.name = "EnemyCardShape"
+                }
+            }
+            if node.name == "ManaLabel"{
+                guard let nodeText = node as? SKLabelNode else{ continue }
+                if nodeText.name == "ManaLabel"{
+                    nodeText.text = String(card.cost)
+                }
+            }
+            if node.name == "CardName"{
+                guard let nodeName = node as? SKLabelNode else{ continue }
+                nodeName.text = card.name
+            }
+        }
         self.addChild(card.node)
     }
     
@@ -459,9 +476,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         card.node.name = "\(card.id)"
         for node in card.node.children{
             if node.name == "ManaLabel"{
-                guard let nodeTest = node as? SKLabelNode else{ continue }
-                if nodeTest.name == "ManaLabel"{
-                    nodeTest.text = String(card.cost)
+                guard let nodeText = node as? SKLabelNode else{ continue }
+                if nodeText.name == "ManaLabel"{
+                    nodeText.text = String(card.cost)
                 }
             }
             if node.name == "CardName"{
@@ -938,28 +955,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     var movingCardIndex : Int?
     var movingCardDeck  : Deck?
     
-//    @objc func longPress(sender: UILongPressGestureRecognizer){
-////        sender.state == .
-//    }
-    
-//    @objc func tapPress(sender: UITapGestureRecognizer){
-//        let location = sender.location(in: self.view)
-//        let touchedNodes = self.nodes(at: location)
-//        for node in touchedNodes.reversed(){
-////            print(node)
-//        }
-//        finishTouches(nodes: touchedNodes)
-//    }
-    
     var clickedTime: Double = 0.0
     // Start Touch!
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         clickedTime = 0.0
-//        navigation.showCard(card: Player.shared.hand.cards[0])
         if let touch = touches.first {
-            for gesture in touch.gestureRecognizers!{
-                print("\(gesture)")
-            }
+
             let location = touch.location(in: self)
             let touchedNodes = self.nodes(at: location)
             for node in touchedNodes.reversed() {
@@ -986,7 +987,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                             }
                         }
                     }
-                }//cardShape If
+                }
                 if node.name == "EnemyCardShape"{
                     if let parentNode = node.parent {
                         var found = false
@@ -994,7 +995,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                             for i in 0 ..< enemy.hand.cards.count {
                                 let card = enemy.hand.getCard(i)
                                 if parentNode.name == "\(card.id)" {
-                                    card.node.run(SKAction.scale(to: 2.6, duration: 0.2), withKey: "resizeCard")
+                                    card.node.run(SKAction.scale(to: 2.0, duration: 0.2), withKey: "resizeCard")
                                     found = true
                                 }
                             }
