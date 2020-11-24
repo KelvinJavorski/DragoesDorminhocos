@@ -193,28 +193,34 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gn4-jA-9W3">
                                         <rect key="frame" x="0.0" y="276" width="75" height="75.333333333333314"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwO-km-clR">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cancel" translatesAutoresizingMaskIntoConstraints="NO" id="oo0-2s-6u7">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwO-km-clR">
                                                 <rect key="frame" x="0.0" y="0.33333333333331439" width="75" height="75"/>
-                                                <state key="normal" title="Button"/>
                                                 <connections>
                                                     <action selector="cancelButton:" destination="vNq-MM-mUm" eventType="touchUpInside" id="ajJ-Ak-4d9"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwZ-Me-wyK">
                                         <rect key="frame" x="282.99999999999994" y="276" width="75" height="75.333333333333314"/>
                                         <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="Jsl-rT-do0">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bN8-p2-G2c">
                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="75.333333333333329"/>
-                                                <state key="normal" title="Button"/>
                                                 <connections>
                                                     <action selector="playButton:" destination="vNq-MM-mUm" eventType="touchUpInside" id="tgu-rP-VMi"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="bN8-p2-G2c" firstAttribute="centerX" secondItem="pwZ-Me-wyK" secondAttribute="centerX" id="1B8-ro-yhX"/>
                                             <constraint firstItem="bN8-p2-G2c" firstAttribute="height" secondItem="pwZ-Me-wyK" secondAttribute="height" id="K7f-BO-O8t"/>
@@ -263,6 +269,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Gdv-vs-4Mv"/>
                     <connections>
+                        <outlet property="cardImage" destination="nUB-gc-dQ0" id="6qq-s5-Npl"/>
                         <outlet property="cardView" destination="Y9x-uV-jh1" id="WnY-Az-owc"/>
                         <outlet property="effectDescription" destination="rqU-Ld-clA" id="Gam-sA-ZFX"/>
                     </connections>
@@ -598,9 +605,11 @@
         <image name="NameFill" width="94" height="34"/>
         <image name="WhiteBaloon" width="390" height="141"/>
         <image name="WhiteButton" width="169" height="66"/>
+        <image name="cancel" width="2732" height="2048"/>
         <image name="card_base_areia" width="47.333332061767578" height="75.666664123535156"/>
         <image name="grandma_teen" width="2048" height="2732"/>
         <image name="menu_infancia" width="355" height="193"/>
+        <image name="play" width="2732" height="2048"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

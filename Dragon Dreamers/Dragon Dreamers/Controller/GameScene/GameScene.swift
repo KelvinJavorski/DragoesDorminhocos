@@ -1029,6 +1029,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             print("Tap: \(clickedTime)")
             if let card = movingCard{
                 navigation.showCard(card: card)
+                if navigation.playWasClicked{
+                    movingCardIndex = Player.shared.hand.getIndex(card)
+                    moveCardToPlayArea()
+                }
+                navigation.changeValue(value: false)
             }
         }
         
@@ -1068,13 +1073,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                 return
             }
             else if node.name == "CardShape"{
-//                let playNode = childNode(withName: "Play")!
-//                if let parentNode = node.parent{
-//                    for i in 0 ..< Player.shared.hand.cards.count{
-//
-//                    }
-//                }
-//
             }
         }
         
