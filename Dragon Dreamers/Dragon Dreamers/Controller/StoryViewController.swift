@@ -102,7 +102,7 @@ class StoryViewController: UIViewController {
         self.updateNameImageView()
         self.updatePerfilImageView()
         
-        DataSave.shared.gameCampaign.enemys.first!.setDiscussionInUse(chapterIndex: self.chapterid!)
+        DataSave.shared.gameCampaign.enemys.first!.setDiscussionInUse(chapterIndex: (self.chapterid! - 1))
         DataSave.shared.setActualChapter(chapterIndex: self.chapterid!)
             
     }
