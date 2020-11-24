@@ -9,9 +9,15 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+protocol CardDelegate {
+    func changeValue(value: Bool)
+}
 
-class GameViewController: UIViewController {
-
+class GameViewController: UIViewController, CardDelegate {
+    
+    func changeValue(value: Bool) {
+        playWasClicked = value
+    }
     
     @IBOutlet weak var skView: SKView!
     @IBOutlet weak var talkingView: UIView!
@@ -19,6 +25,8 @@ class GameViewController: UIViewController {
     @IBOutlet weak var modalBackView: UIView!
     @IBOutlet weak var speechText: UILabel!
     @IBOutlet weak var endMyTurnButton: UIView!
+    
+    var playWasClicked : Bool = false
     
     var scene : GameScene!
     
@@ -63,6 +71,7 @@ class GameViewController: UIViewController {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard?.instantiateViewController(withIdentifier: "CardViewController") as! CardViewController
         vc.card = card
+        vc.delegate = self
         present(vc, animated: false, completion: nil)
     }
     
