@@ -148,10 +148,7 @@ class History {
                                       Speech(text: "É graças a ela que eu cheguei onde cheguei"),
                                       Speech(text: "Porque foi ela quem me mostrou os caminhos")])]
     
-    
-    init() {
-        
-    }
+    init() {}
     
     func getAvaliableChapter() -> Chapter? {
         for chapter in self.chapters {

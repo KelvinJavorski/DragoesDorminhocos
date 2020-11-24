@@ -219,7 +219,9 @@ class StoryViewController: UIViewController {
                 self.choice3ButtonOutlet.isHidden = false
                 self.choice4ButtonOutlet.isHidden = false
             }
+            
             self.choice5ButtonOutlet.isHidden = true
+            
         }
         else {
             self.viewType = ViewType.onlySpeech
@@ -263,21 +265,25 @@ class StoryViewController: UIViewController {
         if manaAux[0] >= manaAux[1] && manaAux[0] >= manaAux[2] && manaAux[0] >= manaAux[3] {
             fillPoolAux.append(contentsOf: [.blue, .blue])
             Player.shared.manaManager.fillPool(manas: fillPoolAux)
+            DataSave.shared.gameCampaign.enemys.first!.discussionInUse.setHumorPoints(humorPoints: 25)
             return
         }
         if manaAux[1] >= manaAux[0] && manaAux[1] >= manaAux[2] && manaAux[1] >= manaAux[3] {
             fillPoolAux.append(contentsOf: [.yellow, .yellow])
             Player.shared.manaManager.fillPool(manas: fillPoolAux)
+            DataSave.shared.gameCampaign.enemys.first!.discussionInUse.setHumorPoints(humorPoints: 75)
             return
         }
         if manaAux[2] >= manaAux[0] && manaAux[2] >= manaAux[1] && manaAux[2] >= manaAux[3] {
             fillPoolAux.append(contentsOf: [.green, .green])
             Player.shared.manaManager.fillPool(manas: fillPoolAux)
+            DataSave.shared.gameCampaign.enemys.first!.discussionInUse.setHumorPoints(humorPoints: 125)
             return
         }
         if manaAux[3] >= manaAux[0] && manaAux[3] >= manaAux[1] && manaAux[3] >= manaAux[2] {
             fillPoolAux.append(contentsOf: [.red, .red])
             Player.shared.manaManager.fillPool(manas: fillPoolAux)
+            DataSave.shared.gameCampaign.enemys.first!.discussionInUse.setHumorPoints(humorPoints: 175)
             return
         }
 
