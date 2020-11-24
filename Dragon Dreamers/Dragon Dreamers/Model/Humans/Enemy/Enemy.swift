@@ -94,6 +94,11 @@ class Enemy: Person {
     }
     
     func setDiscussionInUse(chapterIndex: Int) {
-        self.discussionInUse = self.discussions[chapterIndex]
+        if chapterIndex == -1 {
+            self.discussionInUse = self.discussions[0]
+        }
+        else {
+            self.discussionInUse = self.discussions[chapterIndex]
+        }
     }
 }
