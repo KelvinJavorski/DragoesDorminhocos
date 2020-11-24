@@ -207,17 +207,19 @@ class StoryViewController: UIViewController {
             self.setupChoice4Button()
             self.setupChoice5Button()
             
-            self.choice1ButtonOutlet.isHidden = false
-            self.choice2ButtonOutlet.isHidden = false
-            self.choice3ButtonOutlet.isHidden = false
-            self.choice4ButtonOutlet.isHidden = false
-            
-            if self.chapterid == 0 {
-                self.choice5ButtonOutlet.isHidden = false
+            if self.speech!.isEnemySpeech {
+                self.choice1ButtonOutlet.isHidden = false
+                self.choice2ButtonOutlet.isHidden = true
+                self.choice3ButtonOutlet.isHidden = false
+                self.choice4ButtonOutlet.isHidden = true
             }
             else {
-                self.choice5ButtonOutlet.isHidden = true
+                self.choice1ButtonOutlet.isHidden = false
+                self.choice2ButtonOutlet.isHidden = false
+                self.choice3ButtonOutlet.isHidden = false
+                self.choice4ButtonOutlet.isHidden = false
             }
+            self.choice5ButtonOutlet.isHidden = true
         }
         else {
             self.viewType = ViewType.onlySpeech
