@@ -31,6 +31,15 @@ class Deck {
         return cards[index]
     }
     
+    func getIndex(_ card: Card) -> Int{
+        for (index, currentCard) in cards.enumerated(){
+            if currentCard.name == card.name{
+                return index
+            }
+        }
+        return -1
+    }
+    
     func addCard(_ card: Card){
         cards.append(card)
     }
