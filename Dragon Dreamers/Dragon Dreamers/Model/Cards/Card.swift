@@ -12,6 +12,7 @@ import SpriteKit
 
 class Card : EmptyCard, NSCopying{
     var effectsFunction: [EffectProtocol]! = []
+    var effectDescription: String!
     
     init(){}
     
