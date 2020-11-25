@@ -50,6 +50,22 @@ class GameViewController: UIViewController {
         self.modalBackView.backgroundColor = .black
     }
     
+    func endBattle(way: Ways) {
+        self.scene.removeFromParent()
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "StoryViewController") as! StoryViewController
+        vc.setEndBattleType(way: way)
+        present(vc, animated: false, completion: nil)
+    }
+    
+    func showCard(card: Card){
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CardViewController") as! CardViewController
+        vc.card = card
+        vc.delegate = self
+        present(vc, animated: false, completion: nil)
+    }
+    
     @IBAction func nextTurnClicked(_ sender: UIButton) {
         if scene.nextTurnAvailable{
             scene.nextTurn()
