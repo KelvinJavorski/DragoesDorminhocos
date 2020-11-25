@@ -61,6 +61,7 @@ class GameViewController: UIViewController, CardDelegate {
     }
     
     func endBattle(way: Ways) {
+        self.scene.removeFromParent()
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard?.instantiateViewController(withIdentifier: "StoryViewController") as! StoryViewController
         vc.setEndBattleType(way: way)

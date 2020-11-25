@@ -1004,16 +1004,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     func finishTouches (nodes: [SKNode]) {
         playArea.alpha = 0.01
-        //Show Card modal
-        if (clickedTime < 0.3){
-            print("Tap: \(clickedTime)")
-            if let card = movingCard{
-                navigation.showCard(card: card)
-                modalCard = card
-            }
-        }
-        
-        clickedTime = 0
         for node in nodes.reversed() {
             if node.name == "Play Area" {
                 if let deckName = movingCardDeck?.name {
@@ -1048,9 +1038,18 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                 card.node.run(resize)
                 return
             }
-            else if node.name == "CardShape"{
+            
+        }
+        //Show Card modal
+        if (clickedTime < 0.3){
+            print("Tap: \(clickedTime)")
+            if let card = movingCard{
+                navigation.showCard(card: card)
+                modalCard = card
             }
         }
+               
+        clickedTime = 0
         
         moveCardBack()
     }
