@@ -96,7 +96,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     // MARK: - Init
     func initScene () { // ALWAYS CALL THIS BEFORE PRESENTING SCENE
         battleManager.setup()
-        //Código a ser implementado na GameSceneNPCChoice//
         for enemy in DataSave.shared.gameCampaign.enemys {
             if enemy.name == "Vó Matilda" {
                 DataTemp.shared.setChosenEnemy(enemy: enemy)
@@ -157,7 +156,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             }
         }
         
-        
         playerNode = childNode(withName: "Player")!
         enemyNode = childNode(withName: "Enemy")!
         
@@ -188,8 +186,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                 }
             }
         }
-        
-        
+    
         setupHumorNode()
         selectEnemyHumor()
         
@@ -214,20 +211,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         enemyDrawCard()
         
     }
-    
-    // MARK: Gesture
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//        return true
-//    }
-//
-//    // MARK: didMove
-//    override func didMove(to view: SKView) {
-//        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapPress(sender:)))
-////        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(sender:)))
-//        gestureRecognizer.delegate = self
-////        gestureRecognizer.minimumPressDuration = 0.5
-//        self.view?.addGestureRecognizer(gestureRecognizer)
-//    }
     
     func resetManaNodes(){
         for mana in Player.shared.manaManager.manaPool{
@@ -628,6 +611,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                 }
                 
                 self.enemyDiscardCard {
+                    self.battleManager.endBattle()
                     self.battleManager.initPlayerTurn()
                     self.enemyDrawCard()
                 }
@@ -639,13 +623,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                 }
                 self.rearangeManaNodes()
             }
-            
         }
-        
-    }
-    
-    func setupNextTurn(){
-        
     }
     
     func showDialogBox(){
@@ -1022,6 +1000,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         }
     }
     
+    var modalCard : Card!
+    
     func finishTouches (nodes: [SKNode]) {
         playArea.alpha = 0.01
         //Show Card modal
@@ -1029,11 +1009,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             print("Tap: \(clickedTime)")
             if let card = movingCard{
                 navigation.showCard(card: card)
-                if navigation.playWasClicked{
-                    movingCardIndex = Player.shared.hand.getIndex(card)
-                    moveCardToPlayArea()
-                }
-                navigation.changeValue(value: false)
+                modalCard = card
             }
         }
         
@@ -1077,6 +1053,14 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         }
         
         moveCardBack()
+    }
+    
+    func playClicked(){
+        if navigation.playWasClicked{
+            movingCardIndex = Player.shared.hand.getIndex(modalCard)
+            moveCardToPlayArea()
+        }
+        navigation.changeValue(value: false)
     }
     
     func moveCardToPlayArea () {
@@ -1176,5 +1160,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         
         clickedTime += dt
         self.updateValues()
+        playClicked()
     }
 }
