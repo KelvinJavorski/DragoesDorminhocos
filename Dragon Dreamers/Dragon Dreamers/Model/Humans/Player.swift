@@ -21,12 +21,27 @@ class Player: Person {
         super.init()
         print(">>> Init Player...")
         cardsPool.getADeck()
+        deck.removeAllCards()
         deck.addCards(cardsPool.deck.cards)
         print("added cards to deck")
         print("Deck: \(deck.cards.count)")
         self.setOwner()
         self.setInitialAtributes()
         print("-------")
+    }
+    
+    
+    func setInitialDeck(){
+        deck.removeAllCards()
+        cardsPool.getEnemyDeck()
+        deck.addCards(cardsPool.deck.cards)
+    }
+    
+    func resetDecks(){
+        deck.removeAllCards()
+        hand.removeAllCards()
+        discard.removeAllCards()
+        setInitialDeck()
     }
     
     func setInitialAtributes(){

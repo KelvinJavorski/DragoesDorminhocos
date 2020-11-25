@@ -41,21 +41,31 @@ class BattleManager{
     
     func endBattle(){
         if Player.shared.sol.endFlag == true {
+            Player.shared.resetDecks()
+            enemy.resetDecks()
             self.scene.navigation.endBattle(way: .sol)
         }
         if Player.shared.oceano.endFlag == true {
+            Player.shared.resetDecks()
+            enemy.resetDecks()
             self.scene.navigation.endBattle(way: .oceano)
         }
         if Player.shared.brisa.endFlag == true {
+            Player.shared.resetDecks()
+            enemy.resetDecks()
             self.scene.navigation.endBattle(way: .brisa)
         }
         if Player.shared.areia.endFlag == true {
+            Player.shared.resetDecks()
+            enemy.resetDecks()
             self.scene.navigation.endBattle(way: .areia)
         }
+ 
         Player.shared.sol.setResetEngFlag()
         Player.shared.oceano.setResetEngFlag()
         Player.shared.brisa.setResetEngFlag()
         Player.shared.areia.setResetEngFlag()
+        
     }
     
     func initPlayerTurn(){
@@ -75,7 +85,7 @@ class BattleManager{
     }
     
     func endEnemyTurn(){
-        endBattle()
+//        endBattle()
     }
     
     //MARK: Effects

@@ -28,9 +28,16 @@ class Enemy: Person {
     }
     
     func setInitialDeck(){
-//        cardsPool.cards.shuffle()
+        deck.removeAllCards()
         cardsPool.getEnemyDeck()
-        self.deck.addCards(cardsPool.deck.cards)
+        deck.addCards(cardsPool.deck.cards)
+    }
+    
+    func resetDecks(){
+        deck.removeAllCards()
+        hand.removeAllCards()
+        discard.removeAllCards()
+        setInitialDeck()
     }
     
     func getName () -> String{
