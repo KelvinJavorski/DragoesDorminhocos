@@ -78,6 +78,17 @@ class StoryViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if let destinationVC = segue.destination as? GameViewController {
+
+                destinationVC.prevVC = self
+
+            }
+        }
+
+    
+
+    
     func setup() {
         self.setupOrUpdateView()
         isSet = true
@@ -139,6 +150,10 @@ class StoryViewController: UIViewController {
     
     func endChapter() {
         
+        if self.chapterid == 4 {
+            self.dismiss(animated: true, completion: nil)
+        }
+        
         var chapterFlag = false
         let pastChapter = self.chapter
         
@@ -154,7 +169,10 @@ class StoryViewController: UIViewController {
         
         if pastChapter!.id != 0 {
             self.adjustMana()
+            
+            
             performSegue(withIdentifier: "StoryToBattleSegue", sender: nil)
+            
             //self.tempDecisions = []
             return
         }
@@ -165,6 +183,8 @@ class StoryViewController: UIViewController {
                 if self.chapterid != 1 {
                     self.adjustMana()
                 }
+                
+                
                 performSegue(withIdentifier: "StoryToBattleSegue", sender: nil)
                 //self.tempDecisions = []
                 return
@@ -175,6 +195,8 @@ class StoryViewController: UIViewController {
             if self.chapterid != 1 {
                 self.adjustMana()
             }
+            
+            
             performSegue(withIdentifier: "StoryToBattleSegue", sender: nil)
             //self.tempDecisions = []
             return
@@ -582,6 +604,7 @@ class StoryViewController: UIViewController {
     func updateNameImageView() {
         if self.speech!.isEnemySpeech {
             self.nameImageView.isHidden = false
+        
         }
         else {
             self.nameImageView.isHidden = true

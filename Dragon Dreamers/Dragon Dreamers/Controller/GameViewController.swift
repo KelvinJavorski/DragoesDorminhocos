@@ -26,12 +26,16 @@ class GameViewController: UIViewController, CardDelegate {
     @IBOutlet weak var speechText: UILabel!
     @IBOutlet weak var endMyTurnButton: UIView!
     
+    var prevVC: StoryViewController!
+    
     var playWasClicked : Bool = false
     
     var scene : GameScene!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.prevVC.dismiss(animated: false, completion: nil)
         
         endMyTurnButton.self.layer.cornerRadius = 15
         
