@@ -95,6 +95,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     // MARK: - Init
     func initScene () { // ALWAYS CALL THIS BEFORE PRESENTING SCENE
+        
         battleManager.setup()
         for enemy in DataSave.shared.gameCampaign.enemys {
             if enemy.name == "Vó Matilda" {
