@@ -55,7 +55,7 @@ class NewGameCollectionViewCell : UICollectionViewCell {
     
     func configureCell () {
         
-        label.text = "New Game"
+        //label.text = "New Game"
     }
 }
 
