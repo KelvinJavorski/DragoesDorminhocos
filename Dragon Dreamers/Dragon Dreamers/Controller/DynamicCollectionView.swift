@@ -86,7 +86,7 @@ class DynamicMenuCollectionViewFlowLayout: UICollectionViewFlowLayout {
             
         let leftInset = availableWidth * 0.5
         
-        self.sectionInset = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 10.0)
+        self.sectionInset = UIEdgeInsets(top: cellHeight/2, left: 20.0, bottom: 10.0, right: 10.0)
         self.sectionInsetReference = .fromSafeArea
     }
     

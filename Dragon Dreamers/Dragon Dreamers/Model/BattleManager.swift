@@ -37,6 +37,11 @@ class BattleManager{
         enemy.setOpponent(person: player.self)
         enemy.setHand()
         player.scene = scene
+        player.resetWay()
+        player.setOwner()
+        player.setOpponent(person: enemy)
+        enemy.setOwner()
+        enemy.setOpponent(person: player)
     }
     
     func endBattle(){
