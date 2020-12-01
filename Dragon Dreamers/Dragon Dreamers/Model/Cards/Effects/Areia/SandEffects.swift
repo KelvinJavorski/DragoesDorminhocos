@@ -58,13 +58,12 @@ class PrevenirStatus : EffectProtocol{
 class PrevenirEffect : EffectProtocol {
     func applyEffects(card: Card) {
         let person = Player.shared
-        for card in person.hand.cards{
-            card.node.removeFromParent()
-        }
-        Player.shared.discardHand()
-        person.deck.cards.insert(contentsOf: person.lastHand.cards, at: 0)
-//        person.deck.cards.append(contentsOf: person.lastHand.cards)
-        person.scene.drawHandCards(5)
+//        for card in person.hand.cards{
+//            card.node.removeFromParent()
+//        }
+//        Player.shared.discardHand()
+//        person.deck.cards.insert(contentsOf: person.lastHand.cards, at: 0)
+//        person.scene.drawHandCards(5)
         //Não funciona ainda
     }
 }
@@ -94,7 +93,7 @@ class DefenderWeak : EffectProtocol{
 
 class DesviarWeak : EffectProtocol{
     func applyEffects(card: Card) {
-        let person = card.owner.opponent!
+        let person = Player.shared
         person.currentStatus.append(.desviar)
     }
 }

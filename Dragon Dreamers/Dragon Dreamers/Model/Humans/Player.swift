@@ -44,6 +44,13 @@ class Player: Person {
         setInitialDeck()
     }
     
+    func resetWay(){
+        for way in ways{
+            way.current = 0
+            way.blocked = false
+        }
+    }
+    
     func setInitialAtributes(){
         
         currentTokens = 5
